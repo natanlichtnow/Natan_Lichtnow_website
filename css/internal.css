@@ -141,6 +141,62 @@ button {
     radial-gradient(circle at 82% 14%, rgba(66, 140, 200, 0.16), transparent 24%);
 }
 
+/* Lightweight drifting cloud layer for the paraglider world */
+.c-page--journey::before {
+  inset: -24% -24%;
+  background:
+    radial-gradient(ellipse 26rem 8.8rem at 10% 22%, rgba(236, 247, 252, 0.15) 0%, rgba(236, 247, 252, 0.07) 45%, transparent 72%),
+    radial-gradient(ellipse 22rem 7.6rem at 30% 14%, rgba(236, 247, 252, 0.13) 0%, rgba(236, 247, 252, 0.055) 42%, transparent 69%),
+    radial-gradient(ellipse 27rem 9rem at 54% 26%, rgba(229, 242, 249, 0.12) 0%, rgba(229, 242, 249, 0.05) 47%, transparent 72%),
+    radial-gradient(ellipse 22rem 7.5rem at 73% 13%, rgba(236, 247, 252, 0.13) 0%, rgba(236, 247, 252, 0.055) 44%, transparent 69%),
+    radial-gradient(ellipse 26rem 8.8rem at 94% 24%, rgba(229, 242, 249, 0.11) 0%, rgba(229, 242, 249, 0.045) 46%, transparent 73%);
+  background-repeat: no-repeat;
+  background-size: 120% 100%, 120% 100%, 120% 100%, 120% 100%, 120% 100%;
+  background-position: 6% 0%, 22% 0%, 44% 0%, 66% 0%, 88% 0%;
+  opacity: 0.88;
+  filter: none;
+  animation: c-journey-cloud-pan 28s ease-in-out infinite alternate;
+}
+
+.c-page--journey::after {
+  inset: 0;
+  opacity: 0.8;
+  animation: none;
+}
+
+@keyframes c-journey-cloud-pan {
+  0% {
+    background-position: 6% 0%, 22% 0%, 44% 0%, 66% 0%, 88% 0%;
+  }
+  100% {
+    background-position: 16% 0%, 32% 0%, 54% 0%, 76% 0%, 98% 0%;
+  }
+}
+
+@media (max-width: 1080px) {
+  .c-page--journey::before {
+    inset: -22% -22%;
+    background-size: 132% 100%, 132% 100%, 132% 100%, 132% 100%, 132% 100%;
+    animation-duration: 24s;
+  }
+}
+
+@media (max-width: 720px) {
+  .c-page--journey::before {
+    inset: -20% -20%;
+    background-size: 150% 100%, 150% 100%, 150% 100%, 150% 100%, 150% 100%;
+    background-position: 2% 0%, 18% 0%, 40% 0%, 62% 0%, 84% 0%;
+    animation-duration: 20s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-page--journey::before,
+  .c-page--journey::after {
+    animation: none;
+  }
+}
+
 .c-page--journey .c-topbar {
   background: rgba(4, 12, 7, 0.92);
   border-bottom: 1px solid rgba(66, 200, 116, 0.1);

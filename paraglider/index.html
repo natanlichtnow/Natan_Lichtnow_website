@@ -441,66 +441,6 @@
       color: #99bda6;
     }
 
-    .hp-home__cta {
-      padding: 1rem 0 5rem;
-    }
-
-    .hp-home__cta-panel {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(240px, auto);
-      gap: 1.5rem;
-      align-items: center;
-      padding: 2.2rem;
-      border-radius: 2rem;
-      border: 1px solid rgba(66, 200, 116, 0.16);
-      background:
-        linear-gradient(135deg, rgba(9, 23, 14, 0.86), rgba(8, 21, 30, 0.88)),
-        radial-gradient(circle at 15% 15%, rgba(66, 200, 116, 0.12), transparent 25%);
-      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.28);
-    }
-
-    .hp-home__cta-title {
-      margin: 0 0 0.8rem;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1;
-      color: #eef7f0;
-    }
-
-    .hp-home__cta-copy {
-      margin: 0;
-      max-width: 38rem;
-      font-size: 1.14rem;
-      line-height: 1.62;
-      color: #99bda6;
-    }
-
-    .hp-home__collab {
-      padding: 0 0 3.5rem;
-    }
-
-    .hp-home__collab-card {
-      padding: 2rem 2.2rem;
-      border-radius: 2rem;
-      border: 1px solid rgba(66, 200, 116, 0.16);
-      background:
-        linear-gradient(135deg, rgba(9, 23, 14, 0.86), rgba(8, 21, 30, 0.88)),
-        radial-gradient(circle at 15% 15%, rgba(66, 200, 116, 0.12), transparent 25%);
-      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.28);
-    }
-
-    .hp-home__collab-copy {
-      margin: 0;
-      max-width: 62rem;
-      font-size: 1.08rem;
-      line-height: 1.7;
-      color: #a9c9b3;
-    }
-
-    .hp-home__collab-actions {
-      margin-top: 1rem;
-    }
-
     .hp-home__footer {
       padding: 0 0 1.6rem;
       text-align: center;
@@ -517,7 +457,6 @@
     @media (max-width: 960px) {
       .hp-home__hero-grid,
       .hp-home__section-grid,
-      .hp-home__cta-panel,
       .hp-home__cards {
         grid-template-columns: 1fr;
       }
@@ -624,8 +563,7 @@
       }
 
       .hp-home__image-slot,
-      .hp-home__visual,
-      .hp-home__cta-panel {
+      .hp-home__visual {
         border-radius: 1.5rem;
       }
     }
@@ -650,7 +588,6 @@
           <a class="c-topbar__link c-topbar__link--is-active" href="index.html" data-i18n="navHome">Home</a>
           <a class="c-topbar__link" href="journey.html" data-i18n="navStory">Journey</a>
           <a class="c-topbar__link" href="projects.html" data-i18n="navProjects">Projects</a>
-          <a class="c-topbar__link" href="mailto:hello@natanlichtnow.com" data-i18n="navContact">Contact</a>
         </nav>
 
         <div class="c-language-switcher" aria-label="Language selector" data-i18n-attr="aria-label" data-i18n="languageSwitcherAriaLabel">
@@ -726,28 +663,6 @@
         </svg>
       </div>
 
-      <section class="hp-home__cta">
-        <div class="c-shell hp-home__cta-panel">
-          <div>
-            <h2 class="hp-home__cta-title" data-i18n="ctaTitle">Ready to evolve in flight?</h2>
-            <p class="hp-home__cta-copy" data-i18n="ctaCopy">Learn to read the sky, make decisions with confidence, and achieve longer flights with consistency.</p>
-          </div>
-          <div class="hp-home__actions">
-            <a class="c-button" href="mailto:hello@natanlichtnow.com" data-i18n="ctaButton">Get in touch</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="hp-home__collab">
-        <div class="c-shell">
-          <article class="hp-home__collab-card">
-            <p class="hp-home__collab-copy" data-i18n="collabSkygodsText">Natan is collaborating with Skygods, an expedition company qualified to bring pilots to fly in different sites around the world, get to know their work here:</p>
-            <div class="hp-home__actions hp-home__collab-actions">
-              <a class="c-button" href="https://www.skygods.co.uk/" target="_blank" rel="noopener noreferrer" data-i18n="collabSkygodsButton">Visit Skygods</a>
-            </div>
-          </article>
-        </div>
-      </section>
     </main>
 
     <footer class="hp-home__footer">
@@ -787,7 +702,6 @@
         navHome: 'Início',
         navStory: 'História',
         navProjects: 'Projetos',
-        navContact: 'Contato',
         heroEyebrow: 'Universo Paraglider',
         heroTitle: 'Piloto de Paraglider e Instrutor',
         heroLead: 'Uma trajetória marcada por altos e baixos, guiada pela paixão de compartilhar os segredos do ar, absorvidos desde a infância.',
@@ -807,11 +721,6 @@
         courseTag: 'Curso',
         courseTitle: 'Cross Country Experience',
         courseCopy: 'Imersão completa com 5 aulas teóricas aprofundadas, combinadas com acompanhamento prático na capital do voo livre: Governador Valadares.',
-        ctaTitle: 'Pronto para evoluir no voo?',
-        ctaCopy: 'Aprenda a ler o céu, tomar decisões com confiança e alcançar voos mais longos com consistência.',
-        ctaButton: 'Entrar em contato',
-        collabSkygodsText: 'Natan está colaborando com a Skygods, uma empresa de expedições qualificada para levar pilotos a voar em diferentes locais ao redor do mundo. Conheça o trabalho deles aqui:',
-        collabSkygodsButton: 'Conhecer Skygods',
         copyright: '© 2026 Natan Lichtnow. Todos os direitos reservados.'
       },
       en: {
@@ -825,7 +734,6 @@
         navHome: 'Home',
         navStory: 'Journey',
         navProjects: 'Projects',
-        navContact: 'Contact',
         heroEyebrow: 'Paraglider World',
         heroTitle: 'Paraglider Pilot & Instructor',
         heroLead: 'A path marked by highs and lows, guided by a passion for sharing the secrets of the air, absorbed since childhood.',
@@ -845,11 +753,6 @@
         courseTag: 'Course',
         courseTitle: 'Cross Country Experience',
         courseCopy: 'A complete immersion with five in-depth theoretical classes, combined with practical follow-up in the free flight capital: Governador Valadares.',
-        ctaTitle: 'Ready to evolve in flight?',
-        ctaCopy: 'Learn to read the sky, make decisions with confidence, and achieve longer flights with consistency.',
-        ctaButton: 'Get in touch',
-        collabSkygodsText: 'Natan is collaborating with Skygods, an expedition company qualified to bring pilots to fly in different sites around the world, get to know their work here:',
-        collabSkygodsButton: 'Visit Skygods',
         copyright: '© 2026 Natan Lichtnow. All rights reserved.'
       }
     };
