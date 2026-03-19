@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natan Lichtnow | Paraglider Pilot & Instructor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/internal.css" />
+  <style>
+    body {
+      background: linear-gradient(180deg, #060f0a 0%, #09161e 50%, #060e0a 100%);
+    }
+
+    .c-page--journey .c-topbar {
+      background: rgba(4, 12, 7, 0.92) !important;
+      border-bottom: 1px solid rgba(66, 200, 116, 0.1);
+    }
+
+    .c-page--journey .c-topbar__menu-toggle {
+      display: none;
+      width: 2.7rem;
+      height: 2.7rem;
+      border-radius: 0.8rem;
+      border: 1px solid rgba(66, 200, 116, 0.24);
+      background: rgba(66, 200, 116, 0.08);
+      color: #c8e8d0;
+      align-items: center;
+      justify-content: center;
+      gap: 0.26rem;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .c-page--journey .c-topbar__menu-toggle:hover,
+    .c-page--journey .c-topbar__menu-toggle:focus-visible {
+      background: rgba(66, 200, 116, 0.16);
+      border-color: rgba(66, 200, 116, 0.4);
+    }
+
+    .c-page--journey .c-topbar__menu-toggle-line {
+      display: block;
+      width: 1.15rem;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .c-page--journey .c-topbar__menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 25;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      background: rgba(3, 10, 6, 0.26);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .c-page--journey .c-topbar__menu-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .c-page--journey .c-topbar__brand {
+      color: #c8e8d0;
+    }
+
+    .c-page--journey .c-topbar__brand-mark {
+      background: rgba(66, 200, 116, 0.1);
+      border-color: rgba(66, 200, 116, 0.3);
+      color: #42c874;
+    }
+
+    .c-page--journey .c-topbar__link {
+      color: #6a9878;
+    }
+
+    .c-page--journey .c-topbar__link:hover,
+    .c-page--journey .c-topbar__link:focus-visible,
+    .c-page--journey .c-topbar__link--is-active {
+      color: #c8e8d0;
+      border-color: rgba(66, 200, 116, 0.3);
+      background: rgba(66, 200, 116, 0.08);
+    }
+
+    .c-page--journey .c-language-switcher {
+      border-color: rgba(66, 200, 116, 0.14);
+      background: rgba(66, 200, 116, 0.05);
+    }
+
+    .c-page--journey .c-language-switcher__label {
+      color: #4a7858;
+    }
+
+    .c-page--journey .c-language-switcher__option {
+      color: #c8e8d0;
+      border-color: rgba(66, 200, 116, 0.14);
+    }
+
+    .c-page--journey .c-language-switcher__option--is-active {
+      background: rgba(66, 200, 116, 0.12);
+      border-color: rgba(66, 200, 116, 0.32);
+    }
+
+    .c-page--journey .c-button {
+      background: rgba(66, 200, 116, 0.1);
+      border-color: rgba(66, 200, 116, 0.32);
+      color: #a0d8b0;
+    }
+
+    .c-page--journey .c-button:hover {
+      background: rgba(66, 200, 116, 0.2);
+    }
+
+    .hp-home {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hp-home__hero {
+      position: relative;
+      min-height: 94vh;
+      padding: 5rem 0 3rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .hp-home__hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hp-home__eyebrow,
+    .hp-home__section-tag,
+    .hp-home__card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #42c874;
+    }
+
+    .hp-home__eyebrow::before,
+    .hp-home__section-tag::before,
+    .hp-home__card-tag::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: linear-gradient(90deg, #42c874, transparent);
+    }
+
+    .hp-home__title {
+      margin: 1.1rem 0 1.6rem;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(3.2rem, 8vw, 6.8rem);
+      line-height: 0.94;
+      font-weight: 700;
+      color: #e8f5ea;
+      text-shadow: 0 0 80px rgba(66, 200, 116, 0.18), 0 4px 50px rgba(0, 0, 0, 0.9);
+    }
+
+    .hp-home__lead {
+      max-width: 34rem;
+      margin: 0 0 2rem;
+      font-size: clamp(1.08rem, 2vw, 1.34rem);
+      line-height: 1.7;
+      color: #9ec2aa;
+    }
+
+    .hp-home__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .hp-home__visual {
+      position: relative;
+      min-height: 31rem;
+      border-radius: 2rem;
+      border: 1px solid rgba(66, 200, 116, 0.14);
+      background:
+        radial-gradient(circle at 22% 18%, rgba(66, 200, 116, 0.22), transparent 22%),
+        radial-gradient(circle at 78% 22%, rgba(70, 150, 210, 0.22), transparent 20%),
+        linear-gradient(180deg, rgba(9, 22, 14, 0.88), rgba(8, 18, 28, 0.92));
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hp-home__visual-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+      filter: saturate(0.9) contrast(1.02);
+    }
+
+    .hp-home__visual::before {
+      content: '';
+      position: absolute;
+      inset: 1.25rem;
+      border: 1px dashed rgba(66, 200, 116, 0.2);
+      border-radius: 1.4rem;
+    }
+
+    .hp-home__mountains {
+      position: absolute;
+      inset: auto 0 0;
+      line-height: 0;
+      z-index: 1;
+      opacity: 0.92;
+    }
+
+    .hp-home__section {
+      position: relative;
+      padding: 2rem 0 4rem;
+    }
+
+    .hp-home__section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(260px, 0.8fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .hp-home__section-title {
+      margin: 0.8rem 0 1rem;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1;
+      color: #dceee0;
+    }
+
+    .hp-home__section-copy {
+      max-width: 38rem;
+      font-size: 1.1rem;
+      line-height: 1.65;
+      color: #8eb39b;
+    }
+
+    .hp-home__image-slot {
+      min-height: 18rem;
+      padding: 0;
+      border-radius: 1.8rem;
+      border: 1px solid rgba(66, 200, 116, 0.14);
+      background:
+        linear-gradient(180deg, rgba(10, 22, 14, 0.9), rgba(9, 20, 28, 0.88)),
+        radial-gradient(circle at 25% 25%, rgba(66, 200, 116, 0.16), transparent 30%);
+      display: flex;
+      align-items: stretch;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .hp-home__image-player {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 18rem;
+      border: 0;
+      background: rgba(4, 12, 7, 0.75);
+    }
+
+    .hp-home__image-player::before,
+    .hp-home__image-player::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .hp-home__image-player::before {
+      top: 0;
+      height: 3.2rem;
+      background: linear-gradient(180deg, rgba(9, 20, 14, 0.95), rgba(9, 20, 14, 0));
+    }
+
+    .hp-home__image-player::after {
+      bottom: 0;
+      height: 2.6rem;
+      background: linear-gradient(0deg, rgba(9, 20, 14, 0.9), rgba(9, 20, 14, 0));
+    }
+
+    .hp-home__image-player iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      pointer-events: none;
+    }
+
+    .hp-video-modal {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 1.2rem;
+      background: rgba(2, 8, 5, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.24s ease, visibility 0.24s ease;
+      z-index: 80;
+    }
+
+    .hp-video-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .hp-video-modal__panel {
+      position: relative;
+      width: min(980px, 100%);
+      border-radius: 1.2rem;
+      border: 1px solid rgba(66, 200, 116, 0.26);
+      background: #040b07;
+      box-shadow: 0 26px 56px rgba(0, 0, 0, 0.56);
+      overflow: hidden;
+    }
+
+    .hp-video-modal__frame-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+    }
+
+    .hp-video-modal__frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .hp-video-modal__close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 999px;
+      border: 1px solid rgba(66, 200, 116, 0.36);
+      background: rgba(6, 16, 10, 0.86);
+      color: #d2ecda;
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .hp-video-modal__close:hover,
+    .hp-video-modal__close:focus-visible {
+      background: rgba(66, 200, 116, 0.22);
+      outline: none;
+    }
+
+    .hp-home__cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem;
+      margin-top: 2rem;
+    }
+
+    .hp-home__card {
+      position: relative;
+      padding: 1.7rem;
+      border-radius: 1.8rem;
+      border: 1px solid rgba(66, 200, 116, 0.14);
+      background: rgba(10, 23, 14, 0.72);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
+      overflow: hidden;
+    }
+
+    .hp-home__card::after {
+      content: '';
+      position: absolute;
+      inset: auto -4rem -4rem auto;
+      width: 10rem;
+      height: 10rem;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(66, 200, 116, 0.16), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hp-home__card-title {
+      margin: 0.9rem 0 0.45rem;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.9rem;
+      line-height: 1.05;
+      color: #dceee0;
+    }
+
+    .hp-home__card-meta {
+      margin: 0 0 1rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #5f9071;
+    }
+
+    .hp-home__card-copy {
+      margin: 0;
+      font-size: 1.04rem;
+      line-height: 1.62;
+      color: #99bda6;
+    }
+
+    .hp-home__cta {
+      padding: 1rem 0 5rem;
+    }
+
+    .hp-home__cta-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, auto);
+      gap: 1.5rem;
+      align-items: center;
+      padding: 2.2rem;
+      border-radius: 2rem;
+      border: 1px solid rgba(66, 200, 116, 0.16);
+      background:
+        linear-gradient(135deg, rgba(9, 23, 14, 0.86), rgba(8, 21, 30, 0.88)),
+        radial-gradient(circle at 15% 15%, rgba(66, 200, 116, 0.12), transparent 25%);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.28);
+    }
+
+    .hp-home__cta-title {
+      margin: 0 0 0.8rem;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1;
+      color: #eef7f0;
+    }
+
+    .hp-home__cta-copy {
+      margin: 0;
+      max-width: 38rem;
+      font-size: 1.14rem;
+      line-height: 1.62;
+      color: #99bda6;
+    }
+
+    .hp-home__collab {
+      padding: 0 0 3.5rem;
+    }
+
+    .hp-home__collab-card {
+      padding: 2rem 2.2rem;
+      border-radius: 2rem;
+      border: 1px solid rgba(66, 200, 116, 0.16);
+      background:
+        linear-gradient(135deg, rgba(9, 23, 14, 0.86), rgba(8, 21, 30, 0.88)),
+        radial-gradient(circle at 15% 15%, rgba(66, 200, 116, 0.12), transparent 25%);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.28);
+    }
+
+    .hp-home__collab-copy {
+      margin: 0;
+      max-width: 62rem;
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: #a9c9b3;
+    }
+
+    .hp-home__collab-actions {
+      margin-top: 1rem;
+    }
+
+    .hp-home__footer {
+      padding: 0 0 1.6rem;
+      text-align: center;
+    }
+
+    .hp-home__footer-copy {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #587f67;
+    }
+
+    @media (max-width: 960px) {
+      .hp-home__hero-grid,
+      .hp-home__section-grid,
+      .hp-home__cta-panel,
+      .hp-home__cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hp-home__visual {
+        min-height: 24rem;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .c-page--journey .c-topbar {
+        position: sticky;
+        z-index: 40;
+      }
+
+      .c-page--journey .c-topbar__inner {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        justify-items: stretch;
+        text-align: left;
+        gap: 0.65rem;
+      }
+
+      .c-page--journey .c-topbar__brand {
+        min-width: 0;
+        gap: 0.6rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+      }
+
+      .c-page--journey .c-topbar__brand > span[data-i18n='brand'] {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .c-page--journey .c-topbar__menu-toggle {
+        display: inline-flex;
+      }
+
+      .c-page--journey .c-topbar__nav {
+        position: absolute;
+        left: 0.7rem;
+        right: 0.7rem;
+        top: calc(100% + 0.55rem);
+        display: grid;
+        gap: 0.55rem;
+        padding: 0.8rem;
+        border-radius: 0.95rem;
+        border: 1px solid rgba(66, 200, 116, 0.18);
+        background: rgba(4, 12, 7, 0.95);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      }
+
+      .c-page--journey .c-topbar__nav.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .c-page--journey .c-topbar__link {
+        width: 100%;
+      }
+
+      .c-page--journey .c-language-switcher {
+        justify-self: end;
+        width: auto;
+        gap: 0.2rem;
+        padding: 0.24rem;
+        max-width: 100%;
+      }
+
+      .c-page--journey .c-language-switcher__label {
+        padding-inline: 0.35rem;
+        font-size: 0.6rem;
+        letter-spacing: 0.1em;
+      }
+
+      .c-page--journey .c-language-switcher__option {
+        min-width: 2.2rem;
+        padding: 0.48rem 0.5rem;
+        font-size: 0.62rem;
+      }
+
+      .hp-home__hero {
+        min-height: auto;
+        padding-top: 4rem;
+      }
+
+      .hp-home__title {
+        font-size: clamp(2.6rem, 16vw, 4.2rem);
+      }
+
+      .hp-home__actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hp-home__image-slot,
+      .hp-home__visual,
+      .hp-home__cta-panel {
+        border-radius: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="c-page c-page--journey hp-home">
+    <header class="c-topbar">
+      <div class="c-shell c-topbar__inner">
+        <button class="c-topbar__menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation" data-i18n-attr="aria-label" data-i18n="menuToggleAriaLabel">
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+        </button>
+
+        <a class="c-topbar__brand" href="../index.html" aria-label="Natan Lichtnow home" data-i18n-attr="aria-label" data-i18n="brandAriaLabel">
+          <span class="c-topbar__brand-mark">NL</span>
+          <span data-i18n="brand">Natan Lichtnow</span>
+        </a>
+
+        <nav class="c-topbar__nav" id="primary-nav" aria-label="Primary navigation" data-i18n-attr="aria-label" data-i18n="primaryNavAriaLabel">
+          <a class="c-topbar__link c-topbar__link--is-active" href="index.html" data-i18n="navHome">Home</a>
+          <a class="c-topbar__link" href="journey.html" data-i18n="navStory">Journey</a>
+          <a class="c-topbar__link" href="projects.html" data-i18n="navProjects">Projects</a>
+          <a class="c-topbar__link" href="mailto:hello@natanlichtnow.com" data-i18n="navContact">Contact</a>
+        </nav>
+
+        <div class="c-language-switcher" aria-label="Language selector" data-i18n-attr="aria-label" data-i18n="languageSwitcherAriaLabel">
+          <span class="c-language-switcher__label" data-i18n="languageLabel">LANG</span>
+          <button class="c-language-switcher__option" type="button" data-lang="pt-BR">PT</button>
+          <button class="c-language-switcher__option" type="button" data-lang="en">EN</button>
+        </div>
+      </div>
+    </header>
+    <div class="c-topbar__menu-overlay" aria-hidden="true"></div>
+
+    <main>
+      <section class="hp-home__hero">
+        <div class="c-shell hp-home__hero-grid">
+          <div>
+            <span class="hp-home__eyebrow" data-i18n="heroEyebrow">Paraglider World</span>
+            <h1 class="hp-home__title" data-i18n="heroTitle">Paraglider Pilot &amp; Instructor</h1>
+            <p class="hp-home__lead" data-i18n="heroLead">A path marked by highs and lows, guided by a passion for sharing the secrets of the air, absorbed since childhood.</p>
+            <div class="hp-home__actions">
+              <a class="c-button" href="journey.html" data-i18n="heroPrimaryCta">Discover my story</a>
+            </div>
+          </div>
+
+          <div class="hp-home__visual">
+            <img class="hp-home__visual-image" src="../img/flying.png" alt="Paraglider flight photo" data-i18n="heroVisualAlt" data-i18n-attr="alt" />
+            <div class="hp-home__mountains">
+              <svg viewBox="0 0 1440 260" preserveAspectRatio="none" role="presentation">
+                <path fill="rgba(8, 22, 12, 0.96)" d="M0,224L75,181.3C150,139,300,53,450,58.7C600,64,750,160,900,181.3C1050,203,1200,149,1290,122.7L1380,96L1440,80L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                <path fill="rgba(13, 36, 20, 0.95)" d="M0,288L90,245.3C180,203,360,117,540,122.7C720,128,900,224,1080,234.7C1260,245,1440,171,1440,171L1440,320L1080,320C720,320,360,320,180,320L0,320Z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="c-shell c-mountain-divider" aria-hidden="true">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path fill="currentColor" d="M0,108L120,38L220,84L322,16L436,92L558,34L648,88L764,14L904,102L1020,44L1200,108L1200,120L0,120Z"></path>
+        </svg>
+      </div>
+
+      <section class="hp-home__section">
+        <div class="c-shell hp-home__section-grid">
+          <div>
+            <span class="hp-home__section-tag" data-i18n="projectsTag">Instructional projects</span>
+            <h2 class="hp-home__section-title" data-i18n="projectsTitle">Instructional Projects</h2>
+            <p class="hp-home__section-copy" data-i18n="projectsLead">Blending audio engineering, animation, and a deep understanding of air dynamics, Natan developed clear and accessible materials to confidently transmit the knowledge behind the complex universe of cross country flight.</p>
+          </div>
+          <div class="hp-home__image-slot" data-video-slot>
+            <div class="hp-home__image-player" id="inlineTeachingVideo" aria-label="Preview video" data-i18n="inlineVideoAriaLabel" data-i18n-attr="aria-label"></div>
+          </div>
+        </div>
+
+        <div class="c-shell hp-home__cards">
+          <article class="hp-home__card">
+            <span class="hp-home__card-tag" data-i18n="workshopTag">Workshop</span>
+            <h3 class="hp-home__card-title" data-i18n="workshopTitle">From launch to cloud base</h3>
+            <p class="hp-home__card-meta" data-i18n="workshopDuration">Duration: 2h30</p>
+            <p class="hp-home__card-copy" data-i18n="workshopCopy">A direct and practical session, ideal for pilots who want to understand the essential foundations of distance flying with clarity and real-world application.</p>
+          </article>
+
+          <article class="hp-home__card">
+            <span class="hp-home__card-tag" data-i18n="courseTag">Course</span>
+            <h3 class="hp-home__card-title" data-i18n="courseTitle">Cross Country Experience</h3>
+            <p class="hp-home__card-copy" data-i18n="courseCopy">A complete immersion with five in-depth theoretical classes, combined with practical follow-up in the free flight capital: Governador Valadares.</p>
+          </article>
+        </div>
+      </section>
+
+      <div class="c-shell c-mountain-divider" aria-hidden="true">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path fill="currentColor" d="M0,108L120,38L220,84L322,16L436,92L558,34L648,88L764,14L904,102L1020,44L1200,108L1200,120L0,120Z"></path>
+        </svg>
+      </div>
+
+      <section class="hp-home__cta">
+        <div class="c-shell hp-home__cta-panel">
+          <div>
+            <h2 class="hp-home__cta-title" data-i18n="ctaTitle">Ready to evolve in flight?</h2>
+            <p class="hp-home__cta-copy" data-i18n="ctaCopy">Learn to read the sky, make decisions with confidence, and achieve longer flights with consistency.</p>
+          </div>
+          <div class="hp-home__actions">
+            <a class="c-button" href="mailto:hello@natanlichtnow.com" data-i18n="ctaButton">Get in touch</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="hp-home__collab">
+        <div class="c-shell">
+          <article class="hp-home__collab-card">
+            <p class="hp-home__collab-copy" data-i18n="collabSkygodsText">Natan is collaborating with Skygods, an expedition company qualified to bring pilots to fly in different sites around the world, get to know their work here:</p>
+            <div class="hp-home__actions hp-home__collab-actions">
+              <a class="c-button" href="https://www.skygods.co.uk/" target="_blank" rel="noopener noreferrer" data-i18n="collabSkygodsButton">Visit Skygods</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="hp-home__footer">
+      <div class="c-shell">
+        <p class="hp-home__footer-copy" data-i18n="copyright">© 2026 Natan Lichtnow. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <div class="hp-video-modal" data-video-modal role="dialog" aria-modal="true" aria-label="Video player" data-i18n="videoModalAriaLabel" data-i18n-attr="aria-label">
+      <div class="hp-video-modal__panel">
+        <button class="hp-video-modal__close" type="button" data-video-close aria-label="Close video" data-i18n="closeVideoAriaLabel" data-i18n-attr="aria-label">&times;</button>
+        <div class="hp-video-modal__frame-wrap">
+          <iframe
+            class="hp-video-modal__frame"
+            data-video-frame
+            title="Teaching material video"
+            data-i18n="videoFrameTitle"
+            data-i18n-attr="title"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.NATAN_PAGE_TRANSLATIONS = {
+      'pt-BR': {
+        pageTitle: 'Natan Lichtnow | Piloto de Paraglider e Instrutor',
+        brandAriaLabel: 'Início de Natan Lichtnow',
+        brand: 'Natan Lichtnow',
+        menuToggleAriaLabel: 'Abrir navegação',
+        primaryNavAriaLabel: 'Navegação principal',
+        languageLabel: 'Idioma',
+        languageSwitcherAriaLabel: 'Seletor de idioma',
+        navHome: 'Início',
+        navStory: 'História',
+        navProjects: 'Projetos',
+        navContact: 'Contato',
+        heroEyebrow: 'Universo Paraglider',
+        heroTitle: 'Piloto de Paraglider e Instrutor',
+        heroLead: 'Uma trajetória marcada por altos e baixos, guiada pela paixão de compartilhar os segredos do ar, absorvidos desde a infância.',
+        heroPrimaryCta: 'Conheça minha história',
+        heroVisualAlt: 'Foto de voo de paraglider',
+        projectsTag: 'Projetos instrucionais',
+        projectsTitle: 'Projetos Instrucionais',
+        projectsLead: 'Unindo engenharia de áudio, animação e uma compreensão profunda das dinâmicas do ar, Natan desenvolveu materiais claros e acessíveis para transmitir, com confiança, o conhecimento do complexo universo do voo de cross country.',
+        inlineVideoAriaLabel: 'Prévia do vídeo de material instrucional',
+        videoModalAriaLabel: 'Player de vídeo',
+        closeVideoAriaLabel: 'Fechar vídeo',
+        videoFrameTitle: 'Vídeo de material instrucional',
+        workshopTag: 'Workshop',
+        workshopTitle: 'Da rampa à base da nuvem',
+        workshopDuration: 'Duração: 2h30',
+        workshopCopy: 'Um conteúdo direto ao ponto, ideal para pilotos que querem entender os fundamentos essenciais do voo de distância com clareza e aplicação prática.',
+        courseTag: 'Curso',
+        courseTitle: 'Cross Country Experience',
+        courseCopy: 'Imersão completa com 5 aulas teóricas aprofundadas, combinadas com acompanhamento prático na capital do voo livre: Governador Valadares.',
+        ctaTitle: 'Pronto para evoluir no voo?',
+        ctaCopy: 'Aprenda a ler o céu, tomar decisões com confiança e alcançar voos mais longos com consistência.',
+        ctaButton: 'Entrar em contato',
+        collabSkygodsText: 'Natan está colaborando com a Skygods, uma empresa de expedições qualificada para levar pilotos a voar em diferentes locais ao redor do mundo. Conheça o trabalho deles aqui:',
+        collabSkygodsButton: 'Conhecer Skygods',
+        copyright: '© 2026 Natan Lichtnow. Todos os direitos reservados.'
+      },
+      en: {
+        pageTitle: 'Natan Lichtnow | Paraglider Pilot & Instructor',
+        brandAriaLabel: 'Natan Lichtnow home',
+        brand: 'Natan Lichtnow',
+        menuToggleAriaLabel: 'Open navigation',
+        primaryNavAriaLabel: 'Primary navigation',
+        languageLabel: 'Lang',
+        languageSwitcherAriaLabel: 'Language selector',
+        navHome: 'Home',
+        navStory: 'Journey',
+        navProjects: 'Projects',
+        navContact: 'Contact',
+        heroEyebrow: 'Paraglider World',
+        heroTitle: 'Paraglider Pilot & Instructor',
+        heroLead: 'A path marked by highs and lows, guided by a passion for sharing the secrets of the air, absorbed since childhood.',
+        heroPrimaryCta: 'Discover my story',
+        heroVisualAlt: 'Paraglider flight photo',
+        projectsTag: 'Instructional projects',
+        projectsTitle: 'Instructional Projects',
+        projectsLead: 'Blending audio engineering, animation, and a deep understanding of air dynamics, Natan developed clear and accessible materials to confidently transmit the knowledge behind the complex universe of cross country flight.',
+        inlineVideoAriaLabel: 'Instructional material video preview',
+        videoModalAriaLabel: 'Video player',
+        closeVideoAriaLabel: 'Close video',
+        videoFrameTitle: 'Instructional material video',
+        workshopTag: 'Workshop',
+        workshopTitle: 'From launch to cloud base',
+        workshopDuration: 'Duration: 2h30',
+        workshopCopy: 'A direct and practical session, ideal for pilots who want to understand the essential foundations of distance flying with clarity and real-world application.',
+        courseTag: 'Course',
+        courseTitle: 'Cross Country Experience',
+        courseCopy: 'A complete immersion with five in-depth theoretical classes, combined with practical follow-up in the free flight capital: Governador Valadares.',
+        ctaTitle: 'Ready to evolve in flight?',
+        ctaCopy: 'Learn to read the sky, make decisions with confidence, and achieve longer flights with consistency.',
+        ctaButton: 'Get in touch',
+        collabSkygodsText: 'Natan is collaborating with Skygods, an expedition company qualified to bring pilots to fly in different sites around the world, get to know their work here:',
+        collabSkygodsButton: 'Visit Skygods',
+        copyright: '© 2026 Natan Lichtnow. All rights reserved.'
+      }
+    };
+  </script>
+
+  <script>
+    (function () {
+      const videoId = 'PFvbwRbzhME';
+      const inlineContainerId = 'inlineTeachingVideo';
+      const modal = document.querySelector('[data-video-modal]');
+      const closeButton = document.querySelector('[data-video-close]');
+      const modalFrame = document.querySelector('[data-video-frame]');
+      const slot = document.querySelector('[data-video-slot]');
+      let inlinePlayer;
+      let hasStartedInline = false;
+
+      function popupEmbedUrl () {
+        return 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&mute=0&controls=1&modestbranding=1&rel=0&playsinline=1';
+      }
+
+      function openModal () {
+        if (!modal || !modalFrame) {
+          return;
+        }
+
+        if (inlinePlayer && typeof inlinePlayer.pauseVideo === 'function') {
+          inlinePlayer.pauseVideo();
+        }
+
+        modal.classList.add('is-open');
+        modalFrame.src = popupEmbedUrl();
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal () {
+        if (!modal || !modalFrame) {
+          return;
+        }
+
+        modal.classList.remove('is-open');
+        modalFrame.src = '';
+        document.body.style.overflow = '';
+      }
+
+      function observeInlinePlayback () {
+        if (!slot || !inlinePlayer || typeof inlinePlayer.playVideo !== 'function') {
+          return;
+        }
+
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.55) {
+              if (modal && modal.classList.contains('is-open')) {
+                return;
+              }
+
+              hasStartedInline = true;
+              inlinePlayer.playVideo();
+              if (typeof inlinePlayer.mute === 'function') {
+                inlinePlayer.mute();
+              }
+              return;
+            }
+
+            if (hasStartedInline && typeof inlinePlayer.pauseVideo === 'function') {
+              inlinePlayer.pauseVideo();
+            }
+          });
+        }, { threshold: [0.4, 0.55, 0.75] });
+
+        observer.observe(slot);
+      }
+
+      window.onYouTubeIframeAPIReady = function () {
+        inlinePlayer = new window.YT.Player(inlineContainerId, {
+          videoId,
+          playerVars: {
+            autoplay: 0,
+            controls: 0,
+            disablekb: 1,
+            fs: 0,
+            iv_load_policy: 3,
+            loop: 1,
+            modestbranding: 1,
+            mute: 1,
+            playsinline: 1,
+            rel: 0,
+            playlist: videoId,
+            origin: window.location.origin
+          },
+          events: {
+            onReady: event => {
+              event.target.mute();
+              observeInlinePlayback();
+            }
+          }
+        });
+      };
+
+      if (slot) {
+        slot.addEventListener('click', () => {
+          openModal();
+        });
+      }
+
+      if (closeButton) {
+        closeButton.addEventListener('click', closeModal);
+      }
+
+      if (modal) {
+        modal.addEventListener('click', event => {
+          if (event.target === modal) {
+            closeModal();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          closeModal();
+        }
+      });
+
+      const apiScript = document.createElement('script');
+      apiScript.src = 'https://www.youtube.com/iframe_api';
+      apiScript.async = true;
+      document.head.appendChild(apiScript);
+    }());
+  </script>
+
+  <script src="../js/internal-pages.js"></script>
+</body>
+</html>

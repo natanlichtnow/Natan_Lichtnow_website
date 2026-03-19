@@ -1,0 +1,1257 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Story | Natan Lichtnow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/internal.css" />
+  <style>
+    /* ================================================================
+       JOURNEY PAGE -- Dark Adventure / Nature Story
+       Green and Blue palette -- Mountain SVG backgrounds
+       ================================================================ */
+
+    /* Dark nature base */
+    body {
+      background: linear-gradient(180deg, #060f0a 0%, #09161e 50%, #060e0a 100%) !important;
+    }
+
+    /* Page-level variable overrides for the journey dark theme */
+    .c-page--journey {
+      --page-text: #d8eedd;
+      --page-text-muted: #6a9878;
+      --page-surface: rgba(12, 30, 18, 0.72);
+      --page-surface-strong: rgba(8, 22, 12, 0.94);
+      --page-border: rgba(70, 180, 110, 0.14);
+      --page-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+      --page-accent: #42c874;
+      --page-accent-soft: rgba(66, 200, 116, 0.12);
+      --page-accent-strong: rgba(66, 200, 116, 0.32);
+      --page-accent-glow: rgba(66, 200, 116, 0.2);
+      --page-hero-overlay: linear-gradient(135deg, rgba(20, 60, 30, 0.15), rgba(10, 30, 50, 0.08));
+      --page-heading-font: 'Rajdhani', sans-serif;
+      --page-label-font: 'Orbitron', monospace;
+    }
+
+    /* Topbar dark adaptation */
+    .c-page--journey .c-topbar {
+      background: rgba(4, 12, 7, 0.92) !important;
+      border-bottom: 1px solid rgba(66, 200, 116, 0.1);
+    }
+    .c-page--journey .c-topbar__menu-toggle {
+      display: none;
+      width: 2.7rem;
+      height: 2.7rem;
+      border-radius: 0.8rem;
+      border: 1px solid rgba(66, 200, 116, 0.24);
+      background: rgba(66, 200, 116, 0.08);
+      color: #c8e8d0;
+      align-items: center;
+      justify-content: center;
+      gap: 0.26rem;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .c-page--journey .c-topbar__menu-toggle:hover,
+    .c-page--journey .c-topbar__menu-toggle:focus-visible {
+      background: rgba(66, 200, 116, 0.16);
+      border-color: rgba(66, 200, 116, 0.4);
+    }
+    .c-page--journey .c-topbar__menu-toggle-line {
+      display: block;
+      width: 1.15rem;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .c-page--journey .c-topbar__menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 25;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      background: rgba(3, 10, 6, 0.26);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+    .c-page--journey .c-topbar__menu-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(2) {
+      opacity: 0;
+    }
+    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+    .c-page--journey .c-topbar__brand { color: #c8e8d0; }
+    .c-page--journey .c-topbar__brand-mark {
+      background: rgba(66, 200, 116, 0.1);
+      border-color: rgba(66, 200, 116, 0.3);
+      color: #42c874;
+    }
+    .c-page--journey .c-topbar__link { color: #6a9878; }
+    .c-page--journey .c-topbar__link:hover,
+    .c-page--journey .c-topbar__link:focus-visible,
+    .c-page--journey .c-topbar__link--is-active {
+      color: #c8e8d0;
+      border-color: rgba(66, 200, 116, 0.3);
+      background: rgba(66, 200, 116, 0.08);
+    }
+    .c-page--journey .c-language-switcher { border-color: rgba(66, 200, 116, 0.14); background: rgba(66, 200, 116, 0.05); }
+    .c-page--journey .c-language-switcher__label { color: #4a7858; }
+    .c-page--journey .c-language-switcher__option { color: #c8e8d0; border-color: rgba(66, 200, 116, 0.14); }
+    .c-page--journey .c-language-switcher__option--is-active { background: rgba(66, 200, 116, 0.12); border-color: rgba(66, 200, 116, 0.32); }
+
+    /* Buttons */
+    .c-page--journey .c-button {
+      background: rgba(66, 200, 116, 0.1);
+      border-color: rgba(66, 200, 116, 0.32);
+      color: #a0d8b0;
+    }
+    .c-page--journey .c-button:hover { background: rgba(66, 200, 116, 0.2); }
+    .c-page--journey .c-button--ghost {
+      background: transparent;
+      border-color: rgba(66, 200, 116, 0.16);
+      color: #4a7858;
+    }
+
+    /* ================================================================
+       HERO
+       ================================================================ */
+    .jp-hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 6rem 1.5rem 0;
+    }
+
+    .jp-hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse at 25% 25%, rgba(12, 65, 45, 0.55) 0%, transparent 45%),
+        radial-gradient(ellipse at 75% 15%, rgba(8, 45, 90, 0.55) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 5%, rgba(14, 80, 110, 0.35) 0%, transparent 38%),
+        linear-gradient(180deg, #030a06 0%, #050e18 40%, #060c0a 100%);
+    }
+
+    /* Star-field dots via layered radial-gradients */
+    .jp-hero__stars {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px),
+        radial-gradient(circle, rgba(200,240,220,0.5) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px);
+      background-size: 220px 220px, 170px 170px, 310px 310px, 140px 140px;
+      background-position: 0 0, 80px 50px, 140px 90px, 55px 130px;
+      opacity: 0.45;
+    }
+
+    .jp-hero__content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 860px;
+      padding-bottom: 9rem;
+    }
+
+    .jp-hero__eyebrow {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: #42c874;
+      background: rgba(66, 200, 116, 0.1);
+      border: 1px solid rgba(66, 200, 116, 0.22);
+      border-radius: 999px;
+      padding: 0.35rem 1.2rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .jp-hero__title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(3.8rem, 10vw, 8.5rem);
+      font-weight: 700;
+      line-height: 0.95;
+      color: #e8f5ea;
+      margin: 0 0 2rem;
+      text-shadow: 0 0 80px rgba(66, 200, 116, 0.18), 0 4px 50px rgba(0, 0, 0, 0.9);
+    }
+
+    .jp-hero__lead {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.05rem, 2vw, 1.32rem);
+      font-weight: 400;
+      line-height: 1.75;
+      color: #6a9878;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Paraglider silhouette floating in hero */
+    .jp-hero__pilot {
+      position: absolute;
+      z-index: 8;
+      bottom: 28%;
+      right: 6%;
+      width: clamp(90px, 14vw, 200px);
+      filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.7));
+      opacity: 0.8;
+      transform: scaleX(-1);
+    }
+
+    /* Mountain layers - hero footer */
+    .jp-hero__mountains {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 6;
+      line-height: 0;
+    }
+    .jp-hero__mountains svg { display: block; width: 100%; }
+
+    /* ================================================================
+       STORY BODY
+       ================================================================ */
+    .jp-story {
+      position: relative;
+      background: linear-gradient(180deg, #050e08 0%, #060d14 50%, #050e08 100%);
+    }
+
+    /* Ambient glow overlays */
+    .jp-story::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 0% 15%, rgba(16, 55, 28, 0.28) 0%, transparent 30%),
+        radial-gradient(ellipse at 100% 40%, rgba(10, 35, 65, 0.22) 0%, transparent 28%),
+        radial-gradient(ellipse at 50% 75%, rgba(16, 55, 28, 0.2) 0%, transparent 30%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .jp-story__inner {
+      position: relative;
+      z-index: 1;
+      padding: 5.5rem 0 2rem;
+    }
+
+    /* ================================================================
+       CHAPTER
+       ================================================================ */
+    .jp-chapter {
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(66, 200, 116, 0.06);
+    }
+    .jp-chapter:last-child { border-bottom: none; }
+
+    .jp-chapter__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #42c874;
+      margin-bottom: 0.4rem;
+    }
+    .jp-chapter__tag::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: linear-gradient(90deg, #42c874, transparent);
+    }
+
+    .jp-chapter__bg-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(4.5rem, 10vw, 8rem);
+      font-weight: 900;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(66, 200, 116, 0.13);
+      margin: -0.4rem 0 -1.2rem;
+      user-select: none;
+      pointer-events: none;
+      display: block;
+    }
+
+    .jp-chapter__title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.9rem, 4.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.12;
+      color: #c0e0c8;
+      margin: 0 0 1.8rem;
+    }
+
+    /* Two-column split (text + image) */
+    .jp-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .jp-split--img-left .jp-split__media { order: -1; }
+
+    .jp-split__text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1rem, 1.5vw, 1.14rem);
+      line-height: 1.88;
+      color: #c8f0d8;
+      background: rgba(16, 55, 28, 0.45);
+      padding: 1.8rem;
+      border-radius: 12px;
+      border-left: 3px solid rgba(66, 200, 116, 0.35);
+    }
+    .jp-split__text p { margin: 0 0 1.05em; }
+    .jp-split__text p:last-child { margin: 0; }
+
+    /* Full-width text */
+    .jp-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1rem, 1.5vw, 1.14rem);
+      line-height: 1.88;
+      color: #c8f0d8;
+      background: rgba(16, 55, 28, 0.45);
+      padding: 1.8rem;
+      border-radius: 12px;
+      border-left: 3px solid rgba(66, 200, 116, 0.35);
+      max-width: 720px;
+      margin-top: 1.4rem;
+    }
+    .jp-text p { margin: 0 0 1.05em; }
+    .jp-text p:last-child { margin: 0; }
+
+    /* Narrow text for introspective chapters */
+    .jp-text--narrow { max-width: 580px; }
+
+    /* Image */
+    .jp-img {
+      width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 18px 52px rgba(0,0,0,0.65), 0 0 0 1px rgba(66, 200, 116, 0.1);
+      display: block;
+    }
+    .jp-img-caption {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #3a6848;
+      text-align: center;
+      margin-top: 0.7rem;
+    }
+
+    /* Year badge */
+    .jp-year {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      color: #42c874;
+      background: rgba(66, 200, 116, 0.08);
+      border: 1px solid rgba(66, 200, 116, 0.2);
+      border-radius: 999px;
+      padding: 0.28rem 0.9rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    /* Gallery strip */
+    .jp-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.85rem;
+      margin-top: 2rem;
+    }
+    .jp-gallery img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.55);
+      display: block;
+    }
+
+    /* Video embed */
+    .jp-video { margin: 2.5rem 0; }
+    .jp-video__label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #42c874;
+      margin-bottom: 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .jp-video__label::before { content: '\25B6'; font-size: 0.48rem; }
+    .jp-video__wrapper {
+      position: relative;
+      padding-top: 56.25%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #020806;
+      box-shadow: 0 14px 44px rgba(0,0,0,0.75), 0 0 0 1px rgba(66, 200, 116, 0.12);
+    }
+    .jp-video__wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ================================================================
+       CHAPTER EMOTIONAL STATES
+       ================================================================ */
+
+    /* Dark / falling chapters */
+    .jp-chapter--dark .jp-chapter__tag { color: #8a8888; }
+    .jp-chapter--dark .jp-chapter__tag::before { background: linear-gradient(90deg, #8a8888, transparent); }
+    .jp-chapter--dark .jp-chapter__bg-num { -webkit-text-stroke-color: rgba(140, 120, 120, 0.12); }
+    .jp-chapter--dark .jp-chapter__title { color: #a8a0a0; }
+    .jp-chapter--dark .jp-text,
+    .jp-chapter--dark .jp-split__text { color: #c8c8a8; }
+
+    .jp-dark-box {
+      background: rgba(30, 20, 20, 0.6);
+      border-left: 3px solid rgba(140, 90, 90, 0.4);
+      border-radius: 0 12px 12px 0;
+      padding: 2rem 2rem 2rem 1.8rem;
+      max-width: 700px;
+      margin-top: 1.5rem;
+    }
+    .jp-dark-box p {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1rem, 1.4vw, 1.1rem);
+      line-height: 1.85;
+      color: #c8c8a8;
+      margin: 0 0 0.9em;
+    }
+    .jp-dark-box p:last-child { margin: 0; }
+
+    /* Smaller image variant */
+    .jp-img--small {
+      max-width: 280px;
+    }
+
+    .jp-split__media--compact {
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .jp-split__media--compact .jp-img--small {
+      margin-inline: auto;
+    }
+
+    .jp-split__media--compact .jp-img-caption {
+      width: 100%;
+    }
+
+    /* Rebirth -- warm amber/gold */
+    .jp-chapter--rebirth .jp-chapter__tag { color: #c8a040; }
+    .jp-chapter--rebirth .jp-chapter__tag::before { background: linear-gradient(90deg, #c8a040, transparent); }
+    .jp-chapter--rebirth .jp-chapter__bg-num { -webkit-text-stroke-color: rgba(200, 160, 64, 0.13); }
+    .jp-chapter--rebirth .jp-chapter__title { color: #e8cc70; }
+    .jp-chapter--rebirth .jp-text { color: #d4a860; }
+    .jp-chapter--rebirth .jp-text {
+      background: rgba(50, 40, 20, 0.45);
+      border-left-color: rgba(200, 160, 64, 0.35);
+    }
+
+    /* Horizon -- sky blue */
+    .jp-chapter--horizon .jp-chapter__tag { color: #4890c8; }
+    .jp-chapter--horizon .jp-chapter__tag::before { background: linear-gradient(90deg, #4890c8, transparent); }
+    .jp-chapter--horizon .jp-chapter__bg-num { -webkit-text-stroke-color: rgba(72, 144, 200, 0.13); }
+    .jp-chapter--horizon .jp-chapter__title { color: #80b8e0; }
+    .jp-chapter--horizon .jp-text { color: #8ab8d8; }
+    .jp-chapter--horizon .jp-text {
+      background: rgba(20, 35, 50, 0.45);
+      border-left-color: rgba(72, 144, 200, 0.35);
+    }
+
+    /* ================================================================
+       MINI MOUNTAIN DIVIDER
+       ================================================================ */
+    .jp-mountain-divider {
+      width: 100%;
+      margin: 1rem 0;
+      opacity: 0.14;
+      line-height: 0;
+    }
+    .jp-mountain-divider svg { display: block; width: 100%; }
+
+    /* ================================================================
+       MUSIC BRIDGE CARD
+       ================================================================ */
+    .jp-music-bridge {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      background: rgba(200, 120, 40, 0.06);
+      border: 1px solid rgba(200, 130, 40, 0.18);
+      border-radius: 14px;
+      padding: 1.5rem 1.8rem;
+      margin-top: 2rem;
+      max-width: 580px;
+      text-decoration: none;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .jp-music-bridge:hover { background: rgba(200, 120, 40, 0.1); border-color: rgba(200, 130, 40, 0.3); }
+    .jp-music-bridge__icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .jp-music-bridge__label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #c8a040;
+      margin-bottom: 0.3rem;
+    }
+    .jp-music-bridge__text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      color: #8a7840;
+      line-height: 1.5;
+    }
+
+    /* ================================================================
+       CTA SECTION
+       ================================================================ */
+    .jp-cta {
+      padding: 5.5rem 1.5rem 6.5rem;
+      text-align: center;
+      border-top: 1px solid rgba(66, 200, 116, 0.08);
+      background: linear-gradient(180deg, transparent, rgba(10, 30, 16, 0.5));
+    }
+    .jp-cta__eyebrow {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #42c874;
+      opacity: 0.7;
+      margin-bottom: 1.4rem;
+    }
+    .jp-cta__title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: #c0e0c8;
+      margin: 0 0 1.1rem;
+    }
+    .jp-cta__text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1rem;
+      color: #4a6a52;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .jp-cta__actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+    .c-page--journey .c-page-footer {
+      background: rgba(0,0,0,0.25);
+      border-top: 1px solid rgba(66, 200, 116, 0.07);
+    }
+
+    /* ================================================================
+       RESPONSIVE
+       ================================================================ */
+    @media (max-width: 700px) {
+      .c-page--journey .c-topbar {
+        position: sticky;
+        z-index: 40;
+      }
+      .c-page--journey .c-topbar__inner {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        justify-items: stretch;
+        text-align: left;
+        gap: 0.45rem;
+      }
+      .c-page--journey .c-topbar__brand {
+        min-width: 0;
+        gap: 0.45rem;
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+      }
+      .c-page--journey .c-topbar__brand > span[data-i18n='brand'] {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .c-page--journey .c-topbar__menu-toggle {
+        display: inline-flex;
+      }
+      .c-page--journey .c-topbar__nav {
+        position: absolute;
+        left: 0.7rem;
+        right: 0.7rem;
+        top: calc(100% + 0.55rem);
+        display: grid;
+        gap: 0.55rem;
+        padding: 0.8rem;
+        border-radius: 0.95rem;
+        border: 1px solid rgba(66, 200, 116, 0.18);
+        background: rgba(4, 12, 7, 0.95);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      }
+      .c-page--journey .c-topbar__nav.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .c-page--journey .c-topbar__link {
+        width: 100%;
+      }
+      .c-page--journey .c-language-switcher {
+        justify-self: end;
+        width: auto;
+        gap: 0.2rem;
+        padding: 0.24rem;
+        max-width: 100%;
+      }
+      .c-page--journey .c-language-switcher__label {
+        padding-inline: 0.35rem;
+        font-size: 0.6rem;
+        letter-spacing: 0.1em;
+      }
+      .c-page--journey .c-language-switcher__option {
+        min-width: 2.2rem;
+        padding: 0.48rem 0.5rem;
+        font-size: 0.62rem;
+      }
+      .jp-split { grid-template-columns: 1fr; gap: 2rem; }
+      .jp-split--img-left .jp-split__media { order: 0; }
+      .jp-gallery { grid-template-columns: 1fr; }
+      .jp-hero__pilot { display: none; }
+      .jp-dark-box { padding: 1.5rem; }
+      .jp-hero__content { padding-bottom: 11rem; }
+    }
+
+    @media (min-width: 701px) and (max-width: 1000px) {
+      .c-page--journey .c-topbar__inner {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        justify-items: stretch;
+        text-align: left;
+        column-gap: 0.8rem;
+      }
+      .c-page--journey .c-topbar__nav {
+        justify-content: center;
+        align-self: center;
+      }
+      .c-page--journey .c-topbar__link {
+        padding: 0.62rem 0.78rem;
+      }
+      .c-page--journey .c-language-switcher {
+        justify-self: end;
+        align-self: center;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .c-page--journey .c-topbar__brand {
+        font-size: 0.74rem;
+      }
+      .c-page--journey .c-language-switcher__label {
+        display: none;
+      }
+      .c-page--journey .c-language-switcher__option {
+        min-width: 2rem;
+        padding: 0.46rem 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="c-page c-page--journey">
+
+    <!-- TOP NAV -->
+    <header class="c-topbar">
+      <div class="c-shell c-topbar__inner">
+        <button class="c-topbar__menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="journey-nav" data-i18n="menuToggleAriaLabel" data-i18n-attr="aria-label">
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+        </button>
+        <a class="c-topbar__brand" href="../index.html">
+          <span class="c-topbar__brand-mark">NL</span>
+          <span data-i18n="brand">Natan Lichtnow</span>
+        </a>
+        <nav class="c-topbar__nav" id="journey-nav" aria-label="Section navigation">
+          <a class="c-topbar__link" href="index.html" data-i18n="navHome">Pilot Home</a>
+          <a class="c-topbar__link c-topbar__link--is-active" href="journey.html" data-i18n="navJourney">Journey</a>
+          <a class="c-topbar__link" href="projects.html" data-i18n="navProjects">Projects</a>
+
+        </nav>
+        <div class="c-language-switcher" aria-label="Language selector">
+          <span class="c-language-switcher__label" data-i18n="languageLabel">LANG</span>
+          <button class="c-language-switcher__option" type="button" data-lang="pt-BR">PT</button>
+          <button class="c-language-switcher__option" type="button" data-lang="en">EN</button>
+        </div>
+      </div>
+    </header>
+    <div class="c-topbar__menu-overlay" aria-hidden="true"></div>
+
+    <!-- HERO -->
+    <section class="jp-hero" aria-label="Page hero">
+      <div class="jp-hero__bg" aria-hidden="true"></div>
+      <div class="jp-hero__stars" aria-hidden="true"></div>
+
+      <div class="jp-hero__content">
+        <span class="jp-hero__eyebrow" data-i18n="heroEyebrow">Personal History</span>
+        <h1 class="jp-hero__title" data-i18n="heroTitle">Born in the Wind</h1>
+        <p class="jp-hero__lead" data-i18n="heroLead">From a baby born inside a backpack to a cross-country pilot, instructor, and artist. A story that continues to be written.</p>
+      </div>
+
+      <!-- Mountain silhouettes - 3 layered SVG -->
+      <div class="jp-hero__mountains" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 400" preserveAspectRatio="none">
+          <!-- Distant misty mountains - blue -->
+          <path d="M0,280 L55,240 L100,255 L155,215 L210,235 L270,195 L330,215 L390,175 L450,198 L510,160 L570,182 L635,148 L695,168 L760,132 L820,152 L885,118 L945,140 L1010,115 L1070,136 L1135,118 L1195,138 L1255,155 L1315,138 L1380,156 L1440,148 L1440,400 L0,400 Z"
+                fill="#1a4a72" opacity="0.45"/>
+          <!-- Mid mountains - blue-green -->
+          <path d="M0,308 L75,268 L135,285 L205,248 L280,272 L355,234 L430,258 L505,222 L580,248 L660,210 L730,234 L805,208 L875,228 L950,208 L1025,228 L1100,215 L1170,232 L1245,218 L1320,235 L1440,222 L1440,400 L0,400 Z"
+                fill="#1a4a30" opacity="0.7"/>
+          <!-- Front mountains - dark forest -->
+          <path d="M0,340 L90,298 L165,315 L245,278 L325,302 L410,265 L490,290 L575,260 L655,282 L740,258 L818,278 L905,255 L985,272 L1065,258 L1150,274 L1240,258 L1345,278 L1440,262 L1440,400 L0,400 Z"
+                fill="#0d2418" opacity="1"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <main class="jp-story" id="story">
+      <div class="jp-story__inner">
+        <div class="c-shell">
+
+          <!-- CH 01 - Born in the Wind -->
+          <article class="jp-chapter" id="ch-01">
+            <span class="jp-chapter__tag" data-i18n="ch01tag">Chapter 01</span>
+            <span class="jp-chapter__bg-num" aria-hidden="true">01</span>
+            <h2 class="jp-chapter__title" data-i18n="ch01title">Born in the Wind</h2>
+
+            <div class="jp-split">
+              <div class="jp-split__text">
+                <span class="jp-year" data-i18n="ch01year">The Beginning</span>
+                <p data-i18n="ch01p1">Natan was born practically inside a paragliding backpack. From infancy, he accompanied his father on free flight adventures, breathing the sport before he even understood the world.</p>
+                <p data-i18n="ch01p2">But at 5 years old, his parents separated - and with that came a great family distance that would profoundly mark his childhood.</p>
+              </div>
+              <figure class="jp-split__media jp-split__media--compact">
+                <img class="jp-img jp-img--small" src="../img/baby.jpg" alt="Natan as a baby, already surrounded by the paragliding world" data-i18n-attr="alt" data-i18n="ch01imgAlt" />
+                <figcaption class="jp-img-caption" data-i18n="ch01imgCaption">Natan carried by his father in his paragliding backpack</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <!-- mini mountain divider -->
+          <div class="jp-mountain-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,40 L120,20 L240,35 L360,12 L480,28 L600,8 L720,22 L840,5 L960,18 L1080,8 L1200,22 L1320,12 L1440,20 L1440,60 L0,60 Z" fill="#42c874"/>
+            </svg>
+          </div>
+
+          <!-- CH 02 - Digital Refuge -->
+          <article class="jp-chapter jp-chapter--dark" id="ch-02">
+            <span class="jp-chapter__tag" data-i18n="ch02tag">Chapter 02</span>
+            <span class="jp-chapter__bg-num" aria-hidden="true">02</span>
+            <h2 class="jp-chapter__title" data-i18n="ch02title">Refuge in Digital Silence</h2>
+
+            <div class="jp-split">
+              <div class="jp-text jp-text--narrow">
+                <p data-i18n="ch02p1">Growing up in front of a computer screen, Natan sought an escape from reality from a very young age. With great difficulty connecting emotionally with family and friends, his life revolved around a simple, isolated routine: go to school, play video games, and sleep.</p>
+              </div>
+              <figure class="jp-split__media">
+                <img class="jp-img" src="../img/wow.jpg" alt="Natan during his digital refuge period" data-i18n-attr="alt" data-i18n="ch02imgAlt" />
+                <figcaption class="jp-img-caption" data-i18n="ch02imgCaption">world of warcraft, his favorite game</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <!-- CH 03 - The Call of the Sky -->
+          <article class="jp-chapter" id="ch-03">
+            <span class="jp-chapter__tag" data-i18n="ch03tag">Chapter 03</span>
+            <span class="jp-chapter__bg-num" aria-hidden="true">03</span>
+            <h2 class="jp-chapter__title" data-i18n="ch03title">The Call of the Sky</h2>
+
+            <div class="jp-split jp-split--img-left">
+              <figure class="jp-split__media">
+                <img class="jp-img" src="../img/comeco.jpg" alt="Free flight over the mountains" data-i18n-attr="alt" data-i18n="ch03imgAlt" />
+                <figcaption class="jp-img-caption" data-i18n="ch03imgCaption">where it all began</figcaption>
+              </figure>
+              <div class="jp-split__text">
+                <span class="jp-year" data-i18n="ch03year">Age 14 - 2013</span>
+                <p data-i18n="ch03p1">At 14, life began to change. Natan reconnected with his father, Marcio Lichtnow, who already ran the free flight school Vento Norte. It was there that the sport crossed his path again - this time, as a calling.</p>
+                <p data-i18n="ch03p2">Without a paraglider in his size, he began in an unconventional way: teaching before he learned to fly himself. He helped his father with everything at the school, absorbing knowledge and living the flight environment intensely.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- mini mountain divider -->
+          <div class="jp-mountain-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,45 L180,22 L300,38 L440,14 L580,30 L720,10 L860,26 L1000,8 L1120,22 L1260,10 L1440,24 L1440,60 L0,60 Z" fill="#42c874"/>
+            </svg>
+          </div>
+
+          <!-- CH 04 - First Steps in the Air -->
+          <article class="jp-chapter" id="ch-04">
+            <span class="jp-chapter__tag" data-i18n="ch04tag">Chapter 04</span>
+            <span class="jp-chapter__bg-num" aria-hidden="true">04</span>
+            <h2 class="jp-chapter__title" data-i18n="ch04title">First Steps in the Air</h2>
+
+            <div class="jp-split">
+              <div>
+                <div class="jp-split__text">
+                  <span class="jp-year" data-i18n="ch04year">Age 15 - May 2014</span>
+                  <p data-i18n="ch04p1">In 2014, the first real opportunity arrived: an Ozone Rush 1 XXS, maximum weight 70 kg. It was the very beginning of everything.</p>
+                  <p data-i18n="ch04p2">Training began - and it was not long before the first flight happened, in May 2014. The video below captures that first moment in the air.</p>
+                </div>
+                <div class="jp-video">
+                  <p class="jp-video__label" data-i18n="ch04videoLabel">Watch - First Flight - May 2014</p>
+                  <div class="jp-video__wrapper">
+                    <iframe
+                      src="https://www.youtube.com/embed/AHwOULAxxYk"
+                      title="Natan Lichtnow first paragliding flight 2014"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+              <figure class="jp-split__media">
+                <img class="jp-img" src="../img/treino 2014.jpg" alt="Natan on the training hill in 2014 with his Ozone Rush 1" data-i18n-attr="alt" data-i18n="ch04imgAlt" />
+                <figcaption class="jp-img-caption" data-i18n="ch04imgCaption">Training - 2014 - Rush 1 XXS</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <!-- CH 05 - The Ascent -->
+          <article class="jp-chapter" id="ch-05">
+            <span class="jp-chapter__tag" data-i18n="ch05tag">Chapter 05</span>
+            <span class="jp-chapter__bg-num" aria-hidden="true">05</span>
+            <h2 class="jp-chapter__title" data-i18n="ch05title">The Ascent</h2>
+
+            <div class="jp-split jp-split--img-left">
+              <div>
+                <figure class="jp-split__media">
+                  <img class="jp-img" src="../img/trophy.jpg" alt="3rd place trophy -- South Brazilian Paragliding Championship, Sport Light category" data-i18n-attr="alt" data-i18n="ch05imgAlt" />
+                  <figcaption class="jp-img-caption" data-i18n="ch05imgCaption">3rd place - South Brazilian Championship - Sport Light</figcaption>
+                </figure>
+              </div>
+              <div>
+                <div class="jp-split__text">
+                  <span class="jp-year" data-i18n="ch05year">2015 - 2016</span>
+                  <p data-i18n="ch05p1">Evolution was rapid. With constant contact with the sport, flying began to dominate his life. The hours at the computer were, little by little, replaced by hours in the harness.</p>
+                  <p data-i18n="ch05p2">Motivated, Natan sought an internship to sustain himself and invest even more in the sport. In 2016, he won the support of SOL Paragliders, making it possible to buy his first new equipment: a Sycross One - one of the firsts in Brazil.</p>
+                  <p data-i18n="ch05p3">His dedication was in full ascent. That year he took 3rd place in the Sport Light category at the South Brazilian Paragliding Championship. The desire to compete only grew.</p>
+                </div>
+                <div class="jp-video">
+                  <p class="jp-video__label" data-i18n="ch05videoLabel">Watch - Sycross One - 2016</p>
+                  <div class="jp-video__wrapper">
+                    <iframe
+                      src="https://www.youtube.com/embed/oFJExd7ih3g"
+                      title="Natan Lichtnow flying the Sycross One 2016"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- mini mountain divider -->
+          <div class="jp-mountain-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,38 L200,18 L360,32 L520,10 L680,28 L840,6 L1000,22 L1160,8 L1320,20 L1440,12 L1440,60 L0,60 Z" fill="#42c874"/>
+            </svg>
+          </div>
+
+          <!-- CH 06 - The Fall -->
+          <article class="jp-chapter jp-chapter--dark" id="ch-06">
+            <span class="jp-chapter__tag" data-i18n="ch06tag">Chapter 06</span>
+            <span class="jp-chapter__bg-num" aria-hidden="true">06</span>
+            <h2 class="jp-chapter__title" data-i18n="ch06title">The Fall</h2>
+
+            <div class="jp-dark-box">
+              <p data-i18n="ch06p1">But every trajectory has its breaking point.</p>
+              <p data-i18n="ch06p2">At 17, despite his intense passion for the sport, Natan faced enormous difficulty connecting with classmates at school. The result was hard: failure.</p>
+              <p data-i18n="ch06p3">With that came one of the most painful decisions of his life - selling the equipment he had fought for during two years. Paragliding was everything to him. His identity was there. And when it was gone, only emptiness remained.</p>
+            </div>
+          </article>
+
+          <!-- mini mountain divider -->
+          <div class="jp-mountain-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,38 L200,18 L360,32 L520,10 L680,28 L840,6 L1000,22 L1160,8 L1320,20 L1440,12 L1440,60 L0,60 Z" fill="#42c874"/>
+            </svg>
+          </div>
+
+          <!-- CH 07 - The Abyss and Escape -->
+          <article class="jp-chapter jp-chapter--dark" id="ch-07">
+            <span class="jp-chapter__tag" data-i18n="ch07tag">Chapter 07</span>
+            <span class="jp-chapter__bg-num" aria-hidden="true">07</span>
+            <h2 class="jp-chapter__title" data-i18n="ch07title">The Abyss and Escape</h2>
+
+            <div class="jp-dark-box">
+              <p data-i18n="ch07p1">Without purpose or direction, Natan plunged into a deep depressive state. For six months, he lived fleeing from reality - parties, excess, and wrong choices filled his days. A silent attempt to fill a void that seemed to have no end.</p>
+            </div>
+          </article>
+
+          <!-- CH 08 - Rebirth through Art -->
+          <article class="jp-chapter jp-chapter--rebirth" id="ch-08">
+            <span class="jp-chapter__tag" data-i18n="ch08tag">Chapter 08</span>
+            <span class="jp-chapter__bg-num" aria-hidden="true">08</span>
+            <h2 class="jp-chapter__title" data-i18n="ch08title">Rebirth through Art</h2>
+
+            <div class="jp-split">
+              <div class="jp-split__text">
+                <span class="jp-year" data-i18n="ch08year">Late 2017</span>
+                <p data-i18n="ch08p1">At the end of 2017, a new path emerged. Introduced to the world of DJing and music production by his friend Birow, Natan found something that would completely change his trajectory.</p>
+                <p data-i18n="ch08p2">Music was not just a new interest - it was what pulled him out of the depths. It brought expression, purpose, and above all, life back to his path.</p>
+              </div>
+              <figure class="jp-split__media">
+                <img class="jp-img" src="../img/playin.jpg" alt="Natan playing music" data-i18n-attr="alt" data-i18n="ch08imgAlt" />
+                <figcaption class="jp-img-caption" data-i18n="ch08imgCaption">where music found him</figcaption>
+              </figure>
+            </div>
+
+            <a class="jp-music-bridge" href="../music/index.html" aria-label="Explore the music and performance side of Natan's story">
+              <span class="jp-music-bridge__icon" aria-hidden="true">&#127925;</span>
+              <div>
+                <p class="jp-music-bridge__label" data-i18n="ch08bridgeLabel">Explore the music world</p>
+              </div>
+            </a>
+          </article>
+
+          <!-- mini mountain divider -->
+          <div class="jp-mountain-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,42 L160,20 L300,36 L460,12 L620,30 L780,8 L940,26 L1100,10 L1260,24 L1440,14 L1440,60 L0,60 Z" fill="#42c874"/>
+            </svg>
+          </div>
+
+          <!-- CH 09 - Return to Origins -->
+          <article class="jp-chapter" id="ch-09">
+            <span class="jp-chapter__tag" data-i18n="ch09tag">Chapter 09</span>
+            <span class="jp-chapter__bg-num" aria-hidden="true">09</span>
+            <h2 class="jp-chapter__title" data-i18n="ch09title">Return to Origins</h2>
+
+            <div class="jp-split">
+              <div class="jp-split__text">
+                <span class="jp-year" data-i18n="ch09year">2024 - 2025 - Curitiba</span>
+                <p data-i18n="ch09p1">In early 2024, after traveling the world, diving deep into the circus arts universe, performing at festivals he had always dreamed of, and feeling fulfilled in music and art, Natan made an important decision: to return to his homeland.</p>
+                <p data-i18n="ch09p2">The goal was clear - to rebuild family bonds and rediscover paragliding with fresh eyes.</p>
+              </div>
+              <figure class="jp-split__media">
+                <img class="jp-img" src="../img/flying2.jpg" alt="Natan flying cross-country in Brazil" data-i18n-attr="alt" data-i18n="ch09imgAlt" />
+                <figcaption class="jp-img-caption" data-i18n="ch09imgCaption">Back in the air - 2024/2025</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <!-- mini mountain divider -->
+          <div class="jp-mountain-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,42 L160,20 L300,36 L460,12 L620,30 L780,8 L940,26 L1100,10 L1260,24 L1440,14 L1440,60 L0,60 Z" fill="#42c874"/>
+            </svg>
+          </div>
+
+          <!-- CH 10 - Reconnection and Purpose -->
+          <article class="jp-chapter" id="ch-10">
+            <span class="jp-chapter__tag" data-i18n="ch10tag">Chapter 10</span>
+            <span class="jp-chapter__bg-num" aria-hidden="true">10</span>
+            <h2 class="jp-chapter__title" data-i18n="ch10title">Reconnection and Purpose</h2>
+
+            <div class="jp-text">
+              <p data-i18n="ch10p1">Two years in Curitiba, working as instructor and monitor at his father's school. During this period, Natan reconnected deeply with the sport, discovering a connection between mental health and the practice of flying, and bringing that modern approach into his teaching. He began developing his own instruction projects, focused on cross-country flying - combining all his skills as a sound designer, video editor, and animator to create unique and easy-to-understand learning material.</p>
+            </div>
+
+            <!-- Flying gallery -->
+            <div class="jp-gallery" role="list" aria-label="Flight photos">
+              <img src="../img/flying.png" alt="Paraglider soaring" class="jp-img" role="listitem" />
+              <img src="../img/flying3.jpg" alt="Cross-country flight moment" class="jp-img" role="listitem" data-i18n-attr="alt" data-i18n="galleryImg3Alt" />
+              <img src="../img/flying1.jpg" alt="Flying over the Brazilian landscape" class="jp-img" role="listitem" data-i18n-attr="alt" data-i18n="galleryImg1Alt" />
+            </div>
+          </article>
+
+          <!-- mini mountain divider -->
+          <div class="jp-mountain-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,40 L180,18 L320,34 L480,10 L640,28 L800,6 L960,24 L1120,8 L1280,22 L1440,12 L1440,60 L0,60 Z" fill="#42c874"/>
+            </svg>
+          </div>
+
+          <!-- CH 11 - The Next Horizon -->
+          <article class="jp-chapter jp-chapter--horizon" id="ch-11">
+            <span class="jp-chapter__tag" data-i18n="ch11tag">Chapter 11</span>
+            <span class="jp-chapter__bg-num" aria-hidden="true">11</span>
+            <h2 class="jp-chapter__title" data-i18n="ch11title">The Next Horizon</h2>
+
+            <div class="jp-text">
+              <span class="jp-year" data-i18n="ch11year">2026 - Governador Valadares</span>
+              <p data-i18n="ch11p1">In 2026, he made yet another bold decision: to move to Governador Valadares - the free flight capital of Brazil.</p>
+              <p data-i18n="ch11p2">Driven by curiosity, ambition and passion, Natan continues deepening his knowledge in the sport and expanding his instructional and media projects.</p>
+              <p data-i18n="ch11p3">His story is still being written - and the future, like the sky, remains open.</p>
+            </div>
+          </article>
+
+        </div><!-- /.c-shell -->
+      </div><!-- /.jp-story__inner -->
+
+      <!-- CTA Section -->
+      <div class="jp-cta">
+        <span class="jp-cta__eyebrow" data-i18n="ctaEyebrow">What's next</span>
+        <h2 class="jp-cta__title" data-i18n="ctaTitle">Fly with him</h2>
+        <p class="jp-cta__text" data-i18n="ctaText">Discover the instructional projects by Natan</p>
+        <div class="jp-cta__actions">
+          <a class="c-button" href="projects.html" data-i18n="ctaPrimary">View projects</a>
+          <a class="c-button c-button--ghost" href="index.html" data-i18n="ctaSecondary">Pilot home</a>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="c-page-footer c-shell">
+      <p class="c-page-footer__text" data-i18n="footer">NATAN LICHTNOW // BORN IN THE WIND</p>
+    </footer>
+
+  </div><!-- /.c-page -->
+
+  <script>
+    window.NATAN_PAGE_TRANSLATIONS = {
+      'pt-BR': {
+        pageTitle: 'A Historia | Natan Lichtnow',
+        brand: 'Natan Lichtnow',
+        languageLabel: 'IDIOMA',
+        menuToggleAriaLabel: 'Abrir menu de navegacao',
+        navHome: 'Inicio do Piloto',
+        navJourney: 'Jornada',
+        navProjects: 'Projetos',
+        navMusic: 'Musica',
+        navDev: 'Dev',
+        heroEyebrow: 'Historia Pessoal',
+        heroTitle: 'Nascido no Vento',
+        heroLead: 'De um bebe nascido dentro de uma mochila a piloto de cross country, instrutor e artista. Uma historia que continua sendo escrita.',
+        ch01tag: 'Capitulo 01',
+        ch01title: 'Nascido no Vento',
+        ch01year: 'O Comeco',
+        ch01p1: 'Natan nasceu praticamente dentro de uma mochila de parapente. Desde bebe, acompanhava o pai nas aventuras do voo livre, respirando o esporte antes mesmo de entender o mundo.',
+        ch01p2: 'Mas aos 5 anos de idade, seus pais se separaram - e com isso surgiu uma grande distancia familiar que marcaria profundamente sua infancia.',
+        ch01imgAlt: 'Natan bebe, ja imerso no mundo do parapente',
+        ch01imgCaption: 'Natan carregado pelo pai na mochila de seu parapente',
+        ch02tag: 'Capitulo 02',
+        ch02title: 'Refugio no Silencio Digital',
+        ch02p1: 'Crescendo diante de uma tela de computador, Natan buscava uma fuga da realidade desde muito cedo. Com grande dificuldade de conexao emocional com a familia e amigos, sua vida se resumia a uma rotina simples e isolada: ir para a escola, jogar videogame e dormir.',
+        ch02imgAlt: 'Natan durante seu periodo de refugio digital',
+        ch02imgCaption: 'world of warcraft, seu jogo favorito',
+        ch03tag: 'Capitulo 03',
+        ch03title: 'O Chamado do Ceu',
+        ch03year: 'Aos 14 anos - 2013',
+        ch03p1: 'Aos 14 anos, a vida comecou a mudar. Natan se reconectou com seu pai, Marcio Lichtnow, que ja administrava a escola de voo livre Vento Norte. Foi ali que o esporte voltou a cruzar seu caminho - desta vez, como um chamado.',
+        ch03p2: 'Sem possuir um parapente do seu tamanho, ele comecou de forma incomum: ensinando antes mesmo de aprender a voar. Auxiliava o pai em tudo na escola, absorvendo conhecimento e vivendo o ambiente do voo intensamente.',
+        ch03imgAlt: 'Voo livre sobre as montanhas',
+        ch03imgCaption: 'onde tudo comecou',
+        ch04tag: 'Capitulo 04',
+        ch04title: 'Os Primeiros Passos no Ar',
+        ch04year: 'Aos 15 anos - Maio 2014',
+        ch04p1: 'Em 2014, surgiu a primeira oportunidade real: um Ozone Rush 1 XXS, com peso maximo de 70 kg. Era o comeco de tudo.',
+        ch04p2: 'Os treinos comecaram - e nao demorou muito para que o primeiro voo acontecesse, em maio de 2014. O video abaixo registra esse primeiro momento no ar.',
+        ch04videoLabel: 'Assistir - Primeiro Voo - Maio 2014',
+        ch04imgAlt: 'Natan no morro de treino em 2014 com o Rush 1 XXS',
+        ch04imgCaption: 'Treino - 2014 - Rush 1 XXS',
+        ch05tag: 'Capitulo 05',
+        ch05title: 'A Ascensao',
+        ch05year: '2015 - 2016',
+        ch05p1: 'A evolucao foi rapida. Com contato constante com o esporte, o voo passou a dominar sua vida. As horas no computador foram, pouco a pouco, substituidas por horas na selete.',
+        ch05p2: 'Motivado, Natan buscou um estagio para se sustentar e investir ainda mais no esporte. Em 2016, conquistou o apoio da SOL Paragliders, o que possibilitou a compra de seu primeiro equipamento novo: um Sycross One - um dos primeiros do Brasil.',
+        ch05p3: 'Sua dedicacao estava em plena ascensao. No final daquele ano, conquistou o 3o lugar na categoria Sport Light do Campeonato Sul-Brasileiro de Parapente. O desejo de competir so aumentava.',
+        ch05videoLabel: 'Assistir - Sycross One - 2016',
+        ch05imgAlt: 'Trofeu de 3o lugar -- Campeonato Sul-Brasileiro, categoria Sport Light',
+        ch05imgCaption: '3o lugar - Campeonato Sul-Brasileiro - Sport Light',
+        ch0607tag: 'Capitulos 06 - 07',
+        ch06tag: 'Capitulo 06',
+        ch06title: 'A Queda',
+        ch06p1: 'Mas toda trajetoria tem seu ponto de ruptura.',
+        ch06p2: 'Aos 17 anos, apesar da paixao intensa pelo esporte, Natan enfrentava uma enorme dificuldade de se conectar com os colegas na escola. O resultado foi duro: a reprovacao.',
+        ch06p3: 'Com isso, veio uma das decisoes mais dolorosas de sua vida - vender o equipamento pelo qual havia lutado durante dois anos. O parapente era tudo para ele. Sua identidade estava ali. E quando aquilo se foi, restou apenas o vazio.',
+        ch07tag: 'Capitulo 07',
+        ch07title: 'O Abismo e a Fuga',
+        ch07p1: 'Sem proposito e sem direcao, Natan mergulhou em um estado depressivo profundo. Durante seis meses, viveu fugindo da realidade - festas, excessos e escolhas erradas preenchiam seus dias. Uma tentativa silenciosa de preencher um vazio que parecia nao ter fim.',
+        ch08tag: 'Capitulo 08',
+        ch08title: 'Renascimento pela Arte',
+        ch08year: 'Final de 2017',
+        ch08p1: 'No final de 2017, um novo caminho surgiu. Apresentado ao mundo da discotecagem e da producao musical por seu amigo Birow, Natan encontrou algo que mudaria completamente sua trajetoria.',
+        ch08p2: 'A musica nao foi apenas um novo interesse - foi o que o tirou do fundo do poco. Ela trouxe expressao, proposito e, principalmente, vida de volta ao seu caminho.',
+        ch08imgAlt: 'Natan tocando musica',
+        ch08imgCaption: 'onde a musica o encontrou',
+        ch08bridgeLabel: 'Explore o mundo da musica',
+        ch09tag: 'Capitulo 09',
+        ch09title: 'O Retorno as Origens',
+        ch09year: '2024 - 2025 - Curitiba',
+        ch09p1: 'No inicio de 2024, apos viajar o mundo, se aprofundar no universo circense, se apresentar em festivais que sempre sonhou e se sentir realizado na musica e na arte, Natan tomou uma decisao importante: voltar para sua terra natal.',
+        ch09p2: 'O objetivo era claro - reconstruir os lacos com a familia e reencontrar o parapente.',
+        ch09imgAlt: 'Natan voando cross country no Brasil',
+        ch09imgCaption: 'De volta ao ar - 2024/2025',
+        ch10tag: 'Capitulo 10',
+        ch10title: 'Reconexao e Proposito',
+        ch10p1: 'Foram dois anos em Curitiba, trabalhando como instrutor e monitor na escola de seu pai. Nesse periodo, Natan se reconectou profundamente com o esporte, encontrando uma conexao entre a saude mental e a pratica do voo, trazendo essa abordagem moderna para suas aulas e explicacoes. Comecou a desenvolver seus proprios projetos de instrucao, com foco em voo de cross country - unindo todas suas habilidades como sound designer, editor de video & animador para criar um material unico e de facil entendimento',
+        galleryImg3Alt: 'Momento de voo cross country',
+        galleryImg1Alt: 'Voando sobre a paisagem brasileira',
+        ch11tag: 'Capitulo 11',
+        ch11title: 'O Proximo Horizonte',
+        ch11year: '2026 - Governador Valadares',
+        ch11p1: 'Em 2026, tomou mais uma decisao ousada: mudar-se para Governador Valadares, a capital do voo livre no Brasil.',
+        ch11p2: 'Movido por curiosidade, ambicao e paixao, Natan segue aprofundando seu conhecimento no esporte e expandindo seus projetos instrucionais e de midia.',
+        ch11p3: 'Sua historia ainda esta sendo escrita - e o futuro, assim como o ceu, permanece aberto.',
+        ctaEyebrow: 'O que vem a seguir',
+        ctaTitle: 'Voe com ele',
+        ctaText: 'Conheca os projetos instrucionais de Natan',
+        ctaPrimary: 'Ver projetos',
+        ctaSecondary: 'Inicio do piloto',
+        footer: 'NATAN LICHTNOW // NASCIDO NO VENTO'
+      },
+      en: {
+        pageTitle: 'The Story | Natan Lichtnow',
+        brand: 'Natan Lichtnow',
+        languageLabel: 'LANG',
+        menuToggleAriaLabel: 'Open navigation menu',
+        navHome: 'Pilot Home',
+        navJourney: 'Journey',
+        navProjects: 'Projects',
+        navMusic: 'Music',
+        navDev: 'Dev',
+        heroEyebrow: 'Personal History',
+        heroTitle: 'Born in the Wind',
+        heroLead: 'From a baby born inside a backpack to a cross-country pilot, instructor, and artist. A story that continues to be written.',
+        ch01tag: 'Chapter 01',
+        ch01title: 'Born in the Wind',
+        ch01year: 'The Beginning',
+        ch01p1: 'Natan was born practically inside a paragliding backpack. From infancy, he accompanied his father on free flight adventures, breathing the sport before he even understood the world.',
+        ch01p2: 'But at 5 years old, his parents separated - and with that came a great family distance that would profoundly mark his childhood.',
+        ch01imgAlt: 'Natan as a baby, already surrounded by the paragliding world',
+        ch01imgCaption: 'Natan carried by his father in his paragliding backpack',
+        ch02tag: 'Chapter 02',
+        ch02title: 'Refuge in Digital Silence',
+        ch02p1: 'Growing up in front of a computer screen, Natan sought an escape from reality from a very young age. With great difficulty connecting emotionally with family and friends, his life revolved around a simple, isolated routine: go to school, play video games, and sleep.',
+        ch02imgAlt: 'Natan during his digital refuge period',
+        ch02imgCaption: 'world of warcraft, his favorite game',
+        ch03tag: 'Chapter 03',
+        ch03title: 'The Call of the Sky',
+        ch03year: 'Age 14 - 2013',
+        ch03p1: 'At 14, life began to change. Natan reconnected with his father, Marcio Lichtnow, who already ran the free flight school Vento Norte. It was there that the sport crossed his path again - this time, as a calling.',
+        ch03p2: 'Without a paraglider in his size, he began in an unconventional way: teaching before he learned to fly himself. He helped his father with everything at the school, absorbing knowledge and living the flight environment intensely.',
+        ch03imgAlt: 'Free flight over the mountains',
+        ch03imgCaption: 'where it all began',
+        ch04tag: 'Chapter 04',
+        ch04title: 'First Steps in the Air',
+        ch04year: 'Age 15 - May 2014',
+        ch04p1: 'In 2014, the first real opportunity arrived: an Ozone Rush 1 XXS, maximum weight 70 kg. It was the very beginning of everything.',
+        ch04p2: 'Training began - and it was not long before the first flight happened, in May 2014. The video below captures that first moment in the air.',
+        ch04videoLabel: 'Watch - First Flight - May 2014',
+        ch04imgAlt: 'Natan on the training hill in 2014 with his Ozone Rush 1',
+        ch04imgCaption: 'Training - 2014 - Rush 1 XXS',
+        ch05tag: 'Chapter 05',
+        ch05title: 'The Ascent',
+        ch05year: '2015 - 2016',
+        ch05p1: 'Evolution was rapid. With constant contact with the sport, flying began to dominate his life. The hours at the computer were, little by little, replaced by hours in the harness.',
+        ch05p2: 'Motivated, Natan sought an internship to sustain himself and invest even more in the sport. In 2016, he won the support of SOL Paragliders, making it possible to buy his first new equipment: a Sycross One - one of the firsts in Brazil.',
+        ch05p3: 'His dedication was in full ascent. That year he took 3rd place in the Sport Light category at the South Brazilian Paragliding Championship. The desire to compete only grew.',
+        ch05videoLabel: 'Watch - Sycross One - 2016',
+        ch05imgAlt: '3rd place trophy -- South Brazilian Championship, Sport Light category',
+        ch05imgCaption: '3rd place - South Brazilian Championship - Sport Light',
+        ch0607tag: 'Chapters 06 - 07',
+        ch06tag: 'Chapter 06',
+        ch06title: 'The Fall',
+        ch06p1: 'But every trajectory has its breaking point.',
+        ch06p2: 'At 17, despite his intense passion for the sport, Natan faced enormous difficulty connecting with classmates at school. The result was hard: failure.',
+        ch06p3: 'With that came one of the most painful decisions of his life - selling the equipment he had fought for during two years. Paragliding was everything to him. His identity was there. And when it was gone, only emptiness remained.',
+        ch07tag: 'Chapter 07',
+        ch07title: 'The Abyss and Escape',
+        ch07p1: 'Without purpose or direction, Natan plunged into a deep depressive state. For six months, he lived fleeing from reality - parties, excess, and wrong choices filled his days. A silent attempt to fill a void that seemed to have no end.',
+        ch08tag: 'Chapter 08',
+        ch08title: 'Rebirth through Art',
+        ch08year: 'Late 2017',
+        ch08p1: 'At the end of 2017, a new path emerged. Introduced to the world of DJing and music production by his friend Birow, Natan found something that would completely change his trajectory.',
+        ch08p2: 'Music was not just a new interest - it was what pulled him out of the depths. It brought expression, purpose, and above all, life back to his path.',
+        ch08imgAlt: 'Natan playing music',
+        ch08imgCaption: 'where music found him',
+        ch08bridgeLabel: 'Explore the music world',
+        ch09tag: 'Chapter 09',
+        ch09title: 'Return to Origins',
+        ch09year: '2024 - 2025 - Curitiba',
+        ch09p1: 'In early 2024, after traveling the world, diving deep into the circus arts universe, performing at festivals he had always dreamed of, and feeling fulfilled in music and art, Natan made an important decision: to return to his homeland.',
+        ch09p2: 'The goal was clear - to rebuild family bonds and rediscover paragliding with fresh eyes.',
+        ch09imgAlt: 'Natan flying cross-country in Brazil',
+        ch09imgCaption: 'Back in the air - 2024/2025',
+        ch10tag: 'Chapter 10',
+        ch10title: 'Reconnection and Purpose',
+        ch10p1: 'Two years in Curitiba, working as instructor and monitor at his father\'s school. During this period, Natan reconnected deeply with the sport, discovering a connection between mental health and the practice of flying, and bringing that modern approach into his teaching. He began developing his own instruction projects, focused on cross-country flying - combining all his skills as a sound designer, video editor, and animator to create unique and easy-to-understand learning material.',
+        galleryImg3Alt: 'Cross-country flight moment',
+        galleryImg1Alt: 'Flying over the Brazilian landscape',
+        ch11tag: 'Chapter 11',
+        ch11title: 'The Next Horizon',
+        ch11year: '2026 - Governador Valadares',
+        ch11p1: 'In 2026, he made yet another bold decision: to move to Governador Valadares - the free flight capital of Brazil.',
+        ch11p2: 'Driven by curiosity, ambition and passion, Natan continues deepening his knowledge in the sport and expanding his instructional and media projects.',
+        ch11p3: 'His story is still being written - and the future, like the sky, remains open.',
+        ctaEyebrow: 'What\'s next',
+        ctaTitle: 'Fly with him',
+        ctaText: 'Discover the instructional projects by Natan',
+        ctaPrimary: 'View projects',
+        ctaSecondary: 'Pilot home',
+        footer: 'NATAN LICHTNOW // BORN IN THE WIND'
+      }
+    };
+  </script>
+  <script src="../js/internal-pages.js"></script>
+</body>
+</html>

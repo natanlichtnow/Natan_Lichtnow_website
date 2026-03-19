@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natan Lichtnow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+  <div class="c-select-screen">
+
+    <!-- Particle network background -->
+    <canvas class="c-select-screen__canvas" id="bgCanvas" aria-hidden="true"></canvas>
+
+    <!-- CRT scanlines -->
+    <div class="c-select-screen__scanlines" aria-hidden="true"></div>
+
+    <!-- Header -->
+    <header class="c-select-screen__header">
+      <div class="c-select-screen__header-bar">
+        <div class="c-language-switcher" aria-label="Language selector">
+          <span class="c-language-switcher__label" data-i18n="languageLabel">LANG</span>
+          <button class="c-language-switcher__option" type="button" data-lang="pt-BR">PT</button>
+          <button class="c-language-switcher__option" type="button" data-lang="en">EN</button>
+        </div>
+      </div>
+      <h1 class="c-select-screen__title">NATAN LICHTNOW</h1>
+      <p class="c-select-screen__prompt" data-i18n="prompt">&#9658; SELECT YOUR WORLD &#9668;</p>
+    </header>
+
+    <!-- Cards Arena -->
+    <main class="c-select-screen__arena o-arena">
+
+      <!-- CARD 01 — Paraglider Pilot -->
+      <a href="paraglider/index.html"
+         class="c-character-card c-character-card--pilot"
+         aria-label="Enter the Paraglider Pilot world"
+         data-i18n-attr="aria-label"
+         data-i18n="pilotAriaLabel">
+
+        <figure class="c-character-card__portrait">
+          <img src="img/flying.png" alt="Paraglider soaring above mountains" class="c-character-card__img" data-i18n-attr="alt" data-i18n="pilotImageAlt" />
+        </figure>
+
+        <div class="c-character-card__overlay" aria-hidden="true"></div>
+
+        <div class="c-character-card__body">
+          <span class="c-character-card__number">01</span>
+          <h2 class="c-character-card__name" data-i18n="pilotName">PARAGLIDER</h2>
+          <p class="c-character-card__class" data-i18n="pilotClass">PILOT &amp; INSTRUCTOR</p>
+          <p class="c-character-card__lore" data-i18n="pilotLore">Chasing thermals above the clouds. A life lived at altitude.</p>
+
+          <ul class="c-character-card__stats">
+            <li class="c-stat">
+              <span class="c-stat__label" data-i18n="pilotStatAltitude">ALTITUDE</span>
+              <span class="c-stat__track"><span class="c-stat__fill" style="--fill: 95%"></span></span>
+            </li>
+            <li class="c-stat">
+              <span class="c-stat__label" data-i18n="pilotStatFreedom">FREEDOM</span>
+              <span class="c-stat__track"><span class="c-stat__fill" style="--fill: 100%"></span></span>
+            </li>
+            <li class="c-stat">
+              <span class="c-stat__label" data-i18n="pilotStatAdventure">ADVENTURE</span>
+              <span class="c-stat__track"><span class="c-stat__fill" style="--fill: 88%"></span></span>
+            </li>
+          </ul>
+
+          <span class="c-character-card__cta" data-i18n="enterWorld">ENTER WORLD</span>
+        </div>
+
+        <div class="c-character-card__frame" aria-hidden="true"></div>
+      </a>
+
+      <!-- CARD 02 — Music & Flow Arts -->
+      <a href="music/index.html"
+         class="c-character-card c-character-card--music"
+         aria-label="Enter the Music and Flow Arts world"
+         data-i18n-attr="aria-label"
+         data-i18n="musicAriaLabel">
+
+        <figure class="c-character-card__portrait">
+          <img src="img/music.jpg" alt="Flow arts performance" class="c-character-card__img" data-i18n-attr="alt" data-i18n="musicImageAlt" />
+        </figure>
+
+        <div class="c-character-card__overlay" aria-hidden="true"></div>
+
+        <div class="c-character-card__body">
+          <span class="c-character-card__number">02</span>
+          <h2 class="c-character-card__name" data-i18n="musicName">MUSIC &amp;</h2>
+          <p class="c-character-card__class" data-i18n="musicClass">FLOW ARTS</p>
+          <p class="c-character-card__lore" data-i18n="musicLore">Between sound and movement, a language beyond words.</p>
+
+          <ul class="c-character-card__stats">
+            <li class="c-stat">
+              <span class="c-stat__label" data-i18n="musicStatRhythm">RHYTHM</span>
+              <span class="c-stat__track"><span class="c-stat__fill" style="--fill: 92%"></span></span>
+            </li>
+            <li class="c-stat">
+              <span class="c-stat__label" data-i18n="musicStatFlowState">FLOW STATE</span>
+              <span class="c-stat__track"><span class="c-stat__fill" style="--fill: 98%"></span></span>
+            </li>
+            <li class="c-stat">
+              <span class="c-stat__label" data-i18n="musicStatVibe">VIBE</span>
+              <span class="c-stat__track"><span class="c-stat__fill" style="--fill: 100%"></span></span>
+            </li>
+          </ul>
+
+          <span class="c-character-card__cta" data-i18n="enterWorld">ENTER WORLD</span>
+        </div>
+
+        <div class="c-character-card__frame" aria-hidden="true"></div>
+      </a>
+
+      <!-- CARD 03 — Web Developer -->
+      <a href="dev/index.html"
+         class="c-character-card c-character-card--dev"
+         aria-label="Enter the Web Developer world"
+         data-i18n-attr="aria-label"
+         data-i18n="devAriaLabel">
+
+        <figure class="c-character-card__portrait">
+          <img src="img/coding.png" alt="Web developer at work" class="c-character-card__img" data-i18n-attr="alt" data-i18n="devImageAlt" />
+        </figure>
+
+        <div class="c-character-card__overlay" aria-hidden="true"></div>
+
+        <div class="c-character-card__body">
+          <span class="c-character-card__number">03</span>
+          <h2 class="c-character-card__name" data-i18n="devName">WEB</h2>
+          <p class="c-character-card__class" data-i18n="devClass">DEVELOPER</p>
+          <p class="c-character-card__lore" data-i18n="devLore">Architect of digital worlds. Building experiences to solve your problems.</p>
+
+          <ul class="c-character-card__stats">
+            <li class="c-stat">
+              <span class="c-stat__label" data-i18n="devStatLogic">LOGIC</span>
+              <span class="c-stat__track"><span class="c-stat__fill" style="--fill: 88%"></span></span>
+            </li>
+            <li class="c-stat">
+              <span class="c-stat__label" data-i18n="devStatCreativity">CREATIVITY</span>
+              <span class="c-stat__track"><span class="c-stat__fill" style="--fill: 93%"></span></span>
+            </li>
+            <li class="c-stat">
+              <span class="c-stat__label" data-i18n="devStatPrecision">PRECISION</span>
+              <span class="c-stat__track"><span class="c-stat__fill" style="--fill: 87%"></span></span>
+            </li>
+          </ul>
+
+          <span class="c-character-card__cta" data-i18n="enterWorld">ENTER WORLD</span>
+        </div>
+
+        <div class="c-character-card__frame" aria-hidden="true"></div>
+      </a>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="c-select-screen__footer">
+      <p class="c-select-screen__copyright" data-i18n="copyright">&copy; 2026 NATAN LICHTNOW &mdash; ALL RIGHTS RESERVED</p>
+    </footer>
+
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

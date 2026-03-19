@@ -1,0 +1,747 @@
+/* ==========================================================================
+   NATAN LICHTNOW — MAIN STYLESHEET
+   Architecture: ITCSS layers + OOP naming convention
+   Naming:  o-  Objects (layout abstractions)
+            c-  Components (specific UI blocks)
+            u-  Utilities (single-purpose helpers)
+   BEM:     Block__Element--Modifier
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. SETTINGS — Design tokens via CSS custom properties
+   ========================================================================== */
+
+:root {
+  /* --- Palette --- */
+  --s-color-bg:           #06060f;
+  --s-color-surface:      #0d0d1e;
+  --s-color-text:         #d0d0ff;
+  --s-color-text-muted:   #505080;
+  --s-color-text-dim:     #252545;
+
+  /* Per-character accent colours */
+  --s-color-pilot:        #00e5ff;
+  --s-color-pilot-glow:   rgba(0, 229, 255, 0.4);
+  --s-color-pilot-tint:   rgba(0, 229, 255, 0.07);
+
+  --s-color-music:        #cc00ff;
+  --s-color-music-glow:   rgba(204, 0, 255, 0.4);
+  --s-color-music-tint:   rgba(204, 0, 255, 0.07);
+
+  --s-color-dev:          #00ff88;
+  --s-color-dev-glow:     rgba(0, 255, 136, 0.4);
+  --s-color-dev-tint:     rgba(0, 255, 136, 0.07);
+
+  /* --- Typography --- */
+  --s-font-pixel:   'Press Start 2P', monospace;
+  --s-font-display: 'Orbitron', sans-serif;
+  --s-font-body:    'Rajdhani', sans-serif;
+
+  /* --- Spacing --- */
+  --s-space-2xs: 0.2rem;
+  --s-space-xs:  0.4rem;
+  --s-space-sm:  0.75rem;
+  --s-space-md:  1.25rem;
+  --s-space-lg:  2.5rem;
+  --s-space-xl:  4rem;
+
+  /* --- Motion --- */
+  --s-ease:     cubic-bezier(0.16, 1, 0.3, 1);
+  --s-duration: 0.45s;
+
+  /* --- Card sizing --- */
+  --s-card-w:   300px;
+  --s-card-h:   500px;
+}
+
+
+/* ==========================================================================
+   2. GENERIC — Reset & box model
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+
+/* ==========================================================================
+   3. ELEMENTS — Bare HTML element defaults
+   ========================================================================== */
+
+body {
+  background-color: var(--s-color-bg);
+  color: var(--s-color-text);
+  font-family: var(--s-font-body);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* ==========================================================================
+   4. OBJECTS — Layout abstractions (prefix: o-)
+   ========================================================================== */
+
+/**
+ * o-arena
+ * Centres the three character cards side-by-side with equal spacing.
+ */
+.o-arena {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-space-md);
+  flex-wrap: wrap;
+}
+
+
+/* ==========================================================================
+   5. COMPONENTS — Specific UI pieces (prefix: c-)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   c-select-screen
+   Full-viewport wrapper for the character selection experience.
+   -------------------------------------------------------------------------- */
+
+.c-select-screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: var(--s-space-md) var(--s-space-md) var(--s-space-sm);
+  overflow: hidden;
+}
+
+/* c-select-screen__canvas
+   Full-screen canvas for the particle network animation. */
+.c-select-screen__canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* c-select-screen__scanlines
+   CRT monitor scanline texture overlaid on the entire page. */
+.c-select-screen__scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0, 0, 0, 0.07) 3px,
+    rgba(0, 0, 0, 0.07) 4px
+  );
+}
+
+/* c-select-screen__header */
+.c-select-screen__header {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding-top: var(--s-space-sm);
+  margin-bottom: var(--s-space-sm);
+  width: min(1100px, 100%);
+}
+
+.c-select-screen__header-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: var(--s-space-sm);
+}
+
+/* c-select-screen__title
+   Main name treatment — large Orbitron with a soft halo. */
+.c-select-screen__title {
+  font-family: var(--s-font-display);
+  font-weight: 900;
+  font-size: clamp(1.4rem, 4vw, 2.8rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--s-color-text);
+  text-shadow:
+    0 0 20px rgba(160, 160, 255, 0.45),
+    0 0 60px rgba(100, 100, 255, 0.18);
+}
+
+/* c-select-screen__prompt
+   "SELECT YOUR WORLD" — pixel font, blinking. */
+.c-select-screen__prompt {
+  font-family: var(--s-font-pixel);
+  font-size: clamp(0.42rem, 1vw, 0.65rem);
+  color: var(--s-color-text-muted);
+  letter-spacing: 0.18em;
+  margin-top: var(--s-space-sm);
+  animation: blink 1.4s step-end infinite;
+}
+
+.c-language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem;
+  border: 1px solid rgba(118, 118, 180, 0.35);
+  background: rgba(8, 8, 20, 0.72);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(8px);
+}
+
+.c-language-switcher__label {
+  font-family: var(--s-font-pixel);
+  font-size: 0.42rem;
+  color: var(--s-color-text-muted);
+  letter-spacing: 0.15em;
+  padding-inline: 0.45rem;
+}
+
+.c-language-switcher__option {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: var(--s-color-text);
+  font-family: var(--s-font-pixel);
+  font-size: 0.42rem;
+  letter-spacing: 0.12em;
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.c-language-switcher__option:hover,
+.c-language-switcher__option:focus-visible {
+  outline: none;
+  border-color: rgba(0, 229, 255, 0.65);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.18);
+}
+
+.c-language-switcher__option--is-active {
+  border-color: rgba(0, 229, 255, 0.8);
+  background: rgba(0, 229, 255, 0.12);
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.22);
+}
+
+/* c-select-screen__arena
+   Extends o-arena and anchors it in the z-stack. */
+.c-select-screen__arena {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* c-select-screen__footer */
+.c-select-screen__footer {
+  position: relative;
+  z-index: 10;
+  padding-bottom: var(--s-space-xs);
+}
+
+/* c-select-screen__copyright */
+.c-select-screen__copyright {
+  font-family: var(--s-font-pixel);
+  font-size: 0.42rem;
+  color: var(--s-color-text-dim);
+  letter-spacing: 0.18em;
+  text-align: center;
+}
+
+
+/* --------------------------------------------------------------------------
+   c-character-card
+   An individual world/character selection card.
+   B  = c-character-card
+   E  = __portrait  __img  __overlay  __body  __number  __name
+        __class  __lore  __stats  __cta  __frame
+   M  = --pilot  --music  --dev
+   -------------------------------------------------------------------------- */
+
+.c-character-card {
+  /* Card dimensions */
+  position: relative;
+  display: block;
+  width: var(--s-card-w);
+  height: var(--s-card-h);
+  flex-shrink: 0;
+  border-radius: 3px;
+  overflow: hidden;
+  cursor: pointer;
+
+  /* Entrance animation */
+  animation: cardIn 0.7s var(--s-ease) both;
+
+  /* Hover transition */
+  transition:
+    transform var(--s-duration) var(--s-ease),
+    box-shadow var(--s-duration) var(--s-ease),
+    filter var(--s-duration) ease;
+}
+
+/* Staggered entrance for each card */
+.c-character-card:nth-child(1) { animation-delay: 0.10s; }
+.c-character-card:nth-child(2) { animation-delay: 0.25s; }
+.c-character-card:nth-child(3) { animation-delay: 0.40s; }
+
+/* c-character-card__portrait
+   Absolutely fills the card with the background image. */
+.c-character-card__portrait {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  z-index: 0;
+}
+
+/* c-character-card__img */
+.c-character-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: brightness(0.5) saturate(0.6);
+  transition: transform 0.6s var(--s-ease), filter 0.5s ease;
+}
+
+/* c-character-card__overlay
+   Gradient that darkens from bottom so text is always legible. */
+.c-character-card__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(6, 6, 15, 0.98) 0%,
+    rgba(6, 6, 15, 0.82) 33%,
+    rgba(6, 6, 15, 0.35) 68%,
+    rgba(6, 6, 15, 0.05) 100%
+  );
+  transition: background var(--s-duration) ease;
+}
+
+/* c-character-card__body
+   Text content panel — slides up from off-screen on hover. */
+.c-character-card__body {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--s-space-lg) var(--s-space-md) var(--s-space-md);
+  transform: translateY(9rem);
+  transition: transform var(--s-duration) var(--s-ease);
+}
+
+/* c-character-card__number
+   "01", "02", "03" corner badge. */
+.c-character-card__number {
+  display: block;
+  font-family: var(--s-font-pixel);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  color: var(--s-color-text-muted);
+  margin-bottom: var(--s-space-xs);
+  transition: color 0.3s ease;
+}
+
+/* c-character-card__name */
+.c-character-card__name {
+  font-family: var(--s-font-display);
+  font-weight: 900;
+  font-size: 1.65rem;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  transition: text-shadow 0.3s ease;
+}
+
+/* c-character-card__class
+   Subtitle like "PILOT", "FLOW ARTIST", "DEVELOPER". */
+.c-character-card__class {
+  font-family: var(--s-font-display);
+  font-weight: 400;
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  margin-top: 0.25em;
+  margin-bottom: var(--s-space-sm);
+}
+
+/* c-character-card__lore
+   Short flavour text — hidden until hovered. */
+.c-character-card__lore {
+  font-family: var(--s-font-body);
+  font-size: 0.92rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(210, 210, 240, 0.8);
+  margin-bottom: var(--s-space-md);
+  opacity: 0;
+  transition: opacity 0.28s ease 0.1s;
+}
+
+/* c-character-card__stats
+   RPG stat bars list. */
+.c-character-card__stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-space-2xs);
+  margin-bottom: var(--s-space-sm);
+  opacity: 0;
+  transition: opacity 0.28s ease 0.08s;
+}
+
+/* c-character-card__cta
+   "ENTER WORLD" call-to-action button. */
+.c-character-card__cta {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--s-font-pixel);
+  font-size: 0.52rem;
+  letter-spacing: 0.15em;
+  padding: 0.65em 1.3em;
+  border: 1px solid currentColor;
+  margin-top: var(--s-space-xs);
+  opacity: 0;
+  transition:
+    opacity 0.25s ease 0.15s,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.c-character-card__cta:hover {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 12px var(--card-glow, transparent);
+}
+
+/* c-character-card__frame
+   Decorative corner brackets using pseudo-elements. */
+.c-character-card__frame {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.c-character-card__frame::before,
+.c-character-card__frame::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0.35;
+  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+}
+
+/* top-left corner bracket */
+.c-character-card__frame::before {
+  top: 12px;
+  left: 12px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+}
+
+/* bottom-right corner bracket */
+.c-character-card__frame::after {
+  bottom: 12px;
+  right: 12px;
+  border-bottom: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+}
+
+
+/* --------------------------------------------------------------------------
+   c-stat
+   A single labelled stat bar row inside a character card.
+   B = c-stat
+   E = __label  __track  __fill
+   -------------------------------------------------------------------------- */
+
+.c-stat {
+  display: flex;
+  align-items: center;
+  gap: var(--s-space-sm);
+}
+
+.c-stat__label {
+  font-family: var(--s-font-pixel);
+  font-size: 0.44rem;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  color: var(--s-color-text-muted);
+  min-width: 5.2rem;
+  text-transform: uppercase;
+}
+
+.c-stat__track {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.c-stat__fill {
+  display: block;
+  height: 100%;
+  width: var(--fill, 0%);
+  background: currentColor;
+  border-radius: 2px;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.55s var(--s-ease);
+}
+
+
+/* --------------------------------------------------------------------------
+   Card theme modifiers
+   Set --card-accent and --card-glow as locally scoped tokens,
+   then use `color: var(--card-accent)` throughout the card subtree.
+   -------------------------------------------------------------------------- */
+
+.c-character-card--pilot {
+  --card-accent: var(--s-color-pilot);
+  --card-glow:   var(--s-color-pilot-glow);
+  color: var(--s-color-pilot);
+}
+
+.c-character-card--music {
+  --card-accent: var(--s-color-music);
+  --card-glow:   var(--s-color-music-glow);
+  color: var(--s-color-music);
+}
+
+.c-character-card--dev {
+  --card-accent: var(--s-color-dev);
+  --card-glow:   var(--s-color-dev-glow);
+  color: var(--s-color-dev);
+}
+
+
+/* ==========================================================================
+   INTERACTION STATES
+   ========================================================================== */
+
+/* Dim sibling cards when one card is hovered */
+.o-arena:has(.c-character-card:hover) .c-character-card:not(:hover) {
+  transform: scale(0.94);
+  filter: brightness(0.5);
+}
+
+/* Hovered card lifts & glows */
+.c-character-card:hover {
+  transform: scale(1.04) translateY(-10px);
+  box-shadow:
+    0 0 0 1px var(--card-accent),
+    0 0 30px var(--card-glow),
+    0 24px 64px rgba(0, 0, 0, 0.65);
+}
+
+.c-character-card:hover .c-character-card__img {
+  transform: scale(1.07);
+  filter: brightness(0.9) saturate(1.18);
+}
+
+.c-character-card:hover .c-character-card__overlay {
+  background: linear-gradient(
+    to top,
+    rgba(6, 6, 15, 0.92) 0%,
+    rgba(6, 6, 15, 0.58) 28%,
+    rgba(6, 6, 15, 0.08) 62%,
+    transparent 100%
+  );
+}
+
+.c-character-card:hover .c-character-card__body {
+  transform: translateY(0);
+}
+
+.c-character-card:hover .c-character-card__lore,
+.c-character-card:hover .c-character-card__stats,
+.c-character-card:hover .c-character-card__cta {
+  opacity: 1;
+}
+
+.c-character-card:hover .c-stat__fill {
+  transform: scaleX(1);
+}
+
+.c-character-card:hover .c-character-card__frame::before,
+.c-character-card:hover .c-character-card__frame::after {
+  width: 34px;
+  height: 34px;
+  opacity: 1;
+}
+
+.c-character-card:hover .c-character-card__name {
+  text-shadow: 0 0 22px var(--card-glow);
+}
+
+.c-character-card:hover .c-character-card__number {
+  color: var(--card-accent);
+}
+
+
+/* ==========================================================================
+   6. UTILITIES — Single-purpose helpers (prefix: u-)
+   ========================================================================== */
+
+.u-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* ==========================================================================
+   7. ANIMATIONS / KEYFRAMES
+   ========================================================================== */
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(36px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* ==========================================================================
+   8. RESPONSIVE — Breakpoints
+   ========================================================================== */
+
+/* Slightly tighter cards on medium screens */
+@media (max-width: 1100px) {
+  :root {
+    --s-card-w: 260px;
+    --s-card-h: 460px;
+  }
+
+  .o-arena {
+    gap: var(--s-space-sm);
+  }
+}
+
+/* Short viewports — squash cards vertically */
+@media (max-height: 700px) {
+  :root {
+    --s-card-h: 400px;
+    --s-card-w: 240px;
+  }
+
+  .c-select-screen__title {
+    font-size: 1.4rem;
+  }
+
+  .c-select-screen__header-bar {
+    margin-bottom: var(--s-space-xs);
+  }
+}
+
+/* Mobile — stack cards vertically, content always visible */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+  }
+
+  .c-select-screen {
+    min-height: 100dvh;
+    padding: var(--s-space-sm);
+  }
+
+  .c-select-screen__header {
+    width: 100%;
+  }
+
+  .c-select-screen__header-bar {
+    justify-content: center;
+  }
+
+  :root {
+    --s-card-w: min(82vw, 340px);
+    --s-card-h: 380px;
+  }
+
+  .c-language-switcher {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .o-arena {
+    flex-direction: column;
+    gap: var(--s-space-md);
+  }
+
+  /* Always show body content on touch devices */
+  .c-character-card__body {
+    transform: translateY(0);
+  }
+
+  .c-character-card__lore,
+  .c-character-card__stats,
+  .c-character-card__cta {
+    opacity: 1;
+  }
+
+  .c-stat__fill {
+    transform: scaleX(1);
+  }
+
+  /* Disable sibling dimming on mobile */
+  .o-arena:has(.c-character-card:hover) .c-character-card:not(:hover) {
+    transform: none;
+    filter: none;
+  }
+}

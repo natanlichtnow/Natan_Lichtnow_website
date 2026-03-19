@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flying Projects | Natan Lichtnow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/internal.css" />
+  <style>
+    .c-page--journey .c-topbar {
+      background: rgba(4, 12, 7, 0.92) !important;
+      border-bottom: 1px solid rgba(66, 200, 116, 0.1);
+    }
+
+    .c-page--journey .c-topbar__menu-toggle {
+      display: none;
+      width: 2.7rem;
+      height: 2.7rem;
+      border-radius: 0.8rem;
+      border: 1px solid rgba(66, 200, 116, 0.24);
+      background: rgba(66, 200, 116, 0.08);
+      color: #c8e8d0;
+      align-items: center;
+      justify-content: center;
+      gap: 0.26rem;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .c-page--journey .c-topbar__menu-toggle:hover,
+    .c-page--journey .c-topbar__menu-toggle:focus-visible {
+      background: rgba(66, 200, 116, 0.16);
+      border-color: rgba(66, 200, 116, 0.4);
+    }
+
+    .c-page--journey .c-topbar__menu-toggle-line {
+      display: block;
+      width: 1.15rem;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .c-page--journey .c-topbar__menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 25;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      background: rgba(3, 10, 6, 0.26);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .c-page--journey .c-topbar__menu-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .c-page--journey .c-topbar__brand {
+      color: #c8e8d0;
+    }
+
+    .c-page--journey .c-topbar__brand-mark {
+      background: rgba(66, 200, 116, 0.1);
+      border-color: rgba(66, 200, 116, 0.3);
+      color: #42c874;
+    }
+
+    .c-page--journey .c-topbar__link {
+      color: #6a9878;
+    }
+
+    .c-page--journey .c-topbar__link:hover,
+    .c-page--journey .c-topbar__link:focus-visible,
+    .c-page--journey .c-topbar__link--is-active {
+      color: #c8e8d0;
+      border-color: rgba(66, 200, 116, 0.3);
+      background: rgba(66, 200, 116, 0.08);
+    }
+
+    .c-page--journey .c-language-switcher {
+      border-color: rgba(66, 200, 116, 0.14);
+      background: rgba(66, 200, 116, 0.05);
+    }
+
+    .c-page--journey .c-language-switcher__label {
+      color: #4a7858;
+    }
+
+    .c-page--journey .c-language-switcher__option {
+      color: #c8e8d0;
+      border-color: rgba(66, 200, 116, 0.14);
+    }
+
+    .c-page--journey .c-language-switcher__option--is-active {
+      background: rgba(66, 200, 116, 0.12);
+      border-color: rgba(66, 200, 116, 0.32);
+    }
+
+    @media (max-width: 700px) {
+      .c-page--journey .c-topbar {
+        position: sticky;
+        z-index: 40;
+      }
+
+      .c-page--journey .c-topbar__inner {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        justify-items: stretch;
+        text-align: left;
+        gap: 0.45rem;
+      }
+
+      .c-page--journey .c-topbar__brand {
+        min-width: 0;
+        gap: 0.45rem;
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+      }
+
+      .c-page--journey .c-topbar__brand > span[data-i18n='brand'] {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .c-page--journey .c-topbar__menu-toggle {
+        display: inline-flex;
+      }
+
+      .c-page--journey .c-topbar__nav {
+        position: absolute;
+        left: 0.7rem;
+        right: 0.7rem;
+        top: calc(100% + 0.55rem);
+        display: grid;
+        gap: 0.55rem;
+        padding: 0.8rem;
+        border-radius: 0.95rem;
+        border: 1px solid rgba(66, 200, 116, 0.18);
+        background: rgba(4, 12, 7, 0.95);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      }
+
+      .c-page--journey .c-topbar__nav.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .c-page--journey .c-topbar__link {
+        width: 100%;
+      }
+
+      .c-page--journey .c-language-switcher {
+        justify-self: end;
+        width: auto;
+        gap: 0.2rem;
+        padding: 0.24rem;
+        max-width: 100%;
+      }
+
+      .c-page--journey .c-language-switcher__label {
+        padding-inline: 0.35rem;
+        font-size: 0.6rem;
+        letter-spacing: 0.1em;
+      }
+
+      .c-page--journey .c-language-switcher__option {
+        min-width: 2.2rem;
+        padding: 0.48rem 0.5rem;
+        font-size: 0.62rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="c-page c-page--journey">
+    <header class="c-topbar">
+      <div class="c-shell c-topbar__inner">
+        <button class="c-topbar__menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="projects-nav" data-i18n="menuToggleAriaLabel" data-i18n-attr="aria-label">
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+        </button>
+
+        <a class="c-topbar__brand" href="../index.html" aria-label="Natan Lichtnow home" data-i18n="brandAriaLabel" data-i18n-attr="aria-label">
+          <span class="c-topbar__brand-mark">NL</span>
+          <span data-i18n="brand">Natan Lichtnow</span>
+        </a>
+
+        <nav class="c-topbar__nav" id="projects-nav" aria-label="Section navigation" data-i18n="sectionNavAriaLabel" data-i18n-attr="aria-label">
+          <a class="c-topbar__link" href="index.html" data-i18n="navSectionHome">Pilot Home</a>
+          <a class="c-topbar__link" href="journey.html" data-i18n="navJourney">Journey</a>
+          <a class="c-topbar__link c-topbar__link--is-active" href="projects.html" data-i18n="navProjects">Projects</a>
+          <a class="c-topbar__link" href="takeoff-to-cloud-base.html" data-i18n="navCloud">Cloud Base</a>
+          <a class="c-topbar__link" href="cross-country-immersion.html" data-i18n="navCross">Cross Country</a>
+        </nav>
+
+        <div class="c-language-switcher" aria-label="Language selector" data-i18n="languageSwitcherAriaLabel" data-i18n-attr="aria-label">
+          <span class="c-language-switcher__label" data-i18n="languageLabel">LANG</span>
+          <button class="c-language-switcher__option" type="button" data-lang="pt-BR">PT</button>
+          <button class="c-language-switcher__option" type="button" data-lang="en">EN</button>
+        </div>
+      </div>
+    </header>
+    <div class="c-topbar__menu-overlay" aria-hidden="true"></div>
+    <main class="c-shell">
+      <section class="c-hero">
+        <span class="c-hero__eyebrow" data-i18n="heroEyebrow">Instruction Map</span>
+        <h1 class="c-hero__title" data-i18n="heroTitle">Projects</h1>
+        <p class="c-hero__lead" data-i18n="heroLead">This page is now a simpler overview of the two main instructional experiences. Instead of too much explanation up front, it helps the visitor compare them quickly and choose the right route.</p>
+        <div class="c-hero__actions"><a class="c-button" href="takeoff-to-cloud-base.html" data-i18n="heroPrimary">Open cloud base</a><a class="c-button c-button--ghost" href="cross-country-immersion.html" data-i18n="heroSecondary">Open cross country</a></div>
+      </section>
+
+      <div class="c-mountain-divider" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+          <path d="M0,42 L160,20 L300,36 L460,12 L620,30 L780,8 L940,26 L1100,10 L1260,24 L1440,14 L1440,60 L0,60 Z" fill="#42c874"/>
+        </svg>
+      </div>
+
+      <section class="c-section">
+        <div class="c-project-grid">
+          <article class="c-project-card">
+            <span class="c-project-card__meta" data-i18n="cardOneMeta">Project 01</span>
+            <h2 class="c-project-card__title" data-i18n="cardOneTitle">From Takeoff to Cloud Base</h2>
+            <p class="c-project-card__text" data-i18n="cardOneText">The entry progression for pilots who already fly, but want the start of the flight to feel cleaner, calmer, and more reliable.</p>
+            <ul class="c-list">
+              <li class="c-list__item"><h3 class="c-list__title" data-i18n="cardOnePointOneTitle">Best for</h3><p class="c-list__text" data-i18n="cardOnePointOneText">Improving launch quality, early climb decisions, and reducing wasted mental energy right after takeoff.</p></li>
+              <li class="c-list__item"><h3 class="c-list__title" data-i18n="cardOnePointTwoTitle">What changes</h3><p class="c-list__text" data-i18n="cardOnePointTwoText">The pilot gains a stronger first-flight rhythm and more trust in the initial technical sequence.</p></li>
+            </ul>
+            <div class="c-project-card__links">
+              <a class="c-link-pill" href="takeoff-to-cloud-base.html" data-i18n="cardOneCta">Open project</a>
+            </div>
+          </article>
+
+          <article class="c-project-card">
+            <span class="c-project-card__meta" data-i18n="cardTwoMeta">Project 02</span>
+            <h2 class="c-project-card__title" data-i18n="cardTwoTitle">Cross Country Immersion</h2>
+            <p class="c-project-card__text" data-i18n="cardTwoText">The deeper route for pilots who already have local confidence and now want stronger strategy, range, and decision quality over distance.</p>
+            <ul class="c-list">
+              <li class="c-list__item"><h3 class="c-list__title" data-i18n="cardTwoPointOneTitle">Best for</h3><p class="c-list__text" data-i18n="cardTwoPointOneText">Thinking beyond the hill, extending route awareness, and making cleaner choices across longer flights.</p></li>
+              <li class="c-list__item"><h3 class="c-list__title" data-i18n="cardTwoPointTwoTitle">What changes</h3><p class="c-list__text" data-i18n="cardTwoPointTwoText">The pilot becomes more strategic, more autonomous, and more composed once the route gets serious.</p></li>
+            </ul>
+            <div class="c-project-card__links">
+              <a class="c-link-pill" href="cross-country-immersion.html" data-i18n="cardTwoCta">Open project</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="c-mountain-divider" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+          <path d="M0,40 L180,18 L320,34 L480,10 L640,28 L800,6 L960,24 L1120,8 L1280,22 L1440,12 L1440,60 L0,60 Z" fill="#42c874"/>
+        </svg>
+      </div>
+
+      <section class="c-section">
+        <div class="c-info-strip">
+          <div class="c-info-strip__item"><span class="c-info-strip__label" data-i18n="stripLabelOne">Comparison</span><span class="c-info-strip__value" data-i18n="stripValueOne">One project organizes the beginning of the flight. The other organizes decisions once the route opens.</span></div>
+          <div class="c-info-strip__item"><span class="c-info-strip__label" data-i18n="stripLabelTwo">Method</span><span class="c-info-strip__value" data-i18n="stripValueTwo">Both rely on observation, practical flying, and debriefs that turn one day into long-term progress.</span></div>
+          <div class="c-info-strip__item"><span class="c-info-strip__label" data-i18n="stripLabelThree">Use</span><span class="c-info-strip__value" data-i18n="stripValueThree">This page should help people choose quickly, then continue into the full experience page with confidence.</span></div>
+        </div>
+      </section>
+
+      <div class="c-mountain-divider" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+          <path d="M0,45 L180,22 L300,38 L440,14 L580,30 L720,10 L860,26 L1000,8 L1120,22 L1260,10 L1440,24 L1440,60 L0,60 Z" fill="#42c874"/>
+        </svg>
+      </div>
+
+      <section class="c-section">
+        <div class="c-detail-layout">
+          <article class="c-detail-panel">
+            <h2 class="c-detail-panel__title" data-i18n="detailTitle">How to choose well</h2>
+            <p class="c-detail-panel__text" data-i18n="detailText">If the real difficulty is still the takeoff-to-climb transition, start with Cloud Base. If local flying already feels stable and the next challenge is route logic, go into Cross Country.</p>
+          </article>
+          <aside class="c-detail-panel">
+            <h2 class="c-detail-panel__title" data-i18n="asideTitle">Why this page matters</h2>
+            <p class="c-detail-panel__text" data-i18n="asideText">The job of this page is not to sell with noise. It is to frame the two offers clearly enough that the right visitor chooses the right path.</p>
+          </aside>
+        </div>
+      </section>
+
+      <div class="c-mountain-divider" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+          <path d="M0,38 L200,18 L360,32 L520,10 L680,28 L840,6 L1000,22 L1160,8 L1320,20 L1440,12 L1440,60 L0,60 Z" fill="#42c874"/>
+        </svg>
+      </div>
+
+      <section class="c-section">
+        <article class="c-callout">
+          <div class="c-callout__copy">
+            <span class="c-kicker" data-i18n="calloutEyebrow">Next step</span>
+            <h2 class="c-card__title" data-i18n="calloutTitle">Pick the page that matches the real gap in your flying.</h2>
+            <p class="c-callout__text" data-i18n="calloutText">Go to Cloud Base for launch-and-climb progress. Go to Cross Country for strategy, distance, and route decisions.</p>
+          </div>
+          <div class="c-link-cluster">
+            <a class="c-link-pill" href="takeoff-to-cloud-base.html" data-i18n="calloutPrimary">Go to cloud base</a>
+            <a class="c-link-pill c-link-pill--ghost" href="cross-country-immersion.html" data-i18n="calloutSecondary">Go to cross country</a>
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer class="c-page-footer c-shell"><p class="c-page-footer__text" data-i18n="footer">NATAN LICHTNOW // PROJECTS</p></footer>
+  </div>
+  <script>
+    window.NATAN_PAGE_TRANSLATIONS = {
+      'pt-BR': {
+        pageTitle: 'Projetos | Natan Lichtnow', brand: 'Natan Lichtnow', brandAriaLabel: 'Inicio de Natan Lichtnow', sectionNavAriaLabel: 'Navegacao da secao', menuToggleAriaLabel: 'Abrir menu de navegacao', languageSwitcherAriaLabel: 'Seletor de idioma', languageLabel: 'IDIOMA', navSectionHome: 'Inicio do piloto', navJourney: 'Jornada', navProjects: 'Projetos', navCloud: 'Base da nuvem', navCross: 'Cross country', heroEyebrow: 'Mapa de Instrucao', heroTitle: 'Projetos', heroLead: 'Esta pagina agora e uma visao mais simples das duas principais experiencias de instrucao. Em vez de explicar demais logo no inicio, ela ajuda a comparar rapidamente e escolher a rota certa.', heroPrimary: 'Abrir base da nuvem', heroSecondary: 'Abrir cross country', cardOneMeta: 'Projeto 01', cardOneTitle: 'Da Rampa a Base da Nuvem', cardOneText: 'A progressao de entrada para pilotos que ja voam, mas querem um inicio de voo mais limpo, mais calmo e mais confiavel.', cardOnePointOneTitle: 'Melhor para', cardOnePointOneText: 'Melhorar decolagem, decisoes na primeira subida e reduzir gasto mental logo depois da rampa.', cardOnePointTwoTitle: 'O que muda', cardOnePointTwoText: 'O piloto ganha um ritmo inicial mais forte e mais confianca na sequencia tecnica do comeco do voo.', cardOneCta: 'Abrir projeto', cardTwoMeta: 'Projeto 02', cardTwoTitle: 'Imersao Cross Country', cardTwoText: 'A rota mais profunda para pilotos que ja tem confianca local e agora querem mais estrategia, alcance e qualidade de decisao ao longo da distancia.', cardTwoPointOneTitle: 'Melhor para', cardTwoPointOneText: 'Pensar alem da rampa, ampliar leitura de rota e tomar escolhas mais limpas em voos longos.', cardTwoPointTwoTitle: 'O que muda', cardTwoPointTwoText: 'O piloto se torna mais estrategico, mais autonomo e mais composto quando a rota fica seria.', cardTwoCta: 'Abrir projeto', stripLabelOne: 'Comparacao', stripValueOne: 'Um projeto organiza o comeco do voo. O outro organiza as decisoes quando a rota se abre.', stripLabelTwo: 'Metodo', stripValueTwo: 'Ambos trabalham com observacao, voo pratico e debriefs que transformam um dia em progressao de longo prazo.', stripLabelThree: 'Uso', stripValueThree: 'Esta pagina deve ajudar a escolher rapido e seguir com seguranca para a experiencia completa.', detailTitle: 'Como escolher bem', detailText: 'Se a dificuldade real ainda esta entre a decolagem e a primeira subida, comece pela Base da Nuvem. Se o voo local ja esta estavel e o proximo desafio e logica de rota, va para Cross Country.', asideTitle: 'Por que esta pagina importa', asideText: 'O trabalho desta pagina nao e vender no ruido. E enquadrar as duas ofertas com clareza suficiente para que a pessoa certa escolha o caminho certo.', calloutEyebrow: 'Proximo passo', calloutTitle: 'Escolha a pagina que combina com a lacuna real do seu voo.', calloutText: 'Va para Base da Nuvem para evolucao na decolagem e na subida. Va para Cross Country para estrategia, distancia e decisoes de rota.', calloutPrimary: 'Ir para base da nuvem', calloutSecondary: 'Ir para cross country', footer: 'NATAN LICHTNOW // PROJETOS'
+      },
+      en: {
+        pageTitle: 'Projects | Natan Lichtnow', brand: 'Natan Lichtnow', brandAriaLabel: 'Natan Lichtnow home', sectionNavAriaLabel: 'Section navigation', menuToggleAriaLabel: 'Open navigation menu', languageSwitcherAriaLabel: 'Language selector', languageLabel: 'LANG', navSectionHome: 'Pilot Home', navJourney: 'Journey', navProjects: 'Projects', navCloud: 'Cloud Base', navCross: 'Cross Country', heroEyebrow: 'Instruction Map', heroTitle: 'Projects', heroLead: 'This page is now a simpler overview of the two main instructional experiences. Instead of too much explanation up front, it helps the visitor compare them quickly and choose the right route.', heroPrimary: 'Open cloud base', heroSecondary: 'Open cross country', cardOneMeta: 'Project 01', cardOneTitle: 'From Takeoff to Cloud Base', cardOneText: 'The entry progression for pilots who already fly, but want the start of the flight to feel cleaner, calmer, and more reliable.', cardOnePointOneTitle: 'Best for', cardOnePointOneText: 'Improving launch quality, early climb decisions, and reducing wasted mental energy right after takeoff.', cardOnePointTwoTitle: 'What changes', cardOnePointTwoText: 'The pilot gains a stronger first-flight rhythm and more trust in the initial technical sequence.', cardOneCta: 'Open project', cardTwoMeta: 'Project 02', cardTwoTitle: 'Cross Country Immersion', cardTwoText: 'The deeper route for pilots who already have local confidence and now want stronger strategy, range, and decision quality over distance.', cardTwoPointOneTitle: 'Best for', cardTwoPointOneText: 'Thinking beyond the hill, extending route awareness, and making cleaner choices across longer flights.', cardTwoPointTwoTitle: 'What changes', cardTwoPointTwoText: 'The pilot becomes more strategic, more autonomous, and more composed once the route gets serious.', cardTwoCta: 'Open project', stripLabelOne: 'Comparison', stripValueOne: 'One project organizes the beginning of the flight. The other organizes decisions once the route opens.', stripLabelTwo: 'Method', stripValueTwo: 'Both rely on observation, practical flying, and debriefs that turn one day into long-term progress.', stripLabelThree: 'Use', stripValueThree: 'This page should help people choose quickly, then continue into the full experience page with confidence.', detailTitle: 'How to choose well', detailText: 'If the real difficulty is still the takeoff-to-climb transition, start with Cloud Base. If local flying already feels stable and the next challenge is route logic, go into Cross Country.', asideTitle: 'Why this page matters', asideText: 'The job of this page is not to sell with noise. It is to frame the two offers clearly enough that the right visitor chooses the right path.', calloutEyebrow: 'Next step', calloutTitle: 'Pick the page that matches the real gap in your flying.', calloutText: 'Go to Cloud Base for launch-and-climb progress. Go to Cross Country for strategy, distance, and route decisions.', calloutPrimary: 'Go to cloud base', calloutSecondary: 'Go to cross country', footer: 'NATAN LICHTNOW // PROJECTS'
+      }
+    };
+  </script>
+  <script src="../js/internal-pages.js"></script>
+</body>
+</html>
