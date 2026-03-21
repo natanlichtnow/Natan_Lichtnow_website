@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Story | Natan Lichtnow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/internal.css" />
+  <style>
+    /* ================================================================
+       MUSIC HISTORY PAGE -- Dark Nature / Green-Blue Palette
+       Following the paraglider journey page format
+       ================================================================ */
+
+    body {
+      background: linear-gradient(180deg, #080f08 0%, #0a1810 50%, #080d08 100%) !important;
+    }
+
+    .mh-page {
+      --mh-accent: #00e676;
+      --mh-accent-soft: rgba(0, 230, 118, 0.12);
+      --mh-accent-strong: rgba(0, 230, 118, 0.32);
+      --mh-accent-glow: rgba(0, 230, 118, 0.2);
+      --mh-secondary: #00bcd4;
+      --mh-text: #d8f0e0;
+      --mh-text-muted: #6a9878;
+      --mh-panel: rgba(12, 28, 18, 0.72);
+      --mh-panel-strong: rgba(8, 22, 12, 0.94);
+      --mh-border: rgba(0, 230, 118, 0.14);
+      overflow-x: hidden;
+    }
+
+    /* Topbar dark nature override */
+    .mh-page .c-topbar {
+      background: rgba(4, 12, 7, 0.92) !important;
+      border-bottom: 1px solid rgba(0, 230, 118, 0.1);
+    }
+    .mh-page .c-topbar__brand { color: #c8e8d0; }
+    .mh-page .c-topbar__brand-logo {
+      height: 2.2rem;
+      width: auto;
+      transition: height 0.3s ease;
+    }
+    .mh-page .c-topbar.is-scrolled .c-topbar__brand-logo {
+      height: 1.7rem;
+    }
+
+    /* Menu toggle (mobile) */
+    .mh-page .c-topbar__menu-toggle {
+      display: none;
+      width: 2.7rem;
+      height: 2.7rem;
+      border-radius: 0.8rem;
+      border: 1px solid rgba(0, 230, 118, 0.24);
+      background: rgba(0, 230, 118, 0.08);
+      color: #c8e8d0;
+      align-items: center;
+      justify-content: center;
+      gap: 0.26rem;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .mh-page .c-topbar__menu-toggle:hover,
+    .mh-page .c-topbar__menu-toggle:focus-visible {
+      background: rgba(0, 230, 118, 0.16);
+      border-color: rgba(0, 230, 118, 0.4);
+    }
+    .mh-page .c-topbar__menu-toggle-line {
+      display: block;
+      width: 1.15rem;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .mh-page .c-topbar__menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 25;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      background: rgba(3, 10, 6, 0.26);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+    .mh-page .c-topbar__menu-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .mh-page .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .mh-page .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(2) {
+      opacity: 0;
+    }
+    .mh-page .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .mh-page .c-topbar__link { color: #6a9878; }
+    .mh-page .c-topbar__link:hover,
+    .mh-page .c-topbar__link:focus-visible,
+    .mh-page .c-topbar__link--is-active {
+      color: #c8e8d0;
+      border-color: rgba(0, 230, 118, 0.3);
+      background: rgba(0, 230, 118, 0.08);
+    }
+    .mh-page .c-language-switcher { border-color: rgba(0, 230, 118, 0.14); background: rgba(0, 230, 118, 0.05); }
+    .mh-page .c-language-switcher__label { color: #4a7858; }
+    .mh-page .c-language-switcher__option { color: #c8e8d0; border-color: rgba(0, 230, 118, 0.14); }
+    .mh-page .c-language-switcher__option--is-active { background: rgba(0, 230, 118, 0.12); border-color: rgba(0, 230, 118, 0.32); }
+
+    /* Buttons */
+    .mh-page .c-button {
+      background: rgba(0, 230, 118, 0.1);
+      border-color: rgba(0, 230, 118, 0.32);
+      color: #a0d8b0;
+    }
+    .mh-page .c-button:hover { background: rgba(0, 230, 118, 0.2); }
+    .mh-page .c-button--ghost {
+      background: transparent;
+      border-color: rgba(0, 230, 118, 0.16);
+      color: #4a7858;
+    }
+
+    /* ================================================================
+       HERO
+       ================================================================ */
+    .mh-hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 6rem 1.5rem 0;
+    }
+
+    .mh-hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse at 25% 25%, rgba(0, 80, 40, 0.55) 0%, transparent 45%),
+        radial-gradient(ellipse at 75% 15%, rgba(0, 60, 100, 0.55) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 5%, rgba(0, 100, 80, 0.35) 0%, transparent 38%),
+        linear-gradient(180deg, #040a06 0%, #061012 40%, #040a06 100%);
+    }
+
+    /* ---- Animated ambient blobs (hero) ---- */
+    .mh-hero__blob {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(100px);
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+    .mh-hero__blob--1 {
+      width: 45vw; height: 45vw;
+      top: -10%; left: -12%;
+      background: radial-gradient(circle, rgba(0, 230, 118, 0.22) 0%, transparent 70%);
+      animation: mh-blob-drift-1 18s ease-in-out infinite alternate;
+    }
+    .mh-hero__blob--2 {
+      width: 38vw; height: 38vw;
+      top: 15%; right: -8%;
+      background: radial-gradient(circle, rgba(0, 188, 212, 0.2) 0%, transparent 70%);
+      animation: mh-blob-drift-2 22s ease-in-out infinite alternate;
+    }
+    .mh-hero__blob--3 {
+      width: 30vw; height: 30vw;
+      bottom: 10%; left: 30%;
+      background: radial-gradient(circle, rgba(74, 0, 224, 0.16) 0%, transparent 70%);
+      animation: mh-blob-drift-3 26s ease-in-out infinite alternate;
+    }
+
+    @keyframes mh-blob-drift-1 {
+      0%   { transform: translate(0, 0) scale(1);    opacity: 0.6; }
+      33%  { transform: translate(8vw, 5vh) scale(1.12); opacity: 0.75; }
+      66%  { transform: translate(-3vw, 10vh) scale(0.95); opacity: 0.55; }
+      100% { transform: translate(5vw, -3vh) scale(1.08); opacity: 0.7; }
+    }
+    @keyframes mh-blob-drift-2 {
+      0%   { transform: translate(0, 0) scale(1);    opacity: 0.5; }
+      33%  { transform: translate(-6vw, 8vh) scale(1.1); opacity: 0.7; }
+      66%  { transform: translate(4vw, -4vh) scale(0.92); opacity: 0.45; }
+      100% { transform: translate(-5vw, 6vh) scale(1.06); opacity: 0.65; }
+    }
+    @keyframes mh-blob-drift-3 {
+      0%   { transform: translate(0, 0) scale(1);    opacity: 0.45; }
+      33%  { transform: translate(6vw, -6vh) scale(1.14); opacity: 0.6; }
+      66%  { transform: translate(-5vw, 3vh) scale(0.9);  opacity: 0.4; }
+      100% { transform: translate(3vw, 8vh) scale(1.05);  opacity: 0.55; }
+    }
+
+    .mh-hero__stars {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px),
+        radial-gradient(circle, rgba(200,240,220,0.5) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px);
+      background-size: 220px 220px, 170px 170px, 310px 310px, 140px 140px;
+      background-position: 0 0, 80px 50px, 140px 90px, 55px 130px;
+      opacity: 0.35;
+    }
+
+    .mh-hero__content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 860px;
+      padding-bottom: 9rem;
+    }
+
+    .mh-hero__eyebrow {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--mh-accent);
+      background: var(--mh-accent-soft);
+      border: 1px solid rgba(0, 230, 118, 0.22);
+      border-radius: 999px;
+      padding: 0.35rem 1.2rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .mh-hero__title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(3.8rem, 10vw, 8.5rem);
+      font-weight: 700;
+      line-height: 0.95;
+      color: #e8f5ea;
+      margin: 0 0 2rem;
+      text-shadow: 0 0 80px rgba(0, 230, 118, 0.18), 0 4px 50px rgba(0, 0, 0, 0.9);
+    }
+
+    .mh-hero__lead {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.05rem, 2vw, 1.32rem);
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--mh-text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .mh-hero__actions {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Forest silhouette bottom of hero */
+    .mh-hero__forest {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 6;
+      line-height: 0;
+    }
+    .mh-hero__forest svg { display: block; width: 100%; }
+
+    /* ================================================================
+       STORY BODY
+       ================================================================ */
+    .mh-story {
+      position: relative;
+      background: linear-gradient(180deg, #050e08 0%, #060d14 50%, #050e08 100%);
+      overflow: hidden;
+    }
+
+    .mh-story::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 0% 15%, rgba(0, 60, 30, 0.28) 0%, transparent 30%),
+        radial-gradient(ellipse at 100% 40%, rgba(0, 50, 80, 0.22) 0%, transparent 28%),
+        radial-gradient(ellipse at 50% 75%, rgba(0, 60, 30, 0.2) 0%, transparent 30%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ---- Animated ambient blobs (story body) ---- */
+    .mh-story__blob {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(120px);
+      opacity: 0;
+      will-change: transform, opacity;
+      z-index: 0;
+    }
+    .mh-story__blob--a {
+      width: 50vw; height: 50vw;
+      top: 5%; left: -15%;
+      background: radial-gradient(circle, rgba(0, 230, 118, 0.18) 0%, transparent 70%);
+      animation: mh-story-blob-a 28s ease-in-out infinite alternate;
+    }
+    .mh-story__blob--b {
+      width: 42vw; height: 42vw;
+      top: 25%; right: -10%;
+      background: radial-gradient(circle, rgba(0, 188, 212, 0.16) 0%, transparent 70%);
+      animation: mh-story-blob-b 32s ease-in-out infinite alternate;
+    }
+    .mh-story__blob--c {
+      width: 36vw; height: 36vw;
+      top: 50%; left: 20%;
+      background: radial-gradient(circle, rgba(0, 0, 255, 0.12) 0%, transparent 70%);
+      animation: mh-story-blob-c 24s ease-in-out infinite alternate;
+    }
+    .mh-story__blob--d {
+      width: 44vw; height: 44vw;
+      top: 72%; right: -5%;
+      background: radial-gradient(circle, rgba(74, 0, 224, 0.13) 0%, transparent 70%);
+      animation: mh-story-blob-d 30s ease-in-out infinite alternate;
+    }
+    .mh-story__blob--e {
+      width: 38vw; height: 38vw;
+      top: 90%; left: -8%;
+      background: radial-gradient(circle, rgba(0, 200, 83, 0.15) 0%, transparent 70%);
+      animation: mh-story-blob-e 26s ease-in-out infinite alternate;
+    }
+
+    @keyframes mh-story-blob-a {
+      0%   { transform: translate(0, 0) scale(1);     opacity: 0.5; }
+      25%  { transform: translate(10vw, 4vh) scale(1.15); opacity: 0.65; }
+      50%  { transform: translate(3vw, 12vh) scale(0.9);  opacity: 0.45; }
+      75%  { transform: translate(-5vw, 8vh) scale(1.1);  opacity: 0.6; }
+      100% { transform: translate(6vw, -2vh) scale(1.02); opacity: 0.52; }
+    }
+    @keyframes mh-story-blob-b {
+      0%   { transform: translate(0, 0) scale(1);      opacity: 0.4; }
+      25%  { transform: translate(-8vw, 6vh) scale(1.12); opacity: 0.58; }
+      50%  { transform: translate(5vw, -3vh) scale(0.88); opacity: 0.35; }
+      75%  { transform: translate(-3vw, 10vh) scale(1.08); opacity: 0.55; }
+      100% { transform: translate(7vw, 4vh) scale(0.95);  opacity: 0.42; }
+    }
+    @keyframes mh-story-blob-c {
+      0%   { transform: translate(0, 0) scale(1);       opacity: 0.38; }
+      25%  { transform: translate(7vw, -5vh) scale(1.18); opacity: 0.52; }
+      50%  { transform: translate(-4vw, 8vh) scale(0.85); opacity: 0.32; }
+      75%  { transform: translate(6vw, 3vh) scale(1.1);   opacity: 0.5; }
+      100% { transform: translate(-6vw, -4vh) scale(0.98); opacity: 0.4; }
+    }
+    @keyframes mh-story-blob-d {
+      0%   { transform: translate(0, 0) scale(1);      opacity: 0.35; }
+      25%  { transform: translate(-9vw, -4vh) scale(1.1); opacity: 0.5; }
+      50%  { transform: translate(4vw, 7vh) scale(0.92); opacity: 0.3; }
+      75%  { transform: translate(-2vw, -6vh) scale(1.14); opacity: 0.48; }
+      100% { transform: translate(8vw, 3vh) scale(1.0);  opacity: 0.38; }
+    }
+    @keyframes mh-story-blob-e {
+      0%   { transform: translate(0, 0) scale(1);       opacity: 0.42; }
+      25%  { transform: translate(6vw, 5vh) scale(1.16);  opacity: 0.58; }
+      50%  { transform: translate(-7vw, -3vh) scale(0.88); opacity: 0.36; }
+      75%  { transform: translate(3vw, 9vh) scale(1.06);  opacity: 0.54; }
+      100% { transform: translate(-4vw, 2vh) scale(0.96); opacity: 0.44; }
+    }
+
+    .mh-story__inner {
+      position: relative;
+      z-index: 1;
+      padding: 5.5rem 0 2rem;
+    }
+
+    /* ================================================================
+       CHAPTER
+       ================================================================ */
+    .mh-chapter {
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(0, 230, 118, 0.06);
+    }
+    .mh-chapter:last-child { border-bottom: none; }
+
+    .mh-chapter__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--mh-accent);
+      margin-bottom: 0.4rem;
+    }
+    .mh-chapter__tag::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: linear-gradient(90deg, var(--mh-accent), transparent);
+    }
+
+    .mh-chapter__bg-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(4.5rem, 10vw, 8rem);
+      font-weight: 900;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(0, 230, 118, 0.13);
+      margin: -0.4rem 0 -1.2rem;
+      user-select: none;
+      pointer-events: none;
+      display: block;
+    }
+
+    .mh-chapter__title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.9rem, 4.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.12;
+      color: #c0e0c8;
+      margin: 0 0 1.8rem;
+    }
+
+    /* Two-column split */
+    .mh-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .mh-split--img-left .mh-split__media { order: -1; }
+
+    .mh-split__text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1rem, 1.5vw, 1.14rem);
+      line-height: 1.88;
+      color: #c8f0d8;
+      background: rgba(8, 40, 20, 0.45);
+      padding: 1.8rem;
+      border-radius: 12px;
+      border-left: 3px solid rgba(0, 230, 118, 0.35);
+    }
+    .mh-split__text p { margin: 0 0 1.05em; }
+    .mh-split__text p:last-child { margin: 0; }
+
+    /* Year badge */
+    .mh-year {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      color: var(--mh-accent);
+      background: var(--mh-accent-soft);
+      border: 1px solid rgba(0, 230, 118, 0.2);
+      border-radius: 999px;
+      padding: 0.28rem 0.9rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    /* Full-width text */
+    .mh-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1rem, 1.5vw, 1.14rem);
+      line-height: 1.88;
+      color: #c8f0d8;
+      background: rgba(8, 40, 20, 0.45);
+      padding: 1.8rem;
+      border-radius: 12px;
+      border-left: 3px solid rgba(0, 230, 118, 0.35);
+      margin-top: 1.4rem;
+    }
+    .mh-text p { margin: 0 0 1.05em; }
+    .mh-text p:last-child { margin: 0; }
+    .mh-text--narrow { max-width: 580px; }
+
+    /* Image */
+    .mh-img {
+      width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 18px 52px rgba(0,0,0,0.65), 0 0 0 1px rgba(0, 230, 118, 0.1);
+      display: block;
+    }
+    .mh-img-caption {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #3a6848;
+      text-align: center;
+      margin-top: 0.7rem;
+    }
+
+    /* Gallery */
+    .mh-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.85rem;
+      margin-top: 2rem;
+    }
+    .mh-gallery img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.55);
+      display: block;
+    }
+    .mh-gallery--trio {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Actions */
+    .mh-actions {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ================================================================
+       CHAPTER EMOTIONAL STATES
+       ================================================================ */
+
+    /* Dark / sad chapters */
+    .mh-chapter--dark .mh-chapter__tag { color: #8a8888; }
+    .mh-chapter--dark .mh-chapter__tag::before { background: linear-gradient(90deg, #8a8888, transparent); }
+    .mh-chapter--dark .mh-chapter__bg-num { -webkit-text-stroke-color: rgba(140, 120, 120, 0.12); }
+    .mh-chapter--dark .mh-chapter__title { color: #a8a0a0; }
+    .mh-chapter--dark .mh-text,
+    .mh-chapter--dark .mh-split__text {
+      color: #c8c8a8;
+      background: rgba(30, 20, 20, 0.6);
+      border-left-color: rgba(140, 90, 90, 0.4);
+    }
+    .mh-chapter--dark .mh-img {
+      filter: saturate(0.6) brightness(0.85);
+      box-shadow: 0 18px 52px rgba(0,0,0,0.65), 0 0 0 1px rgba(140, 120, 120, 0.15);
+    }
+
+    .mh-dark-box {
+      background: rgba(30, 20, 20, 0.6);
+      border-left: 3px solid rgba(140, 90, 90, 0.4);
+      border-radius: 0 12px 12px 0;
+      padding: 2rem 2rem 2rem 1.8rem;
+      max-width: 700px;
+      margin-top: 1.5rem;
+    }
+    .mh-dark-box p {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1rem, 1.4vw, 1.1rem);
+      line-height: 1.85;
+      color: #c8c8a8;
+      margin: 0 0 0.9em;
+    }
+    .mh-dark-box p:last-child { margin: 0; }
+
+    /* Rebirth -- warm amber/gold */
+    .mh-chapter--rebirth .mh-chapter__tag { color: #c8a040; }
+    .mh-chapter--rebirth .mh-chapter__tag::before { background: linear-gradient(90deg, #c8a040, transparent); }
+    .mh-chapter--rebirth .mh-chapter__bg-num { -webkit-text-stroke-color: rgba(200, 160, 64, 0.13); }
+    .mh-chapter--rebirth .mh-chapter__title { color: #e8cc70; }
+    .mh-chapter--rebirth .mh-split__text {
+      color: #d4a860;
+      background: rgba(50, 40, 20, 0.45);
+      border-left-color: rgba(200, 160, 64, 0.35);
+    }
+
+    /* Horizon -- sky blue/cyan */
+    .mh-chapter--horizon .mh-chapter__tag { color: #00bcd4; }
+    .mh-chapter--horizon .mh-chapter__tag::before { background: linear-gradient(90deg, #00bcd4, transparent); }
+    .mh-chapter--horizon .mh-chapter__bg-num { -webkit-text-stroke-color: rgba(0, 188, 212, 0.13); }
+    .mh-chapter--horizon .mh-chapter__title { color: #80d8e0; }
+    .mh-chapter--horizon .mh-split__text {
+      color: #8ae0d8;
+      background: rgba(10, 35, 40, 0.45);
+      border-left-color: rgba(0, 188, 212, 0.35);
+    }
+
+    /* ================================================================
+       WAVE DIVIDER
+       ================================================================ */
+    .mh-wave-divider {
+      width: 100%;
+      margin: 1rem 0;
+      opacity: 0.14;
+      line-height: 0;
+    }
+    .mh-wave-divider svg { display: block; width: 100%; }
+
+    /* ================================================================
+       CTA SECTION
+       ================================================================ */
+    .mh-cta {
+      padding: 5.5rem 1.5rem 6.5rem;
+      text-align: center;
+      border-top: 1px solid rgba(0, 230, 118, 0.08);
+      background: linear-gradient(180deg, transparent, rgba(6, 20, 10, 0.5));
+    }
+    .mh-cta__eyebrow {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mh-accent);
+      opacity: 0.7;
+      margin-bottom: 1.4rem;
+    }
+    .mh-cta__title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: #c0e0c8;
+      margin: 0 0 1.1rem;
+    }
+    .mh-cta__text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1rem;
+      color: #4a6a52;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .mh-cta__actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+    .mh-page .c-page-footer {
+      background: rgba(0,0,0,0.25);
+      border-top: 1px solid rgba(0, 230, 118, 0.07);
+    }
+
+    /* ================================================================
+       RESPONSIVE
+       ================================================================ */
+    @media (max-width: 700px) {
+      .mh-page .c-topbar {
+        position: sticky;
+        z-index: 40;
+      }
+      .mh-page .c-topbar__inner {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        justify-items: stretch;
+        text-align: left;
+        gap: 0.45rem;
+      }
+      .mh-page .c-topbar__brand {
+        min-width: 0;
+        gap: 0.45rem;
+      }
+      .mh-page .c-topbar__brand-logo {
+        height: 1.8rem;
+      }
+      .mh-page .c-topbar__menu-toggle {
+        display: inline-flex;
+      }
+      .mh-page .c-topbar__nav {
+        position: absolute;
+        left: 0.7rem;
+        right: 0.7rem;
+        top: calc(100% + 0.55rem);
+        display: grid;
+        gap: 0.55rem;
+        padding: 0.8rem;
+        border-radius: 0.95rem;
+        border: 1px solid rgba(0, 230, 118, 0.18);
+        background: rgba(4, 12, 7, 0.95);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      }
+      .mh-page .c-topbar__nav.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .mh-page .c-topbar__link {
+        width: 100%;
+      }
+      .mh-page .c-language-switcher {
+        justify-self: end;
+        width: auto;
+        gap: 0.2rem;
+        padding: 0.24rem;
+        max-width: 100%;
+      }
+      .mh-page .c-language-switcher__label {
+        padding-inline: 0.35rem;
+        font-size: 0.6rem;
+        letter-spacing: 0.1em;
+      }
+      .mh-page .c-language-switcher__option {
+        min-width: 2.2rem;
+        padding: 0.48rem 0.5rem;
+        font-size: 0.62rem;
+      }
+      .mh-split { grid-template-columns: 1fr; gap: 2rem; }
+      .mh-split--img-left .mh-split__media { order: 0; }
+      .mh-gallery { grid-template-columns: 1fr; }
+      .mh-gallery--trio { grid-template-columns: 1fr; }
+      .mh-hero__content { padding-bottom: 11rem; }
+      .mh-dark-box { padding: 1.5rem; }
+    }
+
+    @media (min-width: 701px) and (max-width: 1000px) {
+      .mh-page .c-topbar__inner {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        justify-items: stretch;
+        text-align: left;
+        column-gap: 0.8rem;
+      }
+      .mh-page .c-topbar__nav {
+        justify-content: center;
+        align-self: center;
+      }
+      .mh-page .c-topbar__link {
+        padding: 0.62rem 0.78rem;
+      }
+      .mh-page .c-language-switcher {
+        justify-self: end;
+        align-self: center;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .mh-page .c-language-switcher__label {
+        display: none;
+      }
+      .mh-page .c-language-switcher__option {
+        min-width: 2rem;
+        padding: 0.46rem 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="c-page c-page--music mh-page">
+
+    <!-- TOP NAV -->
+    <header class="c-topbar">
+      <div class="c-shell c-topbar__inner">
+        <button class="c-topbar__menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav" data-i18n="menuToggleAriaLabel" data-i18n-attr="aria-label">
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+        </button>
+        <a class="c-topbar__brand" href="../index.html" aria-label="Natan Lichtnow home" data-i18n="brandAriaLabel" data-i18n-attr="aria-label">
+          <img class="c-topbar__brand-logo" src="../img/logos/logohorizontal.png" alt="Natan Lichtnow" />
+        </a>
+        <nav class="c-topbar__nav" id="primary-nav" aria-label="Section navigation" data-i18n="primaryNavAriaLabel" data-i18n-attr="aria-label">
+          <a class="c-topbar__link" href="index.html" data-i18n="navSectionHome">Music Home</a>
+          <a class="c-topbar__link c-topbar__link--is-active" href="history.html" data-i18n="navMusicExperience">History</a>
+          <a class="c-topbar__link" href="flow-arts-experience.html" data-i18n="navFlowExperience">Flow Arts</a>
+          <a class="c-topbar__link" href="twitch-streaming.html" data-i18n="navTwitch">Twitch</a>
+        </nav>
+        <div class="c-language-switcher" aria-label="Language selector" data-i18n="languageSwitcherAriaLabel" data-i18n-attr="aria-label">
+          <span class="c-language-switcher__label" data-i18n="languageLabel">LANG</span>
+          <button class="c-language-switcher__option" type="button" data-lang="pt-BR">PT</button>
+          <button class="c-language-switcher__option" type="button" data-lang="en">EN</button>
+        </div>
+      </div>
+    </header>
+    <div class="c-topbar__menu-overlay" aria-hidden="true"></div>
+
+    <!-- HERO -->
+    <section class="mh-hero c-hero u-mb-xl" aria-label="Page hero">
+      <div class="mh-hero__bg" aria-hidden="true"></div>
+      <div class="mh-hero__stars" aria-hidden="true"></div>
+      <div class="mh-hero__blob mh-hero__blob--1" aria-hidden="true"></div>
+      <div class="mh-hero__blob mh-hero__blob--2" aria-hidden="true"></div>
+      <div class="mh-hero__blob mh-hero__blob--3" aria-hidden="true"></div>
+
+      <div class="mh-hero__content c-hero__panel">
+        <span class="mh-hero__eyebrow" data-i18n="eyebrow">Full timeline</span>
+        <h1 class="mh-hero__title" data-i18n="heroTitle">Music Story</h1>
+        <p class="mh-hero__lead" data-i18n="heroLead">A story of highs and lows, full of vulnerability and challenges, that continues to be written day after day.</p>
+        <div class="mh-hero__actions">
+          <a class="c-button" href="index.html" data-i18n="homeAction">Back to music home</a>
+        </div>
+      </div>
+
+      <!-- Forest silhouette -->
+      <div class="mh-hero__forest" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 400" preserveAspectRatio="none">
+          <path d="M0,300 Q80,260 160,280 Q240,240 320,265 Q400,230 480,255 Q560,210 640,240 Q720,200 800,230 Q880,195 960,220 Q1040,195 1120,218 Q1200,200 1280,222 Q1360,210 1440,230 L1440,400 L0,400Z" fill="#1a4a30" opacity="0.4"/>
+          <path d="M0,330 Q60,292 120,310 Q180,278 240,300 Q300,270 360,292 Q420,260 480,284 Q540,252 600,276 Q660,246 720,268 Q780,240 840,262 Q900,238 960,258 Q1020,238 1080,256 Q1140,240 1200,258 Q1260,244 1320,262 Q1380,250 1440,268 L1440,400 L0,400Z" fill="#0d3a1e" opacity="0.65"/>
+          <path d="M0,365 Q30,352 60,360 Q90,348 120,356 Q150,344 180,354 Q210,340 240,350 Q270,336 300,348 Q330,332 360,344 Q390,328 420,340 Q450,324 480,336 Q510,320 540,332 Q570,316 600,330 Q630,314 660,326 Q690,310 720,324 Q750,308 780,322 Q810,306 840,320 Q870,304 900,318 Q930,302 960,316 Q990,300 1020,314 Q1050,298 1080,312 Q1110,296 1140,310 Q1170,294 1200,308 Q1230,292 1260,306 Q1290,290 1320,304 Q1350,288 1380,302 Q1410,286 1440,298 L1440,400 L0,400Z" fill="#081a0e"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <main class="mh-story" id="story">
+      <div class="mh-story__blob mh-story__blob--a" aria-hidden="true"></div>
+      <div class="mh-story__blob mh-story__blob--b" aria-hidden="true"></div>
+      <div class="mh-story__blob mh-story__blob--c" aria-hidden="true"></div>
+      <div class="mh-story__blob mh-story__blob--d" aria-hidden="true"></div>
+      <div class="mh-story__blob mh-story__blob--e" aria-hidden="true"></div>
+      <div class="mh-story__inner">
+        <div class="c-shell">
+
+          <!-- CH 01 - Introduction -->
+          <article class="mh-chapter" id="ch-01">
+            <span class="mh-chapter__tag" data-i18n="c1Tag">Chapter 01</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">01</span>
+            <h2 class="mh-chapter__title" data-i18n="c1Title">Introduction</h2>
+
+            <div class="mh-text">
+              <p data-i18n="c1p1">The story begins here.</p>
+              <p data-i18n="c1p2">After The Fall in the paraglider universe, Natan found refuge in psytrance parties, initially following an unknown and even wrong path inside that world.</p>
+              <p data-i18n="c1p3">It did not take long before, on a very specific day, his life changed direction completely.</p>
+            </div>
+            <div class="mh-actions">
+              <a class="c-button c-button--ghost" href="../paraglider/journey.html" data-i18n="c1Action">Open paraglider story</a>
+            </div>
+          </article>
+
+          <!-- wave divider -->
+          <div class="mh-wave-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,40 C240,60 480,10 720,35 C960,58 1200,8 1440,30 L1440,60 L0,60Z" fill="#00e676"/>
+            </svg>
+          </div>
+
+          <!-- CH 02 - How it all started -->
+          <article class="mh-chapter" id="ch-02">
+            <span class="mh-chapter__tag" data-i18n="c2Tag">Chapter 02</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">02</span>
+            <h2 class="mh-chapter__title" data-i18n="c2Title">How it all started</h2>
+
+            <div class="mh-text">
+              <p data-i18n="c2p1">One day, at one of those parties, Natan was feeling uncomfortable. Since he could not go home in that state, he decided to go to his friend Birow's house to spend the night.</p>
+              <p data-i18n="c2p2">When he arrived, his friend picked up a small controller and started playing, introducing the world of DJing to the young man.</p>
+              <p data-i18n="c2p3">Natan's eyes lit up. It was love at first sight with that art form.</p>
+              <p data-i18n="c2p4">In that moment it was decided: that would be his life from then on.</p>
+            </div>
+          </article>
+
+          <!-- CH 03 - A favor that changed everything -->
+          <article class="mh-chapter" id="ch-03">
+            <span class="mh-chapter__tag" data-i18n="c3Tag">Chapter 03</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">03</span>
+            <h2 class="mh-chapter__title" data-i18n="c3Title">A favor that changed everything</h2>
+
+            <div class="mh-text">
+              <p data-i18n="c3p1">Birow was amazed by his friend's passion and decided to lend him the controller for a few weeks.</p>
+              <p data-i18n="c3p2">Natan felt life coming back into him through psytrance frequencies, dedicating countless hours each day to learn as much as possible while he had that controller at home.</p>
+            </div>
+          </article>
+
+          <!-- wave divider -->
+          <div class="mh-wave-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,30 C180,55 360,5 540,35 C720,60 900,10 1080,38 C1260,58 1380,15 1440,25 L1440,60 L0,60Z" fill="#00e676"/>
+            </svg>
+          </div>
+
+          <!-- CH 04 - An angel -->
+          <article class="mh-chapter" id="ch-04">
+            <span class="mh-chapter__tag" data-i18n="c4Tag">Chapter 04</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">04</span>
+            <h2 class="mh-chapter__title" data-i18n="c4Title">An angel</h2>
+
+            <div class="mh-split">
+              <div class="mh-split__text">
+                <span class="mh-year" data-i18n="c4year">2017</span>
+                <p data-i18n="c4p1">After a few weeks, Birow asked for the controller back. Natan then had a conversation with his grandmother about his experience with DJing.</p>
+                <p data-i18n="c4p2">She confessed she had never seen him that excited about something and decided to invest in his dream, buying his first pair of studio monitors, headphones, and his own controller.</p>
+                <p data-i18n="c4p3">From then on, his life was never the same.</p>
+              </div>
+              <figure class="mh-split__media">
+                <img class="mh-img" src="../img/music-arts/beginning.jpg" alt="Natan's first DJ setup gifted by his grandmother" data-i18n-attr="alt" data-i18n="c4imgAlt" />
+                <figcaption class="mh-img-caption" data-i18n="c4imgCaption">the beginning of everything</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <!-- CH 05 - Mr Kane -->
+          <article class="mh-chapter" id="ch-05">
+            <span class="mh-chapter__tag" data-i18n="c5Tag">Chapter 05</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">05</span>
+            <h2 class="mh-chapter__title" data-i18n="c5Title">Kill All Negative Energies (Mr Kane)</h2>
+
+            <div class="mh-split mh-split--img-left">
+              <figure class="mh-split__media">
+                <img class="mh-img" src="../img/music-arts/mrkane.jpg" alt="Mr Kane performing" data-i18n-attr="alt" data-i18n="c5imgAlt" />
+                <figcaption class="mh-img-caption" data-i18n="c5imgCaption">Mr Kane - Kill All Negative Energies</figcaption>
+              </figure>
+              <div class="mh-split__text">
+                <span class="mh-year" data-i18n="c5year">Late 2017 - 2018</span>
+                <p data-i18n="c5p1">Still carrying pain and confusion related to The Fall, Natan had the idea of creating a character, a mask, to build a new reality.</p>
+                <p data-i18n="c5p2">That character's name: Mr Kane, Kill All Negative Energies.</p>
+                <p data-i18n="c5p3">His focus was melodic progressive trance, with a spiritual and positive approach, seeking to help those who connected with it feel a little better in that magical dancefloor moment.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- wave divider -->
+          <div class="mh-wave-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,35 C120,55 300,8 480,38 C660,62 840,12 1020,40 C1200,58 1350,18 1440,28 L1440,60 L0,60Z" fill="#00e676"/>
+            </svg>
+          </div>
+
+          <!-- CH 06 - A fast beginning -->
+          <article class="mh-chapter" id="ch-06">
+            <span class="mh-chapter__tag" data-i18n="c6Tag">Chapter 06</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">06</span>
+            <h2 class="mh-chapter__title" data-i18n="c6Title">A fast beginning</h2>
+
+            <div class="mh-split">
+              <div class="mh-split__text">
+                <p data-i18n="c6p1">It did not take a week after launch for Mr Kane to close his first gigs.</p>
+                <p data-i18n="c6p2">His melodic and smooth sound stood out in a scene full of heavier tracks, calling the attention of both audience and local event contractors.</p>
+                <p data-i18n="c6p3">He was very well received by collectives like Bora Psicodelizar and Trance On, and played his first sets at AOCA Bar.</p>
+              </div>
+              <figure class="mh-split__media">
+                <img class="mh-img" src="../img/music-arts/aocabar.jpg" alt="Mr Kane playing at AOCA Bar" data-i18n-attr="alt" data-i18n="c6imgAlt" />
+                <figcaption class="mh-img-caption" data-i18n="c6imgCaption">first shows at AOCA Bar</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <!-- CH 07 - Constant evolution -->
+          <article class="mh-chapter" id="ch-07">
+            <span class="mh-chapter__tag" data-i18n="c7Tag">Chapter 07</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">07</span>
+            <h2 class="mh-chapter__title" data-i18n="c7Title">Constant evolution</h2>
+
+            <div class="mh-split mh-split--img-left">
+              <figure class="mh-split__media">
+                <img class="mh-img" src="../img/music-arts/primeiro estudio.jpg" alt="Natan's first home studio" data-i18n-attr="alt" data-i18n="c7imgAlt" />
+                <figcaption class="mh-img-caption" data-i18n="c7imgCaption">first studio setup</figcaption>
+              </figure>
+              <div class="mh-split__text">
+                <p data-i18n="c7p1">It did not take long for Natan to feel the need to produce his own music.</p>
+                <p data-i18n="c7p2">With few resources and limited musical knowledge, the beginning was challenging.</p>
+                <p data-i18n="c7p3">Once again, in a conversation with his grandmother, she decided to invest in him and enrolled him in Yellow Academy in Curitiba.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- wave divider -->
+          <div class="mh-wave-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,28 C200,52 400,8 600,32 C800,56 1000,12 1200,36 C1320,48 1400,20 1440,30 L1440,60 L0,60Z" fill="#00e676"/>
+            </svg>
+          </div>
+
+          <!-- CH 08 - Music life was not enough -->
+          <article class="mh-chapter" id="ch-08">
+            <span class="mh-chapter__tag" data-i18n="c8Tag">Chapter 08</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">08</span>
+            <h2 class="mh-chapter__title" data-i18n="c8Title">Music life was not enough</h2>
+
+            <div class="mh-text">
+              <p data-i18n="c8p1">Natan needed financial resources.</p>
+              <p data-i18n="c8p2">Even with fast evolution in the scene, he was financially undervalued at the beginning of his career. That led him back to working with his father at the paragliding school.</p>
+              <p data-i18n="c8p3">His routine was intense: during the week, around 10 hours per day of production and study, plus 3 hours of DJ practice. At night he rested. On weekends, he worked at the school or played events when there were bookings.</p>
+            </div>
+          </article>
+
+          <!-- INTERLUDE 1 - An unpleasant surprise -->
+          <article class="mh-chapter mh-chapter--dark" id="ch-i1">
+            <span class="mh-chapter__tag" data-i18n="i1Tag">Interlude 01</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">I</span>
+            <h2 class="mh-chapter__title" data-i18n="i1Title">An unpleasant surprise</h2>
+
+            <div class="mh-dark-box mh-text u-w-full" style="max-width: 100%; margin-left: 0; margin-right: 0;">
+              <p data-i18n="i1p1">Natan clearly remembers a very disappointing day.</p>
+              <p data-i18n="i1p2">After finding a new light in music during a difficult period, he told his father with pride: Dad, I am going to be a DJ.</p>
+              <p data-i18n="i1p3">His father answered: Drop that. To be a musician you need dedication, and if there is one thing you are not, it is dedicated.</p>
+              <p data-i18n="i1p4">That hurt him deeply.</p>
+            </div>
+          </article>
+
+          <!-- wave divider -->
+          <div class="mh-wave-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,38 C160,58 340,10 520,40 C700,62 880,8 1060,35 C1240,55 1380,15 1440,25 L1440,60 L0,60Z" fill="#00e676"/>
+            </svg>
+          </div>
+
+          <!-- CH 09 - The evolution that caused conflict -->
+          <article class="mh-chapter" id="ch-09">
+            <span class="mh-chapter__tag" data-i18n="c9Tag">Chapter 09</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">09</span>
+            <h2 class="mh-chapter__title" data-i18n="c9Title">The evolution that caused conflict</h2>
+
+            <div class="mh-split">
+              <div class="mh-split__text">
+                <span class="mh-year" data-i18n="c9year">2019</span>
+                <p data-i18n="c9p1">In 2019 his career started growing.</p>
+                <p data-i18n="c9p2">First trips arrived, playing through countryside areas in Parana, Sao Paulo and Santa Catarina, being hired and finally receiving his first meaningful fees.</p>
+                <p data-i18n="c9p3">But this started generating conflict with his father, since lessons at the school and events both happened on weekends.</p>
+                <p data-i18n="c9p4">Then came the ultimatum: either music or paragliding work. The answer was clear: music.</p>
+              </div>
+              <figure class="mh-split__media">
+                <img class="mh-img" src="../img/music-arts/danghas.png" alt="Event flyer from Natan's growing career" data-i18n-attr="alt" data-i18n="c9imgAlt" />
+                <figcaption class="mh-img-caption" data-i18n="c9imgCaption">career taking off</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <!-- CH 10 - Turnaround -->
+          <article class="mh-chapter" id="ch-10">
+            <span class="mh-chapter__tag" data-i18n="c10Tag">Chapter 10</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">10</span>
+            <h2 class="mh-chapter__title" data-i18n="c10Title">Turnaround</h2>
+
+            <div class="mh-split mh-split--img-left">
+              <figure class="mh-split__media">
+                <img class="mh-img" src="../img/music-arts/playin.jpg" alt="Natan performing live" data-i18n-attr="alt" data-i18n="c10imgAlt" />
+                <figcaption class="mh-img-caption" data-i18n="c10imgCaption">on stage before it all stopped</figcaption>
+              </figure>
+              <div class="mh-split__text">
+                <span class="mh-year" data-i18n="c10year">January 2020</span>
+                <p data-i18n="c10p1">In January 2020, Natan went through inguinal hernia surgery. After one month and a half of recovery, he returned to the stage.</p>
+                <p data-i18n="c10p2">His last gig before the break was at Lunna Trance in Curitiba. April promised a full month, with events every weekend, travel and good fees.</p>
+                <p data-i18n="c10p3">Then the pandemic came, and everything stopped.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- wave divider -->
+          <div class="mh-wave-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,32 C120,52 300,10 480,36 C660,58 840,14 1020,38 C1200,54 1360,18 1440,28 L1440,60 L0,60Z" fill="#00e676"/>
+            </svg>
+          </div>
+
+          <!-- CH 11 - What now? (SAD) -->
+          <article class="mh-chapter mh-chapter--dark" id="ch-11">
+            <span class="mh-chapter__tag" data-i18n="c11Tag">Chapter 11</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">11</span>
+            <h2 class="mh-chapter__title" data-i18n="c11Title">What now?</h2>
+
+            <div class="mh-text">
+              <p data-i18n="c11p1">Without work, without events and without income, living from emergency aid, his reality changed drastically.</p>
+              <p data-i18n="c11p2">Even so, he stayed firm in studies and music production, preparing for a return that never happened.</p>
+            </div>
+          </article>
+
+          <!-- CH 12 - The second fall (SAD) -->
+          <article class="mh-chapter mh-chapter--dark" id="ch-12">
+            <span class="mh-chapter__tag" data-i18n="c12Tag">Chapter 12</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">12</span>
+            <h2 class="mh-chapter__title" data-i18n="c12Title">The second fall</h2>
+
+            <div class="mh-split">
+              <div class="mh-dark-box">
+                <p data-i18n="c12p1">A few months after the start of the pandemic, one of the greatest losses arrived: the death of his grandmother, the person who supported him most, the only one in the family.</p>
+                <p data-i18n="c12p2">From that point on, the timeline became blurry in his memory. Events were intense and consecutive, hard to process.</p>
+              </div>
+              <figure class="mh-split__media">
+                <img class="mh-img" src="../img/music-arts/grandma.jpg" alt="Natan and his grandmother" data-i18n-attr="alt" data-i18n="c12imgAlt" />
+                <figcaption class="mh-img-caption" data-i18n="c12imgCaption">his greatest supporter</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <!-- INTERLUDE 2 - Necessary context (SAD) -->
+          <article class="mh-chapter mh-chapter--dark" id="ch-i2">
+            <span class="mh-chapter__tag" data-i18n="i2Tag">Interlude 02</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">II</span>
+            <h2 class="mh-chapter__title" data-i18n="i2Title">Necessary context</h2>
+
+            <div class="mh-text">
+              <p data-i18n="i2p1">After his grandmother passed, his grandfather moved in with his mother. During that period, his mother started a relationship with an extremely traditional man who constantly clashed with Natan.</p>
+              <p data-i18n="i2p2">Living together became increasingly difficult, evolving from arguments to extreme tension, eventually including violent threats.</p>
+              <p data-i18n="i2p3">From that point on, Natan's life became turbulent. Whenever that man was home, he took refuge in his music studio.</p>
+              <p data-i18n="i2p4">Music stopped being only passion. It became survival.</p>
+            </div>
+          </article>
+
+          <!-- wave divider -->
+          <div class="mh-wave-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,40 C200,58 400,10 600,38 C800,60 1000,8 1200,34 C1340,50 1420,20 1440,28 L1440,60 L0,60Z" fill="#00e676"/>
+            </svg>
+          </div>
+
+          <!-- CH 13 - A new opportunity -->
+          <article class="mh-chapter" id="ch-13">
+            <span class="mh-chapter__tag" data-i18n="c13Tag">Chapter 13</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">13</span>
+            <h2 class="mh-chapter__title" data-i18n="c13Title">A new opportunity</h2>
+
+            <div class="mh-text">
+              <p data-i18n="c13p1">Everything started changing when Natan saw Tiago Sena, 4i20, streaming on Twitch.</p>
+              <p data-i18n="c13p2">Inspired, he started his own streams, first with low reach, producing music and playing games.</p>
+            </div>
+          </article>
+
+          <!-- CH 14 - A dream came true, but... -->
+          <article class="mh-chapter" id="ch-14">
+            <span class="mh-chapter__tag" data-i18n="c14Tag">Chapter 14</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">14</span>
+            <h2 class="mh-chapter__title" data-i18n="c14Title">A dream came true, but...</h2>
+
+            <div class="mh-text">
+              <p data-i18n="c14p1">Over time, he built a bond with Tiago, who became his mentor in music production.</p>
+              <p data-i18n="c14p2">His dream of releasing on Alien Records became real.</p>
+              <p data-i18n="c14p3">But something changed: his music taste slowed down drastically. He entered internal conflict, unable to produce the sound he once loved.</p>
+                <!-- c14p4 intentionally left blank in PT-BR -->
+            </div>
+          </article>
+
+          <!-- CH 15 - There is still hope -->
+          <article class="mh-chapter" id="ch-15">
+            <span class="mh-chapter__tag" data-i18n="c15Tag">Chapter 15</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">15</span>
+            <h2 class="mh-chapter__title" data-i18n="c15Title">There is still hope</h2>
+
+            <div class="mh-text">
+              <p data-i18n="c15p1">During his streams, he met a girl who practices flow arts. They quickly developed a friendship and started collaborating.</p>
+              <p data-i18n="c15p2">Natan on the music, she on the visuals with her hypnotizing dance.</p>
+              <p data-i18n="c15p3">His community got curious to see how his music was made, and asked Natan to stream in English to share the creative process.</p>
+              <p data-i18n="c15p4">With his shy English, Natan gave this new opportunity a chance, and that is where his Twitch career truly began.</p>
+            </div>
+          </article>
+
+          <!-- wave divider -->
+          <div class="mh-wave-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,30 C180,55 360,5 540,32 C720,58 900,8 1080,35 C1260,55 1380,15 1440,25 L1440,60 L0,60Z" fill="#00e676"/>
+            </svg>
+          </div>
+
+          <!-- CH 16 - Flow Arts -->
+          <article class="mh-chapter" id="ch-16">
+            <span class="mh-chapter__tag" data-i18n="c16Tag">Chapter 16</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">16</span>
+            <h2 class="mh-chapter__title" data-i18n="c16Title">Flow Arts: object dance manipulation</h2>
+
+            <div class="mh-split mh-split--img-left">
+              <figure class="mh-split__media">
+                <img class="mh-img" src="../img/music-arts/flowbeginnings.jpg" alt="Natan discovering flow arts" data-i18n-attr="alt" data-i18n="c16imgAlt" />
+                <figcaption class="mh-img-caption" data-i18n="c16imgCaption">discovering flow arts</figcaption>
+              </figure>
+              <div class="mh-split__text">
+                <p data-i18n="c16p1">In the middle of chaos at home, crazy opportunities started appearing. First, he was gifted a notebook by a fan.</p>
+                <p data-i18n="c16p2">That opened a world of online work possibilities: editing videos and working on more complex music projects. Natan started rebuilding himself and saving money to leave that bizarre situation.</p>
+                <p data-i18n="c16p3">At the same time, during his musical confusion, he developed a passion for something that had never crossed his mind before: flow arts.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CH 17 - Movement -->
+          <article class="mh-chapter" id="ch-17">
+            <span class="mh-chapter__tag" data-i18n="c17Tag">Chapter 17</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">17</span>
+            <h2 class="mh-chapter__title" data-i18n="c17Title">Movement</h2>
+
+            <div class="mh-split">
+              <div class="mh-split__text">
+                <p data-i18n="c17p1">During his music crisis, Natan dedicated all his time to learning this new art form. It was incredible, a form of exercise that relieved his mind from all the chaos.</p>
+                <p data-i18n="c17p2">The friendship with that girl also kept growing, sharing online training sessions. In between, he edited videos for other streamers and worked as a freelance music educator, plus mix and master jobs for producers.</p>
+                <p data-i18n="c17p3">He became so involved in that online life that the idea of returning to stages started fading away.</p>
+              </div>
+              <figure class="mh-split__media">
+                <img class="mh-img" src="../img/music-arts/streamsupport.jpg" alt="Streaming setup and online community" data-i18n-attr="alt" data-i18n="c17imgAlt" />
+                <figcaption class="mh-img-caption" data-i18n="c17imgCaption">the online world that kept him going</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <!-- CH 18 - Time for change -->
+          <article class="mh-chapter" id="ch-18">
+            <span class="mh-chapter__tag" data-i18n="c18Tag">Chapter 18</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">18</span>
+            <h2 class="mh-chapter__title" data-i18n="c18Title">Time for change</h2>
+
+            <div class="mh-split mh-split--img-left">
+              <figure class="mh-split__media">
+                <img class="mh-img" src="../img/music-arts/finallymoved.jpg" alt="Natan in his new place, finally free" data-i18n-attr="alt" data-i18n="c18imgAlt" />
+                <figcaption class="mh-img-caption" data-i18n="c18imgCaption">finally moved out</figcaption>
+              </figure>
+              <div class="mh-split__text">
+                <p data-i18n="c18p1">Natan slowly saved money to leave that situation with his mother. When he tried to talk to his family about what he was living and how he felt, he was constantly disrespected and dismissed.</p>
+                <p data-i18n="c18p2">He made one last push on his streams to move out, and it finally happened. He was free from that torture at his mother's home.</p>
+                <p data-i18n="c18p3">Now living alone, in an empty house with limited resources but peace in his mind, he started reflecting on the direction of his life. Then something unexpected happened.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- wave divider -->
+          <div class="mh-wave-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,35 C240,58 480,8 720,38 C960,60 1200,10 1440,32 L1440,60 L0,60Z" fill="#00e676"/>
+            </svg>
+          </div>
+
+          <!-- CH 19 - Love? -->
+          <article class="mh-chapter" id="ch-19">
+            <span class="mh-chapter__tag" data-i18n="c19Tag">Chapter 19</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">19</span>
+            <h2 class="mh-chapter__title" data-i18n="c19Title">Love?</h2>
+
+            <div class="mh-text">
+              <span class="mh-year" data-i18n="c19year">January 2022</span>
+              <p data-i18n="c19p1">That girl had become his best friend. They even called each other sister and brother, very present in each other's process. Over time, that energy began to change.</p>
+              <p data-i18n="c19p2">After an honest conversation, they reached a conclusion: they were in love.</p>
+              <p data-i18n="c19p3">She in the Netherlands, he in Brazil.</p>
+              <p data-i18n="c19p4">This was January 2022. They decided to give themselves until June to meet. If it did not happen, they would drop the idea of that impossible love.</p>
+              <p data-i18n="c19p5">Natan set a stream goal of 1500 euros, but could not publicly explain exactly what it was for.</p>
+            </div>
+          </article>
+
+          <!-- CH 20 - The impossible is only possible if you believe -->
+          <article class="mh-chapter" id="ch-20">
+            <span class="mh-chapter__tag" data-i18n="c20Tag">Chapter 20</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">20</span>
+            <h2 class="mh-chapter__title" data-i18n="c20Title">The impossible is only possible if you believe</h2>
+
+            <div class="mh-split">
+              <div class="mh-split__text">
+                <span class="mh-year" data-i18n="c20year">April 2022</span>
+                <p data-i18n="c20p1">It was April. Only 150 euros had been saved, and things looked pessimistic.</p>
+                <p data-i18n="c20p2">Then the craziest thing in his life at that point happened: a stranger entered the girl's stream and started hitting all goals on screen. Then he wrote in chat, Who here has a dream?</p>
+                <p data-i18n="c20p3">Natan quickly replied and started a conversation with that stranger. It was unusual. He shared his reality.</p>
+                <p data-i18n="c20p4">That stranger was a Finnish air traffic controller who had suffered a lot in life, made more money than he needed, and had started helping Twitch people make dreams come true.</p>
+                <p data-i18n="c20p5">After hearing Natan's story, he did not hesitate and made an insane donation of 1500 euros while Natan was offline. The dream of meeting his new love became possible.</p>
+              </div>
+              <figure class="mh-split__media">
+                <img class="mh-img" src="../img/music-arts/phoenixconvention.jpg" alt="Phoenix Fire Convention" data-i18n-attr="alt" data-i18n="c20imgAlt" />
+                <figcaption class="mh-img-caption" data-i18n="c20imgCaption">Phoenix fire convention in Germany</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <!-- CH 21 - The first meeting -->
+          <article class="mh-chapter" id="ch-21">
+            <span class="mh-chapter__tag" data-i18n="c21Tag">Chapter 21</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">21</span>
+            <h2 class="mh-chapter__title" data-i18n="c21Title">The first meeting</h2>
+
+            <div class="mh-text">
+              <p data-i18n="c21p1">Natan was confused but very excited. In six months he had left a miserable situation at his mother's house and was about to cross the ocean to meet someone who could be the love of his life.</p>
+              <p data-i18n="c21p2">No one around him believed this was really happening. His family did not believe in his potential. It was a surprise to everyone.</p>
+              <p data-i18n="c21p3">It was his first time on an airplane, 13 hours of travel. That first hug on arrival felt like a fairy tale, an indescribable sensation.</p>
+              <p data-i18n="c21p4">She took him to a coffee shop, they got quality weed, and went home. After six months in a long-distance relationship, the following days were intense.</p>
+            </div>
+          </article>
+
+          <!-- wave divider -->
+          <div class="mh-wave-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,30 C160,55 340,5 520,35 C700,60 880,10 1060,38 C1240,55 1380,18 1440,28 L1440,60 L0,60Z" fill="#00e676"/>
+            </svg>
+          </div>
+
+          <!-- CH 22 - The incredible kept happening -->
+          <article class="mh-chapter" id="ch-22">
+            <span class="mh-chapter__tag" data-i18n="c22Tag">Chapter 22</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">22</span>
+            <h2 class="mh-chapter__title" data-i18n="c22Title">The incredible kept happening</h2>
+
+            <div class="mh-row mh-row--chapter22 u-gap-xxl u-align-stretch u-justify-center u-mt-xl u-mb-md">
+              <div class="mh-text mh-text--chapter u-minw-lg u-maxw-xl u-w-full u-fs-md u-flex-col u-align-start u-justify-center u-pr-md">
+                <span class="mh-year" data-i18n="c22year">Summer 2022</span>
+                <p data-i18n="c22p1">Natan and the girl developed a flow arts workshop and got space to present it at TwitchCon in Amsterdam.</p>
+                <p data-i18n="c22p2">Then, under her influence, they drove to Portugal on the way to BOOM Festival. That is a giant story on its own and impossible to fully describe in text.</p>
+                <p data-i18n="c22p3">You can watch the highlight from his livestream, a 40-minute story time video.</p>
+              </div>
+              <div class="mh-img-wrap u-flex-center mh-img-wrap--twitchcon-responsive">
+                <img class="mh-img mh-img--rounded u-w-md u-maxw-40vw u-h-auto mh-img--twitchcon-responsive" src="../img/music-arts/twitchcon.jpg" alt="TwitchCon Amsterdam" data-i18n-attr="alt" data-i18n="c22imgAlt2" />
+              </div>
+            </div>
+            <div class="mh-row mh-row--wrap u-gap-lg u-align-center u-mt-xs u-mb-xs">
+              <img class="mh-img mh-img--rounded u-w-lg u-maxw-90vw u-h-auto" src="../img/music-arts/boomfest.jpg" alt="BOOM Festival experience" data-i18n-attr="alt" data-i18n="c22imgAlt1" />
+              <a class="c-button c-button--ghost u-inline-block u-text-center u-minw-md" href="https://www.twitch.tv/videos/2682445071" target="_blank" rel="noopener noreferrer" data-i18n="c22Action">Open Twitch highlight</a>
+            </div>
+            <div class="mh-text u-mt-md">
+              <p data-i18n="c22p4">After BOOM, Natan played some shows in the Netherlands and Belgium, then went to Germany for Phoenix Fire Convention, where he received strong training in fire manipulation and became ready to start his own career in Brazil when he returned.</p>
+            </div>
+          </article>
+
+          <!-- CH 23 - Return to Brazil -->
+          <article class="mh-chapter" id="ch-23">
+            <span class="mh-chapter__tag" data-i18n="c23Tag">Chapter 23</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">23</span>
+            <h2 class="mh-chapter__title" data-i18n="c23Title">Return to Brazil and the future plan</h2>
+
+            <div class="mh-split mh-split--img-left">
+              <figure class="mh-split__media">
+                <img class="mh-img" src="../img/music-arts/flowarts.jpg" alt="Flow arts performance in Brazil" data-i18n-attr="alt" data-i18n="c23imgAlt" />
+                <figcaption class="mh-img-caption" data-i18n="c23imgCaption">back in Brazil with new skills</figcaption>
+              </figure>
+              <div class="mh-split__text">
+                <p data-i18n="c23p1">Natan returned to his empty house, without furniture, after three months of absolute fairy-tale events, carrying a huge baggage and a very positive feeling about that relationship.</p>
+                <p data-i18n="c23p2">At the end of his stay in the Netherlands, they had a deep conversation about future plans.</p>
+                <p data-i18n="c23p3">She was in a delicate financial situation and decided she would not go to Brazil yet. They would stay eight months apart and meet again in 2023 in the Netherlands. Then she would go to Brazil and they would move together.</p>
+                <p data-i18n="c23p4">The plan was to move to Minas Gerais, spend high season in the Netherlands doing shows and making money, then return to Brazil for a nature-centered life using currency differences in their favor.</p>
+                <p data-i18n="c23p5">Back in Brazil, life was monotonous. He had solo gigs, but nothing close to the intensity of what he had lived overseas.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- wave divider -->
+          <div class="mh-wave-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,38 C200,55 400,12 600,40 C800,58 1000,8 1200,35 C1360,50 1420,20 1440,30 L1440,60 L0,60Z" fill="#00e676"/>
+            </svg>
+          </div>
+
+          <!-- CH 24 - The second meeting (SAD) -->
+          <article class="mh-chapter mh-chapter--dark" id="ch-24">
+            <span class="mh-chapter__tag" data-i18n="c24Tag">Chapter 24</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">24</span>
+            <h2 class="mh-chapter__title" data-i18n="c24Title">The second meeting</h2>
+
+            <div class="mh-dark-box mh-text u-w-full" style="max-width: 100%; margin-left: 0; margin-right: 0;">
+              <p data-i18n="c24p1">Those eight months apart were turbulent. The girl went through a crisis and the relationship became very cold.</p>
+              <p data-i18n="c24p2">With the relationship now public, it was easier for Natan to hit the plane-ticket stream goal.</p>
+              <p data-i18n="c24p3">One month before traveling, Natan gave up his house. He was not satisfied with where he lived, and planned to scout a possible future place for both of them after the trip.</p>
+              <p data-i18n="c24p4">He stayed with his father before crossing the ocean again. Everything felt strange. The girl was emotionally distant.</p>
+              <p data-i18n="c24p5">Two weeks before the trip she casually said she felt no excitement for this meeting. Natan vented to his father and heard: stay quiet so this trip does not get canceled. What a piece of advice.</p>
+            </div>
+          </article>
+
+          <!-- CH 25 - What the hell is happening? (SAD) -->
+          <article class="mh-chapter mh-chapter--dark" id="ch-25">
+            <span class="mh-chapter__tag" data-i18n="c25Tag">Chapter 25</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">25</span>
+            <h2 class="mh-chapter__title" data-i18n="c25Title">What the hell is happening?</h2>
+
+            <div class="mh-dark-box mh-text u-w-full" style="max-width: 100%; margin-left: 0; margin-right: 0;">
+              <p data-i18n="c25p1">Natan crossed the ocean once more to meet his love, carrying a hole in his heart from the lack of attention.</p>
+              <p data-i18n="c25p2">On arrival he was met with a truckload of work. There was almost no intimacy left in that couple. It was extremely confusing.</p>
+              <p data-i18n="c25p3">They took a week off for Anjuna Deep Festival in Albania. That was where everything turned upside down.</p>
+              <p data-i18n="c25p4">On the way there, she confessed she had met a guy at the previous edition and said he was very attractive. She tried to convince Natan to stay at that guy's house after the festival. That was not pleasant at all. They argued heavily, and she confessed wanting an open relationship, then dropped the topic after seeing how hurt he was.</p>
+              <p data-i18n="c25p5">The festival stay was strange. She showed interest in other people while the romantic relationship they had before was no longer present. Emotional confusion was massive.</p>
+              <p data-i18n="c25p6">When they returned to the Netherlands, Natan was almost denied entry. They were interviewed at customs, she in Dutch and he in English, so officials could compare facts and understand why a Brazilian was returning from Albania to the Netherlands.</p>
+              <p data-i18n="c25p7">That made her afraid: What if we move to Brazil and you cannot enter the Netherlands anymore? Our plan will fail. We need a new plan.</p>
+            </div>
+          </article>
+
+          <!-- CH 26 - A new plan -->
+          <article class="mh-chapter" id="ch-26">
+            <span class="mh-chapter__tag" data-i18n="c26Tag">Chapter 26</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">26</span>
+            <h2 class="mh-chapter__title" data-i18n="c26Title">A new plan</h2>
+
+            <div class="mh-text">
+              <p data-i18n="c26p1">A new plan was made in a rush. Instead of her moving to Brazil, Natan would move to the Netherlands. After three years there, he would get a European visa and then they could continue the Brazil plan with better weather and stronger financial conditions.</p>
+              <p data-i18n="c26p2">She wanted to take vacation and visit Brazil. Natan needed to learn Dutch as fast as possible for the visa exam.</p>
+              <p data-i18n="c26p3">He dropped everything and found the perfect house for that period, 20 meters from the beach, surrounded by Atlantic forest, perfect for her vacation and for his extreme focus on learning a language.</p>
+              <p data-i18n="c26p4">She had her Brazil trip booked. After that trip, Natan would return with her to the Netherlands to stay for good.</p>
+            </div>
+          </article>
+
+          <!-- CH 27 - A beautiful birthday gift (SAD) -->
+          <article class="mh-chapter mh-chapter--dark" id="ch-27">
+            <span class="mh-chapter__tag" data-i18n="c27Tag">Chapter 27</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">27</span>
+            <h2 class="mh-chapter__title" data-i18n="c27Title">A beautiful birthday gift</h2>
+
+            <div class="mh-dark-box mh-text u-w-full" style="max-width: 100%; margin-left: 0; margin-right: 0;">
+              <p data-i18n="c27p1">Natan had been living in that house for two months, isolated, focused only on studying Dutch and streaming to support himself, with everything aimed at moving to the Netherlands.</p>
+              <p data-i18n="c27p2">But something bizarre was happening: she showed no interest in his language progress, and distance kept growing between them.</p>
+              <p data-i18n="c27p3">Exactly one week before the visa exam, one week after his birthday, she brought the news: I want a non-monogamous relationship, I do not see this working with you, better to end it.</p>
+              <p data-i18n="c27p4">The exact words are not shareable because it was shocking.</p>
+              <p data-i18n="c27p5">That is how a big dream and a big love ended.</p>
+            </div>
+          </article>
+
+          <!-- wave divider -->
+          <div class="mh-wave-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,32 C120,52 300,8 480,36 C660,58 840,12 1020,38 C1200,54 1360,16 1440,26 L1440,60 L0,60Z" fill="#00e676"/>
+            </svg>
+          </div>
+
+          <!-- CH 28 - Mr Kane is dead (SAD) -->
+          <article class="mh-chapter mh-chapter--dark" id="ch-28">
+            <span class="mh-chapter__tag" data-i18n="c28Tag">Chapter 28</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">28</span>
+            <h2 class="mh-chapter__title" data-i18n="c28Title">Mr Kane is dead</h2>
+
+            <div class="mh-split mh-split--img-left">
+              <figure class="mh-split__media">
+                <img class="mh-img" src="../img/music-arts/music.jpg" alt="Natan reflecting on his music career" data-i18n-attr="alt" data-i18n="c28imgAlt" />
+                <figcaption class="mh-img-caption" data-i18n="c28imgCaption">the beginning of a new era</figcaption>
+              </figure>
+              <div class="mh-dark-box mh-dark-box--chapter u-maxw-unset">
+                <p data-i18n="c28p1">Natan looked at what his artistic career had become: an impossible love story. In his streams and social media, that story had become his life.</p>
+                <p data-i18n="c28p2">Now that it was over, he did not know how to continue. After a confusing period traveling around, he decided to return to his homeland and paraglider roots, getting closer to family.</p>
+                <p data-i18n="c28p3">He also decided it was time to start playing instruments. He invested in a Native American flute and a tongue drum, and began mastering them. Inspired by constant nature contact, he brought that natural texture into his music.</p>
+                <p data-i18n="c28p4">He kept streaming for another year with a feeling of emptiness and disconnection, still playing DJ sets but now adding live instruments on top, a major difference in his streamer career.</p>
+                <p data-i18n="c28p5">At the end of 2024 he made a decision he never imagined: kill Mr Kane.</p>
+              </div>
+            </div>
+
+
+
+          </article>
+
+          <!-- Instruments gallery (moved from ch28) -->
+
+
+            <div class="mh-actions">
+              <a class="c-button c-button--ghost" href="../paraglider/journey.html" data-i18n="c28Action">Open paraglider story</a>
+            </div>
+          </article>
+
+
+
+          <!-- wave divider -->
+          <div class="mh-wave-divider" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+              <path d="M0,28 C200,55 400,5 600,35 C800,58 1000,10 1200,40 C1340,52 1420,18 1440,30 L1440,60 L0,60Z" fill="#00e676"/>
+            </svg>
+          </div>
+
+          <!-- CH 29 - I am Natan Lichtnow (REBIRTH) -->
+          <article class="mh-chapter mh-chapter--rebirth" id="ch-29">
+            <span class="mh-chapter__tag" data-i18n="c29Tag">Chapter 29</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">29</span>
+            <h2 class="mh-chapter__title" data-i18n="c29Title">I am Natan Lichtnow</h2>
+
+            <div class="mh-split">
+              <div class="mh-split__text">
+                <span class="mh-year" data-i18n="c29year">2025</span>
+                <p data-i18n="c29p1">Mr Kane was created as an escape from the reality he lived. Natan felt the need to face reality brutally and rebuild himself not only as an artist, but as a person.</p>
+                <p data-i18n="c29p2">He looked at his values and what he was doing, and reached a conclusion that shocked everyone around him: leave DJ life aside, focus one hundred percent on becoming a multi-instrumentalist, create improvised live music with a context of peace and spiritual elevation, without labels and without masks.</p>
+                <p data-i18n="c29p3">This brought deep seriousness to his artistic work. Development was fast, community response was strong, and he got support to invest in instruments he always dreamed about: cello, different flutes, and MIDI controllers. His project was rising.</p>
+              </div>
+              <figure class="mh-split__media">
+                <img class="mh-img" src="../img/music-arts/smileyboi.jpg" alt="Natan Lichtnow, unmasked and authentic" data-i18n-attr="alt" data-i18n="c29imgAlt" />
+                <figcaption class="mh-img-caption" data-i18n="c29imgCaption">no more masks</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <!-- Instruments gallery (moved from ch28) -->
+          <div class="mh-gallery mh-gallery--trio u-mt-lg" style="display: flex; justify-content: center; align-items: flex-end; gap: 2.5rem;">
+            <img class="mh-img mh-img--rounded u-h-auto" style="flex:1 1 0; max-width: 340px; min-width: 0;" src="../img/music-arts/flute.jpg" alt="Native American flute" data-i18n-attr="alt" data-i18n="c28fluteAlt" />
+            <img class="mh-img mh-img--rounded u-h-auto" style="flex:1 1 0; max-width: 340px; min-width: 0;" src="../img/music-arts/tonguedrum.jpg" alt="Tongue drum" data-i18n-attr="alt" data-i18n="c28drumAlt" />
+            <img class="mh-img mh-img--rounded u-h-auto" style="flex:1 1 0; max-width: 340px; min-width: 0;" src="../img/music-arts/flute2.jpg" alt="Playing flute in nature" data-i18n-attr="alt" data-i18n="c28flute2Alt" />
+          </div>
+
+          <!-- CH 30 - The Temple (HORIZON) -->
+          <article class="mh-chapter mh-chapter--horizon" id="ch-30">
+            <span class="mh-chapter__tag" data-i18n="c30Tag">Chapter 30</span>
+            <span class="mh-chapter__bg-num" aria-hidden="true">30</span>
+            <h2 class="mh-chapter__title" data-i18n="c30Title">The Temple</h2>
+
+            <div class="mh-split mh-split--img-left">
+              <figure class="mh-split__media">
+                <img class="mh-img" src="../img/music-arts/Violaozin.jpg" alt="Natan playing guitar, The Temple" data-i18n-attr="alt" data-i18n="c30imgAlt" />
+                <figcaption class="mh-img-caption" data-i18n="c30imgCaption">The Temple</figcaption>
+              </figure>
+              <div class="mh-split__text">
+                <p data-i18n="c30p1">Natan started feeling the light returning inside him, with a strong sense of purpose in the music he was creating. He felt he could help people slow down.</p>
+                <p data-i18n="c30p2">With that in mind, he built the full context for his streams: The Temple.</p>
+                <p data-i18n="c30p3">Life is moving too fast, use this time to slow down became his slogan.</p>
+                <p data-i18n="c30p4">That became his great passion and focus. To this day, with a small but loyal Twitch community, Natan keeps writing his story on the internet, creating a safe atmosphere for people to be vulnerable, connect, and share discoveries from their inner journey.</p>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- /.c-shell -->
+      </div><!-- /.mh-story__inner -->
+
+      <!-- CTA Section -->
+      <div class="mh-cta">
+        
+        <h2 class="mh-cta__title" data-i18n="ctaTitle">The story continues</h2>
+        <p class="mh-cta__text" data-i18n="ctaText">Discover the music, flow arts, and the Temple</p>
+        <div class="mh-cta__actions">
+          <a class="c-button" href="index.html" data-i18n="ctaPrimary">Back to music home</a>
+          
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="c-page-footer c-shell">
+      <p class="c-page-footer__text" data-i18n="footer">NATAN LICHTNOW // MUSIC STORY</p>
+    </footer>
+  </div>
+
+  <script>
+    window.NATAN_PAGE_TRANSLATIONS = {
+      'pt-BR': {
+        pageTitle: 'Historia Musical | Natan Lichtnow',
+        brand: 'Natan Lichtnow',
+        brandAriaLabel: 'Inicio de Natan Lichtnow',
+        languageLabel: 'IDIOMA',
+        menuToggleAriaLabel: 'Abrir navegacao',
+        primaryNavAriaLabel: 'Navegacao da secao',
+        languageSwitcherAriaLabel: 'Seletor de idioma',
+        navSectionHome: 'Inicio da musica',
+        navMusicExperience: 'Historia',
+        navFlowExperience: 'Flow arts',
+        navTwitch: 'Twitch',
+        eyebrow: 'Linha do tempo completa',
+        heroTitle: 'Historia Musical',
+        heroLead: 'Uma historia de altos e baixos, repleta de vulnerabilidade e desafios, que continua sendo escrita dia apos dia.',
+        homeAction: 'Voltar ao inicio da musica',
+        c1Tag: 'Capitulo 01',
+        c1Title: 'Introducao',
+        c1p1: 'A historia comeca aqui.',
+        c1p2: 'Apos A Queda no universo do paraglider, Natan encontrou seu refugio nas festas de psytrance, inicialmente seguindo um caminho desconhecido e ate errado dentro desse mundo.',
+        c1p3: 'Mas nao demorou muito ate que, em um dia muito especifico, sua vida mudasse completamente de direcao.',
+        c1Action: 'Abrir historia do paraglider',
+        c2Tag: 'Capitulo 02',
+        c2Title: 'Como tudo comecou',
+        c2p1: 'Certo dia, em uma dessas festas, Natan estava se sentindo desconfortavel. Sem poder chegar em casa naquele estado, decidiu ir para a casa de seu amigo Birow para passar a noite.',
+        c2p2: 'Chegando la, seu amigo pegou uma pequena controladora e comecou a tocar, apresentando o universo da discotecagem para o garoto.',
+        c2p3: 'Os olhos de Natan brilharam. Foi amor a primeira vista com aquela forma de arte.',
+        c2p4: 'Naquele momento, ficou decidido: aquilo seria sua vida dali em diante.',
+        c3Tag: 'Capitulo 03',
+        c3Title: 'Um favor que mudou tudo',
+        c3p1: 'Birow se encantou com a paixao do amigo e decidiu emprestar sua controladora por algumas semanas.',
+        c3p2: 'Natan sentiu a vida voltando para dentro de si atraves das frequencias do psytrance, dedicando incontaveis horas por dia para aprender o maximo possivel enquanto tinha a controladora em casa.',
+        c4Tag: 'Capitulo 04',
+        c4Title: 'Um anjo',
+        c4year: '2017',
+        c4p1: 'Apos algumas semanas, Birow pediu a controladora de volta. Natan entao teve uma conversa com sua avo sobre sua experiencia com o mundo da discotecagem.',
+        c4p2: 'Ela confessou que nunca o tinha visto tao empolgado com algo antes e decidiu investir nesse sonho, comprando seu primeiro par de monitores de audio, fones de ouvido e sua propria controladora.',
+        c4p3: 'A partir dai, sua vida nunca mais foi a mesma.',
+        c4imgAlt: 'Primeiro setup de DJ do Natan, presente da avo',
+        c4imgCaption: 'o comeco de tudo',
+        c5Tag: 'Capitulo 05',
+        c5Title: 'Kill All Negative Energies (Mr Kane)',
+        c5year: 'Final de 2017 - 2018',
+        c5p1: 'Ainda carregando dores e confusoes relacionadas a A Queda, Natan teve a ideia de criar um personagem, uma mascara para construir uma nova realidade.',
+        c5p2: 'Nome desse personagem: Mr Kane - Kill All Negative Energies.',
+        c5p3: 'Seu foco era o progressive trance melodico, com uma pegada espiritual e positiva, buscando ajudar aqueles que se identificassem a se sentirem um pouco melhor naquele momento magico na pista de danca.',
+        c5imgAlt: 'Mr Kane se apresentando',
+        c5imgCaption: 'Mr Kane - Kill All Negative Energies',
+        c6Tag: 'Capitulo 06',
+        c6Title: 'Um rapido comeco',
+        c6p1: 'Nao levou uma semana apos o lancamento do projeto para que Mr Kane fechasse suas primeiras apresentacoes.',
+        c6p2: 'Seu som melodico e suave se destacou em uma cena repleta de musicas mais pesadas, chamando atencao do publico e de contratantes locais.',
+        c6p3: 'Foi muito bem recebido por nucleos como Bora Psicodelizar e Trance On, realizando suas primeiras apresentacoes no AOCA Bar.',
+        c6imgAlt: 'Mr Kane tocando no AOCA Bar',
+        c6imgCaption: 'primeiros shows no AOCA Bar',
+        c7Tag: 'Capitulo 07',
+        c7Title: 'Evolucao constante',
+        c7p1: 'Nao demorou para que Natan sentisse a necessidade de produzir suas proprias musicas.',
+        c7p2: 'Com poucos recursos e conhecimento musical limitado, o inicio foi desafiador.',
+        c7p3: 'Mais uma vez, em conversa com sua avo, ela decidiu investir nele, matriculando-o no curso da Yellow Academy, em Curitiba.',
+        c7imgAlt: 'Primeiro estudio caseiro do Natan',
+        c7imgCaption: 'primeiro estudio',
+        c8Tag: 'Capitulo 08',
+        c8Title: 'A vivencia musical nao era suficiente',
+        c8p1: 'Natan precisava de recursos financeiros.',
+        c8p2: 'Mesmo com evolucao rapida na cena, no inicio da carreira foi financeiramente desvalorizado. Isso o levou a voltar a trabalhar com seu pai na escola de parapente.',
+        c8p3: 'Sua rotina era intensa: durante a semana, produzia e estudava cerca de 10 horas por dia, treinava discotecagem por mais 3 horas e descansava a noite. Nos finais de semana, trabalhava na escola ou tocava quando tinha eventos.',
+        i1Tag: 'Interludio 01',
+        i1Title: 'Uma surpresa desagradavel',
+        i1p1: 'Natan se lembra claramente de um dia muito decepcionante.',
+        i1p2: 'Apos encontrar uma nova luz na musica, durante um periodo dificil, disse ao pai com orgulho: Pai, eu vou ser DJ.',
+        i1p3: 'Seu pai respondeu: Largue mao disso. Para ser musico, e preciso ser dedicado, e se tem uma coisa que voce nao e, e dedicado.',
+        i1p4: 'Aquilo o machucou profundamente.',
+        c9Tag: 'Capitulo 09',
+        c9Title: 'A evolucao que incomodou',
+        c9year: '2019',
+        c9p1: 'Em 2019, sua carreira comecou a crescer.',
+        c9p2: 'Vieram as primeiras viagens, tocando pelo interior do Parana, Sao Paulo e Santa Catarina, sendo contratado e finalmente recebendo seus primeiros caches de respeito.',
+        c9p3: 'Porem, isso comecou a gerar conflitos com seu pai, ja que as aulas na escola e os eventos aconteciam nos finais de semana.',
+        c9p4: 'Ate que veio o ultimato: ou a musica, ou o trabalho com o parapente. A resposta foi clara: a musica.',
+        c9imgAlt: 'Flyer de evento da carreira em crescimento',
+        c9imgCaption: 'carreira decolando',
+        c10Tag: 'Capitulo 10',
+        c10Title: 'Reviravolta',
+        c10year: 'Janeiro de 2020',
+        c10p1: 'Em janeiro de 2020, Natan passou por uma cirurgia de hernia inguinal. Apos um mes e meio de recuperacao, voltou aos palcos.',
+        c10p2: 'Sua ultima apresentacao antes da pausa foi na Lunna Trance, em Curitiba. Abril prometia ser um mes cheio, com eventos todos os finais de semana, viagens e bons caches.',
+        c10p3: 'Mas entao veio a pandemia, e tudo parou.',
+        c10imgAlt: 'Natan se apresentando ao vivo',
+        c10imgCaption: 'no palco antes de tudo parar',
+        c11Tag: 'Capitulo 11',
+        c11Title: 'E agora?',
+        c11p1: 'Sem trabalho, sem eventos e sem renda, vivendo com o auxilio emergencial, sua realidade mudou drasticamente.',
+        c11p2: 'Mesmo assim, seguiu firme nos estudos e na producao musical, preparando-se para um retorno que nunca aconteceu.',
+        c12Tag: 'Capitulo 12',
+        c12Title: 'A segunda queda',
+        c12p1: 'Poucos meses apos o inicio da pandemia, veio uma das maiores perdas: o falecimento de sua avo, a pessoa que mais o apoiava, a unica da familia.',
+        c12p2: 'A partir dali, a linha do tempo se tornou confusa em sua memoria. Foram acontecimentos intensos e consecutivos, dificeis de processar.',
+        c12imgAlt: 'Natan e sua avo',
+        c12imgCaption: 'sua maior apoiadora',
+        i2Tag: 'Interludio 02',
+        i2Title: 'Contexto necessario',
+        i2p1: 'Com o falecimento de sua avo, seu avo foi morar com sua mae. Nesse periodo, sua mae iniciou um relacionamento com um homem extremamente tradicional, que constantemente entrava em conflito com Natan.',
+          i2p1: 'Com o falecimento de sua avo, seu avo foi morar com sua mae. Nesse periodo, sua mae iniciou um relacionamento com um homem extremamente tradicional, que constantemente entrava em conflito com Natan, devido ao seu estilo de vida alternativo',
+        i2p2: 'A convivencia foi se tornando cada vez mais dificil, evoluindo de discussoes para situacoes de extrema tensao, ate chegar a ameacas violentas.',
+        i2p3: 'A partir dali, a vida de Natan se tornou conturbada. Sempre que esse homem estava em casa, ele se refugiava em seu estudio musical.',
+        i2p4: 'A musica deixou de ser apenas paixao. Passou a ser sobrevivencia.',
+        c13Tag: 'Capitulo 13',
+        c13Title: 'Uma nova oportunidade',
+        c13p1: 'Tudo comecou a mudar quando Natan viu Tiago Sena (4i20) fazendo transmissoes na Twitch.',
+          c13p1: 'Tudo comecou a mudar quando Natan viu Tiago Sena (4i20), uma de suas maiores inspirações na cena do trance fazendo transmissoes na Twitch.',
+          c13p2: 'Inspirado, comecou suas proprias lives, inicialmente com pouco alcance, produzindo musica e jogando, porém mesmo pequeno, aquele contato humano foi essencial. Mal sabia ele o quanto isso mudaria sua trajetoria.',
+        c14Tag: 'Capitulo 14',
+        c14Title: 'Um sonho se realizou, mas...',
+        c14p1: 'Com o tempo, criou um laco com Tiago, que passou a ser seu mentor no universo da producao musical. Natan sempre sonhou em lancar musicas na Alien Records',
+        c14p2: 'Com a mentoria de seu novo amigo esse sonho rapidamente se tornou realidade.',
+        c14p3: 'Porem, algo mudou: seu gosto musical desacelerou drasticamente, dos 142 bpms do psytrance passou a amar os 80 bpm do trip hop. Entrou em conflito interno, sem conseguir produzir o som que antes amava, o que foi uma grande decepção para seu mentor e seus amigos da época.',
+        c14p4: '',
+        c15Tag: 'Capitulo 15',
+        c15Title: 'Ainda ha esperanca',
+        c15p1: 'Durante suas lives, conheceu uma garota que pratica flow arts. Rapidamente desenvolveram uma amizade e comecaram a fazer colaboracoes.',
+        c15p2: 'Natan na musica, ela nos visuais com sua danca hipnotizante.',
+        c15p3: 'Sua comunidade ficou curiosa pra ver como suas musicas eram feitas, e pediram para que Natan fizesse lives em ingles para compartilhar o processo criativo.',
+        c15p4: 'Com seu ingles timido, Natan deu uma chance para essa nova oportunidade, e foi ai que sua carreira na Twitch realmente comecou.',
+        c16Tag: 'Capitulo 16',
+        c16Title: 'Flow Arts: a arte da danca com manipulacao de objetos',
+        c16p1: 'Em meio ao caos que Natan vivia com aquele homem dentro de sua casa, oportunidades malucas comecaram a aparecer. Primeiro, foi presenteado com um notebook por um fa.',
+        c16p2: 'Isso abriu um mundo de possibilidades de trabalho online, podendo editar videos e trabalhar em projetos musicais mais complexos. Natan finalmente comecara a se reerguer e juntar dinheiro para sair daquela situacao bizarra.',
+        c16p3: 'Nesse meio tempo, com sua confusao musical, veio a desenvolver paixao por algo que nunca tinha cruzado sua mente: flow arts.',
+        c16imgAlt: 'Natan descobrindo flow arts',
+        c16imgCaption: 'descobrindo flow arts',
+        c17Tag: 'Capitulo 17',
+        c17Title: 'Movimento',
+        c17p1: 'Durante sua crise musical, Natan dedicou todo seu tempo a aprender mais sobre essa forma de arte nova. Era incrivel, uma forma de exercicio que aliviava sua mente de todo o caos que enfrentava.',
+        c17p2: 'A amizade com aquela garota tambem so crescia, compartilhando treinos online. No meio tempo, editava videos para outros streamers e fazia trabalhos freelancer como educador musical e trabalhos de mix e master para produtores.',
+        c17p3: 'Natan estava tao envolvido naquela vida online que a ideia de voltar aos palcos aos poucos foi sumindo.',
+        c17imgAlt: 'Setup de streaming e comunidade online',
+        c17imgCaption: 'o mundo online que o manteve firme',
+        c18Tag: 'Capitulo 18',
+        c18Title: 'Hora da mudanca',
+        c18p1: 'Natan aos poucos foi juntando seu dinheiro para sair daquela situacao com sua mae. Ao tentar conversar com sua familia sobre tudo que estava vivendo e como se sentia, era sempre desrespeitado e desmerecido, ultrapassando seus limites pessoais.',
+        c18p2: 'Natan fez um ultimo push em suas streams para conseguir se mudar, e finalmente aconteceu. Natan estava livre daquela tortura dentro da casa de sua mae.',
+        c18p3: 'Agora morando sozinho, em uma casa vazia, com poucos recursos financeiros, mas com paz na cabeca, comecou a refletir na direcao que levaria sua vida ate que algo muito inesperado veio a acontecer.',
+        c18imgAlt: 'Natan em seu novo lugar, finalmente livre',
+        c18imgCaption: 'finalmente se mudou',
+        c19Tag: 'Capitulo 19',
+        c19Title: 'Amor?',
+        c19year: 'Janeiro de 2022',
+        c19p1: 'Aquela garota tinha virado sua melhor amiga, se chamavam ate de irma e irmao, sendo muito presente durante todo o processo. Com o tempo essa energia comecou a mudar.',
+        c19p2: 'Apos uma conversa muito honesta um com o outro chegaram a conclusao: estavam apaixonados um pelo outro.',
+        c19p3: 'Ela na Holanda, ele no Brasil.',
+        c19p4: 'Isso foi em janeiro de 2022. Decidiram dar ate junho para se encontrar. Caso nao acontecesse, deixariam de lado a ideia desse amor impossivel.',
+        c19p5: 'Natan definiu uma meta em sua live, 1500 euros, porem nao podia compartilhar exatamente sobre o que era a meta para nao levar a publico a maluquice que estava fazendo.',
+        c20Tag: 'Capitulo 20',
+        c20Title: 'O impossivel so e possivel se voce acreditar',
+        c20year: 'Abril de 2022',
+        c20p1: 'Era o mes de abril, tinha 150 euros salvos na meta. As coisas nao pareciam muito otimistas.',
+        c20p2: 'Mas foi ai que a coisa mais maluca da sua vida ate esse momento aconteceu: um desconhecido chegou na live da garota e comecou a bater todas as metas que ela tinha na tela. Em seguida, ele mandou no chat: quem aqui tem um sonho?',
+        c20p3: 'Natan foi rapido em responder e iniciar uma conversa com aquele estranho. Foi uma conversa estranha, e ele desabafou sobre a realidade que vivia.',
+        c20p4: 'Era um rapaz da Finlandia que sofreu muito em sua vida, mas virou controlador do espaco aereo do pais e com isso comecou a fazer mais dinheiro do que sabia com o que gastar, passando a ajudar pessoas na Twitch a realizarem seus sonhos.',
+        c20p5: 'Natan explicou a situacao e o rapaz nao pensou duas vezes: fez uma doacao insana de 1500 euros enquanto Natan estava offline. O sonho de encontrar seu novo amor se tornou possivel.',
+        c20imgAlt: 'Phoenix Fire Convention',
+        c20imgCaption: 'Phoenix fire convention na alemanhã',
+        c21Tag: 'Capitulo 21',
+        c21Title: 'O primeiro encontro',
+        c21p1: 'Natan estava um tanto confuso, porem muito animado. No periodo de 6 meses saiu de uma situacao lamentavel na casa de sua mae e estava prestes a atravessar o oceano para conhecer a pessoa que poderia ser o amor da sua vida.',
+        c21p2: 'Ninguem ao seu redor acreditava que aquilo realmente estava acontecendo. Sua familia nao acreditava no seu potencial. Foi uma surpresa para todos.',
+        c21p3: 'Foi sua primeira vez em um aviao, 13 horas de viagem. Ao chegar la, aquele primeiro abraco foi coisa de conto de fadas, uma sensacao indescritivel.',
+        c21p4: 'A garota o levou em um coffee shop, pegaram algo para comer e fumar, depois foram para casa. Depois de 6 meses com um relacionamento a distancia, não precisa nem ser dito o que foi feito nos proximos dias ;)',
+        c22Tag: 'Capitulo 22',
+        c22Title: 'O incrivel nao parava de acontecer',
+        c22year: 'Verao de 2022',
+        c22p1: 'Natan e a garota desenvolveram um workshop de flow arts e conseguiram espaco para apresentar na TwitchCon em Amsterdam.',
+        c22p2: 'Em seguida, por influencia da garota, seguiram viagem para Portugal de carro, a caminho do BOOM Festival. Isso e uma historia gigantesca a parte, impossivel descrever totalmente em texto.',
+        c22p3: 'Voce pode assistir ao highlight de sua livestream, um story time de 40 minutos.',
+        c22imgAlt1: 'Experiencia no BOOM Festival',
+        c22imgAlt2: 'TwitchCon Amsterdam',
+        c22Action: 'História completa do boom festival',
+        c22p4: 'Apos o BOOM Festival, Natan teve alguns shows pela Holanda e Belgica, foi para a Alemanha na Phoenix Fire Convention, onde foi muito bem treinado na arte da manipulacao do fogo e capacitado para comecar sua propria carreira no Brasil quando retornasse.',
+        c23Tag: 'Capitulo 23',
+        c23Title: 'O retorno ao Brasil e o plano para o futuro',
+        c23p1: 'Natan voltou para sua casa vazia, sem mobilia, depois de 3 meses de absolutos contos de fadas, com uma bagagem gigantesca e sensacao positiva sobre aquele relacionamento.',
+        c23p2: 'No final da estadia na Holanda, tiveram conversa profunda sobre os planos para o futuro.',
+        c23p3: 'Ela estava em situacao financeira delicada e decidiu que nao iria ao Brasil ainda. Ficariam 8 meses sem se ver, no ano seguinte se encontrariam novamente na Holanda, ela iria ao Brasil e em seguida se mudariam para morar juntos.',
+        c23p4: 'O plano era se mudarem para Minas Gerais, ir para Holanda na alta temporada para fazer shows e ganhar dinheiro, e retornar ao Brasil para viver cercados de natureza aproveitando a diferenca das moedas.',
+        c23p5: 'A vida de Natan no Brasil era monotona. Teve alguns shows solo, mas nada chegava perto da empolgacao da aventura vivida do outro lado do oceano.',
+        c23imgAlt: 'Performance de flow arts no Brasil',
+        c23imgCaption: 'de volta ao Brasil com habilidades novas',
+        c24Tag: 'Capitulo 24',
+        c24Title: 'O segundo encontro',
+        c24p1: 'Esses 8 meses sem se encontrar foram conturbados. A garota teve uma crise e o relacionamento ficou muito frio.',
+        c24p2: 'Porem, agora com o relacionamento publico, foi mais facil para Natan bater a meta da passagem de aviao.',
+        c24p3: 'Um mes antes de ir, Natan entregou sua casa. Nao estava satisfeito com onde estava morando, e o plano era conhecer o possivel lugar onde morariam juntos apos retornar da viagem.',
+        c24p4: 'Foi para o pai passar esse tempo antes de atravessar o oceano novamente. Tudo estava estranho. A garota com emocoes muito frias.',
+        c24p5: 'Duas semanas antes da viagem ela falou casualmente que nao sentia empolgacao para o encontro. Natan desabafou com seu pai e ouviu: fique quietinho para nao acabar cancelando essa viagem. Que conselho.',
+        c25Tag: 'Capitulo 25',
+        c25Title: 'Que diabos esta acontecendo?',
+        c25p1: 'Natan atravessou o oceano mais uma vez para encontrar seu amor, com um buraco no coracao devido a falta de atencao que vinha recebendo.',
+        c25p2: 'Ao chegar la foi recebido com um caminhao de trabalhos a serem feitos. Quase nao existia intimidade no casal. Foi extremamente confuso.',
+        c25p3: 'Tiraram uma semana de ferias para ir ao Anjuna Deep Festival na Albania. Foi ai que tudo virou do avesso.',
+        c25p4: 'No caminho para o festival, a garota confessou ter conhecido um rapaz na edicao passada e disse que ele era muito atraente. Tentou convencer Natan a ficar na casa desse rapaz apos o festival. Discutiram muito, e ela confessou querer relacionamento aberto, mas deixou de lado ao ver como ele ficou triste.',
+        c25p5: 'A estadia no festival foi muito estranha. A garota se mostrava muito interessada por outras pessoas, mas o relacionamento amoroso de antes nao estava mais presente. Uma confusao emocional absurda.',
+        c25p6: 'Ao retornarem para a Holanda, Natan quase nao foi aceito no pais. Foram entrevistados pela alfandega, ela em holandes e ele em ingles, para bater os fatos e entender o que um brasileiro estava fazendo voltando da Albania para a Holanda.',
+        c25p7: 'Isso deixou a garota com receio: e se nos mudarmos para o Brasil e voce nao puder entrar na Holanda? Nosso plano vai falhar, precisamos mudar de plano.',
+        c26Tag: 'Capitulo 26',
+        c26Title: 'Um novo plano',
+        c26p1: 'Um novo plano foi feito as pressas. Ao inves dela ir para o Brasil, Natan se mudaria para a Holanda e com 3 anos la tiraria visto europeu. Depois poderiam retomar o plano de morar no Brasil.',
+        c26p2: 'Ela queria tirar ferias e conhecer o pais. Natan precisava aprender holandes o quanto antes para a prova do visto.',
+        c26p3: 'Abandonou tudo e encontrou a casa perfeita para esse tempo, a 20 metros da praia, cercada de mata atlantica, perfeita para as ferias dela e para seu foco extremo em aprender uma lingua.',
+        c26p4: 'Ela tinha a viagem para o Brasil marcada. Apos a viagem dela, Natan voltaria com ela para a Holanda para ficar la de vez.',
+        c27Tag: 'Capitulo 27',
+        c27Title: 'Um belo presente de aniversario',
+        c27p1: 'Natan estava ha dois meses morando nessa casa, isolado, focando apenas em estudar holandes e fazer lives para se manter, com tudo voltado para a mudanca para a Holanda.',
+        c27p2: 'Porem algo bizarro estava acontecendo: ela nao mostrava nenhum interesse em como estava seu aprendizado da lingua, e a distancia entre os dois so aumentava.',
+        c27p3: 'Faltando exatamente uma semana para a prova do visto, uma semana apos seu aniversario, ela trouxe a noticia: eu quero um relacionamento nao monogamico, nao vejo que isso vai dar certo com voce, e melhor terminarmos.',
+        c27p4: 'As palavras reais usadas nao podem ser compartilhadas pois foi algo chocante.',
+        c27p5: 'Foi assim que um grande sonho e um grande amor se foram.',
+        c28Tag: 'Capitulo 28',
+        c28Title: 'Mr Kane esta morto',
+        c28p1: 'Natan olhou para o que virou sua carreira artistica: uma historia de amor impossivel. So se falava disso nas lives e redes sociais. Sua vida tinha virado essa historia.',
+        c28p2: 'Agora que ela acabou, Natan nao soube como continuar. Apos periodo confuso viajando para cima e para baixo, decidiu retornar a terra natal e as raizes do parapente, se aproximar da familia.',
+        c28p3: 'Tambem decidiu que era hora de comecar a tocar instrumentos. Investiu em uma flauta nativa americana e um tongue drum, e comecou a se dedicar para domina-los. Inspirado pelo contato com a natureza, trouxe essa pegada natural para sua musica.',
+        c28p4: 'Ainda seguiu fazendo lives por um ano, com sensacao de vazio e desconexao, tocando DJ sets e instrumentos por cima da musica, um grande diferencial em sua carreira como streamer.',
+        c28p5: 'No final de 2024 decidiu fazer algo que nunca imaginou na vida: matar o Mr Kane.',
+        c28imgAlt: 'Natan refletindo sobre sua carreira musical',
+        c28imgCaption: 'o começo de uma nova era',
+        c28fluteAlt: 'Flauta nativa americana',
+        c28drumAlt: 'Tongue drum',
+        c28flute2Alt: 'Tocando flauta na natureza',
+        c28Action: 'Abrir historia do paraglider',
+        c29Tag: 'Capitulo 29',
+        c29Title: 'Eu sou Natan Lichtnow',
+        c29year: '2025',
+        c29p1: 'Mr Kane foi criado para ser fuga da realidade que vivia. Natan sentiu necessidade de encarar a realidade de forma brutal e se repaginar nao so como artista, mas como pessoa.',
+        c29p2: 'Olhou para seus valores e para o que estava fazendo, e chegou a uma conclusao que chocou todos ao redor: deixar a vida de DJ de lado, focar 100% em ser multi-instrumentista, criar musicas improvisadas ao vivo com contexto de paz e elevacao espiritual, sem rotulos e sem mascaras.',
+        c29p3: 'Isso trouxe seriedade profunda ao trabalho artistico. O desenvolvimento foi rapido, a comunidade reagiu muito bem e ele obteve suporte para investir em instrumentos que sempre sonhou: violoncelo, diferentes flautas e controladoras MIDI. Seu projeto estava em ascensao.',
+        c29imgAlt: 'Natan Lichtnow, sem mascara e autentico',
+        c29imgCaption: 'sem mais mascaras',
+        c30Tag: 'Capitulo 30',
+        c30Title: 'O Templo',
+        c30p1: 'Natan comecou a sentir a luz voltando dentro de si, com grande sensacao de proposito na musica que fazia. Sentiu que tinha o poder de ajudar as pessoas a desacelerarem.',
+        c30p2: 'Foi pensando nisso que criou todo um contexto para suas lives: O Templo.',
+        c30p3: 'A vida esta andando muito rapido, use esse tempo para desacelerar virou seu slogan.',
+        c30p4: 'Essa se tornou sua grande paixao e foco. Ate agora, com comunidade pequena mas fiel na Twitch, Natan segue escrevendo sua historia compartilhando na internet e criando atmosfera segura para as pessoas serem vulneraveis, se conectarem e compartilharem descobertas da propria jornada interna.',
+        c30imgAlt: 'Natan tocando violao, O Templo',
+        c30imgCaption: 'O Templo',
+        ctaTitle: 'A historia continua',
+        ctaText: 'Descubra a musica, flow arts e o Templo',
+        ctaPrimary: 'Voltar ao inicio da musica',
+        ctaSecondary: 'Abrir historia do paraglider',
+        footer: 'NATAN LICHTNOW // HISTORIA MUSICAL'
+      },
+      en: {
+        pageTitle: 'Music Story | Natan Lichtnow',
+        brand: 'Natan Lichtnow',
+        brandAriaLabel: 'Natan Lichtnow home',
+        languageLabel: 'LANG',
+        menuToggleAriaLabel: 'Open navigation',
+        primaryNavAriaLabel: 'Section navigation',
+        languageSwitcherAriaLabel: 'Language selector',
+        navSectionHome: 'Music Home',
+        navMusicExperience: 'History',
+        navFlowExperience: 'Flow Arts',
+        navTwitch: 'Twitch',
+        eyebrow: 'Full timeline',
+        heroTitle: 'Music Story',
+        heroLead: 'A story of highs and lows, full of vulnerability and challenges, that continues to be written day after day.',
+        homeAction: 'Back to music home',
+        c1Tag: 'Chapter 01',
+        c1Title: 'Introduction',
+        c1p1: 'The story begins here.',
+        c1p2: 'After The Fall in the paraglider universe, Natan found refuge in psytrance parties, initially following an unknown and even wrong path inside that world.',
+        c1p3: 'But it did not take long before, on a very specific day, his life changed direction completely.',
+        c1Action: 'Open paraglider story',
+        c2Tag: 'Chapter 02',
+        c2Title: 'How it all started',
+        c2p1: 'One day, at one of those parties, Natan was feeling uncomfortable. Since he could not go home in that state, he decided to go to his friend Birow\'s house to spend the night.',
+        c2p2: 'When he arrived, his friend picked up a small controller and started playing, introducing the world of DJing to the young man.',
+        c2p3: 'Natan\'s eyes lit up. It was love at first sight with that art form.',
+        c2p4: 'In that moment it was decided: that would be his life from then on.',
+        c3Tag: 'Chapter 03',
+        c3Title: 'A favor that changed everything',
+        c3p1: 'Birow was amazed by his friend\'s passion and decided to lend him the controller for a few weeks.',
+        c3p2: 'Natan felt life coming back into him through psytrance frequencies, dedicating countless hours each day to learn as much as possible while he had that controller at home.',
+        c4Tag: 'Chapter 04',
+        c4Title: 'An angel',
+        c4year: '2017',
+        c4p1: 'After a few weeks, Birow asked for the controller back. Natan then had a conversation with his grandmother about his experience with DJing.',
+        c4p2: 'She confessed she had never seen him that excited about something and decided to invest in his dream, buying his first pair of studio monitors, headphones, and his own controller.',
+        c4p3: 'From then on, his life was never the same.',
+        c4imgAlt: 'Natan\'s first DJ setup gifted by his grandmother',
+        c4imgCaption: 'the beginning of everything',
+        c5Tag: 'Chapter 05',
+        c5Title: 'Kill All Negative Energies (Mr Kane)',
+        c5year: 'Late 2017 - 2018',
+        c5p1: 'Still carrying pain and confusion related to The Fall, Natan had the idea of creating a character, a mask, to build a new reality.',
+        c5p2: 'That character\'s name: Mr Kane, Kill All Negative Energies.',
+        c5p3: 'His focus was melodic progressive trance, with a spiritual and positive approach, seeking to help those who connected with it feel a little better in that magical dancefloor moment.',
+        c5imgAlt: 'Mr Kane performing',
+        c5imgCaption: 'Mr Kane - Kill All Negative Energies',
+        c6Tag: 'Chapter 06',
+        c6Title: 'A fast beginning',
+        c6p1: 'It did not take a week after launch for Mr Kane to close his first gigs.',
+        c6p2: 'His melodic and smooth sound stood out in a scene full of heavier tracks, calling the attention of both audience and local event contractors.',
+        c6p3: 'He was very well received by collectives like Bora Psicodelizar and Trance On, and played his first sets at AOCA Bar.',
+        c6imgAlt: 'Mr Kane playing at AOCA Bar',
+        c6imgCaption: 'first shows at AOCA Bar',
+        c7Tag: 'Chapter 07',
+        c7Title: 'Constant evolution',
+        c7p1: 'It did not take long for Natan to feel the need to produce his own music.',
+        c7p2: 'With few resources and limited musical knowledge, the beginning was challenging.',
+        c7p3: 'Once again, in a conversation with his grandmother, she decided to invest in him and enrolled him in Yellow Academy in Curitiba.',
+        c7imgAlt: 'Natan\'s first home studio',
+        c7imgCaption: 'first studio setup',
+        c8Tag: 'Chapter 08',
+        c8Title: 'Music life was not enough',
+        c8p1: 'Natan needed financial resources.',
+        c8p2: 'Even with fast evolution in the scene, he was financially undervalued at the beginning of his career. That led him back to working with his father at the paragliding school.',
+        c8p3: 'His routine was intense: during the week, around 10 hours per day of production and study, plus 3 hours of DJ practice. At night he rested. On weekends, he worked at the school or played events when there were bookings.',
+        i1Tag: 'Interlude 01',
+        i1Title: 'An unpleasant surprise',
+        i1p1: 'Natan clearly remembers a very disappointing day.',
+        i1p2: 'After finding a new light in music during a difficult period, he told his father with pride: Dad, I am going to be a DJ.',
+        i1p3: 'His father answered: Drop that. To be a musician you need dedication, and if there is one thing you are not, it is dedicated.',
+        i1p4: 'That hurt him deeply.',
+        c9Tag: 'Chapter 09',
+        c9Title: 'The evolution that caused conflict',
+        c9year: '2019',
+        c9p1: 'In 2019 his career started growing.',
+        c9p2: 'First trips arrived, playing through countryside areas in Parana, Sao Paulo and Santa Catarina, being hired and finally receiving his first meaningful fees.',
+        c9p3: 'But this started generating conflict with his father, since lessons at the school and events both happened on weekends.',
+        c9p4: 'Then came the ultimatum: either music or paragliding work. The answer was clear: music.',
+        c9imgAlt: 'Event flyer from Natan\'s growing career',
+        c9imgCaption: 'career taking off',
+        c10Tag: 'Chapter 10',
+        c10Title: 'Turnaround',
+        c10year: 'January 2020',
+        c10p1: 'In January 2020, Natan went through inguinal hernia surgery. After one month and a half of recovery, he returned to the stage.',
+        c10p2: 'His last gig before the break was at Lunna Trance in Curitiba. April promised a full month, with events every weekend, travel and good fees.',
+        c10p3: 'Then the pandemic came, and everything stopped.',
+        c10imgAlt: 'Natan performing live',
+        c10imgCaption: 'on stage before it all stopped',
+        c11Tag: 'Chapter 11',
+        c11Title: 'What now?',
+        c11p1: 'Without work, without events and without income, living from emergency aid, his reality changed drastically.',
+        c11p2: 'Even so, he stayed firm in studies and music production, preparing for a return that never happened.',
+        c12Tag: 'Chapter 12',
+        c12Title: 'The second fall',
+        c12p1: 'A few months after the start of the pandemic, one of the greatest losses arrived: the death of his grandmother, the person who supported him most, the only one in the family.',
+        c12p2: 'From that point on, the timeline became blurry in his memory. Events were intense and consecutive, hard to process.',
+        c12imgAlt: 'Natan and his grandmother',
+        c12imgCaption: 'his greatest supporter',
+        i2Tag: 'Interlude 02',
+        i2Title: 'Necessary context',
+        i2p1: 'After his grandmother passed, his grandfather moved in with his mother. During that period, his mother started a relationship with an extremely traditional man who constantly clashed with Natan.',
+          i2p1: 'After his grandmother passed, his grandfather moved in with his mother. During that period, his mother started a relationship with an extremely traditional man who constantly clashed with Natan, due to his alternative lifestyle.',
+        i2p2: 'Living together became increasingly difficult, evolving from arguments to extreme tension, eventually including violent threats.',
+        i2p3: 'From that point on, Natan\'s life became turbulent. Whenever that man was home, he took refuge in his music studio.',
+        i2p4: 'Music stopped being only passion. It became survival.',
+        c13Tag: 'Chapter 13',
+        c13Title: 'A new opportunity',
+        c13p1: 'Everything started changing when Natan saw Tiago Sena (4i20) streaming on Twitch.',
+          c13p1: 'Everything started changing when Natan saw Tiago Sena (4i20), one of his greatest inspirations in the trance scene, streaming on Twitch.',
+          c13p2: 'Inspired, he started his own streams, first with low reach, producing music and playing games, but even with a small audience, that human contact was essential. He had no idea how much this would change his path.',
+        c14Tag: 'Chapter 14',
+        c14Title: 'A dream came true, but...',
+        c14p1: 'Over time, he built a bond with Tiago, who became his mentor in music production. Natan had always dreamed of releasing music on Alien Records.',
+        c14p2: 'With the mentorship of his new friend, that dream quickly became reality.',
+        c14p3: 'But something changed: his musical taste slowed down drastically, from 142 bpm psytrance to loving 80 bpm trip hop. He entered internal conflict, unable to produce the sound he once loved, which was a big disappointment for his mentor and friends at the time.',
+        c14p4: '',
+        c15Tag: 'Chapter 15',
+        c15Title: 'There is still hope',
+        c15p1: 'During his streams, he met a girl who practices flow arts. They quickly developed a friendship and started collaborating.',
+        c15p2: 'Natan on the music, she on the visuals with her hypnotizing dance.',
+        c15p3: 'His community got curious to see how his music was made, and asked Natan to stream in English to share the creative process.',
+        c15p4: 'With his shy English, Natan gave this new opportunity a chance, and that is where his Twitch career truly began.',
+        c16Tag: 'Chapter 16',
+        c16Title: 'Flow Arts: object dance manipulation',
+        c16p1: 'In the middle of chaos at home, crazy opportunities started appearing. First, he was gifted a notebook by a fan.',
+        c16p2: 'That opened a world of online work possibilities: editing videos and working on more complex music projects. Natan started rebuilding himself and saving money to leave that bizarre situation.',
+        c16p3: 'At the same time, during his musical confusion, he developed a passion for something that had never crossed his mind before: flow arts.',
+        c16imgAlt: 'Natan discovering flow arts',
+        c16imgCaption: 'discovering flow arts',
+        c17Tag: 'Chapter 17',
+        c17Title: 'Movement',
+        c17p1: 'During his music crisis, Natan dedicated all his time to learning this new art form. It was incredible, a form of exercise that relieved his mind from all the chaos.',
+        c17p2: 'The friendship with that girl also kept growing, sharing online training sessions. In between, he edited videos for other streamers and worked as a freelance music educator, plus mix and master jobs for producers.',
+        c17p3: 'He became so involved in that online life that the idea of returning to stages started fading away.',
+        c17imgAlt: 'Streaming setup and online community',
+        c17imgCaption: 'the online world that kept him going',
+        c18Tag: 'Chapter 18',
+        c18Title: 'Time for change',
+        c18p1: 'Natan slowly saved money to leave that situation with his mother. When he tried to talk to his family about what he was living and how he felt, he was constantly disrespected and dismissed.',
+        c18p2: 'He made one last push on his streams to move out, and it finally happened. He was free from that torture at his mother\'s house.',
+        c18p3: 'Now living alone, in an empty house with limited resources but peace in his mind, he started reflecting on the direction of his life. Then something unexpected happened.',
+        c18imgAlt: 'Natan in his new place, finally free',
+        c18imgCaption: 'finally moved out',
+        c19Tag: 'Chapter 19',
+        c19Title: 'Love?',
+        c19year: 'January 2022',
+        c19p1: 'That girl had become his best friend. They even called each other sister and brother, very present through the whole process. Over time, that energy changed.',
+        c19p2: 'After a very honest conversation, they reached a conclusion: they were in love.',
+        c19p3: 'She in the Netherlands, he in Brazil.',
+        c19p4: 'This was January 2022. They decided to give themselves until June to meet. If it did not happen, they would drop the idea of that impossible love.',
+        c19p5: 'Natan set a stream goal of 1500 euros, but could not publicly explain exactly what it was for.',
+        c20Tag: 'Chapter 20',
+        c20Title: 'The impossible is only possible if you believe',
+        c20year: 'April 2022',
+        c20p1: 'It was April. Only 150 euros had been saved, and things looked pessimistic.',
+        c20p2: 'Then the craziest thing in his life at that point happened: a stranger entered the girl\'s stream and started hitting all goals on screen. Then he wrote in chat: who here has a dream?',
+        c20p3: 'Natan quickly replied and started a conversation with that stranger. It was unusual, and he opened up about his reality.',
+        c20p4: 'That stranger was a Finnish air traffic controller who had suffered a lot in life, made more money than he needed, and started helping Twitch people make dreams happen.',
+        c20p5: 'After hearing Natan\'s story, he did not hesitate and donated 1500 euros while Natan was offline. The dream of meeting his new love became possible.',
+        c20imgAlt: 'Phoenix Fire Convention',
+        c20imgCaption: 'phoenix fire convention in Germany',
+        c21Tag: 'Chapter 21',
+        c21Title: 'The first meeting',
+        c21p1: 'Natan was confused but very excited. In six months he had left a miserable situation and was about to cross the ocean to meet someone who could be the love of his life.',
+        c21p2: 'No one around him believed this was really happening. His family did not believe in his potential. It was a surprise to everyone.',
+        c21p3: 'It was his first time on an airplane, 13 hours of travel. That first hug on arrival felt like a fairy tale, an indescribable sensation.',
+        c21p4: 'She took him to a coffee shop, they got something to eat and smoke, then went home. After six months in a long-distance relationship, it goes without saying what happened in the following days ;)',
+        c22Tag: 'Chapter 22',
+        c22Title: 'The incredible kept happening',
+        c22year: 'Summer 2022',
+        c22p1: 'Natan and the girl developed a flow arts workshop and got space to present it at TwitchCon in Amsterdam.',
+        c22p2: 'Then, under her influence, they drove to Portugal on the way to BOOM Festival. That is a giant story on its own and impossible to fully describe in text.',
+        c22p3: 'You can watch the highlight from his livestream, a 40-minute story time video.',
+        c22imgAlt1: 'BOOM Festival experience',
+        c22imgAlt2: 'TwitchCon Amsterdam',
+        c22Action: 'Full BOOM Festival story',
+        c22p4: 'After BOOM, Natan played some shows in the Netherlands and Belgium, then went to Germany for Phoenix Fire Convention, where he received strong training in fire manipulation and became ready to start his own career in Brazil when he returned.',
+        c23Tag: 'Chapter 23',
+        c23Title: 'Return to Brazil and the future plan',
+        c23p1: 'Natan returned to his empty house, without furniture, after three months of absolute fairy-tale events, carrying huge baggage and positive feelings about that relationship.',
+        c23p2: 'At the end of his stay in the Netherlands, they had a deep conversation about future plans.',
+        c23p3: 'She was in a delicate financial situation and decided she would not go to Brazil yet. They would stay eight months apart and meet again in 2023 in the Netherlands, then she would go to Brazil and they would move together.',
+        c23p4: 'The plan was to move to Minas Gerais, spend high season in the Netherlands doing shows and making money, then return to Brazil for a nature-centered life, using currency difference in their favor.',
+        c23p5: 'Back in Brazil, life was monotonous. He had solo gigs, but nothing close to the intensity of what he had lived overseas.',
+        c23imgAlt: 'Flow arts performance in Brazil',
+        c23imgCaption: 'back in Brazil with new skills',
+        c24Tag: 'Chapter 24',
+        c24Title: 'The second meeting',
+        c24p1: 'Those eight months apart were turbulent. The girl went through a crisis and the relationship became very cold.',
+        c24p2: 'With the relationship now public, it was easier for Natan to hit the flight goal.',
+        c24p3: 'One month before traveling, Natan gave up his house. He was not satisfied where he lived, and planned to scout a future place for both of them after the trip.',
+        c24p4: 'He stayed with his father before crossing the ocean again. Everything felt strange. The girl was emotionally distant.',
+        c24p5: 'Two weeks before the trip she casually said she felt no excitement for this meeting. Natan vented to his father and heard: stay quiet so this trip does not get canceled. What a piece of advice.',
+        c25Tag: 'Chapter 25',
+        c25Title: 'What the hell is happening?',
+        c25p1: 'Natan crossed the ocean once more to meet his love, carrying a hole in his heart from the lack of attention he had been receiving.',
+        c25p2: 'On arrival he was met with a truckload of work. There was almost no intimacy left in that couple. It was extremely confusing.',
+        c25p3: 'They took a week off for Anjuna Deep Festival in Albania. That was where everything turned upside down.',
+        c25p4: 'On the way there, she confessed she had met a guy at the previous edition and said he was very attractive. She tried to convince Natan to stay at that guy\'s house after the festival. They argued heavily, and she confessed wanting an open relationship, then dropped it after seeing how hurt he was.',
+        c25p5: 'The festival stay was strange. She showed interest in other people while the romantic relationship from before was no longer present. Emotional confusion was massive.',
+        c25p6: 'When they returned to the Netherlands, Natan was almost denied entry. They were interviewed at customs, she in Dutch and he in English, to compare facts and understand why a Brazilian was returning from Albania to the Netherlands.',
+        c25p7: 'That made her afraid: what if we move to Brazil and you cannot enter the Netherlands anymore? Our plan will fail. We need a new plan.',
+        c26Tag: 'Chapter 26',
+        c26Title: 'A new plan',
+        c26p1: 'A new plan was made in a rush. Instead of her moving to Brazil, Natan would move to the Netherlands. After three years there, he would get a European visa, and then they could continue the Brazil plan.',
+        c26p2: 'She wanted vacation and to know Brazil. Natan needed to learn Dutch as fast as possible for the visa exam.',
+        c26p3: 'He dropped everything and found the perfect house for that period, 20 meters from the beach, surrounded by Atlantic forest, perfect for her vacation and for his extreme language focus.',
+        c26p4: 'She had her Brazil trip booked. After that trip, Natan would return with her to the Netherlands to stay there for good.',
+        c27Tag: 'Chapter 27',
+        c27Title: 'A beautiful birthday gift',
+        c27p1: 'Natan had been living in that house for two months, isolated, focused only on studying Dutch and streaming to support himself, with everything aimed at moving to the Netherlands.',
+        c27p2: 'But something bizarre was happening: she showed no interest in his language progress, and distance kept growing between them.',
+        c27p3: 'Exactly one week before the visa exam, one week after his birthday, she brought the news: I want a non-monogamous relationship, I do not see this working with you, better to end it.',
+        c27p4: 'The exact words are not shareable because it was shocking.',
+        c27p5: 'That is how a big dream and a big love ended.',
+        c28Tag: 'Chapter 28',
+        c28Title: 'Mr Kane is dead',
+        c28p1: 'Natan looked at what his artistic career had become: an impossible love story. In streams and social media, that story became his life.',
+        c28p2: 'Now that it was over, he did not know how to continue. After a confusing period traveling around, he decided to return to his homeland and paraglider roots, getting closer to family.',
+        c28p3: 'He also decided it was time to start playing instruments. He invested in a Native American flute and a tongue drum, and began mastering them. Inspired by nature contact, he brought that texture into his music.',
+        c28p4: 'He kept streaming for another year with a feeling of emptiness and disconnection, still playing DJ sets and now adding instruments on top, a major differential in his streamer career.',
+        c28p5: 'At the end of 2024 he made a decision he never imagined: kill Mr Kane.',
+        c28imgAlt: 'Natan reflecting on his music career',
+        c28imgCaption: 'the beginning of a new era',
+        c28fluteAlt: 'Native American flute',
+        c28drumAlt: 'Tongue drum',
+        c28flute2Alt: 'Playing flute in nature',
+        c28Action: 'Open paraglider story',
+        c29Tag: 'Chapter 29',
+        c29Title: 'I am Natan Lichtnow',
+        c29year: '2025',
+        c29p1: 'Mr Kane was created as an escape from reality. Natan felt the need to face reality brutally and rebuild himself not only as an artist, but as a person.',
+        c29p2: 'He looked at his values and what he was doing, and reached a conclusion that shocked everyone around him: leave DJ life aside, focus one hundred percent on becoming a multi-instrumentalist, create improvised live music with a context of peace and spiritual elevation, without labels and without masks.',
+        c29p3: 'This brought deep seriousness to his artistic work. Development was fast, community response was strong, and he got support to invest in instruments he always dreamed about: cello, different flutes, and MIDI controllers. His project was rising.',
+        c29imgAlt: 'Natan Lichtnow, unmasked and authentic',
+        c29imgCaption: 'no more masks',
+        c30Tag: 'Chapter 30',
+        c30Title: 'The Temple',
+        c30p1: 'Natan started feeling the light returning inside him, with a strong sense of purpose in the music he was creating. He felt he could help people slow down.',
+        c30p2: 'With that in mind, he built the full context for his streams: The Temple.',
+        c30p3: 'Life is moving too fast, use this time to slow down became his slogan.',
+        c30p4: 'That became his great passion and focus. To this day, with a small but loyal Twitch community, Natan keeps writing his story online and creating a safe atmosphere for people to be vulnerable, connect, and share discoveries from their inner journey.',
+        c30imgAlt: 'Natan playing guitar, The Temple',
+        c30imgCaption: 'The Temple',
+        ctaEyebrow: 'Continue exploring',
+        ctaTitle: 'The story continues',
+        ctaText: 'Discover the music, flow arts, and the Temple',
+        ctaPrimary: 'Back to music home',
+        ctaSecondary: 'Open paraglider story',
+        footer: 'NATAN LICHTNOW // MUSIC STORY'
+      }
+    };
+  </script>
+  <script src="../js/internal-pages.js"></script>
+</body>
+</html>
