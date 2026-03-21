@@ -706,6 +706,19 @@
         padding: 0.46rem 0.4rem;
       }
     }
+
+    /* Ensure certain chapter text boxes span the full content width
+       so they align with the section dividers (c-shell width). */
+    .jp-chapter#ch-06 .jp-dark-box,
+    .jp-chapter#ch-07 .jp-dark-box,
+    .jp-chapter#ch-10 .jp-text,
+    .jp-chapter#ch-11 .jp-text {
+      max-width: none;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      box-sizing: border-box;
+    }
   </style>
 </head>
 <body>
