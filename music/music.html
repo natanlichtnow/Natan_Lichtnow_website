@@ -44,8 +44,17 @@
       font-weight: 300;
       font-size: clamp(0.98rem, 1.4vw, 1.05rem);
       line-height: 1.6;
-      color: var(--mh-text-muted);
+      color: var(--mh-text);
       margin: 0 0 1rem;
+    }
+
+    /* Ensure all headings/titles use the same accent color for consistency */
+    .c-page--music h1,
+    .c-page--music h2,
+    .c-page--music h3,
+    .c-page--music .c-detail-panel__title,
+    .c-page--music .c-media-frame__copy h2 {
+      color: var(--mh-accent);
     }
 
     .c-page--music .c-media-frame { gap: 2rem; align-items: stretch; display:grid; grid-template-columns: 1fr 1fr; }
@@ -80,6 +89,15 @@
     /* Make detail layout full-width on this page so the last block isn't narrow */
     .c-page--music .c-detail-layout { grid-template-columns: 1fr !important; }
     .c-page--music .c-detail-panel { width: 100%; }
+
+    /* Responsive two-column layout for detail panels with right-side images */
+    .mh-two-col { display: grid; grid-template-columns: 1fr 520px; gap: 1rem; align-items: stretch; }
+    .mh-two-col img { width: 500px; max-width: 100%; border-radius: 10px; display: block; }
+
+    @media (max-width: 900px) {
+      .mh-two-col { grid-template-columns: 1fr; }
+      .mh-two-col img { width: 100%; margin-top: 0.75rem; }
+    }
   </style>
 </head>
 <body>
@@ -91,10 +109,10 @@
     <header class="c-topbar">
       <div class="c-shell c-topbar__inner">
         <a class="c-topbar__brand" href="../index.html"><img class="c-topbar__brand-logo" src="../img/logos/logohorizontal.png" alt="Natan Lichtnow" style="height: 2.2rem; width: auto;" /></a>
-        <nav class="c-topbar__nav" aria-label="Section navigation">
+          <nav class="c-topbar__nav" aria-label="Section navigation">
           <a class="c-topbar__link" href="index.html" data-i18n="navSectionHome">Music Home</a>
           <a class="c-topbar__link" href="history.html" data-i18n="navMusicExperience">History</a>
-          <a class="c-topbar__link" href="music.html" data-i18n="navMusic">Music</a>
+          <a class="c-topbar__link c-topbar__link--is-active" href="music.html" data-i18n="navMusic">Music</a>
           <a class="c-topbar__link" href="twitch-streaming.html" data-i18n="navTwitch">Twitch</a>
           <a class="c-topbar__link" href="flow-arts-experience.html" data-i18n="navFlowExperience">Flow Arts</a>
         </nav>
@@ -149,21 +167,24 @@
       <section class="c-section">
         <div class="c-detail-layout">
           <div class="c-detail-panel">
-            <h2 class="c-detail-panel__title" data-i18n="transitionTitle">Transition and relaunch</h2>
-            <p data-i18n="transitionPara">Over time, during the pandemic and with Flow arts influence, Natan slowed tempos from psytrance to triphop and downtempo. In 2024 he retired the Mr Kane project and relaunched as Natan Lichtnow, focusing on instrumental live loops on Twitch.</p>
-            <!-- pt duplicate removed: use i18n translations via language switcher -->
-            <p data-i18n="channelLabel">You can see recordings of his stream here:</p>
-            <a class="c-button" href="https://www.youtube.com/@NatanLichtnow" target="_blank" rel="noopener" data-i18n="youtubeChannelButton">YouTube / Natan Lichtnow</a>
+            <div class="mh-two-col">
+              <div>
+                <h2 class="c-detail-panel__title" data-i18n="transitionTitle">Transition and relaunch</h2>
+                <p data-i18n="transitionPara">Over time, during the pandemic and with Flow arts influence, Natan slowed tempos from psytrance to triphop and downtempo. In 2024 he retired the Mr Kane project and relaunched as Natan Lichtnow, focusing on instrumental live loops on Twitch.</p>
+                <p data-i18n="channelLabel">You can see recordings of his stream here:</p>
+                <a class="c-button" href="https://www.youtube.com/@NatanLichtnow" target="_blank" rel="noopener" data-i18n="youtubeChannelButton">YouTube / Natan Lichtnow</a>
 
-            <!-- Twitch preview moved here from the aside -->
-              <div style="display:flex; gap:1rem; align-items:flex-start; flex-wrap:wrap; margin-top:1rem;">
-                <div style="flex:1; min-width:220px;">
+                <div style="margin-top:1rem;">
                   <h3 data-i18n="twitchHeading">Check out his Twitch journey</h3>
                   <p data-i18n="twitchPara">Visit the Twitch page for streams and recordings.</p>
                   <a class="c-button" href="twitch-streaming.html" data-i18n="twitchButton">Open Twitch page</a>
                 </div>
-                <img src="../img/music-arts/streaming.jpg" alt="" data-i18n="streamingAlt" data-i18n-attr="alt" style="width:320px; max-width:100%; border-radius:10px; display:block; align-self:flex-start; margin-top:1.4rem;" />
               </div>
+
+                <div style="display:flex; align-items:center; justify-content:flex-end;">
+                  <img class="mh-right-img" src="../img/music-arts/streaming.jpg" alt="" data-i18n="streamingAlt" data-i18n-attr="alt" />
+                </div>
+            </div>
           </div>
         </div>
       </section>
