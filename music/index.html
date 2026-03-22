@@ -21,10 +21,51 @@
     .c-media-frame__copy h2 { color: var(--page-accent); margin-top: 0; }
     .c-media-frame { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: center; }
     @media (max-width: 900px) { .c-media-frame { grid-template-columns: 1fr; } }
+
+    /* Make all media visuals match size and crop consistently */
+    .c-media-frame__visual img {
+      width: 100%;
+      height: 18rem;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 18px 46px rgba(20,8,40,0.6);
+    }
+
+    @media (min-width: 1200px) {
+      .c-media-frame__visual img { height: 22rem; }
+    }
+
+    /* Background animated blobs and stars (reuse history visuals, tuned for music) */
+    .music-bg-blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(100px); opacity: 0; will-change: transform, opacity; }
+    .music-bg-blob--a { width: 48vw; height: 48vw; top: -8%; left: -12%; background: radial-gradient(circle, rgba(212,139,255,0.18) 0%, transparent 72%); animation: music-blob-a 20s ease-in-out infinite alternate; z-index:0; }
+    .music-bg-blob--b { width: 36vw; height: 36vw; top: 10%; right: -8%; background: radial-gradient(circle, rgba(74,0,224,0.14) 0%, transparent 72%); animation: music-blob-b 26s ease-in-out infinite alternate; z-index:0; }
+    .music-bg-blob--c { width: 32vw; height: 32vw; bottom: 8%; left: 28%; background: radial-gradient(circle, rgba(255,120,200,0.12) 0%, transparent 72%); animation: music-blob-c 30s ease-in-out infinite alternate; z-index:0; }
+
+    @keyframes music-blob-a { 0%{transform:translate(0,0) scale(1);opacity:.6}50%{transform:translate(8vw,6vh) scale(1.08);opacity:.72}100%{transform:translate(-4vw,10vh) scale(.96);opacity:.58} }
+    @keyframes music-blob-b { 0%{transform:translate(0,0) scale(1);opacity:.5}50%{transform:translate(-6vw,8vh) scale(1.1);opacity:.68}100%{transform:translate(4vw,-3vh) scale(.9);opacity:.46} }
+    @keyframes music-blob-c { 0%{transform:translate(0,0) scale(1);opacity:.45}50%{transform:translate(6vw,-6vh) scale(1.12);opacity:.6}100%{transform:translate(-5vw,3vh) scale(.9);opacity:.4} }
+
+    .music-stars {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px),
+        radial-gradient(circle, rgba(200,180,255,0.5) 1px, transparent 1px);
+      background-size: 200px 200px, 140px 140px, 320px 320px;
+      background-position: 0 0, 80px 50px, 140px 90px;
+      opacity: 0.28;
+    }
+
+    /* Ensure main content sits above stars/blobs */
+    .c-page--music > main, .c-page--music header, .c-page--music footer { position: relative; z-index: 10; }
   </style>
 </head>
 <body>
   <div class="c-page c-page--music">
+    <div class="music-bg-blob music-bg-blob--a" aria-hidden="true"></div>
+    <div class="music-bg-blob music-bg-blob--b" aria-hidden="true"></div>
+    <div class="music-bg-blob music-bg-blob--c" aria-hidden="true"></div>
+    <div class="music-stars" aria-hidden="true"></div>
     <header class="c-topbar">
       <div class="c-shell c-topbar__inner">
         <a class="c-topbar__brand" href="../index.html">
@@ -33,8 +74,9 @@
         <nav class="c-topbar__nav" aria-label="Section navigation">
           <a class="c-topbar__link c-topbar__link--is-active" href="index.html" data-i18n="navSectionHome">Music Home</a>
           <a class="c-topbar__link" href="history.html" data-i18n="navMusicExperience">History</a>
-          <a class="c-topbar__link" href="flow-arts-experience.html" data-i18n="navFlowExperience">Flow Arts</a>
+          <a class="c-topbar__link" href="music.html" data-i18n="navMusic">Music</a>
           <a class="c-topbar__link" href="twitch-streaming.html" data-i18n="navTwitch">Twitch</a>
+          <a class="c-topbar__link" href="flow-arts-experience.html" data-i18n="navFlowExperience">Flow Arts</a>
         </nav>
         <div class="c-language-switcher" aria-label="Language selector">
           <span class="c-language-switcher__label" data-i18n="languageLabel">LANG</span>
@@ -46,40 +88,46 @@
 
     <main class="c-shell" aria-live="polite">
       <section class="c-section">
-        <div class="c-media-frame">
-          <div class="c-media-frame__visual">
-            <img src="../img/music-arts/playin.jpg" alt="Natan playing music" />
+        <a class="c-media-link" href="music.html" aria-label="Open Music page">
+          <div class="c-media-frame">
+            <div class="c-media-frame__visual">
+              <img src="../img/music-arts/playin.jpg" alt="Natan playing music" />
+            </div>
+            <div class="c-media-frame__copy">
+              <h2 data-i18n="musicHeading">Music</h2>
+              <p data-i18n="musicP1">Natan is a deeply connected person with his creative side — from music to intense performances. He travelled the world absorbing as much as he could to add to his creative arsenal.</p>
+              <p data-i18n="musicP2">Music — DJ and Producer since 2017, Natan has produced over 120 songs across styles from psytrance to ambient. He found his place with meditative live looping, creating improvised music as the energy of the room demands.</p>
+            </div>
           </div>
-          <div class="c-media-frame__copy">
-            <h2 data-i18n="musicHeading">Music</h2>
-            <p data-i18n="musicP1">Natan is a deeply connected person with his creative side — from music to intense performances. He travelled the world absorbing as much as he could to add to his creative arsenal.</p>
-            <p data-i18n="musicP2">Music — DJ and Producer since 2017, Natan has produced over 120 songs across styles from psytrance to ambient. He found his place with meditative live looping, creating improvised music as the energy of the room demands.</p>
-          </div>
-        </div>
+        </a>
       </section>
 
       <section class="c-section">
-        <div class="c-media-frame">
-          <div class="c-media-frame__visual">
-            <img src="../img/music-arts/flowarts.jpg" alt="Natan performing flow arts" />
+        <a class="c-media-link" href="flow-arts-experience.html" aria-label="Open Flow Arts page">
+          <div class="c-media-frame">
+            <div class="c-media-frame__visual">
+              <img src="../img/music-arts/flowarts.jpg" alt="Natan performing flow arts" />
+            </div>
+            <div class="c-media-frame__copy">
+              <h2 data-i18n="flowHeading">Flow Arts</h2>
+              <p data-i18n="flowP1">Natan started his flow journey in 2021, diving headfirst into this amazing universe. Now retired from regular performance, he keeps flow arts as a personal practice until the time is right to shine on stages again.</p>
+            </div>
           </div>
-          <div class="c-media-frame__copy">
-            <h2 data-i18n="flowHeading">Flow Arts</h2>
-            <p data-i18n="flowP1">Natan started his flow journey in 2021, diving headfirst into this amazing universe. Now retired from regular performance, he keeps flow arts as a personal practice until the time is right to shine on stages again.</p>
-          </div>
-        </div>
+        </a>
       </section>
 
       <section class="c-section">
-        <div class="c-media-frame">
-          <div class="c-media-frame__visual">
-            <img src="../img/music-arts/streaming.jpg" alt="Natan streaming live" />
+        <a class="c-media-link" href="twitch-streaming.html" aria-label="Open Twitch page">
+          <div class="c-media-frame">
+            <div class="c-media-frame__visual">
+              <img src="../img/music-arts/streaming.jpg" alt="Natan streaming live" />
+            </div>
+            <div class="c-media-frame__copy">
+              <h2 data-i18n="twitchHeading">Twitch Streamer</h2>
+              <p data-i18n="twitchP1">Streaming since 2021, Natan explored chatting, gaming, music production, DJing, flow arts, and IRL streams. He found his voice in live looping on Twitch, creating a cozy corner he calls "The Temple" — a place to slow down from the fast-moving internet.</p>
+            </div>
           </div>
-          <div class="c-media-frame__copy">
-            <h2 data-i18n="twitchHeading">Twitch Streamer</h2>
-            <p data-i18n="twitchP1">Streaming since 2021, Natan explored chatting, gaming, music production, DJing, flow arts, and IRL streams. He found his voice in live looping on Twitch, creating a cozy corner he calls "The Temple" — a place to slow down from the fast-moving internet.</p>
-          </div>
-        </div>
+        </a>
       </section>
     </main>
 
@@ -93,6 +141,7 @@
       'pt-BR': {
         pageTitle: 'Música & Flow Arts | Natan Lichtnow',
         navSectionHome: 'Início da Música',
+        navMusic: 'Música',
         navMusicExperience: 'História',
         navFlowExperience: 'Flow Arts',
         navTwitch: 'Twitch',
@@ -109,6 +158,7 @@
       'en': {
         pageTitle: 'Music & Flow Arts | Natan Lichtnow',
         navSectionHome: 'Music Home',
+        navMusic: 'Music',
         navMusicExperience: 'History',
         navFlowExperience: 'Flow Arts',
         navTwitch: 'Twitch',

@@ -266,6 +266,13 @@
       color: #8eb39b;
     }
 
+    /* Videos section: make the lead subtitle span the full section width */
+    .hp-home__section.hp-home__videos .hp-home__section-copy {
+      max-width: 100% !important;
+      width: 100% !important;
+      margin-right: 0 !important;
+    }
+
     .hp-home__image-slot {
       min-height: 18rem;
       padding: 0;
@@ -454,6 +461,43 @@
       color: #587f67;
     }
 
+    .hp-home__social {
+      display: flex;
+      gap: 0.9rem;
+      justify-content: center;
+      margin: 0.6rem 0 0.2rem;
+      align-items: center;
+    }
+
+    .hp-home__social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.6rem;
+      height: 2.6rem;
+      border-radius: 0.6rem;
+      border: 1px solid rgba(66,200,116,0.08);
+      background: rgba(4,12,7,0.32);
+      color: #dff6e6;
+      transition: transform 0.14s ease, background 0.14s ease, box-shadow 0.14s ease;
+      text-decoration: none;
+    }
+
+    .hp-home__social a:hover,
+    .hp-home__social a:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(66,200,116,0.12);
+      background: rgba(66,200,116,0.08);
+      outline: none;
+    }
+
+    .hp-home__social svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      display: block;
+      fill: currentColor;
+    }
+
     @media (max-width: 960px) {
       .hp-home__hero-grid,
       .hp-home__section-grid,
@@ -622,12 +666,13 @@
           </div>
         </div>
       </section>
-
       <div class="c-shell c-mountain-divider" aria-hidden="true">
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
           <path fill="currentColor" d="M0,108L120,38L220,84L322,16L436,92L558,34L648,88L764,14L904,102L1020,44L1200,108L1200,120L0,120Z"></path>
         </svg>
       </div>
+
+      
 
       <section class="hp-home__section">
         <div class="c-shell hp-home__section-grid">
@@ -635,6 +680,9 @@
             <span class="hp-home__section-tag" data-i18n="projectsTag">Instructional projects</span>
             <h2 class="hp-home__section-title" data-i18n="projectsTitle">Instructional Projects</h2>
             <p class="hp-home__section-copy" data-i18n="projectsLead">Blending audio engineering, animation, and a deep understanding of air dynamics, Natan developed clear and accessible materials to confidently transmit the knowledge behind the complex universe of cross country flight.</p>
+            <div class="hp-home__section-actions" style="margin-top:1rem;">
+              <a class="c-button" href="projects.html" data-i18n="projectsButton">Projects</a>
+            </div>
           </div>
           <div class="hp-home__image-slot" data-video-slot>
             <div class="hp-home__image-player" id="inlineTeachingVideo" aria-label="Preview video" data-i18n="inlineVideoAriaLabel" data-i18n-attr="aria-label"></div>
@@ -663,11 +711,53 @@
         </svg>
       </div>
 
+      <section class="hp-home__section hp-home__videos">
+        <div class="c-shell">
+          <span class="hp-home__section-tag" data-i18n="videosTag">Instructional videos</span>
+          <h2 class="hp-home__section-title" data-i18n="videosTitle">Instructional YouTube videos</h2>
+          <p class="hp-home__section-copy" data-i18n="videosLead">Short, focused clips covering technique and safety for pilots.</p>
+
+          <div class="c-shell hp-home__cards" style="margin-top:1.2rem;">
+            <article class="hp-home__card">
+              <h3 class="hp-home__card-title" data-i18n="video1Title">The secret for the first thermal!</h3>
+              <div class="hp-home__image-slot">
+                <div class="hp-home__image-player" aria-label="Video: The secret for the first thermal" data-i18n-attr="aria-label" data-i18n="video1IframeTitle">
+                  <iframe src="https://www.youtube.com/embed/f3X9HOeHYtE" title="The secret for the first thermal!" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+              </div>
+            </article>
+
+            <article class="hp-home__card">
+              <h3 class="hp-home__card-title" data-i18n="video2Title">My launching technique</h3>
+              <div class="hp-home__image-slot">
+                <div class="hp-home__image-player" aria-label="Video: My launching technique" data-i18n-attr="aria-label" data-i18n="video2IframeTitle">
+                  <iframe src="https://www.youtube.com/embed/29VN9-sWjlI" title="My launching technique" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="c-shell c-mountain-divider" aria-hidden="true">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path fill="currentColor" d="M0,108L120,38L220,84L322,16L436,92L558,34L648,88L764,14L904,102L1020,44L1200,108L1200,120L0,120Z"></path>
+        </svg>
+      </div>
+
     </main>
 
     <footer class="hp-home__footer">
       <div class="c-shell">
         <p class="hp-home__footer-copy" data-i18n="copyright">© 2026 Natan Lichtnow. All rights reserved.</p>
+        <div class="hp-home__social" aria-hidden="false">
+          <a href="https://www.instagram.com/natan.lichtnow.fly" target="_blank" rel="noopener" aria-label="Instagram" data-i18n-attr="aria-label" data-i18n="socialInstagramAria">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.4a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2zm0 2a2.6 2.6 0 1 0 0 5.2 2.6 2.6 0 0 0 0-5.2zM18.6 6.2a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@NatanLichtnowFly" target="_blank" rel="noopener" aria-label="YouTube" data-i18n-attr="aria-label" data-i18n="socialYoutubeAria">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2s-.2-1.6-.8-2.3c-.8-.9-1.7-.9-2.1-1C16.9 2.5 12 2.5 12 2.5h-.1s-4.9 0-8.5.4c-.4.1-1.3.1-2.1 1C.7 4.6.5 6.2.5 6.2S.2 8 .2 9.9v.2C.2 12.7.2 14.6.2 14.6s.2 1.6.8 2.3c.8.9 1.9.9 2.4 1 1.7.2 7.3.4 7.3.4s4.9 0 8.5-.4c.4-.1 1.3-.1 2.1-1 .6-.7.8-2.3.8-2.3s.2-1.9.2-3.7v-.2c0-1.9-.2-3.7-.2-3.7zM9.8 15.1V8.8l6.1 3.2-6.1 3.1z"/></svg>
+          </a>
+        </div>
       </div>
     </footer>
 
@@ -702,6 +792,7 @@
         navHome: 'Início',
         navStory: 'História',
         navProjects: 'Projetos',
+        navMusic: 'Música',
         heroEyebrow: 'Universo Paraglider',
         heroTitle: 'Piloto de Paraglider e Instrutor',
         heroLead: 'Uma trajetória marcada por altos e baixos, guiada pela paixão de compartilhar os segredos do ar, absorvidos desde a infância.',
@@ -710,6 +801,7 @@
         projectsTag: 'Projetos instrucionais',
         projectsTitle: 'Projetos Instrucionais',
         projectsLead: 'Unindo engenharia de áudio, animação e uma compreensão profunda das dinâmicas do ar, Natan desenvolveu materiais claros e acessíveis para transmitir, com confiança, o conhecimento do complexo universo do voo de cross country.',
+        projectsButton: 'Projetos',
         inlineVideoAriaLabel: 'Prévia do vídeo de material instrucional',
         videoModalAriaLabel: 'Player de vídeo',
         closeVideoAriaLabel: 'Fechar vídeo',
@@ -722,6 +814,17 @@
         courseTitle: 'Cross Country Experience',
         courseCopy: 'Imersão completa com 5 aulas teóricas aprofundadas, combinadas com acompanhamento prático na capital do voo livre: Governador Valadares.',
         copyright: '© 2026 Natan Lichtnow. Todos os direitos reservados.'
+        ,
+        socialInstagramAria: 'Perfil no Instagram',
+        socialYoutubeAria: 'Canal no YouTube'
+        ,
+        videosTag: 'Vídeos Instrucionais',
+        videosTitle: 'Vídeos Instrucionais no YouTube',
+        videosLead: 'Vídeos gratuitos no YouTube para te ajudar a voar melhor, com um arsenal crescendo esporadicamente — inscreva-se no canal para não perder um vídeo novo assim que sair!',
+        video1Title: 'O segredo para o primeiro térmico!',
+        video1IframeTitle: 'Vídeo: O segredo para o primeiro térmico',
+        video2Title: 'Minha técnica de decolagem',
+        video2IframeTitle: 'Vídeo: Minha técnica de lançamento'
       },
       en: {
         pageTitle: 'Natan Lichtnow | Paraglider Pilot & Instructor',
@@ -734,6 +837,7 @@
         navHome: 'Home',
         navStory: 'Journey',
         navProjects: 'Projects',
+        navMusic: 'Music',
         heroEyebrow: 'Paraglider World',
         heroTitle: 'Paraglider Pilot & Instructor',
         heroLead: 'A path marked by highs and lows, guided by a passion for sharing the secrets of the air, absorbed since childhood.',
@@ -742,6 +846,7 @@
         projectsTag: 'Instructional projects',
         projectsTitle: 'Instructional Projects',
         projectsLead: 'Blending audio engineering, animation, and a deep understanding of air dynamics, Natan developed clear and accessible materials to confidently transmit the knowledge behind the complex universe of cross country flight.',
+        projectsButton: 'Projects',
         inlineVideoAriaLabel: 'Instructional material video preview',
         videoModalAriaLabel: 'Video player',
         closeVideoAriaLabel: 'Close video',
@@ -754,6 +859,17 @@
         courseTitle: 'Cross Country Experience',
         courseCopy: 'A complete immersion with five in-depth theoretical classes, combined with practical follow-up in the free flight capital: Governador Valadares.',
         copyright: '© 2026 Natan Lichtnow. All rights reserved.'
+        ,
+        socialInstagramAria: 'Instagram profile',
+        socialYoutubeAria: 'YouTube channel'
+        ,
+        videosTag: 'Instructional videos',
+        videosTitle: 'Instructional YouTube videos',
+        videosLead: 'Short clips covering technique and safety for pilots.',
+        video1Title: 'The secret for the first thermal!',
+        video1IframeTitle: 'Video: The secret for the first thermal',
+        video2Title: 'My launching technique',
+        video2IframeTitle: 'Video: My launching technique'
       }
     };
   </script>
