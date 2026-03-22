@@ -507,7 +507,7 @@ img {
   letter-spacing: 0.08em;
   line-height: 1.4;
   color: var(--s-color-text-muted);
-  min-width: 5.2rem;
+  min-width: 5.7rem; /* increased to accommodate longer translations like "CRIATIVIDADE" */
   text-transform: uppercase;
 }
 

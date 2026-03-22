@@ -8,6 +8,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/internal.css" />
+  <style>
+    /* Music page - distinct but related visual tone */
+    .c-page--music {
+      --page-accent: #d48bff;
+      --page-accent-soft: rgba(212, 139, 255, 0.12);
+      --page-accent-strong: rgba(212, 139, 255, 0.28);
+      --page-accent-glow: rgba(212, 139, 255, 0.18);
+      --page-pattern: radial-gradient(circle at 10% 10%, rgba(212,139,255,0.06), transparent 20%), linear-gradient(180deg,#0b0620 0%, #060512 100%);
+    }
+    .c-media-frame__visual img { border-radius: 12px; box-shadow: 0 18px 46px rgba(20,8,40,0.6); display:block; width:100%; height:auto; }
+    .c-media-frame__copy h2 { color: var(--page-accent); margin-top: 0; }
+    .c-media-frame { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: center; }
+    @media (max-width: 900px) { .c-media-frame { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
   <div class="c-page c-page--music">
@@ -17,13 +31,13 @@
           <img class="c-topbar__brand-logo" src="../img/logos/logohorizontal.png" alt="Natan Lichtnow" style="height: 2.2rem; width: auto;" />
         </a>
         <nav class="c-topbar__nav" aria-label="Section navigation">
-          <a class="c-topbar__link c-topbar__link--is-active" href="index.html">Music Home</a>
-          <a class="c-topbar__link" href="history.html">History</a>
-          <a class="c-topbar__link" href="flow-arts-experience.html">Flow Arts</a>
-          <a class="c-topbar__link" href="twitch-streaming.html">Twitch</a>
+          <a class="c-topbar__link c-topbar__link--is-active" href="index.html" data-i18n="navSectionHome">Music Home</a>
+          <a class="c-topbar__link" href="history.html" data-i18n="navMusicExperience">History</a>
+          <a class="c-topbar__link" href="flow-arts-experience.html" data-i18n="navFlowExperience">Flow Arts</a>
+          <a class="c-topbar__link" href="twitch-streaming.html" data-i18n="navTwitch">Twitch</a>
         </nav>
         <div class="c-language-switcher" aria-label="Language selector">
-          <span class="c-language-switcher__label">LANG</span>
+          <span class="c-language-switcher__label" data-i18n="languageLabel">LANG</span>
           <button class="c-language-switcher__option" type="button" data-lang="pt-BR">PT</button>
           <button class="c-language-switcher__option" type="button" data-lang="en">EN</button>
         </div>
@@ -31,13 +45,85 @@
     </header>
 
     <main class="c-shell" aria-live="polite">
-      <!-- Page intentionally left minimal — content will be added from the provided .txt example -->
+      <section class="c-section">
+        <div class="c-media-frame">
+          <div class="c-media-frame__visual">
+            <img src="../img/music-arts/playin.jpg" alt="Natan playing music" />
+          </div>
+          <div class="c-media-frame__copy">
+            <h2 data-i18n="musicHeading">Music</h2>
+            <p data-i18n="musicP1">Natan is a deeply connected person with his creative side — from music to intense performances. He travelled the world absorbing as much as he could to add to his creative arsenal.</p>
+            <p data-i18n="musicP2">Music — DJ and Producer since 2017, Natan has produced over 120 songs across styles from psytrance to ambient. He found his place with meditative live looping, creating improvised music as the energy of the room demands.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="c-section">
+        <div class="c-media-frame">
+          <div class="c-media-frame__visual">
+            <img src="../img/music-arts/flowarts.jpg" alt="Natan performing flow arts" />
+          </div>
+          <div class="c-media-frame__copy">
+            <h2 data-i18n="flowHeading">Flow Arts</h2>
+            <p data-i18n="flowP1">Natan started his flow journey in 2021, diving headfirst into this amazing universe. Now retired from regular performance, he keeps flow arts as a personal practice until the time is right to shine on stages again.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="c-section">
+        <div class="c-media-frame">
+          <div class="c-media-frame__visual">
+            <img src="../img/music-arts/streaming.jpg" alt="Natan streaming live" />
+          </div>
+          <div class="c-media-frame__copy">
+            <h2 data-i18n="twitchHeading">Twitch Streamer</h2>
+            <p data-i18n="twitchP1">Streaming since 2021, Natan explored chatting, gaming, music production, DJing, flow arts, and IRL streams. He found his voice in live looping on Twitch, creating a cozy corner he calls "The Temple" — a place to slow down from the fast-moving internet.</p>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="c-page-footer c-shell">
-      <p class="c-page-footer__text">NATAN LICHTNOW // MUSIC & FLOW ARTS</p>
+      <p class="c-page-footer__text" data-i18n="footer">NATAN LICHTNOW // MUSIC & FLOW ARTS</p>
     </footer>
   </div>
+
+  <script>
+    window.NATAN_PAGE_TRANSLATIONS = {
+      'pt-BR': {
+        pageTitle: 'Música & Flow Arts | Natan Lichtnow',
+        navSectionHome: 'Início da Música',
+        navMusicExperience: 'História',
+        navFlowExperience: 'Flow Arts',
+        navTwitch: 'Twitch',
+        languageLabel: 'IDIOMA',
+        musicHeading: 'Música',
+        musicP1: 'Natan é uma pessoa profundamente conectada ao seu lado criativo — da música às performances intensas. Viajou pelo mundo absorvendo tudo que pôde para enriquecer seu arsenal criativo.',
+        musicP2: 'Música — DJ e produtor desde 2017, Natan produziu mais de 120 músicas, de psytrance a ambient. Encontrou seu lugar no live looping meditativo, criando música improvisada conforme a energia do ambiente pede.',
+        flowHeading: 'Flow Arts',
+        flowP1: 'Natan começou sua jornada no flow em 2021, mergulhando de cabeça nesse universo. Atualmente aposentado das performances regulares, mantém a prática para si até o momento certo de voltar aos palcos.',
+        twitchHeading: 'Streamer no Twitch',
+        twitchP1: 'Streaming desde 2021, Natan explorou chatting, gaming, produção musical, DJing, flow arts e streams IRL. Encontrou-se no live looping no Twitch, criando um canto acolhedor chamado "The Temple" — um lugar para desacelerar do mundo acelerado da internet.',
+        footer: 'NATAN LICHTNOW // MÚSICA & FLOW ARTS'
+      },
+      'en': {
+        pageTitle: 'Music & Flow Arts | Natan Lichtnow',
+        navSectionHome: 'Music Home',
+        navMusicExperience: 'History',
+        navFlowExperience: 'Flow Arts',
+        navTwitch: 'Twitch',
+        languageLabel: 'LANG',
+        musicHeading: 'Music',
+        musicP1: 'Natan is a deeply connected person with his creative side — from music to intense performances. He travelled the world absorbing as much as he could to add to his creative arsenal.',
+        musicP2: 'Music — DJ and Producer since 2017, Natan has produced over 120 songs across styles from psytrance to ambient. He found his place with meditative live looping, creating improvised music as the energy of the room demands.',
+        flowHeading: 'Flow Arts',
+        flowP1: 'Natan started his flow journey in 2021, diving headfirst into this amazing universe. Now retired from regular performance, he keeps flow arts as a personal practice until the time is right to shine on stages again.',
+        twitchHeading: 'Twitch Streamer',
+        twitchP1: 'Streaming since 2021, Natan explored chatting, gaming, music production, DJing, flow arts, and IRL streams. He found his voice in live looping on Twitch, creating a cozy corner he calls "The Temple" — a place to slow down from the fast-moving internet.',
+        footer: 'NATAN LICHTNOW // MUSIC & FLOW ARTS'
+      }
+    };
+  </script>
 
   <script src="../js/internal-pages.js"></script>
 </body>
