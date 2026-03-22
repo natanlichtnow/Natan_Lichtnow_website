@@ -8,9 +8,86 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/internal.css" />
+  <style>
+    /* History-like visual theme (green/teal) scoped to this page */
+    body { background: linear-gradient(180deg, #080f08 0%, #0a1810 50%, #080d08 100%) !important; }
+    .c-page--music {
+      --mh-accent: #00e676;
+      --mh-accent-soft: rgba(0,230,118,0.12);
+      --mh-accent-strong: rgba(0,230,118,0.28);
+      --mh-accent-glow: rgba(0,230,118,0.18);
+      --mh-text: #d8f0e0;
+      --mh-text-muted: #6a9878;
+      --mh-panel: rgba(12,28,18,0.72);
+      --mh-border: rgba(0,230,118,0.14);
+      color: var(--mh-text);
+      font-family: 'Rajdhani', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Typography to match history page */
+    .c-page--music .c-media-frame__copy h2,
+    .c-page--music .c-detail-panel__title {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 2.2vw, 2rem);
+      line-height: 1.05;
+      color: var(--mh-accent);
+      margin: 0 0 0.6rem;
+    }
+
+    .c-page--music p,
+    .c-page--music .c-card__text,
+    .c-page--music .c-detail-panel__text {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 300;
+      font-size: clamp(0.98rem, 1.4vw, 1.05rem);
+      line-height: 1.6;
+      color: var(--mh-text-muted);
+      margin: 0 0 1rem;
+    }
+
+    .c-page--music .c-media-frame { gap: 2rem; align-items: stretch; display:grid; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 900px) { .c-page--music .c-media-frame { grid-template-columns: 1fr; } }
+
+    /* single-column variant for splits where visual is removed */
+    .mh-split--single { grid-template-columns: 1fr !important; }
+
+    .c-page--music .c-media-frame__visual img { height: 18rem; object-fit: cover; border-radius: 12px; box-shadow: 0 22px 54px rgba(6,12,8,0.6); }
+    @media (min-width:1200px) { .c-page--music .c-media-frame__visual img { height: 22rem; } }
+
+    .c-page--music .c-detail-panel { background: var(--mh-panel); border: 1px solid var(--mh-border); padding: 1.5rem; border-radius: 12px; color: var(--mh-text); }
+    .c-page--music .c-detail-panel__title { color: var(--mh-accent); font-size: 1.25rem; }
+
+    .c-page--music .c-info-strip { display:flex; gap:1rem; }
+    .c-page--music .c-info-strip__label { color: var(--mh-text-muted); }
+
+    /* Green background blobs + stars (subtle, tuned to history) */
+    .music-bg-blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(100px); opacity: 0.7; will-change: transform, opacity; }
+    .music-bg-blob--a { width: 45vw; height: 45vw; top: -10%; left: -12%; background: radial-gradient(circle, rgba(0,230,118,0.22) 0%, transparent 70%); animation: mh-blob-drift-1 18s ease-in-out infinite alternate; z-index:0; }
+    .music-bg-blob--b { width: 38vw; height: 38vw; top: 15%; right: -8%; background: radial-gradient(circle, rgba(0,188,212,0.2) 0%, transparent 70%); animation: mh-blob-drift-2 22s ease-in-out infinite alternate; z-index:0; }
+    .music-bg-blob--c { width: 30vw; height: 30vw; bottom: 10%; left: 30%; background: radial-gradient(circle, rgba(74,0,224,0.16) 0%, transparent 70%); animation: mh-blob-drift-3 26s ease-in-out infinite alternate; z-index:0; }
+    @keyframes mh-blob-drift-1 { 0%{transform:translate(0,0) scale(1);opacity:.6}33%{transform:translate(8vw,5vh) scale(1.12);opacity:.75}66%{transform:translate(-3vw,10vh) scale(.95);opacity:.55}100%{transform:translate(5vw,-3vh) scale(1.08);opacity:.7} }
+    @keyframes mh-blob-drift-2 { 0%{transform:translate(0,0) scale(1);opacity:.5}33%{transform:translate(-6vw,8vh) scale(1.1);opacity:.7}66%{transform:translate(4vw,-4vh) scale(.92);opacity:.45}100%{transform:translate(-5vw,6vh) scale(1.06);opacity:.65} }
+    @keyframes mh-blob-drift-3 { 0%{transform:translate(0,0) scale(1);opacity:.45}33%{transform:translate(6vw,-6vh) scale(1.14);opacity:.6}66%{transform:translate(-5vw,3vh) scale(.9);opacity:.4}100%{transform:translate(3vw,8vh) scale(1.05);opacity:.55} }
+
+    .music-stars { position: absolute; inset: 0; z-index: 1; pointer-events: none; background-image: radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px), radial-gradient(circle, rgba(200,240,220,0.5) 1px, transparent 1px); background-size: 220px 220px, 170px 170px, 310px 310px; background-position: 0 0, 80px 50px, 140px 90px; opacity: 0.25; }
+
+    /* Ensure content sits above decor */
+    .c-page--music > main, .c-page--music header, .c-page--music footer { position: relative; z-index: 10; }
+
+    /* Make detail layout full-width on this page so the last block isn't narrow */
+    .c-page--music .c-detail-layout { grid-template-columns: 1fr !important; }
+    .c-page--music .c-detail-panel { width: 100%; }
+  </style>
 </head>
 <body>
-  <div class="c-page c-page--music">
+  <div class="c-page c-page--music mh-page">
+    <div class="music-bg-blob music-bg-blob--a" aria-hidden="true"></div>
+    <div class="music-bg-blob music-bg-blob--b" aria-hidden="true"></div>
+    <div class="music-bg-blob music-bg-blob--c" aria-hidden="true"></div>
+    <div class="music-stars" aria-hidden="true"></div>
     <header class="c-topbar">
       <div class="c-shell c-topbar__inner">
         <a class="c-topbar__brand" href="../index.html"><img class="c-topbar__brand-logo" src="../img/logos/logohorizontal.png" alt="Natan Lichtnow" style="height: 2.2rem; width: auto;" /></a>
@@ -30,28 +107,63 @@
     </header>
 
     <main class="c-shell">
-      <section class="c-hero c-hero--split">
-        <div class="c-hero__panel">
-          <span class="c-hero__eyebrow" data-i18n="eyebrow">Music</span>
-          <h1 class="c-hero__title" data-i18n="heroTitle">Music</h1>
-          <p class="c-hero__lead" data-i18n="heroLead">A focused page presenting music work, direction and live practice.</p>
-          <div class="c-hero__actions">
-            <a class="c-button" href="music-experience.html" data-i18n="primaryAction">Open Music Experience</a>
-            <a class="c-button c-button--ghost" href="index.html" data-i18n="secondaryAction">Back to music home</a>
+      <!-- hero removed per request — content goes straight to sections -->
+
+      <section class="c-section">
+        <div class="c-detail-panel">
+          <div style="display:flex; gap:1rem; align-items:flex-start; flex-wrap:wrap;">
+            <div style="flex:1; min-width:220px;">
+              <h2 data-i18n="musicHeading">Music</h2>
+              <p data-i18n="musicP1">Natan has started his music journey in 2017 as Mr Kane, DJing and producing melodic progressive trance, he produced and released over 60 tracks released and more than 120 produced, he went through a deep exploration phase, learning everything he could about sound design, mix, master and storytelling</p>
+            </div>
+            <img src="../img/music-arts/playin.jpg" alt="" data-i18n="playinAlt" data-i18n-attr="alt" style="width:260px; max-width:100%; border-radius:12px; object-fit:cover;" />
           </div>
-        </div>
-        <div class="c-hero__media">
-          <img class="c-hero__image" src="../img/music-arts/playin.jpg" alt="Live music" />
         </div>
       </section>
 
       <section class="c-section">
-        <div class="c-media-frame">
-          <div class="c-media-frame__visual"><img src="../img/music-arts/playin.jpg" alt="Natan playing music" /></div>
-          <div class="c-media-frame__copy">
-            <h2 data-i18n="musicHeading">Music</h2>
-            <p data-i18n="musicP1">Natan is a deeply connected person with his creative side — from music to intense performances.</p>
-            <p data-i18n="musicP2">DJ and Producer since 2017, producing across styles and exploring live looping and improvisation.</p>
+        <div class="c-detail-panel">
+          <div style="display:flex; gap:1rem; align-items:flex-start; flex-wrap:wrap;">
+            <div style="flex:1; min-width:220px;">
+              <h2 data-i18n="musicJourneyHeading">Music journey</h2>
+              <p data-i18n="spotifyLabel">You can find all the Mr Kane music here:</p>
+              <div class="c-spotify-embed" style="margin-top:0.6rem;">
+                <iframe src="https://open.spotify.com/embed/artist/3Im2FjJJjCvcQY8A0BPph8" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" style="border-radius:12px"></iframe>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+
+      <section class="c-section">
+        <div class="c-detail-panel">
+          <h2 data-i18n="liveShowHeading">Last live show (Mr Kane)</h2>
+          <p data-i18n="liveShowPara">His last live show as Mr Kane playing psytrance — watch a recording below.</p>
+          <div class="c-embed" style="max-width:900px; margin-top:1rem;">
+            <iframe width="100%" height="480" src="https://www.youtube-nocookie.com/embed/SMM5aSxr3Gs" title="Natan Lichtnow - Last live show" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section class="c-section">
+        <div class="c-detail-layout">
+          <div class="c-detail-panel">
+            <h2 class="c-detail-panel__title" data-i18n="transitionTitle">Transition and relaunch</h2>
+            <p data-i18n="transitionPara">Over time, during the pandemic and with Flow arts influence, Natan slowed tempos from psytrance to triphop and downtempo. In 2024 he retired the Mr Kane project and relaunched as Natan Lichtnow, focusing on instrumental live loops on Twitch.</p>
+            <!-- pt duplicate removed: use i18n translations via language switcher -->
+            <p data-i18n="channelLabel">You can see recordings of his stream here:</p>
+            <a class="c-button" href="https://www.youtube.com/@NatanLichtnow" target="_blank" rel="noopener" data-i18n="youtubeChannelButton">YouTube / Natan Lichtnow</a>
+
+            <!-- Twitch preview moved here from the aside -->
+              <div style="display:flex; gap:1rem; align-items:flex-start; flex-wrap:wrap; margin-top:1rem;">
+                <div style="flex:1; min-width:220px;">
+                  <h3 data-i18n="twitchHeading">Check out his Twitch journey</h3>
+                  <p data-i18n="twitchPara">Visit the Twitch page for streams and recordings.</p>
+                  <a class="c-button" href="twitch-streaming.html" data-i18n="twitchButton">Open Twitch page</a>
+                </div>
+                <img src="../img/music-arts/streaming.jpg" alt="" data-i18n="streamingAlt" data-i18n-attr="alt" style="width:320px; max-width:100%; border-radius:10px; display:block; align-self:flex-start; margin-top:1.4rem;" />
+              </div>
           </div>
         </div>
       </section>
@@ -64,10 +176,44 @@
   <script>
     window.NATAN_PAGE_TRANSLATIONS = {
       'pt-BR': {
-        pageTitle: 'Música | Natan Lichtnow', languageLabel: 'IDIOMA', navSectionHome: 'Início da Música', navMusic: 'Música', navMusicExperience: 'História', navFlowExperience: 'Flow Arts', navTwitch: 'Twitch', eyebrow: 'Música', heroTitle: 'Música', heroLead: 'Uma página dedicada à música: direção, apresentações e prática ao vivo.', primaryAction: 'Abrir Experiência Musical', secondaryAction: 'Voltar ao início da música', musicHeading: 'Música', musicP1: 'Natan é uma pessoa profundamente conectada ao seu lado criativo — da música às performances intensas.', musicP2: 'DJ e produtor desde 2017, explorando live looping e improvisação.', footer: 'NATAN LICHTNOW // MÚSICA'
+        pageTitle: 'Música | Natan Lichtnow', languageLabel: 'IDIOMA', navSectionHome: 'Início da Música', navMusic: 'Música', navMusicExperience: 'História', navFlowExperience: 'Flow Arts', navTwitch: 'Twitch', eyebrow: 'Música', heroTitle: 'Música', heroLead: 'Uma página dedicada à música: direção, apresentações e prática ao vivo.', primaryAction: 'Abrir Experiência Musical', secondaryAction: 'Voltar ao início da música', musicHeading: 'Música', musicP1: 'Natan iniciou sua jornada musical em 2017 como Mr Kane, atuando como DJ e produtor de trance progressivo melódico; lançou mais de 60 faixas e produziu mais de 120 músicas. Passou por uma fase profunda de exploração, aprendendo sobre design de som, mixagem, masterização e narrativa.', musicP2: 'DJ e produtor desde 2017, explorando live looping e improvisação.', footer: 'NATAN LICHTNOW // MÚSICA',
+        danghasAlt: 'Foto de Natan com instrumento (danghas)',
+        musicJourneyHeading: 'Jornada musical',
+        musicPara1: 'Natan começou sua jornada musical em 2017 como Mr Kane — DJ e produtor de progressive trance melódico. Lançou e produziu muitas faixas enquanto aprendia design de som, mixagem, masterização e narrativa.',
+        spotifyLabel: 'Você pode encontrar todo o trabalho do Mr Kane aqui:',
+        spotifyButton: 'Abrir no Spotify',
+        playinAlt: 'Natan tocando ao vivo',
+        liveShowHeading: 'Último show ao vivo (Mr Kane)',
+        liveShowPara: 'Seu último show ao vivo como Mr Kane tocando psytrance — assista a gravação abaixo.',
+        liveShowWatchButton: 'Assista à gravação no YouTube',
+        transitionTitle: 'Transição e relançamento',
+        transitionPara: 'Com o tempo, durante a pandemia e com a influência do Flow arts, Natan desacelerou os tempos do psytrance para triphop e downtempo. Em 2024, ele encerrou o projeto Mr Kane e relançou como Natan Lichtnow, focando em loops instrumentais ao vivo na Twitch.',
+        channelLabel: 'Você pode ver gravações da sua stream aqui:',
+        youtubeChannelButton: 'YouTube / Natan Lichtnow',
+        twitchHeading: 'Confira sua jornada na Twitch',
+        twitchPara: 'Visite a página Twitch para streams e gravações.',
+        twitchButton: 'Abrir página da Twitch'
+        ,streamingAlt: 'Miniatura da transmissão na Twitch'
       },
       en: {
-        pageTitle: 'Music | Natan Lichtnow', languageLabel: 'LANG', navSectionHome: 'Music Home', navMusic: 'Music', navMusicExperience: 'Music', navFlowExperience: 'Flow Arts', navTwitch: 'Twitch', eyebrow: 'Music', heroTitle: 'Music', heroLead: 'A focused page presenting music work, direction and live practice.', primaryAction: 'Open Music Experience', secondaryAction: 'Back to music home', musicHeading: 'Music', musicP1: 'Natan is a deeply connected person with his creative side — from music to intense performances.', musicP2: 'DJ and Producer since 2017, exploring live looping and improvisation.', footer: 'NATAN LICHTNOW // MUSIC'
+        pageTitle: 'Music | Natan Lichtnow', languageLabel: 'LANG', navSectionHome: 'Music Home', navMusic: 'Music', navMusicExperience: 'History', navFlowExperience: 'Flow Arts', navTwitch: 'Twitch', eyebrow: 'Music', heroTitle: 'Music', heroLead: 'A focused page presenting music work, direction and live practice.', primaryAction: 'Open Music Experience', secondaryAction: 'Back to music home', musicHeading: 'Music', musicP1: 'Natan has started his music journey in 2017 as Mr Kane, DJing and producing melodic progressive trance, he produced and released over 60 tracks released and more than 120 produced, he went through a deep exploration phase, learning everything he could about sound design, mix, master and storytelling', musicP2: 'DJ and Producer since 2017, exploring live looping and improvisation.', footer: 'NATAN LICHTNOW // MUSIC',
+        danghasAlt: 'Photo of Natan with instrument (danghas)',
+        musicJourneyHeading: 'Music journey',
+        musicPara1: 'Natan started his music journey in 2017 as Mr Kane — DJing and producing melodic progressive trance. He released and produced many tracks while learning sound design, mixing, mastering and storytelling.',
+        spotifyLabel: 'You can find all the Mr Kane music here:',
+        spotifyButton: 'Open on Spotify',
+        playinAlt: 'Natan playing live',
+        liveShowHeading: 'Last live show (Mr Kane)',
+        liveShowPara: 'His last live show as Mr Kane playing psytrance — watch a recording below.',
+        liveShowWatchButton: 'Watch the recording on YouTube',
+        transitionTitle: 'Transition and relaunch',
+        transitionPara: 'Over time, during the pandemic and with Flow arts influence, Natan slowed tempos from psytrance to triphop and downtempo. In 2024 he retired the Mr Kane project and relaunched as Natan Lichtnow, focusing on instrumental live loops on Twitch.',
+        channelLabel: 'You can see recordings of his stream here:',
+        youtubeChannelButton: 'YouTube / Natan Lichtnow',
+        twitchHeading: 'Check out his Twitch journey',
+        twitchPara: 'Visit the Twitch page for streams and recordings.',
+        twitchButton: 'Open Twitch page',
+        streamingAlt: 'Twitch streaming thumbnail'
       }
     };
   </script>
