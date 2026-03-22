@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flow Arts Experience | Natan Lichtnow</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/internal.css" />
@@ -46,6 +39,7 @@
     .mh-hero__img { width:420px; border-radius:12px }
 
     /* Flow-specific hero: center copy and enlarge title */
+    .mh-hero--flow { margin: 0 !important; padding: 0 !important; }
     .mh-hero--flow .mh-hero__inner { flex-direction: column; text-align: center; gap: 1rem }
     .mh-hero--flow .mh-hero__copy { width: 100%; }
     .mh-hero--flow .mh-title { font-size: clamp(3.9rem, 9vw, 7.2rem); }
@@ -108,8 +102,26 @@
 </head>
 <body>
   <div class="c-page c-page--music mh-page">
-      <div class="mh-page__stars" aria-hidden="true"></div>
-    <header class="c-topbar"><div class="c-shell c-topbar__inner"><a class="c-topbar__brand" href="../index.html"><img class="c-topbar__brand-logo" src="../img/logos/logohorizontal.png" alt="Natan Lichtnow" style="height: 2.2rem; width: auto;" /></a><nav class="c-topbar__nav" aria-label="Section navigation"><a class="c-topbar__link" href="index.html" data-i18n="navSectionHome">Music Home</a><a class="c-topbar__link" href="history.html" data-i18n="navMusicExperience">History</a><a class="c-topbar__link" href="music.html" data-i18n="navMusic">Music</a><a class="c-topbar__link" href="twitch-streaming.html" data-i18n="navTwitch">Twitch</a><a class="c-topbar__link c-topbar__link--is-active" href="flow-arts-experience.html" data-i18n="navFlowExperience">Flow Arts</a></nav><div class="c-language-switcher" aria-label="Language selector"><span class="c-language-switcher__label" data-i18n="languageLabel">LANG</span><button class="c-language-switcher__option" type="button" data-lang="pt-BR">PT</button><button class="c-topbar__link c-language-switcher__option" type="button" data-lang="en">EN</button></div></div></header>
+    <div class="mh-page__stars" aria-hidden="true"></div>
+    <header class="c-topbar">
+      <div class="c-shell c-topbar__inner">
+        <a class="c-topbar__brand" href="../index.html">
+          <img class="c-topbar__brand-logo" src="../img/logos/logohorizontal.png" alt="Natan Lichtnow" style="height: 2.2rem; width: auto;" />
+        </a>
+        <nav class="c-topbar__nav" aria-label="Section navigation">
+          <a class="c-topbar__link" href="index.html" data-i18n="navSectionHome">Music Home</a>
+          <a class="c-topbar__link" href="history.html" data-i18n="navMusicExperience">History</a>
+          <a class="c-topbar__link" href="music.html" data-i18n="navMusic">Music</a>
+          <a class="c-topbar__link" href="twitch-streaming.html" data-i18n="navTwitch">Twitch</a>
+          <a class="c-topbar__link c-topbar__link--is-active" href="flow-arts-experience.html" data-i18n="navFlowExperience">Flow Arts</a>
+        </nav>
+        <div class="c-language-switcher" aria-label="Language selector" data-i18n-attr="aria-label" data-i18n="languageSwitcherAriaLabel">
+          <span class="c-language-switcher__label" data-i18n="languageLabel">LANG</span>
+          <button class="c-language-switcher__option" type="button" data-lang="pt-BR">PT</button>
+          <button class="c-language-switcher__option" type="button" data-lang="en">EN</button>
+        </div>
+      </div>
+    </header>
     <main class="c-shell">
       <div class="mh-story__blob mh-story__blob--a" aria-hidden="true"></div>
       <div class="mh-story__blob mh-story__blob--b" aria-hidden="true"></div>
@@ -220,96 +232,123 @@
   <script>
     window.NATAN_PAGE_TRANSLATIONS = {
       'pt-BR': {
-        pageTitle: 'Flow Arts | Natan Lichtnow',
+        pageTitle: 'Experiência em Flow Arts | Natan Lichtnow',
         brand: 'Natan Lichtnow',
         languageLabel: 'IDIOMA',
-        navSectionHome: 'Inicio da musica',
-        navMusicExperience: 'Historia',
+        languageSwitcherAriaLabel: 'Seletor de idioma',
+        navSectionHome: 'Início da música',
+        navMusic: 'Música',
+        navMusicExperience: 'História',
         navFlowExperience: 'Flow Arts',
         navTwitch: 'Twitch',
-        navMusic: 'Música',
-        /* eyebrow removed */
-        heroTitle: 'Flow Arts',
-        heroLead: 'Flow arts ~ a arte da dança com manipulacao de objetos',
-        /* hero image removed */
+        eyebrow: 'Linguagem de movimento',
+        heroTitle: 'Experiência em Flow Arts',
+        heroLead: 'Uma página centrada em movimento, precisão, repetição e a presença visual que transforma flow arts em linguagem de performance.',
+        primaryAction: 'Abrir página da Twitch',
+        secondaryAction: 'Voltar ao início da música',
+        heroImageAlt: 'Sequência de movimento em flow arts com efeito de rastro',
+        heroMediaEyebrow: 'Ritmo em movimento',
+        heroMediaTitle: 'Controle, repetição e narrativa visual.',
+        heroMediaText: 'Aqui o foco é transformar técnica corporal em presença cênica, com linguagem clara e identidade artística.',
+        overviewTitle: 'Como isso pode evoluir',
+        overviewText: 'Esta página pode crescer para um showcase visual mais forte com fotos de performance, descrição de disciplinas e a filosofia por trás da prática.',
+        pointOneTitle: 'Prática',
+        pointOneText: 'A repetição por trás da fluidez, do tempo e do controle corporal que definem o trabalho.',
+        pointTwoTitle: 'Performance',
+        pointTwoText: 'Como o flow arts muda quando sai do treino privado e entra na expressão pública.',
+        pointThreeTitle: 'Presença',
+        pointThreeText: 'Uma mistura de ritmo, clareza visual e confiança que faz o movimento comunicar.',
+        sideTitle: 'Melhores próximos passos',
+        sideText: 'A melhor evolução aqui seria inserir imagens reais, pequenos clipes e uma quebra mais clara das disciplinas representadas.',
+        stripLabelOne: 'Núcleo',
+        stripValueOne: 'Movimento como expressão moldado por ritmo e repetição.',
+        stripLabelTwo: 'Visual',
+        stripValueTwo: 'Uma linguagem de performance com forma, tempo e atmosfera.',
+        stripLabelThree: 'Uso',
+        stripValueThree: 'Página vitrine para eventos, colaborações e identidade artística.',
         block1_title: 'Primeiro contato',
-        block1_p1: 'Natan iniciou sua jornada em flow arts influenciado pela comunidade de artistas que apareceu na Twitch durante a pandemia, seu primeiro contato com esta arte foi magico!',
-        block1_caption: 'video',
-        block1_p2: 'Sem recursos e passando por um momento dificil, Natan fez um poi para si mesmo usando bolas de papel, fita e cordas, e assim sua jornada comecou!',
+        block1_p1: 'Natan iniciou sua jornada em flow arts influenciado pela comunidade de artistas que apareceu na Twitch durante a pandemia; seu primeiro contato com esta arte foi mágico!',
+        block1_p2: 'Sem recursos e passando por um momento difícil, Natan fez um poi para si mesmo usando bolas de papel, fita e cordas, e assim sua jornada começou!',
+        block1_caption: 'vídeo',
         block3_title: 'Comunidade e crescimento',
-        block3_p1: 'Rapidamente sua comunidade na Twitch sentiu seu amor pela arte e comecou a apoiar sua jornada, proporcionando seu primeiro conjunto de LED POI e permitindo que ele evoluisse mais rapido. Natan iniciou uma pequena comunidade com alguns amigos para praticar e compartilhar truques digitalmente, assim como tocar DJ na stream e praticar flow para adicionar visuais legais a musica',
-        block3_caption: 'video',
+        block3_p1: 'Rapidamente sua comunidade na Twitch sentiu seu amor pela arte e começou a apoiar sua jornada, proporcionando seu primeiro conjunto de LED POI e permitindo que ele evoluísse mais rápido.',
+        block3_caption: 'vídeo',
         block4_title: 'Treinamento com profissionais',
-        block4_p1: 'Como Natan teve uma historia internacional (veja o contexto completo), ele teve oportunidades incriveis de ser treinado por profissionais, trabalhando com a equipe Luminosity e o Moving Fire Arts inicialmente como seguranca de fogo, mas tambem recebendo ocasioes aleatorias de se apresentar como parte das equipes)',
-        block4_caption: 'video',
+        block4_p1: 'Natan teve oportunidades de ser treinado por profissionais, trabalhando com equipes como Luminosity e Moving Fire Arts, começando como segurança de fogo e recebendo ocasiões de se apresentar com as equipes.',
+        block4_caption: 'vídeo',
         block5_title: 'Boom Festival',
-        block5_p1: 'No Boom Festival, Natan teve oportunidades incriveis de se apresentar junto com Grouch em DUB, uma experiencia que mudou completamente sua perspectiva sobre esta arte',
-        block5_caption: 'video',
+        block5_p1: 'No Boom Festival, Natan teve oportunidades de se apresentar com artistas como Grouch, uma experiência que mudou sua perspectiva sobre a arte.',
+        block5_caption: 'vídeo',
         block5_fullSetBtn: 'Assista o set completo aqui',
         block6_title: 'Shows solo',
-        block6_p1: 'Com toda essa experiencia bonita na Europa, Natan comecou a fazer seus proprios shows solo no Brasil',
-        block6_caption: 'video',
+        block6_p1: 'Com essa experiência na Europa, Natan começou a fazer seus próprios shows solo no Brasil.',
+        block6_caption: 'vídeo',
         block7_title: 'Retiro e retorno',
-        block7_p1: 'Com todas as metas rapidamente sendo alcançadas com esta arte, Natan ficou satisfeito com a jornada e decidiu se aposentar do mundo de performance para focar novamente em sua carreira na Twitch e na musica, mas sempre que tem chance, leva seu poi e compartilha seu amor por esta arte',
+        block7_p1: 'Natan decidiu se aposentar das performances regulares para focar na Twitch e na música, mas sempre que possível compartilha seu trabalho com o poi.',
         block7_imgAlt: 'Flow arts imagem',
-        block7_caption: 'poiaction',
-        footer: 'NATAN LICHTNOW // FLOW ARTS'
+        block7_caption: 'ação com poi',
+        footer: 'NATAN LICHTNOW // EXPERIÊNCIA EM FLOW ARTS'
       },
-      en: {
-        pageTitle: 'Flow Arts | Natan Lichtnow',
+      'en': {
+        pageTitle: 'Flow Arts Experience | Natan Lichtnow',
         brand: 'Natan Lichtnow',
         languageLabel: 'LANG',
+        languageSwitcherAriaLabel: 'Language selector',
         navSectionHome: 'Music Home',
+        navMusic: 'Music',
         navMusicExperience: 'History',
         navFlowExperience: 'Flow Arts',
         navTwitch: 'Twitch',
-        navMusic: 'Music',
-        /* eyebrow removed */
-        heroTitle: 'Flow Arts',
-        heroLead: 'Flow arts ~ the art of dance with object manipulation',
-        /* hero image removed */
+        eyebrow: 'Movement language',
+        heroTitle: 'Flow Arts Experience',
+        heroLead: 'A page centered on movement, precision, repetition, and the visual presence that turns flow arts into a performance language.',
+        primaryAction: 'Open Twitch page',
+        secondaryAction: 'Back to music home',
+        heroImageAlt: 'Flow arts movement sequence with trail effect',
+        heroMediaEyebrow: 'Rhythm in motion',
+        heroMediaTitle: 'Control, repetition, and visual storytelling.',
+        heroMediaText: 'The focus here is turning body technique into stage presence with clear language and artistic identity.',
+        overviewTitle: 'How this can evolve',
+        overviewText: 'This page can grow into a stronger visual showcase with performance photos, descriptions of disciplines, and the philosophy behind practice.',
+        pointOneTitle: 'Practice',
+        pointOneText: 'The repetition behind the smoothness, timing, and body control that define the work.',
+        pointTwoTitle: 'Performance',
+        pointTwoText: 'How flow arts shifts when it moves from private training into public expression.',
+        pointThreeTitle: 'Presence',
+        pointThreeText: 'A mix of rhythm, visual clarity, and confidence that makes movement communicative.',
+        sideTitle: 'Best next additions',
+        sideText: 'The strongest upgrade here would be real imagery, short clips, and a clearer breakdown of the flow disciplines represented.',
+        stripLabelOne: 'Core',
+        stripValueOne: 'Movement as expression shaped by rhythm and repetition.',
+        stripLabelTwo: 'Visual',
+        stripValueTwo: 'A performance language with strong shape, pace, and atmosphere.',
+        stripLabelThree: 'Use',
+        stripValueThree: 'Showcase page for events, collaborations, and artistic identity.',
         block1_title: 'First contact',
-        block1_p1: 'Natan started his flow arts journey influenced by the community of artists who came to Twitch during the pandemic, his first contact with this art form felt magical!',
+        block1_p1: 'Natan started his flow arts journey influenced by the community of artists who came to Twitch during the pandemic; his first contact with this art form felt magical!',
+        block1_p2: 'With a lack of resources and going through a hard time, Natan made a poi for himself using paper balls, tape and strings, and that is how his journey began!',
         block1_caption: 'video',
-        block1_p2: 'With a lack of resources and going through a hard time, Natan made a poi for himself using paper balls, tape and strings, and thats how his journey begun!',
         block3_title: 'Community & growth',
-        block3_p1: 'Quickly his Twitch community felt his love for the art form and started supporting his journey, getting him his first LED POI set, allowing him to progress even faster, Natan started his small flow community with some friends where they would come together to practice and share tricks digitally, as well as DJing on stream and practicing flow to add sweet visuals to the music',
+        block3_p1: 'Quickly his Twitch community felt his love for the art form and started supporting his journey, providing his first LED POI set and helping him progress faster.',
         block3_caption: 'video',
         block4_title: 'Training with professionals',
-        block4_p1: 'As natan had a international love story (read the full story to get context) he had incredible opportunities to be trained by professionals, working together with the Luminosity fire team and the Moving Fire Arts team at first as a fire safety but having random opportunities to perform himself as part of the teams)',
+        block4_p1: 'Natan had opportunities to be trained by professionals, working with teams like Luminosity and Moving Fire Arts, starting as fire safety and occasionally performing with the teams.',
         block4_caption: 'video',
         block5_title: 'Boom Festival',
-        block5_p1: 'At boom festival, Natan had the craziest opportunities to perform together with Grouch in DUB, an experience that completely changed his perspective on this artform',
+        block5_p1: 'At Boom Festival, Natan had opportunities to perform with artists like Grouch, an experience that changed his perspective on the art form.',
         block5_caption: 'video',
         block5_fullSetBtn: 'Watch the full set here',
         block6_title: 'Solo shows',
-        block6_p1: 'With all this beautiful experience in Europe, Natan started doing his own solo shows in Brazil',
+        block6_p1: 'With experience in Europe, Natan started doing his own solo shows in Brazil.',
         block6_caption: 'video',
         block7_title: 'Retreat & return',
-        block7_p1: 'With all his goals quickly being met with this artform, Natan felt satisfied with the journey he had, deciding then to retire from the performance world to focus on his Twitch & music career again, but everytime he has a chance, he brings his poi around and shares his love for this artform',
-        block7_imgAlt: 'Flow arts imagem',
-        block7_caption: 'poiaction',
+        block7_p1: 'Natan stepped back from regular performances to focus on Twitch and music but still shares his work with poi whenever possible.',
+        block7_imgAlt: 'Flow arts image',
+        block7_caption: 'poi action',
         footer: 'NATAN LICHTNOW // FLOW ARTS'
       }
     };
   </script>
   <script src="../js/internal-pages.js"></script>
-  <script>
-    (function(){
-      try {
-        const nav = document.querySelector('.c-topbar__nav');
-        if(nav && !nav.querySelector('[data-i18n="navMusic"]')){
-          const a = document.createElement('a');
-          a.className = 'c-topbar__link';
-          a.href = 'music.html';
-          a.setAttribute('data-i18n','navMusic');
-          a.textContent = 'Music';
-          const first = nav.querySelector('a');
-          if(first) nav.insertBefore(a, first.nextSibling);
-          else nav.appendChild(a);
-        }
-      } catch(e){console.warn(e)}
-    })();
-  </script>
 </body>
 </html>
