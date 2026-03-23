@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="../css/music-index.css" />
 </head>
 <body>
-  <div class="c-page c-page--music">
+  <div class="c-page c-page--music mh-page">
     <div class="music-bg-blob music-bg-blob--a" aria-hidden="true"></div>
     <div class="music-bg-blob music-bg-blob--b" aria-hidden="true"></div>
     <div class="music-bg-blob music-bg-blob--c" aria-hidden="true"></div>
@@ -29,9 +29,9 @@
           <img class="c-topbar__brand-logo" src="../img/logos/logohorizontal.png" alt="Natan Lichtnow" />
         </a>
         <nav class="c-topbar__nav" id="primary-nav" aria-label="Section navigation" data-i18n="primaryNavAriaLabel" data-i18n-attr="aria-label">
-          <a class="c-topbar__link" href="index.html" data-i18n="navSectionHome">Music Home</a>
+          <a class="c-topbar__link c-topbar__link--is-active" href="index.html" data-i18n="navSectionHome">Music Home</a>
           <a class="c-topbar__link " href="history.html" data-i18n="navMusicExperience">History</a>
-          <a class="c-topbar__link c-topbar__link--is-active" href="music.html" data-i18n="navMusic">Music</a>
+          <a class="c-topbar__link " href="music.html" data-i18n="navMusic">Music</a>
           <a class="c-topbar__link" href="twitch-streaming.html" data-i18n="navTwitch">Twitch</a>
           <a class="c-topbar__link" href="flow-arts-experience.html" data-i18n="navFlowExperience">Flow Arts</a>
         </nav>
@@ -42,6 +42,7 @@
         </div>
       </div>
     </header>
+    <div class="c-topbar__menu-overlay" aria-hidden="true"></div>
 
     <main class="c-shell" aria-live="polite">
       <section class="c-section">
