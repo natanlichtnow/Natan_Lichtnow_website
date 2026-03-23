@@ -144,6 +144,8 @@
       padding-bottom: 9rem;
     }
 
+    .mh-hero__content { box-sizing: border-box; width: 100%; }
+
     .mh-hero__eyebrow {
       display: inline-block;
       font-family: 'Orbitron', sans-serif;
@@ -160,12 +162,17 @@
 
     .mh-hero__title {
       font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(3.8rem, 10vw, 8.5rem);
+      /* Allow much smaller minimum on narrow screens to avoid overflow */
+      font-size: clamp(2.2rem, 10vw, 8.5rem);
       font-weight: 700;
       line-height: 0.95;
       color: #e8f5ea;
       margin: 0 0 2rem;
       text-shadow: 0 0 80px rgba(0, 230, 118, 0.18), 0 4px 50px rgba(0, 0, 0, 0.9);
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
+      -webkit-font-smoothing: antialiased;
     }
 
     .mh-hero__lead {
@@ -565,3 +572,88 @@
       border-top: 1px solid rgba(0, 230, 118, 0.07);
     }
 
+    /* Very small screens (420px and up) - ensure readability and layout stability */
+    @media (max-width: 420px) {
+      .mh-hero {
+        padding: 3rem 0.8rem 0;
+        min-height: 70vh;
+      }
+
+      .mh-hero__content { max-width: 92%; padding-bottom: 6rem; }
+
+      .mh-hero__title {
+        font-size: 2.2rem;
+        line-height: 1.05;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 36px rgba(0, 230, 118, 0.12), 0 4px 22px rgba(0,0,0,0.85);
+        white-space: pre-line; /* honor newline characters inserted by JS */
+      }
+
+    }
+
+    /* Slightly larger small-screen range: avoid breaking words on narrow phones
+       by reducing size and disabling word-breaking/hyphenation under 455px. */
+    @media (max-width: 455px) {
+      .mh-page .mh-hero__title {
+        /* stronger specificity + important to override other global rules */
+        font-size: 5rem !important;
+        line-height: 1.02;
+        overflow-wrap: normal;
+        word-break: normal;
+        hyphens: none;
+        white-space: pre-line; /* still honor injected newlines */
+        max-width: 100%;
+      }
+    }
+
+      .mh-hero__lead { font-size: 0.95rem; max-width: 92%; }
+
+      /* Hide oversized background numbers on very small screens to avoid layout issues */
+      .mh-chapter__bg-num { display: none; }
+
+      .mh-split { grid-template-columns: 1fr; gap: 1.2rem; }
+
+      .mh-split__text,
+      .mh-text {
+        padding: 0.9rem;
+        font-size: 0.98rem;
+        line-height: 1.6;
+      }
+
+      .mh-chapter__title { font-size: 1.35rem; margin-bottom: 0.9rem; }
+
+      .mh-chapter { padding: 1.2rem 0; }
+
+      .mh-img { border-radius: 10px; max-width: 100%; height: auto; }
+
+      .mh-gallery,
+      .mh-gallery--trio { grid-template-columns: 1fr; }
+
+      .mh-cta { padding: 2.4rem 0.8rem 3rem; }
+    }
+
+    /* Responsive typography base: scale rem-based sizes slightly larger on wider screens
+       so body copy and UI elements are easier to read on desktop. Uses progressive
+       increases so the page remains balanced across breakpoints. */
+    .mh-page { font-size: 16px; }
+
+    @media (min-width: 900px) {
+      .mh-page { font-size: 17px; }
+      .mh-hero__content { max-width: 980px; }
+      .mh-split { gap: 4rem; }
+    }
+
+    @media (min-width: 1200px) {
+      .mh-page { font-size: 18px; }
+      .mh-hero__content { max-width: 1100px; }
+      .mh-chapter { padding: 2.5rem 0; }
+      .mh-split { gap: 4.5rem; }
+    }
+
+    @media (min-width: 1600px) {
+      .mh-page { font-size: 19px; }
+      .mh-hero__content { max-width: 1200px; }
+      .mh-chapter__title { font-size: clamp(2.2rem, 4.2vw, 3.4rem); }
+      .mh-split__text, .mh-text { font-size: clamp(1.05rem, 1.4vw, 1.26rem); }
+    }
+   

@@ -40,24 +40,8 @@
       color: #c8f0d8;
       letter-spacing: 0.0em;
       line-height: 1.65;
-    }
-
-    .mh-img-caption { font-family: 'Orbitron', sans-serif; font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: #3a6848; text-align:center; margin-top:0.6rem }
-    .mh-cta { display:inline-block; margin-top:0.8rem; padding:0.5rem 0.8rem; background:var(--mh-accent); color:#05210a; border-radius:8px; font-weight:700; text-decoration:none }
-
-    .mh-hero__bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse at 25% 25%, rgba(0, 80, 40, 0.55) 0%, transparent 45%), radial-gradient(ellipse at 75% 15%, rgba(0, 60, 100, 0.55) 0%, transparent 40%), radial-gradient(ellipse at 50% 5%, rgba(0, 100, 80, 0.35) 0%, transparent 38%), linear-gradient(180deg, #040a06 0%, #061012 40%, #040a06 100%); }
-    .mh-hero__blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(100px); opacity: 0; will-change: transform, opacity; }
-    .mh-hero__blob--1 { width: 45vw; height: 45vw; top: -10%; left: -12%; background: radial-gradient(circle, rgba(0, 230, 118, 0.22) 0%, transparent 70%); animation: mh-blob-drift-1 18s ease-in-out infinite alternate; }
-    .mh-hero__blob--2 { width: 38vw; height: 38vw; top: 15%; right: -8%; background: radial-gradient(circle, rgba(0, 188, 212, 0.2) 0%, transparent 70%); animation: mh-blob-drift-2 22s ease-in-out infinite alternate; }
-    .mh-hero__blob--3 { width: 30vw; height: 30vw; bottom: 10%; left: 30%; background: radial-gradient(circle, rgba(74, 0, 224, 0.16) 0%, transparent 70%); animation: mh-blob-drift-3 26s ease-in-out infinite alternate; }
-    @keyframes mh-blob-drift-1 { 0% { transform: translate(0,0) scale(1); opacity:0.6 } 33% { transform: translate(8vw,5vh) scale(1.12); opacity:0.75 } 66% { transform: translate(-3vw,10vh) scale(0.95); opacity:0.55 } 100% { transform: translate(5vw,-3vh) scale(1.08); opacity:0.7 } }
-    @keyframes mh-blob-drift-2 { 0% { transform: translate(0,0) scale(1); opacity:0.5 } 33% { transform: translate(-6vw,8vh) scale(1.1); opacity:0.7 } 66% { transform: translate(4vw,-4vh) scale(0.92); opacity:0.45 } 100% { transform: translate(-5vw,6vh) scale(1.06); opacity:0.65 } }
-    @keyframes mh-blob-drift-3 { 0% { transform: translate(0,0) scale(1); opacity:0.45 } 33% { transform: translate(6vw,-6vh) scale(1.14); opacity:0.6 } 66% { transform: translate(-5vw,3vh) scale(0.9); opacity:0.4 } 100% { transform: translate(3vw,8vh) scale(1.05); opacity:0.55 } }
-
-    .mh-hero__stars { position: absolute; inset: 0; z-index: 1; background-image: radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px), radial-gradient(circle, rgba(200,240,220,0.5) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 220px 220px, 170px 170px, 310px 310px, 140px 140px; background-position: 0 0, 80px 50px, 140px 90px, 55px 130px; opacity: 0.25 }
-    .mh-page__stars { position: absolute; inset: 0; z-index: 0; pointer-events: none; background-image: radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px), radial-gradient(circle, rgba(200,240,220,0.5) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 220px 220px, 170px 170px, 310px 310px, 140px 140px; background-position: 0 0, 80px 50px, 140px 90px, 55px 130px; opacity: 0.18 }
-
-    .mh-story__blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(120px); opacity: 0; will-change: transform, opacity; z-index: 0; }
+      /* Removed narrow-desktop adjustments to avoid unintended navbar layout
+         changes between ~701px and 1060px. Leave default/shared styles intact. */
     .mh-story__blob--a { width: 50vw; height: 50vw; top: 5%; left: -15%; background: radial-gradient(circle, rgba(0, 230, 118, 0.18) 0%, transparent 70%); animation: mh-story-blob-a 28s ease-in-out infinite alternate; }
     .mh-story__blob--b { width: 42vw; height: 42vw; top: 25%; right: -10%; background: radial-gradient(circle, rgba(0, 188, 212, 0.16) 0%, transparent 70%); animation: mh-story-blob-b 32s ease-in-out infinite alternate; }
     .mh-story__blob--c { width: 36vw; height: 36vw; top: 50%; left: 20%; background: radial-gradient(circle, rgba(0, 0, 255, 0.12) 0%, transparent 70%); animation: mh-story-blob-c 24s ease-in-out infinite alternate; }
@@ -229,15 +213,7 @@
       .mh-dark-box { padding: 1.5rem; }
     }
 
-    @media (min-width: 701px) and (max-width: 1000px) {
-      .mh-page .c-topbar__inner {
-        display: grid;
-        grid-template-columns: auto minmax(0, 1fr) auto;
-        align-items: center;
-        justify-items: stretch;
-        text-align: left;
-        column-gap: 0.8rem;
-      }
+
 
       .mh-page .c-topbar__link {
         padding: 0.62rem 0.78rem;
@@ -257,7 +233,21 @@
         padding: 0.46rem 0.4rem;
       }
     }
+
+    /* Small-screen hero adjustments to avoid overflow and allow stacked words
+       when internal JS injects newlines. Use stronger specificity and !important
+       to override global resets. */
+    @media (max-width: 455px) {
+      .mh-page .mh-title {
+        font-size: 1.9rem !important;
+        line-height: 1.02;
+        white-space: pre-line; /* honor injected newlines */
+        overflow-wrap: normal;
+        word-break: normal;
+        hyphens: none;
+        max-width: 100%;
+      }
+    }
    
-  
 
   

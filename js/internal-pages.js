@@ -45,7 +45,18 @@
         return;
       }
 
-      node.textContent = value;
+      // On very narrow viewports, prefer explicit line-breaks for the hero title
+      // so long headings (e.g. "História de vida") can be rendered as stacked
+      // words. We insert newline characters and rely on CSS `white-space: pre-line`
+      // at small sizes to honor them.
+      // store the original untranslated string on the node for dynamic resize handling
+      node.dataset.i18nOriginal = value;
+
+      if (key === 'heroTitle' && window.innerWidth <= 455) {
+        node.textContent = value.split(' ').join('\n');
+      } else {
+        node.textContent = value;
+      }
     });
 
     window.localStorage.setItem(STORAGE_KEY, language);
@@ -144,4 +155,25 @@
   initLanguageSwitcher();
   initStickyTopbar();
   initMobileMenu();
+
+  // Re-apply hero title formatting on resize so injected newlines stay in sync
+  (function attachHeroResizeHandler() {
+    let timer = null;
+    function applyHeroFormatting() {
+      const nodes = document.querySelectorAll('[data-i18n="heroTitle"]');
+      nodes.forEach(node => {
+        const original = node.dataset.i18nOriginal || node.textContent || '';
+        if (window.innerWidth <= 455) {
+          node.textContent = original.split(' ').join('\n');
+        } else {
+          node.textContent = original.replace(/\n/g, ' ');
+        }
+      });
+    }
+
+    window.addEventListener('resize', () => {
+      clearTimeout(timer);
+      timer = setTimeout(applyHeroFormatting, 120);
+    }, { passive: true });
+  }());
 }());
