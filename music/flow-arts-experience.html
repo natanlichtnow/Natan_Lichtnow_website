@@ -7,6 +7,7 @@
   <div class="c-page c-page--music mh-page">
     <div class="mh-page__stars" aria-hidden="true"></div>
     <header class="c-topbar">
+      
       <div class="c-shell c-topbar__inner">
         <a class="c-topbar__brand" href="../index.html">
           <img class="c-topbar__brand-logo" src="../img/logos/logohorizontal.png" alt="Natan Lichtnow" style="height: 2.2rem; width: auto;" />
@@ -216,6 +217,60 @@
         footer: 'NATAN LICHTNOW // FLOW ARTS'
       }
     };
+  </script>
+  <script>
+    (function () {
+      'use strict';
+
+      const iframes = Array.from(document.querySelectorAll('.mh-split__media iframe'));
+      if (!iframes.length) { return; }
+
+      // store original src so we can restore it when leaving viewport
+      iframes.forEach(iframe => {
+        iframe.dataset.originalSrc = iframe.src;
+      });
+
+      const makeAutoplaySrc = (src) => {
+        try {
+          const url = new URL(src);
+          url.searchParams.set('autoplay', '1');
+          url.searchParams.set('mute', '1');
+          url.searchParams.set('playsinline', '1');
+          return url.toString();
+        } catch (e) {
+          // fallback: append params manually
+          return src + (src.indexOf('?') === -1 ? '?' : '&') + 'autoplay=1&mute=1&playsinline=1';
+        }
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const iframe = entry.target;
+          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+            // stop other iframes
+            iframes.forEach(f => {
+              if (f !== iframe && f.dataset.originalSrc && f.src !== f.dataset.originalSrc) {
+                f.src = f.dataset.originalSrc;
+              }
+            });
+
+            // start this one (only if not already autoplaying)
+            const orig = iframe.dataset.originalSrc || iframe.src;
+            const autoplaySrc = makeAutoplaySrc(orig);
+            if (iframe.src !== autoplaySrc) {
+              iframe.src = autoplaySrc;
+            }
+          } else {
+            // leave: restore original src to stop playback
+            if (iframe.dataset.originalSrc && iframe.src !== iframe.dataset.originalSrc) {
+              iframe.src = iframe.dataset.originalSrc;
+            }
+          }
+        });
+      }, { threshold: [0.5] });
+
+      iframes.forEach(f => observer.observe(f));
+    }());
   </script>
   <script src="../js/internal-pages.js"></script>
 </body>
