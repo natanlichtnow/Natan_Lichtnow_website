@@ -4,7 +4,7 @@
   const STORAGE_KEY = 'natanlichtnow-language';
   const SUPPORTED_LANGUAGES = ['pt-BR', 'en'];
   const translations = window.NATAN_PAGE_TRANSLATIONS || {};
-  const languageButtons = Array.from(document.querySelectorAll('[data-lang]'));
+  let languageButtons = [];
 
   function resolveInitialLanguage () {
     const storedLanguage = window.localStorage.getItem(STORAGE_KEY);
@@ -53,15 +53,25 @@
   }
 
   function initLanguageSwitcher () {
+    // ensure we query buttons at init-time (in case DOM changed)
+    languageButtons = Array.from(document.querySelectorAll('[data-lang]'));
     const initialLanguage = resolveInitialLanguage();
 
     languageButtons.forEach(button => {
       button.addEventListener('click', () => {
-        applyTranslations(button.dataset.lang);
+        try {
+          applyTranslations(button.dataset.lang);
+        } catch (e) {
+          console.warn('Language switch failed', e);
+        }
       });
     });
 
-    applyTranslations(initialLanguage);
+    try {
+      applyTranslations(initialLanguage);
+    } catch (e) {
+      console.warn('Applying initial translations failed', e);
+    }
   }
 
   function initStickyTopbar () {

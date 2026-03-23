@@ -8,161 +8,274 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/internal.css" />
+  <style>
+    /* Flow-arts visual blocks and title styles (copied from flow-arts-experience) */
+    body { background: linear-gradient(180deg, #080f08 0%, #0a1810 50%, #080d08 100%) !important; }
+    .mh-page { --mh-accent: #00e676; --mh-accent-soft: rgba(0,230,118,0.12); --mh-accent-strong: rgba(0,230,118,0.32); --mh-accent-glow: rgba(0,230,118,0.2); --mh-secondary: #00bcd4; --mh-text: #d8f0e0; --mh-text-muted: #6a9878; --mh-panel: rgba(12,28,18,0.72); --mh-panel-strong: rgba(8,22,12,0.94); --mh-border: rgba(0,230,118,0.14); position: relative; overflow-x: hidden; }
+    .mh-page .c-topbar { background: rgba(4,12,7,0.92) !important; border-bottom: 1px solid rgba(0,230,118,0.1); }
+    .mh-page .c-topbar__brand { color: #c8e8d0; }
+    .mh-page .c-topbar__brand-logo { height: 2.2rem; width: auto; transition: height 0.3s ease; }
+
+    .mh-hero { position: relative; min-height: 52vh; display: flex; align-items: center; padding: 4rem 1.5rem; }
+    .mh-hero__inner { display:flex; gap:2rem; align-items:center; width:100%; max-width:1200px; margin:0 auto; position: relative; z-index: 10 }
+    .mh-hero__copy { flex:1 }
+    .mh-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(2rem, 5vw, 3.6rem); color: #e8f5ea; margin:0 0 0.8rem }
+    .mh-lead { color:var(--mh-text-muted); max-width:640px }
+    .mh-hero__img { width:420px; border-radius:12px }
+
+    .mh-hero--flow { margin: 0 !important; padding: 0 !important; }
+    .mh-hero--flow .mh-hero__inner { flex-direction: column; text-align: center; gap: 1rem }
+    .mh-hero--flow .mh-hero__copy { width: 100%; }
+    .mh-hero--flow .mh-title { font-size: clamp(3.9rem, 9vw, 7.2rem); }
+    .mh-hero--flow .mh-lead { margin: 0 auto; max-width: 820px }
+
+    .mh-chapters { max-width:1200px; margin:2.5rem auto; padding:0 1.5rem }
+    .mh-chapter { padding: 2rem 0; border-bottom: 1px solid rgba(0, 230, 118, 0.03); }
+    .mh-chapter__title { font-family: 'Rajdhani', sans-serif; font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight:700; color:#c0e0c8; margin:0 0 1rem }
+
+    .mh-split { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center }
+    .mh-split__text { background: rgba(8,40,20,0.45); padding:1.4rem; border-left:3px solid rgba(0,230,118,0.35); border-radius:10px; color:#c8f0d8 }
+    .mh-split__media iframe, .mh-split__media img { width:100%; border-radius:10px }
+
+    /* Apply boxed panel text style consistently to all chapter text blocks */
+    .mh-chapter .mh-text,
+    .mh-chapter .mh-split__text,
+    .mh-split__text {
+      background: rgba(8,40,20,0.45);
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 1.4rem;
+      border-left: 3px solid rgba(0,230,118,0.35);
+      border-radius: 10px;
+      color: #c8f0d8;
+      letter-spacing: 0.0em;
+      line-height: 1.65;
+    }
+
+    .mh-img-caption { font-family: 'Orbitron', sans-serif; font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: #3a6848; text-align:center; margin-top:0.6rem }
+    .mh-cta { display:inline-block; margin-top:0.8rem; padding:0.5rem 0.8rem; background:var(--mh-accent); color:#05210a; border-radius:8px; font-weight:700; text-decoration:none }
+
+    .mh-hero__bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse at 25% 25%, rgba(0, 80, 40, 0.55) 0%, transparent 45%), radial-gradient(ellipse at 75% 15%, rgba(0, 60, 100, 0.55) 0%, transparent 40%), radial-gradient(ellipse at 50% 5%, rgba(0, 100, 80, 0.35) 0%, transparent 38%), linear-gradient(180deg, #040a06 0%, #061012 40%, #040a06 100%); }
+    .mh-hero__blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(100px); opacity: 0; will-change: transform, opacity; }
+    .mh-hero__blob--1 { width: 45vw; height: 45vw; top: -10%; left: -12%; background: radial-gradient(circle, rgba(0, 230, 118, 0.22) 0%, transparent 70%); animation: mh-blob-drift-1 18s ease-in-out infinite alternate; }
+    .mh-hero__blob--2 { width: 38vw; height: 38vw; top: 15%; right: -8%; background: radial-gradient(circle, rgba(0, 188, 212, 0.2) 0%, transparent 70%); animation: mh-blob-drift-2 22s ease-in-out infinite alternate; }
+    .mh-hero__blob--3 { width: 30vw; height: 30vw; bottom: 10%; left: 30%; background: radial-gradient(circle, rgba(74, 0, 224, 0.16) 0%, transparent 70%); animation: mh-blob-drift-3 26s ease-in-out infinite alternate; }
+    @keyframes mh-blob-drift-1 { 0% { transform: translate(0,0) scale(1); opacity:0.6 } 33% { transform: translate(8vw,5vh) scale(1.12); opacity:0.75 } 66% { transform: translate(-3vw,10vh) scale(0.95); opacity:0.55 } 100% { transform: translate(5vw,-3vh) scale(1.08); opacity:0.7 } }
+    @keyframes mh-blob-drift-2 { 0% { transform: translate(0,0) scale(1); opacity:0.5 } 33% { transform: translate(-6vw,8vh) scale(1.1); opacity:0.7 } 66% { transform: translate(4vw,-4vh) scale(0.92); opacity:0.45 } 100% { transform: translate(-5vw,6vh) scale(1.06); opacity:0.65 } }
+    @keyframes mh-blob-drift-3 { 0% { transform: translate(0,0) scale(1); opacity:0.45 } 33% { transform: translate(6vw,-6vh) scale(1.14); opacity:0.6 } 66% { transform: translate(-5vw,3vh) scale(0.9); opacity:0.4 } 100% { transform: translate(3vw,8vh) scale(1.05); opacity:0.55 } }
+
+    .mh-hero__stars { position: absolute; inset: 0; z-index: 1; background-image: radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px), radial-gradient(circle, rgba(200,240,220,0.5) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 220px 220px, 170px 170px, 310px 310px, 140px 140px; background-position: 0 0, 80px 50px, 140px 90px, 55px 130px; opacity: 0.25 }
+    .mh-page__stars { position: absolute; inset: 0; z-index: 0; pointer-events: none; background-image: radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px), radial-gradient(circle, rgba(200,240,220,0.5) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 220px 220px, 170px 170px, 310px 310px, 140px 140px; background-position: 0 0, 80px 50px, 140px 90px, 55px 130px; opacity: 0.18 }
+
+    .mh-story__blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(120px); opacity: 0; will-change: transform, opacity; z-index: 0; }
+    .mh-story__blob--a { width: 50vw; height: 50vw; top: 5%; left: -15%; background: radial-gradient(circle, rgba(0, 230, 118, 0.18) 0%, transparent 70%); animation: mh-story-blob-a 28s ease-in-out infinite alternate; }
+    .mh-story__blob--b { width: 42vw; height: 42vw; top: 25%; right: -10%; background: radial-gradient(circle, rgba(0, 188, 212, 0.16) 0%, transparent 70%); animation: mh-story-blob-b 32s ease-in-out infinite alternate; }
+    .mh-story__blob--c { width: 36vw; height: 36vw; top: 50%; left: 20%; background: radial-gradient(circle, rgba(0, 0, 255, 0.12) 0%, transparent 70%); animation: mh-story-blob-c 24s ease-in-out infinite alternate; }
+    .mh-story__blob--d { width: 44vw; height: 44vw; top: 72%; right: -5%; background: radial-gradient(circle, rgba(74, 0, 224, 0.13) 0%, transparent 70%); animation: mh-story-blob-d 30s ease-in-out infinite alternate; }
+    .mh-story__blob--e { width: 38vw; height: 38vw; top: 90%; left: -8%; background: radial-gradient(circle, rgba(0, 200, 83, 0.15) 0%, transparent 70%); animation: mh-story-blob-e 26s ease-in-out infinite alternate; }
+    @keyframes mh-story-blob-a { 0% { transform: translate(0,0) scale(1); opacity:0.5 } 25% { transform: translate(10vw,4vh) scale(1.15); opacity:0.65 } 50% { transform: translate(3vw,12vh) scale(0.9); opacity:0.45 } 75% { transform: translate(-5vw,8vh) scale(1.1); opacity:0.6 } 100% { transform: translate(6vw,-2vh) scale(1.02); opacity:0.52 } }
+    @keyframes mh-story-blob-b { 0% { transform: translate(0,0) scale(1); opacity:0.4 } 25% { transform: translate(-8vw,6vh) scale(1.12); opacity:0.58 } 50% { transform: translate(5vw,-3vh) scale(0.88); opacity:0.35 } 75% { transform: translate(-3vw,10vh) scale(1.08); opacity:0.55 } 100% { transform: translate(7vw,4vh) scale(0.95); opacity:0.42 } }
+    @keyframes mh-story-blob-c { 0% { transform: translate(0,0) scale(1); opacity:0.38 } 25% { transform: translate(7vw,-5vh) scale(1.18); opacity:0.52 } 50% { transform: translate(-4vw,8vh) scale(0.85); opacity:0.32 } 75% { transform: translate(6vw,3vh) scale(1.1); opacity:0.5 } 100% { transform: translate(-6vw,-4vh) scale(0.98); opacity:0.4 } }
+    @keyframes mh-story-blob-d { 0% { transform: translate(0,0) scale(1); opacity:0.35 } 25% { transform: translate(-9vw,-4vh) scale(1.1); opacity:0.5 } 50% { transform: translate(4vw,7vh) scale(0.92); opacity:0.3 } 75% { transform: translate(-2vw,-6vh) scale(1.14); opacity:0.48 } 100% { transform: translate(8vw,3vh) scale(1.0); opacity:0.38 } }
+    @keyframes mh-story-blob-e { 0% { transform: translate(0,0) scale(1); opacity:0.42 } 25% { transform: translate(6vw,5vh) scale(1.16); opacity:0.58 } 50% { transform: translate(-7vw,-3vh) scale(0.88); opacity:0.36 } 75% { transform: translate(3vw,9vh) scale(1.06); opacity:0.54 } 100% { transform: translate(-4vw,2vh) scale(0.96); opacity:0.44 } }
+
+    /* Ensure main content sits above decorations */
+    .c-page--music.mh-page > main, .c-page--music.mh-page header, .c-page--music.mh-page footer { position: relative; z-index: 10; }
+  </style>
 </head>
 <body>
   <div class="c-page c-page--music">
-    <header class="c-topbar"><div class="c-shell c-topbar__inner"><a class="c-topbar__brand" href="../index.html"><img class="c-topbar__brand-logo" src="../img/logos/logohorizontal.png" alt="Natan Lichtnow" style="height: 2.2rem; width: auto;" /></a><nav class="c-topbar__nav" aria-label="Section navigation"><a class="c-topbar__link" href="index.html" data-i18n="navSectionHome">Music Home</a><a class="c-topbar__link" href="history.html" data-i18n="navMusicExperience">History</a><a class="c-topbar__link" href="flow-arts-experience.html" data-i18n="navFlowExperience">Flow Arts</a><a class="c-topbar__link c-topbar__link--is-active" href="twitch-streaming.html" data-i18n="navTwitch">Twitch</a></nav><div class="c-language-switcher" aria-label="Language selector"><span class="c-language-switcher__label" data-i18n="languageLabel">LANG</span><button class="c-language-switcher__option" type="button" data-lang="pt-BR">PT</button><button class="c-language-switcher__option" type="button" data-lang="en">EN</button></div></div></header>
+    <header class="c-topbar"><div class="c-shell c-topbar__inner"><a class="c-topbar__brand" href="../index.html"><img class="c-topbar__brand-logo" src="../img/logos/logohorizontal.png" alt="Natan Lichtnow" style="height: 2.2rem; width: auto;" /></a><nav class="c-topbar__nav" aria-label="Section navigation"><a class="c-topbar__link" href="index.html" data-i18n="navSectionHome">Music Home</a><a class="c-topbar__link" href="history.html" data-i18n="navMusicExperience">History</a><a class="c-topbar__link" href="music.html" data-i18n="navMusic">Music</a><a class="c-topbar__link c-topbar__link--is-active" href="twitch-streaming.html" data-i18n="navTwitch">Twitch</a><a class="c-topbar__link" href="flow-arts-experience.html" data-i18n="navFlowExperience">Flow Arts</a></nav><div class="c-language-switcher" aria-label="Language selector"><span class="c-language-switcher__label" data-i18n="languageLabel">LANG</span><button class="c-language-switcher__option" type="button" data-lang="pt-BR">PT</button><button class="c-language-switcher__option" type="button" data-lang="en">EN</button></div></div></header>
     <main class="c-shell">
-      <section class="c-hero c-hero--split">
-        <div class="c-hero__panel">
-          <span class="c-hero__eyebrow" data-i18n="eyebrow">Live channel</span>
-          <h1 class="c-hero__title" data-i18n="heroTitle">Twitch Streaming</h1>
-          <p class="c-hero__lead" data-i18n="heroLead">The stream is the live extension of the creative branch: music, experiments, behind-the-scenes process, and a more direct relationship with the people following the work as it happens.</p>
-          <div class="c-hero__actions"><a class="c-button" href="index.html" data-i18n="primaryAction">Back to music home</a><a class="c-button c-button--ghost" href="history.html" data-i18n="secondaryAction">Back to music history</a></div>
-        </div>
-        <div class="c-hero__media">
-          <img class="c-hero__image" src="../img/music-arts/music.jpg" alt="Warm portrait for live stream channel" data-i18n="heroImageAlt" data-i18n-attr="alt" />
-          <div class="c-hero__media-copy">
-            <span class="c-hero__eyebrow" data-i18n="heroMediaEyebrow">What the stream should feel like</span>
-            <h2 class="c-card__title" data-i18n="heroMediaTitle">Less broadcast, more room.</h2>
-            <p class="c-card__text" data-i18n="heroMediaText">The strongest streams feel conversational, exploratory, and present. This page now frames the channel that way instead of treating it like a utility link.</p>
+      <section class="mh-hero mh-hero--flow">
+        <div class="mh-hero__blob mh-hero__blob--1" aria-hidden="true"></div>
+        <div class="mh-hero__blob mh-hero__blob--2" aria-hidden="true"></div>
+        <div class="mh-hero__blob mh-hero__blob--3" aria-hidden="true"></div>
+        <div class="mh-hero__stars" aria-hidden="true"></div>
+        <div class="mh-hero__inner">
+          <div class="mh-hero__copy">
+            <h1 class="mh-title" data-i18n="heroTitle">Twitch & Live Looping</h1>
+            <p class="mh-lead" data-i18n="heroLead">A cozy corner of the internet where music, experiments and flow arts meet in live performance.</p>
+            <div style="margin-top:1rem">
+
+            </div>
           </div>
+          <!-- hero image removed per request -->
         </div>
       </section>
 
-      <section class="c-section">
-        <div class="c-mini-grid">
-          <article class="c-mini-card"><span class="c-kicker" data-i18n="cardOneEyebrow">Block 01</span><h3 class="c-card__title" data-i18n="cardOneTitle">Live music sessions</h3><p class="c-mini-card__text" data-i18n="cardOneText">Improvised or structured sets that let people hear the atmosphere in a more immediate and unfinished state.</p></article>
-          <article class="c-mini-card"><span class="c-kicker" data-i18n="cardTwoEyebrow">Block 02</span><h3 class="c-card__title" data-i18n="cardTwoTitle">Process and experiments</h3><p class="c-mini-card__text" data-i18n="cardTwoText">Trying ideas in public, showing what works, what fails, and what the creative process actually looks like between polished outputs.</p></article>
-          <article class="c-mini-card"><span class="c-kicker" data-i18n="cardThreeEyebrow">Block 03</span><h3 class="c-card__title" data-i18n="cardThreeTitle">Audience interaction</h3><p class="c-mini-card__text" data-i18n="cardThreeText">A space where community shapes tempo, topics, and energy instead of staying completely outside the work.</p></article>
-        </div>
-      </section>
-
-      <section class="c-section">
-        <div class="c-detail-layout"><div class="c-detail-panel"><h2 class="c-detail-panel__title" data-i18n="overviewTitle">How this page works now</h2><p class="c-detail-panel__text" data-i18n="overviewText">The structure now reads like a real live-channel page. It explains the role of the stream, the kind of content people can expect, and how the channel fits the larger music and flow arts universe.</p><ul class="c-list"><li class="c-list__item"><h3 class="c-list__title" data-i18n="pointOneTitle">Consistency</h3><p class="c-list__text" data-i18n="pointOneText">A live project becomes stronger when people understand its cadence and know why they should return.</p></li><li class="c-list__item"><h3 class="c-list__title" data-i18n="pointTwoTitle">Identity</h3><p class="c-list__text" data-i18n="pointTwoText">The stream should feel connected to the music branch aesthetically, emotionally, and in tone.</p></li><li class="c-list__item"><h3 class="c-list__title" data-i18n="pointThreeTitle">Conversion</h3><p class="c-list__text" data-i18n="pointThreeText">The page should turn a curious visitor into someone who understands the value of watching live and coming back.</p></li></ul></div><aside class="c-detail-panel"><h2 class="c-detail-panel__title" data-i18n="sideTitle">About embeds and external links</h2><p class="c-detail-panel__text" data-i18n="sideText">The repo does not currently contain the actual Twitch channel URL or embed parameters, so this page is now structured for that next step without inventing a destination that might be wrong.</p></aside></div>
-      </section>
-
-      <section class="c-section">
-        <article class="c-callout">
-          <div class="c-callout__copy">
-            <span class="c-kicker" data-i18n="calloutEyebrow">Ready for the real channel link</span>
-            <h2 class="c-card__title" data-i18n="calloutTitle">Drop in the Twitch handle and this becomes the live gateway.</h2>
-            <p class="c-callout__text" data-i18n="calloutText">The layout is ready for a direct follow button, stream embed, or clip wall. What is missing is only the verified channel URL.</p>
+      <section class="mh-chapters">
+        <article class="mh-chapter" id="intro">
+          
+          <h2 class="mh-chapter__title" data-i18n="introTitle">How it began on Twitch</h2>
+          <div class="mh-text">
+            <p data-i18n="intro_p1">During dark times in the pandemic, Tiago Sena (4i20) and the music production community on Twitch welcomed Natan and helped him start streaming his process in Portuguese.</p>
+            
           </div>
-          <div class="c-link-cluster">
-            <a class="c-link-pill" href="index.html" data-i18n="calloutPrimary">Back to music home</a>
-            <a class="c-link-pill c-link-pill--ghost" href="flow-arts-experience.html" data-i18n="calloutSecondary">Open flow arts</a>
+        </article>
+
+        <article class="mh-chapter">
+        
+          <h2 class="mh-chapter__title" data-i18n="giftTitle">Community support and a life-changing gift</h2>
+          <div class="mh-split">
+            <div class="mh-split__text">
+              <p data-i18n="gift_p1">Overtime as Natan met a big friend who eventually became a lover (read the history page for context) with the support of the new found community and friends, Natan was asked to start streaming in English, he decided to go through his shyness and face that challenge.  </p>
+              <p data-i18n="gift_p2">Natan's music taste slowed down quite a lot, from the fast beats of psytrance, he started enjoying the slower genres: Trip hop and Downtempo, he shared the entire change process on Twitch, and his new community was very excited about it.</p>
+              <p data-i18n="gift_p3">A lot of magical things happened quickly, Natan was very transparent with the situation he was facing at his house, and his community was very supportive of him during that time, as the community grew he started getting more support, until eventually one of his viewers, Jasper_Stevens, gifted him a laptop, which completely changed the direction of his life.</p>
+              <p data-i18n="gift_p4">It was a major level up on everything he was doing, his stream quality got better, his music projects got more complex and he started editing videos, leading him to be able to work and invest into making his work even better</p>
+            </div>
+            <figure class="mh-split__media">
+              <img src="../img/music-arts/streamstart.jpg" alt="" data-i18n-attr="alt" data-i18n="giftImageAlt" />
+             
+            </figure>
+          </div>
+        </article>
+
+        <article class="mh-chapter">
+         
+          <h2 class="mh-chapter__title" data-i18n="flowTitle">Flow arts on stream</h2>
+          <div class="mh-split mh-split--img-left">
+            <figure class="mh-split__media">
+              <img class="mh-img" src="../img/music-arts/flowstart.jpg" alt="" data-i18n-attr="alt" data-i18n="flowImageAlt" />
+              
+            </figure>
+            <div class="mh-split__text">
+              <p data-i18n="flow_p1">As time passed, Natan fell in love with Flow arts, the art of dance with object manipulation, and that gave a new dimension to his streams, playing music and adding the visuals with his hipnotizing dance style.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="mh-chapter" id="irl">
+          
+          <h2 class="mh-chapter__title" data-i18n="irlTitle">IRL streams and travel</h2>
+          <div class="mh-split mh-split--img-right">
+            <div class="mh-split__text">
+              <p data-i18n="irl_p1">As he embraced the traveler life, going to the Netherlands, he started doing IRL type of streams, sharing his life and adventures on the other side of the ocean, showing more of the flow arts universe that he was experiencing</p>
+              <p data-i18n="irl_p2">As he got back to Brazil at his hometown, he decided to change everything, investing in instruments and reinventing the format that he creates content, now as a live looper, he created a small universe for his Twitch stream</p>
+            </div>
+            <figure class="mh-split__media" aria-hidden="true">
+              <img src="../img/music-arts/irlstream.jpg" alt="" data-i18n-attr="alt" data-i18n="irlImageAlt" style="width:500px; max-width:100%; height:auto; border-radius:8px; display:block;" />
+            </figure>
+          </div>
+        </article>
+
+        <article class="mh-chapter mh-chapter--dark" id="temple">
+          
+          <h2 class="mh-chapter__title" data-i18n="templeTitle">A cozy corner for slowing down</h2>
+          <div class="mh-split mh-split--img-left">
+            <figure class="mh-split__media" aria-hidden="true">
+              <img src="../img/music-arts/streaming.jpg" alt="" data-i18n-attr="alt" data-i18n="streamingAlt" style="width:500px; max-width:100%; height:auto; border-radius:8px; display:block;" />
+            </figure>
+            <div class="mh-split__text">
+              <p data-i18n="temple_p1">The temple is a place to relax, where calm music is the guidance of a cozy corner of the internet, where people can come to connect with like-minded beings and share their experiences with life, with vulnerability and honesty being the leading subjects on the stream</p>
+              <p data-i18n="temple_p2">Come visit the Temple and allow yourself to slow down for a moment.</p>
+              <p><a class="c-button" href="https://twitch.tv/natanlichtnowmusic" target="_blank" rel="noopener noreferrer" data-i18n="templeButton">Visit the Temple on Twitch</a></p>
+            </div>
           </div>
         </article>
       </section>
-
-      <section class="c-section"><div class="c-info-strip"><div class="c-info-strip__item"><span class="c-info-strip__label" data-i18n="stripLabelOne">Channel role</span><span class="c-info-strip__value" data-i18n="stripValueOne">Live extension of the creative universe.</span></div><div class="c-info-strip__item"><span class="c-info-strip__label" data-i18n="stripLabelTwo">Content</span><span class="c-info-strip__value" data-i18n="stripValueTwo">Music, experimentation, interaction, and process.</span></div><div class="c-info-strip__item"><span class="c-info-strip__label" data-i18n="stripLabelThree">Goal</span><span class="c-info-strip__value" data-i18n="stripValueThree">Turn visitors into returning live viewers and community members.</span></div></div></section>
     </main>
     <footer class="c-page-footer c-shell"><p class="c-page-footer__text" data-i18n="footer">NATAN LICHTNOW // TWITCH STREAMING</p></footer>
   </div>
   <script>
     window.NATAN_PAGE_TRANSLATIONS = {
       'pt-BR': {
-        pageTitle: 'Twitch Streaming | Natan Lichtnow',
+        pageTitle: 'Twitch & Live Looping | Natan Lichtnow',
         brand: 'Natan Lichtnow',
         languageLabel: 'IDIOMA',
-        navSectionHome: 'Inicio da musica',
-        navMusicExperience: 'Historia',
-        navFlowExperience: 'Flow arts',
+        navSectionHome: 'Início da Música',
+        navMusic: 'Música',
+        navMusicExperience: 'História',
+        navFlowExperience: 'Flow Arts',
         navTwitch: 'Twitch',
-        navDev: 'Desenvolvimento',
         eyebrow: 'Canal ao vivo',
-        heroTitle: 'Twitch Streaming',
-        heroLead: 'A stream e a extensao ao vivo do ramo criativo: musica, experimentos, bastidores e uma relacao mais direta com as pessoas que acompanham o trabalho enquanto ele acontece.',
-        primaryAction: 'Voltar ao inicio da musica',
-        secondaryAction: 'Voltar a experiencia musical',
-        heroImageAlt: 'Retrato quente para canal de stream',
-        heroMediaEyebrow: 'Como a stream deve se sentir',
-        heroMediaTitle: 'Menos transmissao, mais sala.',
-        heroMediaText: 'As streams mais fortes parecem conversas presentes e exploratorias. Esta pagina agora enquadra o canal assim em vez de trata-lo como um link utilitario.',
-        cardOneEyebrow: 'Bloco 01',
-        cardOneTitle: 'Sessoes musicais ao vivo',
-        cardOneText: 'Sets improvisados ou estruturados para que as pessoas escutem a atmosfera em um estado mais imediato e menos acabado.',
-        cardTwoEyebrow: 'Bloco 02',
-        cardTwoTitle: 'Processo e experimentos',
-        cardTwoText: 'Testar ideias em publico, mostrar o que funciona, o que falha e como o processo criativo realmente se move entre entregas mais polidas.',
-        cardThreeEyebrow: 'Bloco 03',
-        cardThreeTitle: 'Interacao com o publico',
-        cardThreeText: 'Um espaco em que a comunidade interfere em ritmo, temas e energia em vez de ficar completamente fora do trabalho.',
-        overviewTitle: 'Como esta pagina funciona agora',
-        overviewText: 'A estrutura agora le como uma pagina real de canal ao vivo. Ela explica o papel da stream, o tipo de conteudo que as pessoas podem esperar e como o canal encaixa no universo maior de musica e flow arts.',
-        pointOneTitle: 'Consistencia',
-        pointOneText: 'Um projeto ao vivo fica mais forte quando as pessoas entendem seu ritmo e sabem por que vale voltar.',
-        pointTwoTitle: 'Identidade',
-        pointTwoText: 'A stream precisa parecer conectada ao ramo da musica em estetica, emocao e tom.',
-        pointThreeTitle: 'Conversao',
-        pointThreeText: 'A pagina deve transformar um visitante curioso em alguem que entende o valor de assistir ao vivo e voltar.',
-        sideTitle: 'Sobre embeds e links externos',
-        sideText: 'O repositorio ainda nao contem a URL real do canal da Twitch nem os parametros do embed, entao esta pagina foi estruturada para o proximo passo sem inventar um destino que possa estar errado.',
-        calloutEyebrow: 'Pronto para o link real do canal',
-        calloutTitle: 'Basta inserir o handle da Twitch e isto vira o portal ao vivo.',
-        calloutText: 'O layout ja esta pronto para botao de follow, embed de stream ou parede de clipes. O que falta e apenas a URL verificada do canal.',
-        calloutPrimary: 'Voltar ao inicio da musica',
-        calloutSecondary: 'Abrir flow arts',
-        stripLabelOne: 'Papel do canal',
-        stripValueOne: 'Extensao ao vivo do universo criativo.',
-        stripLabelTwo: 'Conteudo',
-        stripValueTwo: 'Musica, experimentacao, interacao e processo.',
-        stripLabelThree: 'Objetivo',
-        stripValueThree: 'Transformar visitantes em espectadores recorrentes e membros da comunidade.',
-        footer: 'NATAN LICHTNOW // TWITCH STREAMING',
-        navMusic: 'Música'
+        heroTitle: 'Twitch',
+        heroLead: 'Durante os tempos difíceis que Natan enfrentou durante a pandemia, uma luz brilhou em sua vida:',
+
+        heroImageAlt: 'Início da transmissão',
+        giftImageAlt: 'Configuração da transmissão',
+        flowImageAlt: 'Início do flow',
+
+       
+        introTitle: 'Como começou no Twitch',
+        intro_p1: 'Tiago Sena, 4i20, uma de suas maiores inspirações na época, começou a transmitir no Twitch e criou uma comunidade saudável de produção musical. Natan entrou rapidamente nesse universo, sentindo-se muito bem-vindo pela comunidade, e começou a transmitir seu processo de produção musical em português.',
+        intro_p2: '',
+
+        
+        giftTitle: 'Virada',
+        gift_p1: 'Com o tempo, Natan conheceu uma grande amiga que eventualmente se tornou sua amante (leia a página de história para contexto), com o apoio da nova comunidade e novos amigos, foi intimado a fazer streams em inglês, decidiu encarar sua timidez e aceitar o desafio. ',
+        gift_p2: 'O gosto musical de Natan desacelerou bastante: dos ritmos rápidos do psytrance, ele passou a apreciar gêneros mais lentos como trip hop e downtempo, e compartilhou todo esse processo de mudança na Twitch, sua nova comunidade ficou muito empolgada com isso.',
+        gift_p3: 'Muitas coisas mágicas aconteceram rapidamente, Natan sempre foi muito transparente sobre a situação que enfrentava em sua casa, e sua comunidade foi bastante solidária durante esse período, conforme a comunidade cresceu, ele passou a receber mais apoio, até que, eventualmente, um de seus espectadores, Jasper_Stevens, lhe presenteou um laptop, o que mudou completamente a direção de sua vida.',
+        gift_p4: 'Foi um grande salto em tudo que ele estava fazendo: a qualidade de suas transmissões melhorou, seus projetos musicais ficaram mais complexos e ele passou a editar vídeos, o que lhe permitiu trabalhar e investir mais em seu trabalho.',
+       
+        flowTitle: 'Flow arts nas transmissões',
+        flow_p1: 'Com o tempo, Natan se apaixonou por Flow arts, a arte da dança com manipulação de objetos, o que acabou repaginando tudo que fazia, começou a fazer lives de DJsets + flow, tocando música e adicionando visuais com seu estilo hipnotizante.',
+
+       
+        irlTitle: 'Transmissões IRL e viagens',
+        irl_p1: 'Ao abraçar a vida de viajante, indo para a Holanda, ele passou a fazer transmissões IRL, compartilhando sua vida e aventuras do outro lado do oceano, mostrando mais do universo do flow arts que vinha experienciando.',
+        irl_p2: 'Ao retornar ao Brasil, para sua cidade natal, decidiu mudar tudo: investir em instrumentos e reinventar o formato de criação de conteúdo. Agora, como live looper, criou um pequeno universo para suas transmissões no Twitch.',
+        irlImageAlt: 'Transmissão IRL',
+
+       
+        templeTitle: 'O Templo',
+        temple_p1: 'O Templo é um lugar para relaxar, onde a música calma cria um canto aconchegante da internet. As transmissões enfatizam vulnerabilidade, honestidade e experiência compartilhada.',
+        temple_p2: 'Visite o Templo e permita-se desacelerar por um momento.',
+        templeButton: 'Visite o Templo na Twitch',
+
+        streamingAlt: 'Miniatura da transmissão',
+
+        footer: 'NATAN LICHTNOW // TWITCH STREAMING'
       },
       en: {
-        pageTitle: 'Twitch Streaming | Natan Lichtnow',
+        pageTitle: 'Twitch & Live Looping | Natan Lichtnow',
         brand: 'Natan Lichtnow',
         languageLabel: 'LANG',
         navSectionHome: 'Music Home',
+        navMusic: 'Music',
         navMusicExperience: 'History',
         navFlowExperience: 'Flow Arts',
         navTwitch: 'Twitch',
-        navDev: 'Development',
         eyebrow: 'Live channel',
-        heroTitle: 'Twitch Streaming',
-        heroLead: 'The stream is the live extension of the creative branch: music, experiments, behind-the-scenes process, and a more direct relationship with the people following the work as it happens.',
-        primaryAction: 'Back to music home',
-        secondaryAction: 'Back to music experience',
-        heroImageAlt: 'Warm portrait for live stream channel',
-        heroMediaEyebrow: 'What the stream should feel like',
-        heroMediaTitle: 'Less broadcast, more room.',
-        heroMediaText: 'The strongest streams feel conversational, exploratory, and present. This page now frames the channel that way instead of treating it like a utility link.',
-        cardOneEyebrow: 'Block 01',
-        cardOneTitle: 'Live music sessions',
-        cardOneText: 'Improvised or structured sets that let people hear the atmosphere in a more immediate and unfinished state.',
-        cardTwoEyebrow: 'Block 02',
-        cardTwoTitle: 'Process and experiments',
-        cardTwoText: 'Trying ideas in public, showing what works, what fails, and what the creative process actually looks like between polished outputs.',
-        cardThreeEyebrow: 'Block 03',
-        cardThreeTitle: 'Audience interaction',
-        cardThreeText: 'A space where community shapes tempo, topics, and energy instead of staying completely outside the work.',
-        overviewTitle: 'How this page works now',
-        overviewText: 'The structure now reads like a real live-channel page. It explains the role of the stream, the kind of content people can expect, and how the channel fits the larger music and flow arts universe.',
-        pointOneTitle: 'Consistency',
-        pointOneText: 'A live project becomes stronger when people understand its cadence and know why they should return.',
-        pointTwoTitle: 'Identity',
-        pointTwoText: 'The stream should feel connected to the music branch aesthetically, emotionally, and in tone.',
-        pointThreeTitle: 'Conversion',
-        pointThreeText: 'The page should turn a curious visitor into someone who understands the value of watching live and coming back.',
-        sideTitle: 'About embeds and external links',
-        sideText: 'The repo does not currently contain the actual Twitch channel URL or embed parameters, so this page is now structured for that next step without inventing a destination that might be wrong.',
-        calloutEyebrow: 'Ready for the real channel link',
-        calloutTitle: 'Drop in the Twitch handle and this becomes the live gateway.',
-        calloutText: 'The layout is ready for a direct follow button, stream embed, or clip wall. What is missing is only the verified channel URL.',
-        calloutPrimary: 'Back to music home',
-        calloutSecondary: 'Open flow arts',
-        stripLabelOne: 'Channel role',
-        stripValueOne: 'Live extension of the creative universe.',
-        stripLabelTwo: 'Content',
-        stripValueTwo: 'Music, experimentation, interaction, and process.',
-        stripLabelThree: 'Goal',
-        stripValueThree: 'Turn visitors into returning live viewers and community members.',
-        footer: 'NATAN LICHTNOW // TWITCH STREAMING',
-        navMusic: 'Music'
+        heroTitle: 'Twitch',
+        heroLead: 'During the dark times Natan had to face during the pandemic, one light shined on his life:',
+
+        heroImageAlt: 'Stream start',
+        giftImageAlt: 'Stream setup',
+        flowImageAlt: 'Flow start',
+
+      
+        introTitle: 'How it began on Twitch',
+        intro_p1: 'Tiago Sena, 4i20, one of his biggest inspirations at the time started to stream on Twitch and started a healthy music production community, Natan was quick on getting into that, feeling very welcome by the community he started streaming his music production process, in Portuguese',
+    
+
+       
+        giftTitle: 'Overtime',
+        gift_p1: 'Overtime as Natan met a big friend who eventually became a lover (read the history page for context) he was asked to start streaming in English, with the support of the new found community and friends\n\nNatan\'s ',
+        gift_p2: 'Natan\'s music taste slowed down quite a lot, from the fast beats of psytrance, he started enjoying the slower genres: Trip hop and Downtempo, he shared the entire change process on Twitch, and his new community was very excited about it.',
+        gift_p3: 'A lot of magical things happened quickly, Natan was very transparent with the situation he was facing at his house, and his community was very supportive of him during that time, as the community grew he started getting more support, until eventually one of his viewers, Jasper_Stevens, gifted him a laptop, which completely changed the direction of his life.',
+        gift_p4: 'It was a major level up on everything he was doing, his stream quality got better, his music projects got more complex and he started editing videos, leading him to be able to work and invest into making his work even better',
+
+       
+        flowTitle: 'Flow arts on stream',
+        flow_p1: 'As time passed, Natan fell in love with Flow arts, the art of dance with object manipulation, and that gave a new dimension to his streams, playing music and adding the visuals with his hipnotizing dance style  ',
+      
+
+     
+        irlTitle: 'IRL streams and travel',
+        irl_p1: 'As he embraced the traveler life, going to the Netherlands, he started doing IRL type of streams, sharing his life and adventures on the other side of the ocean, showing more of the flow arts universe that he was experiencing',
+        irl_p2: 'As he got back to Brazil at his hometown, he decided to change everything, investing in instruments and reinventing the format that he creates content, now as a live looper, he created a small universe for his Twitch streams',
+
+       
+        templeTitle: 'The temple',
+        temple_p1: 'The temple is a place to relax, where calm music is the guidance of a cozy corner of the internet, where people can come to connect with like-minded beings and share their experiences with life, with vulnerability and honesty being the leading subjects on the stream',
+        temple_p2: 'Come visit the temple and allow yourself to slow down for a moment',
+        templeButton: 'Visit the Temple on Twitch',
+      
+        streamingAlt: 'Streaming thumbnail',
+
+        footer: 'NATAN LICHTNOW // TWITCH STREAMING'
       }
     };
   </script>
