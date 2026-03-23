@@ -1,0 +1,53 @@
+/* Music page - distinct but related visual tone */
+    .c-page--music {
+      --page-accent: #d48bff;
+      --page-accent-soft: rgba(212, 139, 255, 0.12);
+      --page-accent-strong: rgba(212, 139, 255, 0.28);
+      --page-accent-glow: rgba(212, 139, 255, 0.18);
+      --page-pattern: radial-gradient(circle at 10% 10%, rgba(212,139,255,0.06), transparent 20%), linear-gradient(180deg,#0b0620 0%, #060512 100%);
+    }
+    .c-media-frame__visual img { border-radius: 12px; box-shadow: 0 18px 46px rgba(20,8,40,0.6); display:block; width:100%; height:auto; }
+    .c-media-frame__copy h2 { color: var(--page-accent); margin-top: 0; }
+    .c-media-frame { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: center; }
+    @media (max-width: 900px) { .c-media-frame { grid-template-columns: 1fr; } }
+
+    /* Make all media visuals match size and crop consistently */
+    .c-media-frame__visual img {
+      width: 100%;
+      height: 18rem;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 18px 46px rgba(20,8,40,0.6);
+    }
+
+    @media (min-width: 1200px) {
+      .c-media-frame__visual img { height: 22rem; }
+    }
+
+    /* Background animated blobs and stars (reuse history visuals, tuned for music) */
+    .music-bg-blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(100px); opacity: 0; will-change: transform, opacity; }
+    .music-bg-blob--a { width: 48vw; height: 48vw; top: -8%; left: -12%; background: radial-gradient(circle, rgba(212,139,255,0.18) 0%, transparent 72%); animation: music-blob-a 20s ease-in-out infinite alternate; z-index:0; }
+    .music-bg-blob--b { width: 36vw; height: 36vw; top: 10%; right: -8%; background: radial-gradient(circle, rgba(74,0,224,0.14) 0%, transparent 72%); animation: music-blob-b 26s ease-in-out infinite alternate; z-index:0; }
+    .music-bg-blob--c { width: 32vw; height: 32vw; bottom: 8%; left: 28%; background: radial-gradient(circle, rgba(255,120,200,0.12) 0%, transparent 72%); animation: music-blob-c 30s ease-in-out infinite alternate; z-index:0; }
+
+    @keyframes music-blob-a { 0%{transform:translate(0,0) scale(1);opacity:.6}50%{transform:translate(8vw,6vh) scale(1.08);opacity:.72}100%{transform:translate(-4vw,10vh) scale(.96);opacity:.58} }
+    @keyframes music-blob-b { 0%{transform:translate(0,0) scale(1);opacity:.5}50%{transform:translate(-6vw,8vh) scale(1.1);opacity:.68}100%{transform:translate(4vw,-3vh) scale(.9);opacity:.46} }
+    @keyframes music-blob-c { 0%{transform:translate(0,0) scale(1);opacity:.45}50%{transform:translate(6vw,-6vh) scale(1.12);opacity:.6}100%{transform:translate(-5vw,3vh) scale(.9);opacity:.4} }
+
+    .music-stars {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px),
+        radial-gradient(circle, rgba(200,180,255,0.5) 1px, transparent 1px);
+      background-size: 200px 200px, 140px 140px, 320px 320px;
+      background-position: 0 0, 80px 50px, 140px 90px;
+      opacity: 0.28;
+    }
+
+    /* Ensure main content sits above stars/blobs */
+    .c-page--music > main, .c-page--music header, .c-page--music footer { position: relative; z-index: 10; }
+    /* Add top margin to the first content block */
+    .c-page--music .c-section:first-of-type { margin-top: 64px; }
+
+    

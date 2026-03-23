@@ -1,0 +1,313 @@
+/* Menu toggle (mobile) */
+
+    .mh-page .c-topbar__menu-toggle {
+      display: none;
+      width: 2.7rem;
+      height: 2.7rem;
+      border-radius: 0.8rem;
+      border: 1px solid rgba(0, 230, 118, 0.24);
+      background: rgba(0, 230, 118, 0.08);
+      color: #c8e8d0;
+      align-items: center;
+      justify-content: center;
+      gap: 0.26rem;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      z-index: 50;
+      position: relative;
+      
+    }
+    .mh-page .c-topbar__menu-toggle:hover,
+    .mh-page .c-topbar__menu-toggle:focus-visible {
+      background: rgba(0, 230, 118, 0.16);
+      border-color: rgba(0, 230, 118, 0.4);
+    }
+    .mh-page .c-topbar__menu-toggle-line {
+      display: block;
+      width: 1.15rem;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .mh-page .c-topbar__menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 25 !important; /* keep the blur behind the topbar/menu */
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      background: rgba(3, 10, 6, 0.26);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+    .mh-page .c-topbar__menu-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+     /* Force topbar and its controls above the overlay (history.html had embedded rules
+       that placed the overlay on top). Make the topbar sticky so the hamburger stays
+       visible while scrolling, and keep a high stacking order. */
+     .mh-page .c-topbar { position: sticky; top: 0; z-index: 1000 !important; }
+    .mh-page .c-topbar__nav { position: relative; z-index: 1010 !important; }
+    .mh-page .c-topbar__menu-toggle { position: relative; z-index: 1020 !important; }
+    .mh-page .c-topbar__nav.is-open { z-index: 1030 !important; }
+    .mh-page .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .mh-page .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(2) {
+      opacity: 0;
+    }
+    .mh-page .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .mh-page .c-topbar__link { color: #6a9878; }
+    .mh-page .c-topbar__link:hover,
+    .mh-page .c-topbar__link:focus-visible,
+    .mh-page .c-topbar__link--is-active {
+      color: #c8e8d0;
+      border-color: rgba(0, 230, 118, 0.3);
+      background: rgba(0, 230, 118, 0.08);
+    }
+    .mh-page .c-language-switcher { border-color: rgba(0, 230, 118, 0.14); background: rgba(0, 230, 118, 0.05); }
+    .mh-page .c-language-switcher__label { color: #4a7858; }
+    .mh-page .c-language-switcher__option { color: #c8e8d0; border-color: rgba(0, 230, 118, 0.14); }
+    .mh-page .c-language-switcher__option--is-active { background: rgba(0, 230, 118, 0.12); border-color: rgba(0, 230, 118, 0.32); }
+    .c-topbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.c-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: color-mix(in srgb, var(--page-surface-strong) 78%, transparent);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: padding 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.c-topbar.is-scrolled {
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  background: color-mix(in srgb, var(--page-surface-strong) 92%, transparent);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+}
+
+.c-page--pilot .c-topbar {
+  background: rgba(246, 250, 247, 0.76);
+}
+
+.c-topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  transition: padding 0.3s ease;
+}
+
+.c-topbar.is-scrolled .c-topbar__inner {
+  padding: 0.45rem 0;
+}
+
+.c-topbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-family: var(--page-heading-font);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.c-topbar__brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--page-accent-strong);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--page-accent);
+  box-shadow: 0 0 22px var(--page-accent-soft);
+  transition: width 0.3s ease, height 0.3s ease, font-size 0.3s ease;
+}
+
+.c-topbar.is-scrolled .c-topbar__brand-mark {
+  width: 2.1rem;
+  height: 2.1rem;
+  font-size: 0.75rem;
+}
+
+.c-page--pilot .c-topbar__brand-mark {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Ensure the mobile/open navigation and menu toggle sit above the page overlay.
+   Strong z-index values and !important are used to override page-specific styles
+   (some pages include inline/embedded CSS that previously put the overlay on top). */
+.c-topbar__menu-overlay { z-index: 5 !important; pointer-events: auto; }
+.c-topbar { position: relative; z-index: 1000 !important; }
+.c-topbar__nav { position: relative; z-index: 1005 !important; }
+.c-topbar__menu-toggle { position: relative; z-index: 1010 !important; }
+.c-topbar__nav.is-open { z-index: 1015 !important; }
+
+.c-topbar__link {
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--page-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.c-page--music .c-topbar__link {
+  border-radius: 1rem;
+}
+
+.c-topbar__link:hover,
+.c-topbar__link:focus-visible,
+.c-topbar__link--is-active {
+  color: var(--page-text);
+  border-color: var(--page-accent-strong);
+  background: var(--page-accent-soft);
+  transform: translateY(-1px);
+}
+
+.c-page--journey .c-topbar__brand {
+  color: #c8e8d0;
+}
+
+.c-page--journey .c-topbar__brand-mark {
+  background: rgba(66, 200, 116, 0.1);
+  border-color: rgba(66, 200, 116, 0.3);
+  color: #42c874;
+}
+
+.c-page--journey .c-topbar__link {
+  color: #6a9878;
+}
+
+.c-page--journey .c-topbar__link:hover,
+.c-page--journey .c-topbar__link:focus-visible,
+.c-page--journey .c-topbar__link--is-active {
+  color: #c8e8d0;
+  border-color: rgba(66, 200, 116, 0.3);
+  background: rgba(66, 200, 116, 0.08);
+}
+
+
+
+
+    @media (max-width: 1060px) {
+      .mh-page .c-topbar {
+        position: sticky;
+        z-index: 40;
+      }
+      .mh-page .c-topbar__inner {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        justify-items: stretch;
+        text-align: left;
+        gap: 0.45rem;
+      }
+      .mh-page .c-topbar__brand {
+        min-width: 0;
+        gap: 0.45rem;
+      }
+      .mh-page .c-topbar__brand-logo {
+        height: 1.8rem;
+      }
+      .mh-page .c-topbar__menu-toggle {
+  
+        display: inline-flex;
+      }
+      .mh-page .c-topbar__nav {
+        position: absolute;
+        left: 0.7rem;
+        right: 0.7rem;
+        top: calc(100% + 0.55rem);
+        display: flex;
+        gap: 0.55rem;
+        padding: 0.8rem;
+        border-radius: 0.95rem;
+        border: 1px solid rgba(0, 230, 118, 0.18);
+        background: rgba(4, 12, 7, 0.95);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+        z-index: 50;
+      }
+      .mh-page .c-topbar__nav.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+        z-index: 50;
+      }
+      .mh-page .c-topbar__link {
+        width: 100%;
+      }
+      .mh-page .c-language-switcher {
+        justify-self: end;
+        width: auto;
+        gap: 0.2rem;
+        padding: 0.24rem;
+        max-width: 100%;
+      }
+      .mh-page .c-language-switcher__label {
+        padding-inline: 0.35rem;
+        font-size: 0.6rem;
+        letter-spacing: 0.1em;
+      }
+      .mh-page .c-language-switcher__option {
+        min-width: 2.2rem;
+        padding: 0.48rem 0.5rem;
+        font-size: 0.62rem;
+      }
+      .mh-split { grid-template-columns: 1fr; gap: 2rem; }
+      .mh-split--img-left .mh-split__media { order: 0; }
+      .mh-gallery { grid-template-columns: 1fr; }
+      .mh-gallery--trio { grid-template-columns: 1fr; }
+      .mh-hero__content { padding-bottom: 11rem; }
+      .mh-dark-box { padding: 1.5rem; }
+    }
+
+
+      .mh-page .c-topbar__link {
+        padding: 0.62rem 0.78rem;
+      }
+      .mh-page .c-language-switcher {
+        justify-self: end;
+        align-self: center;
+      }
+   
+
+    @media (max-width: 420px) {
+      .mh-page .c-language-switcher__label {
+        display: none;
+      }
+      .mh-page .c-language-switcher__option {
+        min-width: 2rem;
+        padding: 0.46rem 0.4rem;
+      }
+    }
+  
