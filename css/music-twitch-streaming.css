@@ -15,7 +15,7 @@
     .mh-hero--flow { margin: 0 !important; padding: 0 !important; }
     .mh-hero--flow .mh-hero__inner { flex-direction: column; text-align: center; gap: 1rem }
     .mh-hero--flow .mh-hero__copy { width: 100%; }
-    .mh-hero--flow .mh-title { font-size: clamp(3.9rem, 9vw, 7.2rem); }
+    .mh-hero--flow .mh-title { font-size: clamp(10rem, 9vw, 7.2rem); }
     .mh-hero--flow .mh-lead { margin: 0 auto; max-width: 820px }
 
     .mh-chapters { max-width:1200px; margin:2.5rem auto; padding:0 1.5rem }
@@ -239,7 +239,7 @@
        to override global resets. */
     @media (max-width: 455px) {
       .mh-page .mh-title {
-        font-size: 1.9rem !important;
+        font-size: 6.5rem !important;
         line-height: 1.02;
         white-space: pre-line; /* honor injected newlines */
         overflow-wrap: normal;
