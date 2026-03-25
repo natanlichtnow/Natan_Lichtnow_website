@@ -156,6 +156,64 @@
   initStickyTopbar();
   initMobileMenu();
 
+  /* Smooth-scroll handler for same-page anchor links with custom easing on small devices.
+     Respects `prefers-reduced-motion: reduce` and falls back to native behavior otherwise. */
+  function initSmoothScroll() {
+    try {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      function easeInOutCubic(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+
+      function scrollToY(targetY, duration) {
+        const startY = window.scrollY || window.pageYOffset;
+        const diff = targetY - startY;
+        let start;
+        if (!duration || duration <= 0) { window.scrollTo(0, targetY); return; }
+        function step(timestamp) {
+          if (!start) start = timestamp;
+          const elapsed = timestamp - start;
+          const t = Math.min(1, elapsed / duration);
+          const eased = easeInOutCubic(t);
+          window.scrollTo(0, Math.round(startY + diff * eased));
+          if (elapsed < duration) {
+            window.requestAnimationFrame(step);
+          }
+        }
+        window.requestAnimationFrame(step);
+      }
+
+      document.addEventListener('click', function (e) {
+        const el = e.target instanceof Element ? e.target.closest('a[href^="#"]') : null;
+        if (!el) return;
+        const href = el.getAttribute('href');
+        if (!href || href === '#' || href.indexOf('#') !== 0) return;
+        const id = href.slice(1);
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        // Only intercept same-page anchor clicks (no cross-origin or file changes)
+        e.preventDefault();
+
+        // compute offset (account for sticky topbar height)
+        const topbar = document.querySelector('.c-topbar');
+        const topbarHeight = topbar ? topbar.getBoundingClientRect().height : 0;
+        const targetY = Math.max(0, target.getBoundingClientRect().top + window.scrollY - Math.round(topbarHeight));
+
+        // duration scaled by distance, capped
+        const distance = Math.abs(window.scrollY - targetY);
+        const base = window.innerWidth <= 800 ? 420 : 600; // slightly snappier on small screens
+        const duration = Math.min(900, Math.max(280, Math.round((distance / window.innerHeight) * base)));
+
+        scrollToY(targetY, duration);
+      }, { passive: false });
+    } catch (err) {
+      // best-effort: if anything fails, allow native behavior
+      console.warn('Smooth scroll init failed', err);
+    }
+  }
+
+  initSmoothScroll();
+
   // Re-apply hero title formatting on resize so injected newlines stay in sync
   (function attachHeroResizeHandler() {
     let timer = null;

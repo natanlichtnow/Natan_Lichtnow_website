@@ -90,6 +90,16 @@
   --page-bg: #09101f;
   --page-surface: rgba(11, 18, 38, 0.78);
   --page-surface-strong: rgba(9, 16, 32, 0.94);
+
+/* Global smooth scrolling and mobile momentum */
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+/* Improve touch scrolling on mobile where applicable */
+html, body { -webkit-overflow-scrolling: touch; }
   --page-surface-soft: rgba(255, 255, 255, 0.05);
   --page-border: rgba(149, 183, 255, 0.14);
   --page-text: #eef3ff;

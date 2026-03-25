@@ -69,6 +69,26 @@
 	.mh-hero__scroll-icon { width: 26px; height: 26px; }
 }
 
+/* Mobile: smoother, lower-amplitude bob and GPU-acceleration */
+@media (max-width: 480px) {
+	.mh-hero__scroll-link {
+		/* use a shorter duration and softer movement on small screens */
+		animation-name: music-scroll-bob-mobile;
+		animation-duration: 1.6s;
+		animation-timing-function: cubic-bezier(.2,.9,.2,1);
+		animation-iteration-count: infinite;
+		will-change: transform;
+		backface-visibility: hidden;
+		transform: translateZ(0);
+	}
+}
+
+@keyframes music-scroll-bob-mobile {
+	0% { transform: translate3d(0,0,0); }
+	50% { transform: translate3d(0,-6px,0); }
+	100% { transform: translate3d(0,0,0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.mh-hero__scroll-link { animation: none; transition: none; }
 	.mh-hero__scroll { transition: none; }
