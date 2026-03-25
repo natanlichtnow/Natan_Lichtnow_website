@@ -8,610 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/internal.css" />
-  <style>
-    body {
-      background: linear-gradient(180deg, #060f0a 0%, #09161e 50%, #060e0a 100%);
-    }
-
-    .c-page--journey .c-topbar {0 0 1200 120
-      background: rgba(4, 12, 7, 0.92) !important;
-      border-bottom: 1px solid rgba(66, 200, 116, 0.1);
-    }
-
-    .c-page--journey .c-topbar__menu-toggle {
-      display: none;
-      width: 2.7rem;
-      height: 2.7rem;
-      border-radius: 0.8rem;
-      border: 1px solid rgba(66, 200, 116, 0.24);
-      background: rgba(66, 200, 116, 0.08);
-      color: #c8e8d0;
-      align-items: center;
-      justify-content: center;
-      gap: 0.26rem;
-      cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .c-page--journey .c-topbar__menu-toggle:hover,
-    .c-page--journey .c-topbar__menu-toggle:focus-visible {
-      background: rgba(66, 200, 116, 0.16);
-      border-color: rgba(66, 200, 116, 0.4);
-    }
-
-    .c-page--journey .c-topbar__menu-toggle-line {
-      display: block;
-      width: 1.15rem;
-      height: 2px;
-      border-radius: 999px;
-      background: currentColor;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-    .c-page--journey .c-topbar__menu-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 25;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      background: rgba(3, 10, 6, 0.26);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      transition: opacity 0.22s ease, visibility 0.22s ease;
-    }
-
-    .c-page--journey .c-topbar__menu-overlay.is-open {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
-
-    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-
-    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(2) {
-      opacity: 0;
-    }
-
-    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
-
-    .c-page--journey .c-topbar__brand {
-      color: #c8e8d0;
-    }
-
-    .c-page--journey .c-topbar__brand-mark {
-      background: rgba(66, 200, 116, 0.1);
-      border-color: rgba(66, 200, 116, 0.3);
-      color: #42c874;
-    }
-
-    .c-page--journey .c-topbar__link {
-      color: #6a9878;
-    }
-
-    .c-page--journey .c-topbar__link:hover,
-    .c-page--journey .c-topbar__link:focus-visible,
-    .c-page--journey .c-topbar__link--is-active {
-      color: #c8e8d0;
-      border-color: rgba(66, 200, 116, 0.3);
-      background: rgba(66, 200, 116, 0.08);
-    }
-
-    .c-page--journey .c-language-switcher {
-      border-color: rgba(66, 200, 116, 0.14);
-      background: rgba(66, 200, 116, 0.05);
-    }
-
-    .c-page--journey .c-language-switcher__label {
-      color: #4a7858;
-    }
-
-    .c-page--journey .c-language-switcher__option {
-      color: #c8e8d0;
-      border-color: rgba(66, 200, 116, 0.14);
-    }
-
-    .c-page--journey .c-language-switcher__option--is-active {
-      background: rgba(66, 200, 116, 0.12);
-      border-color: rgba(66, 200, 116, 0.32);
-    }
-
-    .c-page--journey .c-button {
-      background: rgba(66, 200, 116, 0.1);
-      border-color: rgba(66, 200, 116, 0.32);
-      color: #a0d8b0;
-    }
-
-    .c-page--journey .c-button:hover {
-      background: rgba(66, 200, 116, 0.2);
-    }
-
-    .hp-home {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hp-home__hero {
-      position: relative;
-      min-height: 94vh;
-      padding: 5rem 0 3rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .hp-home__hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .hp-home__eyebrow,
-    .hp-home__section-tag,
-    .hp-home__card-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.7rem;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: #42c874;
-    }
-
-    .hp-home__eyebrow::before,
-    .hp-home__section-tag::before,
-    .hp-home__card-tag::before {
-      content: '';
-      display: block;
-      width: 2rem;
-      height: 1px;
-      background: linear-gradient(90deg, #42c874, transparent);
-    }
-
-    .hp-home__title {
-      margin: 1.1rem 0 1.6rem;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(3.2rem, 8vw, 6.8rem);
-      line-height: 0.94;
-      font-weight: 700;
-      color: #e8f5ea;
-      text-shadow: 0 0 80px rgba(66, 200, 116, 0.18), 0 4px 50px rgba(0, 0, 0, 0.9);
-    }
-
-    .hp-home__lead {
-      max-width: 34rem;
-      margin: 0 0 2rem;
-      font-size: clamp(1.08rem, 2vw, 1.34rem);
-      line-height: 1.7;
-      color: #9ec2aa;
-    }
-
-    .hp-home__actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-    }
-
-    .hp-home__visual {
-      position: relative;
-      min-height: 31rem;
-      border-radius: 2rem;
-      border: 1px solid rgba(66, 200, 116, 0.14);
-      background:
-        radial-gradient(circle at 22% 18%, rgba(66, 200, 116, 0.22), transparent 22%),
-        radial-gradient(circle at 78% 22%, rgba(70, 150, 210, 0.22), transparent 20%),
-        linear-gradient(180deg, rgba(9, 22, 14, 0.88), rgba(8, 18, 28, 0.92));
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42);
-      overflow: hidden;
-      isolation: isolate;
-    }
-
-    .hp-home__visual-image {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      z-index: 0;
-      filter: saturate(0.9) contrast(1.02);
-    }
-
-    .hp-home__visual::before {
-      content: '';
-      position: absolute;
-      inset: 1.25rem;
-      border: 1px dashed rgba(66, 200, 116, 0.2);
-      border-radius: 1.4rem;
-    }
-
-    .hp-home__mountains {
-      position: absolute;
-      inset: auto 0 0;
-      line-height: 0;
-      z-index: 1;
-      opacity: 0.92;
-    }
-
-    .hp-home__section {
-      position: relative;
-      padding: 2rem 0 4rem;
-    }
-
-    .hp-home__section-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(260px, 0.8fr);
-      gap: 2rem;
-      align-items: start;
-    }
-
-    .hp-home__section-title {
-      margin: 0.8rem 0 1rem;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.4rem);
-      line-height: 1;
-      color: #dceee0;
-    }
-
-    .hp-home__section-copy {
-      max-width: 38rem;
-      font-size: 1.1rem;
-      line-height: 1.65;
-      color: #8eb39b;
-    }
-
-    /* Videos section: make the lead subtitle span the full section width */
-    .hp-home__section.hp-home__videos .hp-home__section-copy {
-      max-width: 100% !important;
-      width: 100% !important;
-      margin-right: 0 !important;
-    }
-
-    .hp-home__image-slot {
-      min-height: 18rem;
-      padding: 0;
-      border-radius: 1.8rem;
-      border: 1px solid rgba(66, 200, 116, 0.14);
-      background:
-        linear-gradient(180deg, rgba(10, 22, 14, 0.9), rgba(9, 20, 28, 0.88)),
-        radial-gradient(circle at 25% 25%, rgba(66, 200, 116, 0.16), transparent 30%);
-      display: flex;
-      align-items: stretch;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .hp-home__image-player {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      min-height: 18rem;
-      border: 0;
-      background: rgba(4, 12, 7, 0.75);
-    }
-
-    .hp-home__image-player::before,
-    .hp-home__image-player::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      pointer-events: none;
-      z-index: 3;
-    }
-
-    .hp-home__image-player::before {
-      top: 0;
-      height: 3.2rem;
-      background: linear-gradient(180deg, rgba(9, 20, 14, 0.95), rgba(9, 20, 14, 0));
-    }
-
-    .hp-home__image-player::after {
-      bottom: 0;
-      height: 2.6rem;
-      background: linear-gradient(0deg, rgba(9, 20, 14, 0.9), rgba(9, 20, 14, 0));
-    }
-
-    .hp-home__image-player iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      pointer-events: none;
-    }
-
-    .hp-video-modal {
-      position: fixed;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      padding: 1.2rem;
-      background: rgba(2, 8, 5, 0.78);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transition: opacity 0.24s ease, visibility 0.24s ease;
-      z-index: 80;
-    }
-
-    .hp-video-modal.is-open {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
-
-    .hp-video-modal__panel {
-      position: relative;
-      width: min(980px, 100%);
-      border-radius: 1.2rem;
-      border: 1px solid rgba(66, 200, 116, 0.26);
-      background: #040b07;
-      box-shadow: 0 26px 56px rgba(0, 0, 0, 0.56);
-      overflow: hidden;
-    }
-
-    .hp-video-modal__frame-wrap {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%;
-    }
-
-    .hp-video-modal__frame {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    .hp-video-modal__close {
-      position: absolute;
-      top: 0.75rem;
-      right: 0.75rem;
-      width: 2.25rem;
-      height: 2.25rem;
-      border-radius: 999px;
-      border: 1px solid rgba(66, 200, 116, 0.36);
-      background: rgba(6, 16, 10, 0.86);
-      color: #d2ecda;
-      font-size: 1.25rem;
-      line-height: 1;
-      cursor: pointer;
-      z-index: 2;
-    }
-
-    .hp-video-modal__close:hover,
-    .hp-video-modal__close:focus-visible {
-      background: rgba(66, 200, 116, 0.22);
-      outline: none;
-    }
-
-    .hp-home__cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.4rem;
-      margin-top: 2rem;
-    }
-
-    .hp-home__card {
-      position: relative;
-      padding: 1.7rem;
-      border-radius: 1.8rem;
-      border: 1px solid rgba(66, 200, 116, 0.14);
-      background: rgba(10, 23, 14, 0.72);
-      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
-      overflow: hidden;
-    }
-
-    .hp-home__card::after {
-      content: '';
-      position: absolute;
-      inset: auto -4rem -4rem auto;
-      width: 10rem;
-      height: 10rem;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(66, 200, 116, 0.16), transparent 70%);
-      pointer-events: none;
-    }
-
-    .hp-home__card-title {
-      margin: 0.9rem 0 0.45rem;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1.9rem;
-      line-height: 1.05;
-      color: #dceee0;
-    }
-
-    .hp-home__card-meta {
-      margin: 0 0 1rem;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #5f9071;
-    }
-
-    .hp-home__card-copy {
-      margin: 0;
-      font-size: 1.04rem;
-      line-height: 1.62;
-      color: #99bda6;
-    }
-
-    .hp-home__footer {
-      padding: 0 0 1.6rem;
-      text-align: center;
-    }
-
-    .hp-home__footer-copy {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #587f67;
-    }
-
-    .hp-home__social {
-      display: flex;
-      gap: 0.9rem;
-      justify-content: center;
-      margin: 0.6rem 0 0.2rem;
-      align-items: center;
-    }
-
-    .hp-home__social a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2.6rem;
-      height: 2.6rem;
-      border-radius: 0.6rem;
-      border: 1px solid rgba(66,200,116,0.08);
-      background: rgba(4,12,7,0.32);
-      color: #dff6e6;
-      transition: transform 0.14s ease, background 0.14s ease, box-shadow 0.14s ease;
-      text-decoration: none;
-    }
-
-    .hp-home__social a:hover,
-    .hp-home__social a:focus-visible {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(66,200,116,0.12);
-      background: rgba(66,200,116,0.08);
-      outline: none;
-    }
-
-    .hp-home__social svg {
-      width: 1.2rem;
-      height: 1.2rem;
-      display: block;
-      fill: currentColor;
-    }
-
-    @media (max-width: 960px) {
-      .hp-home__hero-grid,
-      .hp-home__section-grid,
-      .hp-home__cards {
-        grid-template-columns: 1fr;
-      }
-
-      .hp-home__visual {
-        min-height: 24rem;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .c-page--journey .c-topbar {
-        position: sticky;
-        z-index: 40;
-      }
-
-      .c-page--journey .c-topbar__inner {
-        grid-template-columns: auto minmax(0, 1fr) auto;
-        align-items: center;
-        justify-items: stretch;
-        text-align: left;
-        gap: 0.65rem;
-      }
-
-      .c-page--journey .c-topbar__brand {
-        min-width: 0;
-        gap: 0.6rem;
-        font-size: 0.72rem;
-        letter-spacing: 0.08em;
-      }
-
-      .c-page--journey .c-topbar__brand > span[data-i18n='brand'] {
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .c-page--journey .c-topbar__menu-toggle {
-        display: inline-flex;
-      }
-
-      .c-page--journey .c-topbar__nav {
-        position: absolute;
-        left: 0.7rem;
-        right: 0.7rem;
-        top: calc(100% + 0.55rem);
-        display: grid;
-        gap: 0.55rem;
-        padding: 0.8rem;
-        border-radius: 0.95rem;
-        border: 1px solid rgba(66, 200, 116, 0.18);
-        background: rgba(4, 12, 7, 0.95);
-        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-8px);
-        pointer-events: none;
-        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
-      }
-
-      .c-page--journey .c-topbar__nav.is-open {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-        pointer-events: auto;
-      }
-
-      .c-page--journey .c-topbar__link {
-        width: 100%;
-      }
-
-      .c-page--journey .c-language-switcher {
-        justify-self: end;
-        width: auto;
-        gap: 0.2rem;
-        padding: 0.24rem;
-        max-width: 100%;
-      }
-
-      .c-page--journey .c-language-switcher__label {
-        padding-inline: 0.35rem;
-        font-size: 0.6rem;
-        letter-spacing: 0.1em;
-      }
-
-      .c-page--journey .c-language-switcher__option {
-        min-width: 2.2rem;
-        padding: 0.48rem 0.5rem;
-        font-size: 0.62rem;
-      }
-
-      .hp-home__hero {
-        min-height: auto;
-        padding-top: 4rem;
-      }
-
-      .hp-home__title {
-        font-size: clamp(2.6rem, 16vw, 4.2rem);
-      }
-
-      .hp-home__actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .hp-home__image-slot,
-      .hp-home__visual {
-        border-radius: 1.5rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/blocks/topbar.css" />
+  <link rel="stylesheet" href="../css/blocks/hero.css" />
+  <link rel="stylesheet" href="../css/paraglider-index.css" />
 </head>
 <body>
   <div class="c-page c-page--journey hp-home">
@@ -665,11 +65,23 @@
             </div>
           </div>
         </div>
+              <div class="mh-hero__scroll mh-hero__scroll--over" aria-hidden="false">
+          <a class="mh-hero__scroll-link" href="#music-start" data-i18n="music.ctaScroll" data-i18n-attr="aria-label" aria-label="Scroll down">
+            <svg class="mh-hero__scroll-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.15"/>
+              <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="mh-hero__scroll-text">Scroll</span>
+          </a>
+        </div>
       </section>
+      
       <div class="c-shell c-mountain-divider" aria-hidden="true">
+        
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
           <path fill="currentColor" d="M0,108L120,38L220,84L322,16L436,92L558,34L648,88L764,14L904,102L1020,44L1200,108L1200,120L0,120Z"></path>
         </svg>
+        
       </div>
 
       
@@ -824,7 +236,8 @@
         video1Title: 'O segredo para o primeiro térmico!',
         video1IframeTitle: 'Vídeo: O segredo para o primeiro térmico',
         video2Title: 'Minha técnica de decolagem',
-        video2IframeTitle: 'Vídeo: Minha técnica de lançamento'
+      video2IframeTitle: 'Vídeo: Minha técnica de lançamento',
+      'music.ctaScroll': 'Role para baixo'
       },
       en: {
         pageTitle: 'Natan Lichtnow | Paraglider Pilot & Instructor',
@@ -869,9 +282,23 @@
         video1Title: 'The secret for the first thermal!',
         video1IframeTitle: 'Video: The secret for the first thermal',
         video2Title: 'My launching technique',
-        video2IframeTitle: 'Video: My launching technique'
+        video2IframeTitle: 'Video: My launching technique',
+        'music.ctaScroll': 'Scroll down'
       }
     };
+  </script>
+
+  <script>
+    (function(){
+      var cue = document.querySelector('.mh-hero__scroll');
+      if(!cue) return;
+      var hiddenClass = 'mh-hero__scroll--hidden';
+      function hideCue(){ cue.classList.add(hiddenClass); }
+      function onScroll(){ if(window.scrollY > 20){ hideCue(); window.removeEventListener('scroll', onScroll); } }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      cue.addEventListener('click', function(){ hideCue(); });
+      if(window.scrollY > 20) hideCue();
+    })();
   </script>
 
   <script>

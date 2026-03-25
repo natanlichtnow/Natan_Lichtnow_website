@@ -1,0 +1,41 @@
+/* Topbar, nav and language switcher */
+.c-topbar { position: sticky; top: 0; z-index: 30; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); background: color-mix(in srgb, var(--page-surface-strong) 78%, transparent); border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: padding 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease; }
+.c-topbar.is-scrolled { backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); background: color-mix(in srgb, var(--page-surface-strong) 92%, transparent); box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35); }
+.c-topbar__inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 0; transition: padding 0.3s ease; }
+.c-topbar.is-scrolled .c-topbar__inner { padding: 0.45rem 0; }
+
+.c-topbar__brand { display: inline-flex; align-items: center; gap: 0.9rem; font-family: var(--page-heading-font); font-size: 1rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.c-topbar__brand-mark { display: inline-grid; place-items: center; width: 2.8rem; height: 2.8rem; border-radius: 0.9rem; border: 1px solid var(--page-accent-strong); background: rgba(255, 255, 255, 0.08); color: var(--page-accent); box-shadow: 0 0 22px var(--page-accent-soft); transition: width 0.3s ease, height 0.3s ease, font-size 0.3s ease; }
+.c-topbar.is-scrolled .c-topbar__brand-mark { width: 2.1rem; height: 2.1rem; font-size: 0.75rem; }
+
+/* allow brand to shrink on narrow screens to avoid overlap with the language switcher */
+.c-topbar__brand { flex: 0 1 auto; min-width: 0; max-width: 60%; }
+.c-topbar__brand > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Ensure the mobile/open navigation and menu toggle sit above the page overlay. */
+.c-topbar__menu-overlay { z-index: 5 !important; pointer-events: auto; }
+.c-topbar { position: relative; z-index: 1000 !important; }
+.c-topbar__nav { position: relative; z-index: 1005 !important; }
+.c-topbar__menu-toggle { position: relative; z-index: 1010 !important; }
+.c-topbar__nav.is-open { z-index: 1015 !important; }
+
+.c-topbar__link { padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 999px; background: rgba(255, 255, 255, 0.04); color: var(--page-text-muted); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, background 0.2s ease; }
+.c-page--music .c-topbar__link { border-radius: 1rem; }
+.c-topbar__link:hover,
+.c-topbar__link:focus-visible,
+.c-topbar__link--is-active { color: var(--page-text); border-color: var(--page-accent-strong); background: var(--page-accent-soft); transform: translateY(-1px); }
+
+.c-language-switcher { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.05); }
+.c-page--music .c-language-switcher { border-radius: 1rem; }
+.c-language-switcher__label { padding-inline: 0.55rem; color: var(--page-text-muted); font-family: var(--page-label-font); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+.c-language-switcher__option { min-width: 3.25rem; padding: 0.65rem 0.85rem; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 999px; background: transparent; color: var(--page-text); font-family: var(--page-label-font); font-size: 0.72rem; font-weight: 700; cursor: pointer; }
+.c-page--music .c-language-switcher__option { border-radius: 0.95rem; }
+.c-language-switcher__option--is-active { background: var(--page-accent-soft); border-color: var(--page-accent-strong); box-shadow: 0 0 18px var(--page-accent-soft); }
+
+/* On narrow screens keep only the brand mark (NL) visible to avoid overlap */
+@media (max-width: 520px) {
+	.c-topbar__brand > span:not(.c-topbar__brand-mark) { display: none; }
+	.c-topbar__brand { gap: 0.45rem; max-width: none; }
+	.c-topbar__brand-mark { width: 2.4rem; height: 2.4rem; }
+	.c-language-switcher__label { display: none; }
+}

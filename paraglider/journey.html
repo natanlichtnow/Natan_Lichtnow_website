@@ -8,725 +8,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/internal.css" />
-  <style>
-    /* ================================================================
-       JOURNEY PAGE -- Dark Adventure / Nature Story
-       Green and Blue palette -- Mountain SVG backgrounds
-       ================================================================ */
-
-    /* Dark nature base */
-    body {
-      background: linear-gradient(180deg, #060f0a 0%, #09161e 50%, #060e0a 100%) !important;
-    }
-
-    /* Page-level variable overrides for the journey dark theme */
-    .c-page--journey {
-      --page-text: #d8eedd;
-      --page-text-muted: #6a9878;
-      --page-surface: rgba(12, 30, 18, 0.72);
-      --page-surface-strong: rgba(8, 22, 12, 0.94);
-      --page-border: rgba(70, 180, 110, 0.14);
-      --page-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
-      --page-accent: #42c874;
-      --page-accent-soft: rgba(66, 200, 116, 0.12);
-      --page-accent-strong: rgba(66, 200, 116, 0.32);
-      --page-accent-glow: rgba(66, 200, 116, 0.2);
-      --page-hero-overlay: linear-gradient(135deg, rgba(20, 60, 30, 0.15), rgba(10, 30, 50, 0.08));
-      --page-heading-font: 'Rajdhani', sans-serif;
-      --page-label-font: 'Orbitron', monospace;
-    }
-
-    /* Topbar dark adaptation */
-    .c-page--journey .c-topbar {
-      background: rgba(4, 12, 7, 0.92) !important;
-      border-bottom: 1px solid rgba(66, 200, 116, 0.1);
-    }
-    .c-page--journey .c-topbar__menu-toggle {
-      display: none;
-      width: 2.7rem;
-      height: 2.7rem;
-      border-radius: 0.8rem;
-      border: 1px solid rgba(66, 200, 116, 0.24);
-      background: rgba(66, 200, 116, 0.08);
-      color: #c8e8d0;
-      align-items: center;
-      justify-content: center;
-      gap: 0.26rem;
-      cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-    .c-page--journey .c-topbar__menu-toggle:hover,
-    .c-page--journey .c-topbar__menu-toggle:focus-visible {
-      background: rgba(66, 200, 116, 0.16);
-      border-color: rgba(66, 200, 116, 0.4);
-    }
-    .c-page--journey .c-topbar__menu-toggle-line {
-      display: block;
-      width: 1.15rem;
-      height: 2px;
-      border-radius: 999px;
-      background: currentColor;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-    .c-page--journey .c-topbar__menu-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 25;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      background: rgba(3, 10, 6, 0.26);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      transition: opacity 0.22s ease, visibility 0.22s ease;
-    }
-    .c-page--journey .c-topbar__menu-overlay.is-open {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
-    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(2) {
-      opacity: 0;
-    }
-    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
-    .c-page--journey .c-topbar__brand { color: #c8e8d0; }
-    .c-page--journey .c-topbar__brand-mark {
-      background: rgba(66, 200, 116, 0.1);
-      border-color: rgba(66, 200, 116, 0.3);
-      color: #42c874;
-    }
-    .c-page--journey .c-topbar__link { color: #6a9878; }
-    .c-page--journey .c-topbar__link:hover,
-    .c-page--journey .c-topbar__link:focus-visible,
-    .c-page--journey .c-topbar__link--is-active {
-      color: #c8e8d0;
-      border-color: rgba(66, 200, 116, 0.3);
-      background: rgba(66, 200, 116, 0.08);
-    }
-    .c-page--journey .c-language-switcher { border-color: rgba(66, 200, 116, 0.14); background: rgba(66, 200, 116, 0.05); }
-    .c-page--journey .c-language-switcher__label { color: #4a7858; }
-    .c-page--journey .c-language-switcher__option { color: #c8e8d0; border-color: rgba(66, 200, 116, 0.14); }
-    .c-page--journey .c-language-switcher__option--is-active { background: rgba(66, 200, 116, 0.12); border-color: rgba(66, 200, 116, 0.32); }
-
-    /* Buttons */
-    .c-page--journey .c-button {
-      background: rgba(66, 200, 116, 0.1);
-      border-color: rgba(66, 200, 116, 0.32);
-      color: #a0d8b0;
-    }
-    .c-page--journey .c-button:hover { background: rgba(66, 200, 116, 0.2); }
-    .c-page--journey .c-button--ghost {
-      background: transparent;
-      border-color: rgba(66, 200, 116, 0.16);
-      color: #4a7858;
-    }
-
-    /* ================================================================
-       HERO
-       ================================================================ */
-    .jp-hero {
-      position: relative;
-      min-height: 92vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      padding: 6rem 1.5rem 0;
-    }
-
-    .jp-hero__bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background:
-        radial-gradient(ellipse at 25% 25%, rgba(12, 65, 45, 0.55) 0%, transparent 45%),
-        radial-gradient(ellipse at 75% 15%, rgba(8, 45, 90, 0.55) 0%, transparent 40%),
-        radial-gradient(ellipse at 50% 5%, rgba(14, 80, 110, 0.35) 0%, transparent 38%),
-        linear-gradient(180deg, #030a06 0%, #050e18 40%, #060c0a 100%);
-    }
-
-    /* Star-field dots via layered radial-gradients */
-    .jp-hero__stars {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1px),
-        radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px),
-        radial-gradient(circle, rgba(200,240,220,0.5) 1px, transparent 1px),
-        radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px);
-      background-size: 220px 220px, 170px 170px, 310px 310px, 140px 140px;
-      background-position: 0 0, 80px 50px, 140px 90px, 55px 130px;
-      opacity: 0.45;
-    }
-
-    .jp-hero__content {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      max-width: 860px;
-      padding-bottom: 9rem;
-    }
-
-    .jp-hero__eyebrow {
-      display: inline-block;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.34em;
-      text-transform: uppercase;
-      color: #42c874;
-      background: rgba(66, 200, 116, 0.1);
-      border: 1px solid rgba(66, 200, 116, 0.22);
-      border-radius: 999px;
-      padding: 0.35rem 1.2rem;
-      margin-bottom: 2.2rem;
-    }
-
-    .jp-hero__title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(3.8rem, 10vw, 8.5rem);
-      font-weight: 700;
-      line-height: 0.95;
-      color: #e8f5ea;
-      margin: 0 0 2rem;
-      text-shadow: 0 0 80px rgba(66, 200, 116, 0.18), 0 4px 50px rgba(0, 0, 0, 0.9);
-    }
-
-    .jp-hero__lead {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(1.05rem, 2vw, 1.32rem);
-      font-weight: 400;
-      line-height: 1.75;
-      color: #6a9878;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Paraglider silhouette floating in hero */
-    .jp-hero__pilot {
-      position: absolute;
-      z-index: 8;
-      bottom: 28%;
-      right: 6%;
-      width: clamp(90px, 14vw, 200px);
-      filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.7));
-      opacity: 0.8;
-      transform: scaleX(-1);
-    }
-
-    /* Mountain layers - hero footer */
-    .jp-hero__mountains {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 6;
-      line-height: 0;
-    }
-    .jp-hero__mountains svg { display: block; width: 100%; }
-
-    /* nudge the mountain artwork down slightly (approx. 10%) */
-    .jp-hero__mountains {
-      transform: translateY(10%);
-      will-change: transform;
-    }
-
-    /* ================================================================
-       STORY BODY
-       ================================================================ */
-    .jp-story {
-      position: relative;
-      background: linear-gradient(180deg, #050e08 0%, #060d14 50%, #050e08 100%);
-    }
-
-    /* Ambient glow overlays */
-    .jp-story::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 0% 15%, rgba(16, 55, 28, 0.28) 0%, transparent 30%),
-        radial-gradient(ellipse at 100% 40%, rgba(10, 35, 65, 0.22) 0%, transparent 28%),
-        radial-gradient(ellipse at 50% 75%, rgba(16, 55, 28, 0.2) 0%, transparent 30%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .jp-story__inner {
-      position: relative;
-      z-index: 1;
-      padding: 5.5rem 0 2rem;
-    }
-
-    /* ================================================================
-       CHAPTER
-       ================================================================ */
-    .jp-chapter {
-      padding: 2rem 0;
-      border-bottom: 1px solid rgba(66, 200, 116, 0.06);
-    }
-    .jp-chapter:last-child { border-bottom: none; }
-
-    .jp-chapter__tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.7rem;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: #42c874;
-      margin-bottom: 0.4rem;
-    }
-    .jp-chapter__tag::before {
-      content: '';
-      display: block;
-      width: 2rem;
-      height: 1px;
-      background: linear-gradient(90deg, #42c874, transparent);
-    }
-
-    .jp-chapter__bg-num {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(4.5rem, 10vw, 8rem);
-      font-weight: 900;
-      line-height: 1;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(66, 200, 116, 0.13);
-      margin: -0.4rem 0 -1.2rem;
-      user-select: none;
-      pointer-events: none;
-      display: block;
-    }
-
-    .jp-chapter__title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(1.9rem, 4.5vw, 3rem);
-      font-weight: 700;
-      line-height: 1.12;
-      color: #c0e0c8;
-      margin: 0 0 1.8rem;
-    }
-
-    /* Two-column split (text + image) */
-    .jp-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3.5rem;
-      align-items: center;
-    }
-    .jp-split--img-left .jp-split__media { order: -1; }
-
-    .jp-split__text {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(1rem, 1.5vw, 1.14rem);
-      line-height: 1.88;
-      color: #c8f0d8;
-      background: rgba(16, 55, 28, 0.45);
-      padding: 1.8rem;
-      border-radius: 12px;
-      border-left: 3px solid rgba(66, 200, 116, 0.35);
-    }
-    .jp-split__text p { margin: 0 0 1.05em; }
-    .jp-split__text p:last-child { margin: 0; }
-
-    /* Full-width text */
-    .jp-text {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(1rem, 1.5vw, 1.14rem);
-      line-height: 1.88;
-      color: #c8f0d8;
-      background: rgba(16, 55, 28, 0.45);
-      padding: 1.8rem;
-      border-radius: 12px;
-      border-left: 3px solid rgba(66, 200, 116, 0.35);
-      max-width: 720px;
-      margin-top: 1.4rem;
-    }
-    .jp-text p { margin: 0 0 1.05em; }
-    .jp-text p:last-child { margin: 0; }
-
-    /* Narrow text for introspective chapters */
-    .jp-text--narrow { max-width: 580px; }
-
-    /* Image */
-    .jp-img {
-      width: 100%;
-      border-radius: 14px;
-      box-shadow: 0 18px 52px rgba(0,0,0,0.65), 0 0 0 1px rgba(66, 200, 116, 0.1);
-      display: block;
-    }
-    .jp-img-caption {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.55rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #3a6848;
-      text-align: center;
-      margin-top: 0.7rem;
-    }
-
-    /* Year badge */
-    .jp-year {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.22em;
-      color: #42c874;
-      background: rgba(66, 200, 116, 0.08);
-      border: 1px solid rgba(66, 200, 116, 0.2);
-      border-radius: 999px;
-      padding: 0.28rem 0.9rem;
-      margin-bottom: 1rem;
-      display: inline-block;
-    }
-
-    /* Gallery strip */
-    .jp-gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.85rem;
-      margin-top: 2rem;
-    }
-    .jp-gallery img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.55);
-      display: block;
-    }
-
-    /* Video embed */
-    .jp-video { margin: 2.5rem 0; }
-    .jp-video__label {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.55rem;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: #42c874;
-      margin-bottom: 0.65rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .jp-video__label::before { content: '\25B6'; font-size: 0.48rem; }
-    .jp-video__wrapper {
-      position: relative;
-      padding-top: 56.25%;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #020806;
-      box-shadow: 0 14px 44px rgba(0,0,0,0.75), 0 0 0 1px rgba(66, 200, 116, 0.12);
-    }
-    .jp-video__wrapper iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    /* ================================================================
-       CHAPTER EMOTIONAL STATES
-       ================================================================ */
-
-    /* Dark / falling chapters */
-    .jp-chapter--dark .jp-chapter__tag { color: #8a8888; }
-    .jp-chapter--dark .jp-chapter__tag::before { background: linear-gradient(90deg, #8a8888, transparent); }
-    .jp-chapter--dark .jp-chapter__bg-num { -webkit-text-stroke-color: rgba(140, 120, 120, 0.12); }
-    .jp-chapter--dark .jp-chapter__title { color: #a8a0a0; }
-    .jp-chapter--dark .jp-text,
-    .jp-chapter--dark .jp-split__text { color: #c8c8a8; }
-
-    .jp-dark-box {
-      background: rgba(30, 20, 20, 0.6);
-      border-left: 3px solid rgba(140, 90, 90, 0.4);
-      border-radius: 0 12px 12px 0;
-      padding: 2rem 2rem 2rem 1.8rem;
-      max-width: 700px;
-      margin-top: 1.5rem;
-    }
-    .jp-dark-box p {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(1rem, 1.4vw, 1.1rem);
-      line-height: 1.85;
-      color: #c8c8a8;
-      margin: 0 0 0.9em;
-    }
-    .jp-dark-box p:last-child { margin: 0; }
-
-    /* Smaller image variant */
-    .jp-img--small {
-      max-width: 280px;
-    }
-
-    .jp-split__media--compact {
-      width: fit-content;
-      margin: 0 auto;
-    }
-
-    .jp-split__media--compact .jp-img--small {
-      margin-inline: auto;
-    }
-
-    .jp-split__media--compact .jp-img-caption {
-      width: 100%;
-    }
-
-    /* Rebirth -- warm amber/gold */
-    .jp-chapter--rebirth .jp-chapter__tag { color: #c8a040; }
-    .jp-chapter--rebirth .jp-chapter__tag::before { background: linear-gradient(90deg, #c8a040, transparent); }
-    .jp-chapter--rebirth .jp-chapter__bg-num { -webkit-text-stroke-color: rgba(200, 160, 64, 0.13); }
-    .jp-chapter--rebirth .jp-chapter__title { color: #e8cc70; }
-    .jp-chapter--rebirth .jp-text { color: #d4a860; }
-    .jp-chapter--rebirth .jp-text {
-      background: rgba(50, 40, 20, 0.45);
-      border-left-color: rgba(200, 160, 64, 0.35);
-    }
-
-    /* Horizon -- sky blue */
-    .jp-chapter--horizon .jp-chapter__tag { color: #4890c8; }
-    .jp-chapter--horizon .jp-chapter__tag::before { background: linear-gradient(90deg, #4890c8, transparent); }
-    .jp-chapter--horizon .jp-chapter__bg-num { -webkit-text-stroke-color: rgba(72, 144, 200, 0.13); }
-    .jp-chapter--horizon .jp-chapter__title { color: #80b8e0; }
-    .jp-chapter--horizon .jp-text { color: #8ab8d8; }
-    .jp-chapter--horizon .jp-text {
-      background: rgba(20, 35, 50, 0.45);
-      border-left-color: rgba(72, 144, 200, 0.35);
-    }
-
-    /* ================================================================
-       MINI MOUNTAIN DIVIDER
-       ================================================================ */
-    .jp-mountain-divider {
-      width: 100%;
-      margin: 1rem 0;
-      opacity: 0.14;
-      line-height: 0;
-    }
-    .jp-mountain-divider svg { display: block; width: 100%; }
-
-    /* ================================================================
-       MUSIC BRIDGE CARD
-       ================================================================ */
-    .jp-music-bridge {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      background: rgba(200, 120, 40, 0.06);
-      border: 1px solid rgba(200, 130, 40, 0.18);
-      border-radius: 14px;
-      padding: 1.5rem 1.8rem;
-      margin-top: 2rem;
-      max-width: 580px;
-      text-decoration: none;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-    .jp-music-bridge:hover { background: rgba(200, 120, 40, 0.1); border-color: rgba(200, 130, 40, 0.3); }
-    .jp-music-bridge__icon {
-      font-size: 2rem;
-      flex-shrink: 0;
-      line-height: 1;
-    }
-    .jp-music-bridge__label {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.55rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: #c8a040;
-      margin-bottom: 0.3rem;
-    }
-    .jp-music-bridge__text {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1rem;
-      color: #8a7840;
-      line-height: 1.5;
-    }
-
-    /* ================================================================
-       CTA SECTION
-       ================================================================ */
-    .jp-cta {
-      padding: 5.5rem 1.5rem 6.5rem;
-      text-align: center;
-      border-top: 1px solid rgba(66, 200, 116, 0.08);
-      background: linear-gradient(180deg, transparent, rgba(10, 30, 16, 0.5));
-    }
-    .jp-cta__eyebrow {
-      display: inline-block;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: #42c874;
-      opacity: 0.7;
-      margin-bottom: 1.4rem;
-    }
-    .jp-cta__title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(1.7rem, 4vw, 2.6rem);
-      font-weight: 700;
-      color: #c0e0c8;
-      margin: 0 0 1.1rem;
-    }
-    .jp-cta__text {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1.1rem;
-      color: #4a6a52;
-      max-width: 500px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.7;
-    }
-    .jp-cta__actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* Footer */
-    .c-page--journey .c-page-footer {
-      background: rgba(0,0,0,0.25);
-      border-top: 1px solid rgba(66, 200, 116, 0.07);
-    }
-
-    /* ================================================================
-       RESPONSIVE
-       ================================================================ */
-    @media (max-width: 700px) {
-      .c-page--journey .c-topbar {
-        position: sticky;
-        z-index: 40;
-      }
-      .c-page--journey .c-topbar__inner {
-        grid-template-columns: auto minmax(0, 1fr) auto;
-        align-items: center;
-        justify-items: stretch;
-        text-align: left;
-        gap: 0.45rem;
-      }
-      .c-page--journey .c-topbar__brand {
-        min-width: 0;
-        gap: 0.45rem;
-        font-size: 0.82rem;
-        letter-spacing: 0.08em;
-      }
-      .c-page--journey .c-topbar__brand > span[data-i18n='brand'] {
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .c-page--journey .c-topbar__menu-toggle {
-        display: inline-flex;
-      }
-      .c-page--journey .c-topbar__nav {
-        position: absolute;
-        left: 0.7rem;
-        right: 0.7rem;
-        top: calc(100% + 0.55rem);
-        display: grid;
-        gap: 0.55rem;
-        padding: 0.8rem;
-        border-radius: 0.95rem;
-        border: 1px solid rgba(66, 200, 116, 0.18);
-        background: rgba(4, 12, 7, 0.95);
-        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-8px);
-        pointer-events: none;
-        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
-      }
-      .c-page--journey .c-topbar__nav.is-open {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-        pointer-events: auto;
-      }
-      .c-page--journey .c-topbar__link {
-        width: 100%;
-      }
-      .c-page--journey .c-language-switcher {
-        justify-self: end;
-        width: auto;
-        gap: 0.2rem;
-        padding: 0.24rem;
-        max-width: 100%;
-      }
-      .c-page--journey .c-language-switcher__label {
-        padding-inline: 0.35rem;
-        font-size: 0.6rem;
-        letter-spacing: 0.1em;
-      }
-      .c-page--journey .c-language-switcher__option {
-        min-width: 2.2rem;
-        padding: 0.48rem 0.5rem;
-        font-size: 0.62rem;
-      }
-      .jp-split { grid-template-columns: 1fr; gap: 2rem; }
-      .jp-split--img-left .jp-split__media { order: 0; }
-      .jp-gallery { grid-template-columns: 1fr; }
-      .jp-hero__pilot { display: none; }
-      .jp-dark-box { padding: 1.5rem; }
-      .jp-hero__content { padding-bottom: 11rem; }
-    }
-
-    @media (min-width: 701px) and (max-width: 1000px) {
-      .c-page--journey .c-topbar__inner {
-        display: grid;
-        grid-template-columns: auto minmax(0, 1fr) auto;
-        align-items: center;
-        justify-items: stretch;
-        text-align: left;
-        column-gap: 0.8rem;
-      }
-      .c-page--journey .c-topbar__nav {
-        justify-content: center;
-        align-self: center;
-      }
-      .c-page--journey .c-topbar__link {
-        padding: 0.62rem 0.78rem;
-      }
-      .c-page--journey .c-language-switcher {
-        justify-self: end;
-        align-self: center;
-      }
-    }
-
-    @media (max-width: 420px) {
-      .c-page--journey .c-topbar__brand {
-        font-size: 0.74rem;
-      }
-      .c-page--journey .c-language-switcher__label {
-        display: none;
-      }
-      .c-page--journey .c-language-switcher__option {
-        min-width: 2rem;
-        padding: 0.46rem 0.4rem;
-      }
-    }
-
-    /* Ensure certain chapter text boxes span the full content width
-       so they align with the section dividers (c-shell width). */
-    .jp-chapter#ch-06 .jp-dark-box,
-    .jp-chapter#ch-07 .jp-dark-box,
-    .jp-chapter#ch-10 .jp-text,
-    .jp-chapter#ch-11 .jp-text {
-      max-width: none;
-      width: 100%;
-      margin-left: 0;
-      margin-right: 0;
-      box-sizing: border-box;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/blocks/topbar.css" />
+  <link rel="stylesheet" href="../css/blocks/hero.css" />
+  <link rel="stylesheet" href="../css/paraglider-journey.css" />
 </head>
+
 <body>
   <div class="c-page c-page--journey">
 
@@ -781,6 +68,16 @@
           <path d="M0,340 L90,298 L165,315 L245,278 L325,302 L410,265 L490,290 L575,260 L655,282 L740,258 L818,278 L905,255 L985,272 L1065,258 L1150,274 L1240,258 L1345,278 L1440,262 L1440,400 L0,400 Z"
                 fill="#0d2418" opacity="0.7"/>
         </svg>
+      </div>
+ 
+      <div class="mh-hero__scroll mh-hero__scroll--over" aria-hidden="false">
+        <a class="mh-hero__scroll-link" href="#story" data-i18n="music.ctaScroll" data-i18n-attr="aria-label" aria-label="Scroll down">
+          <svg class="mh-hero__scroll-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.15"/>
+            <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="mh-hero__scroll-text">Scroll</span>
+        </a>
       </div>
     </section>
 
@@ -1103,53 +400,53 @@
         navDev: 'Dev',
         heroEyebrow: 'Historia Pessoal',
         heroTitle: 'Nascido no Vento',
-        heroLead: 'De um bebe nascido dentro de uma mochila a piloto de cross country, instrutor e artista. Uma historia que continua sendo escrita.',
-        ch01tag: 'Capitulo 01',
+        heroLead: 'De um bebê nascido dentro de uma mochila a piloto de cross country, instrutor e artista. Uma história que continua sendo escrita.',
+        ch01tag: 'Capítulo 01',
         ch01title: 'Nascido no Vento',
-        ch01year: 'O Comeco',
-        ch01p1: 'Natan nasceu praticamente dentro de uma mochila de parapente. Desde bebe, acompanhava o pai nas aventuras do voo livre, respirando o esporte antes mesmo de entender o mundo.',
-        ch01p2: 'Mas aos 5 anos de idade, seus pais se separaram - e com isso surgiu uma grande distancia familiar que marcaria profundamente sua infancia.',
-        ch01imgAlt: 'Natan bebe, ja imerso no mundo do parapente',
+        ch01year: 'O Começo',
+        ch01p1: 'Natan nasceu praticamente dentro de uma mochila de parapente. Desde bebê, acompanhava o pai nas aventuras do voo livre, respirando o esporte antes mesmo de entender o mundo.',
+        ch01p2: 'Mas aos 5 anos de idade, seus pais se separaram - e com isso surgiu uma grande distância familiar que marcaria profundamente sua infância.',
+        ch01imgAlt: 'Natan bebê, já imerso no mundo do parapente',
         ch01imgCaption: 'Natan carregado pelo pai na mochila de seu parapente',
-        ch02tag: 'Capitulo 02',
-        ch02title: 'Refugio no Silencio Digital',
-        ch02p1: 'Crescendo diante de uma tela de computador, Natan buscava uma fuga da realidade desde muito cedo. Com grande dificuldade de conexao emocional com a familia e amigos, sua vida se resumia a uma rotina simples e isolada: ir para a escola, jogar videogame e dormir.',
-        ch02imgAlt: 'Natan durante seu periodo de refugio digital',
-        ch02imgCaption: 'world of warcraft, seu jogo favorito',
-        ch03tag: 'Capitulo 03',
-        ch03title: 'O Chamado do Ceu',
+        ch02tag: 'Capítulo 02',
+        ch02title: 'Refúgio no Silêncio Digital',
+        ch02p1: 'Crescendo diante de uma tela de computador, Natan buscava uma fuga da realidade desde muito cedo. Com grande dificuldade de conexão emocional com a família e amigos, sua vida se resumia a uma rotina simples e isolada: ir para a escola, jogar videogame e dormir.',
+        ch02imgAlt: 'Natan durante seu período de refúgio digital',
+        ch02imgCaption: 'World of Warcraft, seu jogo favorito',
+        ch03tag: 'Capítulo 03',
+        ch03title: 'O Chamado do Céu',
         ch03year: 'Aos 14 anos - 2013',
-        ch03p1: 'Aos 14 anos, a vida comecou a mudar. Natan se reconectou com seu pai, Marcio Lichtnow, que ja administrava a escola de voo livre Vento Norte. Foi ali que o esporte voltou a cruzar seu caminho - desta vez, como um chamado.',
-        ch03p2: 'Sem possuir um parapente do seu tamanho, ele comecou de forma incomum: ensinando antes mesmo de aprender a voar. Auxiliava o pai em tudo na escola, absorvendo conhecimento e vivendo o ambiente do voo intensamente.',
+        ch03p1: 'Aos 14 anos, a vida começou a mudar. Natan se reconectou com seu pai, Marcio Lichtnow, que já administrava a escola de voo livre Vento Norte. Foi ali que o esporte voltou a cruzar seu caminho - desta vez, como um chamado.',
+        ch03p2: 'Sem possuir um parapente do seu tamanho, ele começou de forma incomum: ensinando antes mesmo de aprender a voar. Auxiliava o pai em tudo na escola, absorvendo conhecimento e vivendo o ambiente do voo intensamente.',
         ch03imgAlt: 'Voo livre sobre as montanhas',
-        ch03imgCaption: 'onde tudo comecou',
-        ch04tag: 'Capitulo 04',
+        ch03imgCaption: 'onde tudo começou',
+        ch04tag: 'Capítulo 04',
         ch04title: 'Os Primeiros Passos no Ar',
         ch04year: 'Aos 15 anos - Maio 2014',
-        ch04p1: 'Em 2014, surgiu a primeira oportunidade real: um Ozone Rush 1 XXS, com peso maximo de 70 kg. Era o comeco de tudo.',
-        ch04p2: 'Os treinos comecaram - e nao demorou muito para que o primeiro voo acontecesse, em maio de 2014. O video abaixo registra esse primeiro momento no ar.',
+        ch04p1: 'Em 2014, surgiu a primeira oportunidade real: um Ozone Rush 1 XXS, com peso máximo de 70 kg. Era o começo de tudo.',
+        ch04p2: 'Os treinos começaram - e não demorou muito para que o primeiro voo acontecesse, em maio de 2014. O vídeo abaixo registra esse primeiro momento no ar.',
         ch04videoLabel: 'Assistir - Primeiro Voo - Maio 2014',
         ch04imgAlt: 'Natan no morro de treino em 2014 com o Rush 1 XXS',
         ch04imgCaption: 'Treino - 2014 - Rush 1 XXS',
-        ch05tag: 'Capitulo 05',
-        ch05title: 'A Ascensao',
+        ch05tag: 'Capítulo 05',
+        ch05title: 'A Ascensão',
         ch05year: '2015 - 2016',
-        ch05p1: 'A evolucao foi rapida. Com contato constante com o esporte, o voo passou a dominar sua vida. As horas no computador foram, pouco a pouco, substituidas por horas na selete.',
-        ch05p2: 'Motivado, Natan buscou um estagio para se sustentar e investir ainda mais no esporte. Em 2016, conquistou o apoio da SOL Paragliders, o que possibilitou a compra de seu primeiro equipamento novo: um Sycross One - um dos primeiros do Brasil.',
-        ch05p3: 'Sua dedicacao estava em plena ascensao. No final daquele ano, conquistou o 3o lugar na categoria Sport Light do Campeonato Sul-Brasileiro de Parapente. O desejo de competir so aumentava.',
+        ch05p1: 'A evolução foi rápida. Com contato constante com o esporte, o voo passou a dominar sua vida. As horas no computador foram, pouco a pouco, substituídas por horas na selete.',
+        ch05p2: 'Motivado, Natan buscou um estágio para se sustentar e investir ainda mais no esporte. Em 2016, conquistou o apoio da SOL Paragliders, o que possibilitou a compra de seu primeiro equipamento novo: um Sycross One - um dos primeiros do Brasil.',
+        ch05p3: 'Sua dedicação estava em plena ascensão. No final daquele ano, conquistou o 3º lugar na categoria Sport Light do Campeonato Sul-Brasileiro de Parapente. O desejo de competir só aumentava.',
         ch05videoLabel: 'Assistir - Sycross One - 2016',
-        ch05imgAlt: 'Trofeu de 3o lugar -- Campeonato Sul-Brasileiro, categoria Sport Light',
-        ch05imgCaption: '3o lugar - Campeonato Sul-Brasileiro - Sport Light',
-        ch0607tag: 'Capitulos 06 - 07',
-        ch06tag: 'Capitulo 06',
+        ch05imgAlt: 'Trofeu de 3º lugar -- Campeonato Sul-Brasileiro, categoria Sport Light',
+        ch05imgCaption: '3º lugar - Campeonato Sul-Brasileiro - Sport Light',
+        ch0607tag: 'Capítulos 06 - 07',
+        ch06tag: 'Capítulo 06',
         ch06title: 'A Queda',
-        ch06p1: 'Mas toda trajetoria tem seu ponto de ruptura.',
-        ch06p2: 'Aos 17 anos, apesar da paixao intensa pelo esporte, Natan enfrentava uma enorme dificuldade de se conectar com os colegas na escola. O resultado foi duro: a reprovacao.',
-        ch06p3: 'Com isso, veio uma das decisoes mais dolorosas de sua vida - vender o equipamento pelo qual havia lutado durante dois anos. O parapente era tudo para ele. Sua identidade estava ali. E quando aquilo se foi, restou apenas o vazio.',
-        ch07tag: 'Capitulo 07',
+        ch06p1: 'Mas toda trajetória tem seu ponto de ruptura.',
+        ch06p2: 'Aos 17 anos, apesar da paixão intensa pelo esporte, Natan enfrentava uma enorme dificuldade de se conectar com os colegas na escola. O resultado foi duro: a reprovação.',
+        ch06p3: 'Com isso, veio uma das decisões mais dolorosas de sua vida - vender o equipamento pelo qual havia lutado durante dois anos. O parapente era tudo para ele. Sua identidade estava ali. E quando aquilo se foi, restou apenas o vazio.',
+        ch07tag: 'Capítulo 07',
         ch07title: 'O Abismo e a Fuga',
-        ch07p1: 'Sem proposito e sem direcao, Natan mergulhou em um estado depressivo profundo. Durante seis meses, viveu fugindo da realidade - festas, excessos e escolhas erradas preenchiam seus dias. Uma tentativa silenciosa de preencher um vazio que parecia nao ter fim.',
-        ch08tag: 'Capitulo 08',
+        ch07p1: 'Sem propósito e sem direção, Natan mergulhou em um estado depressivo profundo. Durante seis meses, viveu fugindo da realidade - festas, excessos e escolhas erradas preenchiam seus dias. Uma tentativa silenciosa de preencher um vazio que parecia não ter fim.',
+        ch08tag: 'Capítulo 08',
         ch08title: 'Renascimento pela Arte',
         ch08year: 'Final de 2017',
         ch08p1: 'No final de 2017, um novo caminho surgiu. Apresentado ao mundo da discotecagem e da producao musical por seu amigo Birow, Natan encontrou algo que mudaria completamente sua trajetoria.',
@@ -1157,29 +454,30 @@
         ch08imgAlt: 'Natan tocando musica',
         ch08imgCaption: 'onde a musica o encontrou',
         ch08bridgeLabel: 'Explore o mundo da musica',
-        ch09tag: 'Capitulo 09',
+        ch09tag: 'Capítulo 09',
         ch09title: 'O Retorno as Origens',
         ch09year: '2024 - 2025 - Curitiba',
         ch09p1: 'No inicio de 2024, apos viajar o mundo, se aprofundar no universo circense, se apresentar em festivais que sempre sonhou e se sentir realizado na musica e na arte, Natan tomou uma decisao importante: voltar para sua terra natal.',
         ch09p2: 'O objetivo era claro - reconstruir os lacos com a familia e reencontrar o parapente.',
         ch09imgAlt: 'Natan voando cross country no Brasil',
         ch09imgCaption: 'De volta ao ar - 2024/2025',
-        ch10tag: 'Capitulo 10',
-        ch10title: 'Reconexao e Proposito',
-        ch10p1: 'Foram dois anos em Curitiba, trabalhando como instrutor e monitor na escola de seu pai. Nesse periodo, Natan se reconectou profundamente com o esporte, encontrando uma conexao entre a saude mental e a pratica do voo, trazendo essa abordagem moderna para suas aulas e explicacoes. Comecou a desenvolver seus proprios projetos de instrucao, com foco em voo de cross country - unindo todas suas habilidades como sound designer, editor de video & animador para criar um material unico e de facil entendimento',
+        ch10tag: 'Capítulo 10',
+        ch10title: 'Reconexão e Propósito',
+        ch10p1: 'Foram dois anos em Curitiba, trabalhando como instrutor e monitor na escola de seu pai. Nesse período, Natan se reconectou profundamente com o esporte, encontrando uma conexão entre a saúde mental e a prática do voo, trazendo essa abordagem moderna para suas aulas e explicações. Começou a desenvolver seus próprios projetos de instrução, com foco em voo de cross country - unindo todas suas habilidades como sound designer, editor de vídeo & animador para criar um material único e de fácil entendimento',
         galleryImg3Alt: 'Momento de voo cross country',
         galleryImg1Alt: 'Voando sobre a paisagem brasileira',
-        ch11tag: 'Capitulo 11',
-        ch11title: 'O Proximo Horizonte',
+        ch11tag: 'Capítulo 11',
+        ch11title: 'O Próximo Horizonte',
         ch11year: '2026 - Governador Valadares',
-        ch11p1: 'Em 2026, tomou mais uma decisao ousada: mudar-se para Governador Valadares, a capital do voo livre no Brasil.',
-        ch11p2: 'Movido por curiosidade, ambicao e paixao, Natan segue aprofundando seu conhecimento no esporte e expandindo seus projetos instrucionais e de midia.',
-        ch11p3: 'Sua historia ainda esta sendo escrita - e o futuro, assim como o ceu, permanece aberto.',
+        ch11p1: 'Em 2026, tomou mais uma decisão ousada: mudar-se para Governador Valadares, a capital do voo livre no Brasil.',
+        ch11p2: 'Movido por curiosidade, ambição e paixão, Natan segue aprofundando seu conhecimento no esporte e expandindo seus projetos instrucionais e de mídia.',
+        ch11p3: 'Sua história ainda está sendo escrita - e o futuro, assim como o céu, permanece aberto.',
         ctaEyebrow: 'O que vem a seguir',
         ctaTitle: 'Voe com ele',
-        ctaText: 'Conheca os projetos instrucionais de Natan',
+        ctaText: 'Conheça os projetos instrucionais de Natan',
         ctaPrimary: 'Ver projetos',
-        ctaSecondary: 'Inicio do piloto',
+        ctaSecondary: 'Início do piloto',
+        'music.ctaScroll': 'Role para baixo',
         footer: 'NATAN LICHTNOW // NASCIDO NO VENTO'
       },
       en: {
@@ -1275,9 +573,22 @@
         ctaText: 'Discover the instructional projects by Natan',
         ctaPrimary: 'View projects',
         ctaSecondary: 'Pilot home',
+        'music.ctaScroll': 'Scroll down',
         footer: 'NATAN LICHTNOW // BORN IN THE WIND'
       }
     };
+  </script>
+  <script>
+    (function(){
+      var cue = document.querySelector('.mh-hero__scroll');
+      if(!cue) return;
+      var hiddenClass = 'mh-hero__scroll--hidden';
+      function hideCue(){ cue.classList.add(hiddenClass); }
+      function onScroll(){ if(window.scrollY > 20){ hideCue(); window.removeEventListener('scroll', onScroll); } }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      cue.addEventListener('click', function(){ hideCue(); });
+      if(window.scrollY > 20) hideCue();
+    })();
   </script>
   <script src="../js/internal-pages.js"></script>
 </body>

@@ -7,9 +7,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/internal.css" />
+  <link rel="stylesheet" href="../css/blocks/variables.css" />
+  <link rel="stylesheet" href="../css/blocks/utilities.css" />
+  <link rel="stylesheet" href="../css/blocks/layout.css" />
+  <link rel="stylesheet" href="../css/blocks/topbar.css" />
+  <link rel="stylesheet" href="../css/blocks/hero.css" />
+  <link rel="stylesheet" href="../css/blocks/components.css" />
+  <link rel="stylesheet" href="../css/blocks/music.css" />
   <link rel="stylesheet" href="../css/navbar.css" />
   <link rel="stylesheet" href="../css/music-twitch-streaming.css" />
+  <link rel="stylesheet" href="../css/internal.css" />
 </head>
 <body>
   <div class="c-page c-page--music mh-page">
@@ -54,8 +61,19 @@
 
             </div>
           </div>
-          <!-- hero image removed per request -->
         </div>
+
+        <!-- Scroll cue moved to hero root for consistent placement -->
+        <div class="mh-hero__scroll" aria-hidden="false">
+          <a class="mh-hero__scroll-link" href="#intro" data-i18n="music.ctaScroll" data-i18n-attr="aria-label" aria-label="Scroll down">
+            <svg class="mh-hero__scroll-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.15"/>
+              <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="mh-hero__scroll-text">Scroll</span>
+          </a>
+        </div>
+        <!-- hero image removed per request -->
       </section>
 
       <section class="mh-chapters">
@@ -146,6 +164,8 @@
         heroTitle: 'Twitch',
         heroLead: 'Durante os tempos difíceis que Natan enfrentou durante a pandemia, uma luz brilhou em sua vida:',
 
+        'music.ctaScroll': 'Role para baixo',
+
         heroImageAlt: 'Início da transmissão',
         giftImageAlt: 'Configuração da transmissão',
         flowImageAlt: 'Início do flow',
@@ -194,6 +214,8 @@
         heroTitle: 'Twitch',
         heroLead: 'During the dark times Natan had to face during the pandemic, one light shined on his life:',
 
+        'music.ctaScroll': 'Scroll down',
+
         heroImageAlt: 'Stream start',
         giftImageAlt: 'Stream setup',
         flowImageAlt: 'Flow start',
@@ -231,6 +253,18 @@
         footer: 'NATAN LICHTNOW // TWITCH STREAMING'
       }
     };
+  </script>
+  <script>
+    (function(){
+      var cue = document.querySelector('.mh-hero__scroll');
+      if(!cue) return;
+      var hiddenClass = 'mh-hero__scroll--hidden';
+      function hideCue(){ cue.classList.add(hiddenClass); }
+      function onScroll(){ if(window.scrollY > 20){ hideCue(); window.removeEventListener('scroll', onScroll); } }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      cue.addEventListener('click', function(){ hideCue(); });
+      if(window.scrollY > 20) hideCue();
+    })();
   </script>
   <script src="../js/internal-pages.js"></script>
 

@@ -7,9 +7,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/internal.css" />
+  <link rel="stylesheet" href="../css/blocks/variables.css" />
+  <link rel="stylesheet" href="../css/blocks/utilities.css" />
+  <link rel="stylesheet" href="../css/blocks/layout.css" />
+  <link rel="stylesheet" href="../css/blocks/topbar.css" />
+  <link rel="stylesheet" href="../css/blocks/hero.css" />
+  <link rel="stylesheet" href="../css/blocks/components.css" />
+  <link rel="stylesheet" href="../css/blocks/music.css" />
   <link rel="stylesheet" href="../css/navbar.css"/>
   <link rel="stylesheet" href="../css/music-history.css"/>
+  <link rel="stylesheet" href="../css/internal.css"/>
 
 </head>
 <body>
@@ -54,9 +61,19 @@
         <span class="mh-hero__eyebrow" data-i18n="eyebrow">Full timeline</span>
         <h1 class="mh-hero__title" data-i18n="heroTitle">Music Story</h1>
         <p class="mh-hero__lead" data-i18n="heroLead">A story of highs and lows, full of vulnerability and challenges, that continues to be written day after day.</p>
-        <div class="mh-hero__actions">
-          <a class="c-button" href="index.html" data-i18n="homeAction">Back to music home</a>
-        </div>
+      
+        
+      </div>
+
+      <!-- Scroll cue moved to hero root for consistent placement -->
+      <div class="mh-hero__scroll" aria-hidden="false">
+        <a class="mh-hero__scroll-link" href="#story" data-i18n="music.ctaScroll" data-i18n-attr="aria-label" aria-label="Scroll down">
+          <svg class="mh-hero__scroll-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.15"/>
+            <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="mh-hero__scroll-text">Scroll</span>
+        </a>
       </div>
 
       <!-- Forest silhouette -->
@@ -764,16 +781,16 @@
         brandAriaLabel: 'Inicio de Natan Lichtnow',
         languageLabel: 'IDIOMA',
         menuToggleAriaLabel: 'Abrir navegacao',
-        primaryNavAriaLabel: 'Navegacao da secao',
+        primaryNavAriaLabel: 'Navegação da seção',
         languageSwitcherAriaLabel: 'Seletor de idioma',
-        navSectionHome: 'Inicio da musica',
-        navMusicExperience: 'Historia',
+        navSectionHome: 'Início da música',
+        navMusicExperience: 'História',
         navFlowExperience: 'Flow arts',
         navTwitch: 'Twitch',
         eyebrow: 'Linha do tempo completa',
         heroTitle: 'História de vida',
         heroLead: 'Uma história de altos e baixos, repleta de vulnerabilidade e desafios, que continua sendo escrita dia após dia.',
-        homeAction: 'Voltar ao início da música',
+      
         c1Tag: 'Capítulo 01',
         c1Title: 'Introdução',
         c1p1: 'A história começa aqui.',
@@ -1007,6 +1024,7 @@
         c30imgCaption: 'O Templo',
         ctaTitle: 'A história continua',
         ctaText: 'Descubra a música, flow arts e o Templo',
+        'music.ctaScroll': 'Role para baixo',
         ctaPrimary: 'Voltar ao início da música',
         ctaSecondary: 'Abrir história do paraglider',
         footer: 'NATAN LICHTNOW // HISTÓRIA MUSICAL'
@@ -1026,7 +1044,7 @@
         eyebrow: 'Full timeline',
         heroTitle: 'Life Story',
         heroLead: 'A story of highs and lows, full of vulnerability and challenges, that continues to be written day after day.',
-        homeAction: 'Back to music home',
+  
         c1Tag: 'Chapter 01',
         c1Title: 'Introduction',
         c1p1: 'The story begins here.',
@@ -1261,11 +1279,25 @@
         ctaEyebrow: 'Continue exploring',
         ctaTitle: 'The story continues',
         ctaText: 'Discover the music, flow arts, and the Temple',
+        'music.ctaScroll': 'Scroll down',
         ctaPrimary: 'Back to music home',
         ctaSecondary: 'Open paraglider story',
         footer: 'NATAN LICHTNOW // MUSIC STORY'
       }
     };
+  </script>
+  <script>
+    (function(){
+      var cue = document.querySelector('.mh-hero__scroll');
+      if(!cue) return;
+      var hiddenClass = 'mh-hero__scroll--hidden';
+
+      function hideCue(){ cue.classList.add(hiddenClass); }
+      function onScroll(){ if(window.scrollY > 20){ hideCue(); window.removeEventListener('scroll', onScroll); } }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      cue.addEventListener('click', function(){ hideCue(); });
+      if(window.scrollY > 20) hideCue();
+    })();
   </script>
   <script src="../js/internal-pages.js"></script>
 </body>

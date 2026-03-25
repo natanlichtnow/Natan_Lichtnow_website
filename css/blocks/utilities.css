@@ -1,0 +1,40 @@
+/* Utility and OOCSS helpers (from internal.css) */
+.u-gap-xxl { gap: 2.5rem !important; }
+.u-gap-lg { gap: 1.5rem !important; }
+.u-gap-md { gap: 1rem !important; }
+.u-gap-xs { gap: 0.5rem !important; }
+.u-mt-xl { margin-top: 2.5rem !important; }
+.u-mb-md { margin-bottom: 1rem !important; }
+.u-mt-xs { margin-top: 0.5rem !important; }
+.u-mb-xs { margin-bottom: 0.5rem !important; }
+.u-mt-md { margin-top: 1rem !important; }
+.u-mt-lg { margin-top: 1.5rem !important; }
+.u-w-full { width: 100% !important; }
+.u-w-md { width: 260px !important; }
+.u-w-lg { width: 340px !important; }
+.u-maxw-xl { max-width: 900px !important; }
+.u-maxw-40vw { max-width: 40vw !important; }
+.u-maxw-90vw { max-width: 90vw !important; }
+.u-minw-lg { min-width: 420px !important; }
+.u-h-auto { height: auto !important; }
+.u-flex-col { display: flex !important; flex-direction: column !important; }
+.u-flex-center { display: flex !important; align-items: center !important; justify-content: center !important; }
+.u-align-center { align-items: center !important; }
+.u-align-stretch { align-items: stretch !important; }
+.u-justify-center { justify-content: center !important; }
+.u-inline-block { display: inline-block !important; }
+.u-text-center { text-align: center !important; }
+.u-fs-md { font-size: 1.08em !important; }
+.u-pr-md { padding-right: 1.25rem !important; }
+.u-maxw-unset { max-width: none !important; }
+.mh-img--rounded { border-radius: 14px !important; object-fit: cover !important; }
+.mh-row { display: flex !important; }
+.mh-row--nowrap { flex-wrap: nowrap !important; }
+.mh-row--wrap { flex-wrap: wrap !important; }
+.mh-img-wrap { display: flex !important; align-items: center !important; justify-content: center !important; }
+
+/* Page-level responsive helpers */
+@media (max-width: 800px) {
+  .mh-row--wrap.u-gap-lg.u-align-center.u-mt-xs.u-mb-xs { justify-content: center !important; }
+  .mh-row--wrap.u-gap-lg.u-align-center.u-mt-xs.u-mb-xs img[src*="boomfest.jpg"] { margin-left: auto !important; margin-right: auto !important; display: block !important; }
+}

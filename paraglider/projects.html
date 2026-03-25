@@ -8,393 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/internal.css" />
-  <style>
-    .c-page--journey .c-topbar {
-      background: rgba(4, 12, 7, 0.92) !important;
-      border-bottom: 1px solid rgba(66, 200, 116, 0.1);
-    }
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/blocks/topbar.css" />
+  <link rel="stylesheet" href="../css/paraglider-projects.css" />
 
-    .c-page--journey .c-topbar__menu-toggle {
-      display: none;
-      width: 2.7rem;
-      height: 2.7rem;
-      border-radius: 0.8rem;
-      border: 1px solid rgba(66, 200, 116, 0.24);
-      background: rgba(66, 200, 116, 0.08);
-      color: #c8e8d0;
-      align-items: center;
-      justify-content: center;
-      gap: 0.26rem;
-      cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .c-page--journey .c-topbar__menu-toggle:hover,
-    .c-page--journey .c-topbar__menu-toggle:focus-visible {
-      background: rgba(66, 200, 116, 0.16);
-      border-color: rgba(66, 200, 116, 0.4);
-    }
-
-    .c-page--journey .c-topbar__menu-toggle-line {
-      display: block;
-      width: 1.15rem;
-      height: 2px;
-      border-radius: 999px;
-      background: currentColor;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-    .c-page--journey .c-topbar__menu-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 25;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      background: rgba(3, 10, 6, 0.26);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      transition: opacity 0.22s ease, visibility 0.22s ease;
-    }
-
-    .c-page--journey .c-topbar__menu-overlay.is-open {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
-
-    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-
-    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(2) {
-      opacity: 0;
-    }
-
-    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
-
-    .c-page--journey .c-topbar__brand {
-      color: #c8e8d0;
-    }
-
-    .c-page--journey .c-topbar__brand-mark {
-      background: rgba(66, 200, 116, 0.1);
-      border-color: rgba(66, 200, 116, 0.3);
-      color: #42c874;
-    }
-
-    .c-page--journey .c-topbar__link {
-      color: #6a9878;
-    }
-
-    .c-page--journey .c-topbar__link:hover,
-    .c-page--journey .c-topbar__link:focus-visible,
-    .c-page--journey .c-topbar__link--is-active {
-      color: #c8e8d0;
-      border-color: rgba(66, 200, 116, 0.3);
-      background: rgba(66, 200, 116, 0.08);
-    }
-
-    .c-page--journey .c-language-switcher {
-      border-color: rgba(66, 200, 116, 0.14);
-      background: rgba(66, 200, 116, 0.05);
-    }
-
-    .c-page--journey .c-language-switcher__label {
-      color: #4a7858;
-    }
-
-    .c-page--journey .c-language-switcher__option {
-      color: #c8e8d0;
-      border-color: rgba(66, 200, 116, 0.14);
-    }
-
-    .c-page--journey .c-language-switcher__option--is-active {
-      background: rgba(66, 200, 116, 0.12);
-      border-color: rgba(66, 200, 116, 0.32);
-    }
-
-    .c-page--journey .c-info-strip {
-      display: grid;
-      grid-template-columns: minmax(280px, 420px) minmax(0, 1fr);
-      align-items: stretch;
-      gap: 0.75rem;
-    }
-
-    .c-page--journey .c-info-strip__item {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(66, 200, 116, 0.3);
-      border-radius: 1.2rem;
-      background:
-        radial-gradient(circle at 16% 18%, rgba(66, 200, 116, 0.2), transparent 44%),
-        linear-gradient(135deg, rgba(8, 22, 13, 0.96) 0%, rgba(6, 16, 10, 0.96) 100%);
-      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(200, 232, 208, 0.08);
-      isolation: isolate;
-    }
-
-    .c-page--journey .c-info-strip__item::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(100deg, rgba(66, 200, 116, 0.08), transparent 38%, rgba(66, 200, 116, 0.12));
-      opacity: 0.85;
-      z-index: -1;
-    }
-
-    .c-page--journey .c-info-strip__value {
-      display: block;
-      margin: 0;
-      padding: 1.2rem 1.35rem;
-      color: #d5efdc;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(1rem, 1.9vw, 1.22rem);
-      line-height: 1.55;
-      letter-spacing: 0.018em;
-      text-wrap: pretty;
-      text-shadow: 0 2px 16px rgba(8, 28, 14, 0.4);
-    }
-
-    .c-page--journey .c-info-strip__videos {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(0.7rem, 1.4vw, 1rem);
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
-    .c-page--journey .c-video-frame {
-      position: relative;
-      border-radius: 0.9rem;
-      overflow: hidden;
-      border: 1px solid rgba(66, 200, 116, 0.22);
-      background: rgba(3, 10, 6, 0.72);
-      box-shadow: 0 14px 24px rgba(0, 0, 0, 0.35);
-      height: 100%;
-      width: 100%;
-      min-width: 0;
-      min-height: 170px;
-    }
-
-    .c-page--journey .c-video-frame iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: block;
-      filter: saturate(1.05) contrast(1.02);
-      background: #030b05;
-    }
-
-    .c-page--journey .c-callout__copy {
-      display: flex !important;
-      flex-direction: column;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 0.95rem;
-      text-align: center !important;
-      width: 100%;
-      height: 100%;
-    }
-
-    .c-page--journey .c-callout {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      min-height: 220px;
-      text-align: center !important;
-    }
-
-    .c-page--journey .c-callout__text {
-      max-width: 44ch;
-      margin: 0 auto;
-      text-align: center !important;
-    }
-
-    .c-page--journey .c-callout__copy > * {
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center !important;
-    }
-
-    .c-page--journey .c-whatsapp-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.78rem 1.3rem;
-      border-radius: 999px;
-      border: 1px solid rgba(66, 200, 116, 0.38);
-      background: linear-gradient(135deg, rgba(24, 151, 80, 0.95), rgba(66, 200, 116, 0.9));
-      color: #041108;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      text-transform: uppercase;
-      box-shadow: 0 10px 22px rgba(8, 44, 22, 0.35);
-      transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
-      margin-inline: auto;
-    }
-
-    .c-page--journey .c-whatsapp-button:hover,
-    .c-page--journey .c-whatsapp-button:focus-visible {
-      transform: translateY(-1px);
-      filter: brightness(1.06);
-      box-shadow: 0 14px 28px rgba(10, 55, 26, 0.42);
-    }
-
-    .c-page--journey .hp-home__collab-card {
-      padding: 2rem 2.2rem;
-      border-radius: 2rem;
-      border: 1px solid rgba(66, 200, 116, 0.16);
-      background:
-        linear-gradient(135deg, rgba(9, 23, 14, 0.86), rgba(8, 21, 30, 0.88)),
-        radial-gradient(circle at 15% 15%, rgba(66, 200, 116, 0.12), transparent 25%);
-      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.28);
-    }
-
-    .c-page--journey .hp-home__collab-copy {
-      margin: 0;
-      max-width: 62rem;
-      font-size: 1.08rem;
-      line-height: 1.7;
-      color: #a9c9b3;
-    }
-
-    .c-page--journey .hp-home__collab-actions {
-      margin-top: 1rem;
-    }
-
-    @media (max-width: 700px) {
-      .c-page--journey .c-topbar {
-        position: sticky;
-        z-index: 40;
-      }
-
-      .c-page--journey .c-topbar__inner {
-        grid-template-columns: auto minmax(0, 1fr) auto;
-        align-items: center;
-        justify-items: stretch;
-        text-align: left;
-        gap: 0.45rem;
-      }
-
-      .c-page--journey .c-topbar__brand {
-        min-width: 0;
-        gap: 0.45rem;
-        font-size: 0.82rem;
-        letter-spacing: 0.08em;
-      }
-
-      .c-page--journey .c-topbar__brand > span[data-i18n='brand'] {
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .c-page--journey .c-topbar__menu-toggle {
-        display: inline-flex;
-      }
-
-      .c-page--journey .c-topbar__nav {
-        position: absolute;
-        left: 0.7rem;
-        right: 0.7rem;
-        top: calc(100% + 0.55rem);
-        display: grid;
-        gap: 0.55rem;
-        padding: 0.8rem;
-        border-radius: 0.95rem;
-        border: 1px solid rgba(66, 200, 116, 0.18);
-        background: rgba(4, 12, 7, 0.95);
-        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-8px);
-        pointer-events: none;
-        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
-      }
-
-      .c-page--journey .c-topbar__nav.is-open {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-        pointer-events: auto;
-      }
-
-      .c-page--journey .c-topbar__link {
-        width: 100%;
-      }
-
-      .c-page--journey .c-language-switcher {
-        justify-self: end;
-        width: auto;
-        gap: 0.2rem;
-        padding: 0.24rem;
-        max-width: 100%;
-      }
-
-      .c-page--journey .c-language-switcher__label {
-        padding-inline: 0.35rem;
-        font-size: 0.6rem;
-        letter-spacing: 0.1em;
-      }
-
-      .c-page--journey .c-language-switcher__option {
-        min-width: 2.2rem;
-        padding: 0.48rem 0.5rem;
-        font-size: 0.62rem;
-      }
-
-      .c-page--journey .c-info-strip__item {
-        border-radius: 1rem;
-      }
-
-      .c-page--journey .c-info-strip {
-        grid-template-columns: 1fr;
-      }
-
-      .c-page--journey .c-info-strip__value {
-        padding: 1rem 1rem;
-        font-size: 1rem;
-        line-height: 1.5;
-      }
-
-      .c-page--journey .c-info-strip__videos {
-        grid-template-columns: 1fr;
-        gap: 0.85rem;
-        margin: 0;
-        padding: 0;
-      }
-
-      .c-page--journey .c-video-frame {
-        border-radius: 0.8rem;
-        height: auto;
-        min-height: 220px;
-        aspect-ratio: 16 / 9;
-      }
-
-      .c-page--journey .c-whatsapp-button {
-        width: 100%;
-        max-width: 18rem;
-        font-size: 0.72rem;
-      }
-
-      .c-page--journey .hp-home__collab-card {
-        padding: 1.4rem 1.2rem;
-      }
-
-      .c-page--journey .hp-home__collab-copy {
-        font-size: 1rem;
-        line-height: 1.6;
-      }
-    }
-  </style>
 </head>
 <body>
   <div class="c-page c-page--journey">
@@ -427,7 +44,7 @@
     <div class="c-topbar__menu-overlay" aria-hidden="true"></div>
     <main class="c-shell">
       <section class="c-hero">
-        <span class="c-hero__eyebrow" data-i18n="heroEyebrow">Instruction Map</span>
+     
         <h1 class="c-hero__title" data-i18n="heroTitle">Projects</h1>
         <p class="c-hero__lead" data-i18n="heroLead">Take the next step in your flying. If you have just finished your course and want to evolve safely, or if you already master thermals and want to dive deeper into the complex world of cross country, this is your step to the next level.</p>
       </section>
@@ -602,7 +219,7 @@
       'pt-BR': {
         pageTitle: 'Projetos | Natan Lichtnow',
         brand: 'Natan Lichtnow',
-        brandAriaLabel: 'Inicio de Natan Lichtnow',
+        brandAriaLabel: 'Início de Natan Lichtnow',
         primaryNavAriaLabel: 'Navegação principal',
         menuToggleAriaLabel: 'Abrir navegação',
         languageSwitcherAriaLabel: 'Seletor de idioma',
@@ -610,32 +227,31 @@
         navHome: 'Início',
         navStory: 'História',
         navProjects: 'Projetos',
-        heroEyebrow: 'Mapa de Instrucao',
         heroTitle: 'Projetos',
-        heroLead: 'De o proximo passo no seu voo. Se voce acabou de concluir seu curso e quer evoluir com seguranca, ou se ja domina as termicas e busca se aprofundar no complexo universo do cross country, este e o seu passo para o proximo nivel.',
+        heroLead: 'Dê o próximo passo no seu voo. Se você acabou de concluir seu curso e quer evoluir com segurança, ou se já domina as térmicas e busca se aprofundar no complexo universo do cross country, este é o seu passo para o próximo nível.',
         cardOneMeta: 'Workshop',
         cardOneTitle: 'da rampa a base da nuvem',
-        cardOneText: 'Uma introducao ao universo das termicas',
-        cardOneBulletOne: 'Analise micrometeorologica',
-        cardOneBulletTwo: 'Qual o melhor horario de decolar',
-        cardOneBulletThree: 'Como subir com eficiencia',
+        cardOneText: 'Uma introdução ao universo das térmicas',
+        cardOneBulletOne: 'Análise micrometeorológica',
+        cardOneBulletTwo: 'Qual o melhor horário de decolar',
+        cardOneBulletThree: 'Como subir com eficiência',
         cardOneBulletFour: 'Panes e colapsos',
         cardTwoMeta: 'Projeto 02',
-        cardTwoTitle: 'Imersao Cross Country',
-        cardTwoText: 'Mais do que um curso, essa e uma experiencia completa. Um mergulho na essencia do voo, na aventura de ir rumo ao desconhecido e descobrir como voltar pra casa depois. Cada decolagem vira uma grande historia diferente.',
+        cardTwoTitle: 'Imersão Cross Country',
+        cardTwoText: 'Mais do que um curso, essa é uma experiência completa. Um mergulho na essência do voo, na aventura de ir rumo ao desconhecido e descobrir como voltar pra casa depois. Cada decolagem vira uma grande história diferente.',
         cardTwoLessonOneTitle: 'Aula 1',
         cardTwoLessonOneText: 'A filosofia e o universo do Cross Country.',
         cardTwoLessonTwoTitle: 'Aula 2',
-        cardTwoLessonTwoText: 'Como ter o maximo de desempenho nas termicas.',
+        cardTwoLessonTwoText: 'Como ter o máximo de desempenho nas térmicas.',
         cardTwoLessonThreeTitle: 'Aula 3',
-        cardTwoLessonThreeText: 'Tecnicas de navegacao, geradores e disparadores, planejamento de rota.',
+        cardTwoLessonThreeText: 'Técnicas de navegação, geradores e disparadores, planejamento de rota.',
         cardTwoLessonFourTitle: 'Aula 4',
-        cardTwoLessonFourText: 'Pilotagem ativa, panes e colapsos, e estrategias de voo em equipe.',
+        cardTwoLessonFourText: 'Pilotagem ativa, panes e colapsos, e estratégias de voo em equipe.',
         cardTwoLessonFiveTitle: 'Aula 5',
-        cardTwoLessonFiveText: 'Pouso, resgate, seguranca e comunicacao.',
-        stripSingleText: 'Materiais unicos combinando o conhecimento de engenharia de audio, animacao e anos de experiencia no esporte transformando o aprendizado facil e acessivel para todos',
-        videoOneTitle: 'Video de treinamento de parapente um',
-        videoTwoTitle: 'Video de treinamento de parapente dois',
+        cardTwoLessonFiveText: 'Pouso, resgate, segurança e comunicação.',
+        stripSingleText: 'Materiais únicos combinando o conhecimento de engenharia de áudio, animação e anos de experiência no esporte transformando o aprendizado fácil e acessível para todos',
+        videoOneTitle: 'Vídeo de treinamento de parapente um',
+        videoTwoTitle: 'Vídeo de treinamento de parapente dois',
         detailTitle: 'Como escolher bem',
         detailText: 'Se a dificuldade real ainda esta entre a decolagem e a primeira subida, comece pela Base da Nuvem. Se o voo local ja esta estavel e o proximo desafio e logica de rota, va para Cross Country.',
         asideTitle: 'Por que esta pagina importa',
@@ -659,7 +275,6 @@
         navHome: 'Home',
         navStory: 'Journey',
         navProjects: 'Projects',
-        heroEyebrow: 'Instruction Map',
         heroTitle: 'Projects',
         heroLead: 'Take the next step in your flying. If you have just finished your course and want to evolve safely, or if you already master thermals and want to dive deeper into the complex world of cross country, this is your step to the next level.',
         cardOneMeta: 'Workshop',

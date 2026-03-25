@@ -1,8 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flow Arts Experience | Natan Lichtnow</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/internal.css" />
+  <link rel="stylesheet" href="../css/blocks/variables.css" />
+  <link rel="stylesheet" href="../css/blocks/utilities.css" />
+  <link rel="stylesheet" href="../css/blocks/layout.css" />
+  <link rel="stylesheet" href="../css/blocks/topbar.css" />
+  <link rel="stylesheet" href="../css/blocks/hero.css" />
+  <link rel="stylesheet" href="../css/blocks/components.css" />
+  <link rel="stylesheet" href="../css/blocks/music.css" />
   <link rel="stylesheet" href="../css/navbar.css" />
   <link rel="stylesheet" href="../css/music-flow-arts-experience.css" />
+  <link rel="stylesheet" href="../css/internal.css" />
   
 </head>
 <body>
@@ -53,9 +66,20 @@
           </div>
             <!-- hero image removed per request -->
         </div>
+
+        <!-- Scroll cue moved to hero root for consistent placement -->
+        <div class="mh-hero__scroll" aria-hidden="false">
+          <a class="mh-hero__scroll-link" href="#flow-start" data-i18n="music.ctaScroll" data-i18n-attr="aria-label" aria-label="Scroll down">
+            <svg class="mh-hero__scroll-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.15"/>
+              <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="mh-hero__scroll-text">Scroll</span>
+          </a>
+        </div>
       </section>
 
-      <section class="mh-chapters">
+      <section class="mh-chapters" id="flow-start">
         <article class="mh-chapter mh-block">
           <h2 class="mh-chapter__title" data-i18n="block1_title">First contact</h2>
           <div class="mh-split">
@@ -185,6 +209,7 @@
         block7_p1: 'Com todos os seus objetivos rapidamente alcançados com essa forma de arte, Natan se sentiu satisfeito com a jornada que teve, decidindo então se aposentar do mundo da performance para focar novamente em sua carreira na Twitch e na música, mas toda vez que tem a chance, ele leva seu poi por aí e compartilha seu amor por essa forma de arte.',
         block7_imgAlt: 'Flow arts imagem',
         block7_caption: 'ação com poi',
+        'music.ctaScroll': 'Role para baixo',
         footer: 'NATAN LICHTNOW // EXPERIÊNCIA EM FLOW ARTS'
       },
       'en': {
@@ -222,9 +247,22 @@
         block7_p1: 'With all his goals quickly being met with this artform, Natan felt satisfied with the journey he had, deciding then to retire from the performance world to focus on his Twitch & music career again, but everytime he has a chance, he brings his poi around and shares his love for this artform.', 
         block7_imgAlt: 'Flow arts image',
         block7_caption: 'poi action',
+        'music.ctaScroll': 'Scroll down',
         footer: 'NATAN LICHTNOW // FLOW ARTS'
       }
     };
+  </script>
+  <script>
+    (function(){
+      var cue = document.querySelector('.mh-hero__scroll');
+      if(!cue) return;
+      var hiddenClass = 'mh-hero__scroll--hidden';
+      function hideCue(){ cue.classList.add(hiddenClass); }
+      function onScroll(){ if(window.scrollY > 20){ hideCue(); window.removeEventListener('scroll', onScroll); } }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      cue.addEventListener('click', function(){ hideCue(); });
+      if(window.scrollY > 20) hideCue();
+    })();
   </script>
   <script>
     (function () {

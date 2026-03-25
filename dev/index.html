@@ -8,21 +8,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/internal.css" />
+  <link rel="stylesheet" href="../css/blocks/dev.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/blocks/topbar.css" />
 </head>
 <body>
-  <div class="c-page c-page--dev">
+  <div class="mh-page c-page c-page--dev">
     <header class="c-topbar">
       <div class="c-shell c-topbar__inner">
+          <button class="c-topbar__menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav" data-i18n="menuToggleAriaLabel" data-i18n-attr="aria-label">
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+        </button>
         <a class="c-topbar__brand" href="../index.html">
           <span class="c-topbar__brand-mark">NL</span>
           <span data-i18n="brand">Natan Lichtnow</span>
         </a>
-        <nav class="c-topbar__nav" aria-label="Section navigation">
+        <nav id="primary-nav" class="c-topbar__nav" aria-label="Section navigation">
           <a class="c-topbar__link c-topbar__link--is-active" href="index.html" data-i18n="navSectionHome">Dev Home</a>
           <a class="c-topbar__link" href="portfolio.html" data-i18n="navPortfolio">Portfolio</a>
           <a class="c-topbar__link" href="experience.html" data-i18n="navExperience">Experience</a>
-          <a class="c-topbar__link" href="../paraglider/index.html" data-i18n="navPilot">Pilot</a>
-
         </nav>
         <div class="c-language-switcher" aria-label="Language selector">
           <span class="c-language-switcher__label" data-i18n="languageLabel">LANG</span>
@@ -31,72 +37,37 @@
         </div>
       </div>
     </header>
+      </header>
+      <div class="c-topbar__menu-overlay" aria-hidden="true"></div>
 
-    <main class="c-shell">
-      <section class="c-hero">
-        <span class="c-hero__eyebrow" data-i18n="eyebrow">Build mode</span>
-        <h1 class="c-hero__title" data-i18n="heroTitle">Web Development</h1>
-        <p class="c-hero__lead" data-i18n="heroLead">The space where design, code, and problem solving come together to build useful digital experiences.</p>
-        <div class="c-hero__actions">
-          <a class="c-button" href="portfolio.html" data-i18n="primaryAction">View portfolio</a>
-          <a class="c-button c-button--ghost" href="../index.html" data-i18n="secondaryAction">Back to selector</a>
+    <main class="c-shell c-dev" role="main">
+      <section class="c-dev__hero c-dev__hero--center" aria-labelledby="dev-hero-title">
+        <div class="c-dev__hero-inner">
+          <h1 id="dev-hero-title" class="c-dev__title" data-i18n="dev.title">Web developer</h1>
+          <p class="c-dev__subtitle" data-i18n="dev.subtitle">An aspiring developer exploring creative solutions and website builds for supporting personal projects and businesses</p>
         </div>
+        <figure class="c-dev__hero-figure">
+          <img class="c-dev__hero-image" src="../img/web-dev/coding.png" alt="Coding illustration" />
+        </figure>
       </section>
 
-      <section class="c-section">
-        <div class="c-section__head">
-          <div>
-            <h2 class="c-section__title" data-i18n="modulesTitle">Development modules</h2>
-            <p class="c-section__text" data-i18n="modulesText">This section frames how I approach frontend work, project delivery, and the experience behind the code.</p>
-          </div>
-        </div>
-
-        <div class="c-card-grid">
-          <a class="c-nav-card" href="portfolio.html">
-            <div>
-              <span class="c-nav-card__meta" data-i18n="portfolioMeta">Build 01</span>
-              <h3 class="c-nav-card__title" data-i18n="portfolioTitle">Portfolio</h3>
-              <p class="c-nav-card__text" data-i18n="portfolioText">A presentation of selected work, visual thinking, and the kind of problems I want to solve through web experiences.</p>
-            </div>
-            <span class="c-nav-card__cta" data-i18n="portfolioCta">Open portfolio</span>
-          </a>
-
-          <a class="c-nav-card" href="experience.html">
-            <div>
-              <span class="c-nav-card__meta" data-i18n="experienceMeta">Build 02</span>
-              <h3 class="c-nav-card__title" data-i18n="experienceTitle">Experience</h3>
-              <p class="c-nav-card__text" data-i18n="experienceText">A clearer breakdown of learning, practical experience, and the mindset I bring into product and client work.</p>
-            </div>
-            <span class="c-nav-card__cta" data-i18n="experienceCta">See experience</span>
-          </a>
-
-          <div class="c-nav-card">
-            <div>
-              <span class="c-nav-card__meta" data-i18n="processMeta">Build 03</span>
-              <h3 class="c-nav-card__title" data-i18n="processTitle">Process</h3>
-              <p class="c-nav-card__text" data-i18n="processText">Research, visual direction, structure, and implementation aligned around solving the right problem well.</p>
-            </div>
-            <span class="c-nav-card__cta" data-i18n="processCta">Always in progress</span>
-          </div>
-        </div>
+      <section class="c-dev__intro" aria-labelledby="dev-intro-label">
+        <h2 id="dev-intro-label" class="c-dev__section-title" data-i18n="dev.intro.title">Introduction</h2>
+        <p class="c-dev__text" data-i18n="dev.intro.p1">Natan has always been passionate for exploring his creativity, from music to circus acts and paraglider projects. He is now focusing his attention on web development with the intention of creating systems and webpages to make life easier for people with big passion projects or businesses.</p>
+      
       </section>
 
-      <section class="c-section">
-        <div class="c-info-strip">
-          <div class="c-info-strip__item">
-            <span class="c-info-strip__label" data-i18n="stripLabelOne">Strength</span>
-            <span class="c-info-strip__value" data-i18n="stripValueOne">Translating personality and business goals into clear digital interfaces.</span>
-          </div>
-          <div class="c-info-strip__item">
-            <span class="c-info-strip__label" data-i18n="stripLabelTwo">Tools</span>
-            <span class="c-info-strip__value" data-i18n="stripValueTwo">Frontend structure, responsive design, and pragmatic implementation.</span>
-          </div>
-          <div class="c-info-strip__item">
-            <span class="c-info-strip__label" data-i18n="stripLabelThree">Focus</span>
-            <span class="c-info-strip__value" data-i18n="stripValueThree">Interfaces that feel intentional, useful, and memorable.</span>
-          </div>
-        </div>
+      <section class="c-dev__education" aria-labelledby="dev-education-label">
+        <h2 id="dev-education-label" class="c-dev__section-title" data-i18n="dev.education.title">Education</h2>
+        <p class="c-dev__text" data-i18n="dev.education.p1">Natan started a full stack web development program from TripleTen in July 2025, an intensive 10 months course which focuses on HTML, CSS, JavaScript, React.js and Node.js.</p>
+        <p class="c-dev__text" data-i18n="dev.education.p2">Together with the bootcamp, Natan is also having private lessons from friends who are already in the field to develop his AI prompting and usage skills for faster and more efficient workflow.</p>
       </section>
+        <section class="c-dev__cta c-section" aria-labelledby="dev-cta-label">
+          <div class="c-dev__cta-inner u-flex-center">
+            <a class="c-button" href="portfolio.html" data-i18n="dev.ctaPortfolio">View portfolio</a>
+          </div>
+        </section>
+       
     </main>
 
     <footer class="c-page-footer c-shell">
@@ -107,75 +78,41 @@
   <script>
     window.NATAN_PAGE_TRANSLATIONS = {
       'pt-BR': {
-        pageTitle: 'Desenvolvimento Web | Natan Lichtnow',
+        pageTitle: 'Desenvolvedor Web | Natan Lichtnow',
         brand: 'Natan Lichtnow',
         languageLabel: 'IDIOMA',
-        navSectionHome: 'Inicio dev',
-        navPortfolio: 'Portfolio',
-        navExperience: 'Experiencia',
-        navPilot: 'Piloto',
-        navMusic: 'Musica',
-        eyebrow: 'Modo construcao',
-        heroTitle: 'Desenvolvimento Web',
-        heroLead: 'O espaco em que design, codigo e resolucao de problemas se encontram para construir experiencias digitais uteis.',
-        primaryAction: 'Ver portfolio',
-        secondaryAction: 'Voltar ao seletor',
-        modulesTitle: 'Modulos de desenvolvimento',
-        modulesText: 'Esta secao organiza como eu abordo frontend, entrega de projetos e a experiencia por tras do codigo.',
-        portfolioMeta: 'Build 01',
-        portfolioTitle: 'Portfolio',
-        portfolioText: 'Uma apresentacao de trabalhos selecionados, pensamento visual e dos tipos de problema que quero resolver na web.',
-        portfolioCta: 'Abrir portfolio',
-        experienceMeta: 'Build 02',
-        experienceTitle: 'Experiencia',
-        experienceText: 'Uma visao mais clara de aprendizado, experiencia pratica e da mentalidade que levo para produtos e clientes.',
-        experienceCta: 'Ver experiencia',
-        processMeta: 'Build 03',
-        processTitle: 'Processo',
-        processText: 'Pesquisa, direcao visual, estrutura e implementacao alinhadas para resolver bem o problema certo.',
-        processCta: 'Sempre em progresso',
-        stripLabelOne: 'Forca',
-        stripValueOne: 'Traduzir personalidade e objetivos de negocio em interfaces digitais claras.',
-        stripLabelTwo: 'Ferramentas',
-        stripValueTwo: 'Estrutura frontend, design responsivo e implementacao pragmatica.',
-        stripLabelThree: 'Foco',
-        stripValueThree: 'Interfaces com intencao, utilidade e memoria.',
-        footer: 'NATAN LICHTNOW // DESENVOLVIMENTO WEB'
+        navSectionHome: 'Início dev',
+        navPortfolio: 'Portfólio',
+        navExperience: 'Experiência',
+      
+        'dev.title': 'Desenvolvedor Web',
+        'dev.subtitle': 'Um aspirante a desenvolvedor explorando soluções criativas e criação de sites para apoiar projetos pessoais e negócios',
+        'dev.intro.title': 'Introdução',
+        'dev.intro.p1': 'Natan sempre foi apaixonado por explorar sua criatividade, da música a números de circo e projetos de parapente. Agora ele está focando sua atenção no desenvolvimento web com a intenção de criar sistemas e páginas que facilitem a vida de pessoas com projetos pessoais ambiciosos ou negócios.',
+       
+        'dev.education.title': 'Educação',
+        'dev.education.p1': 'Natan começou um programa de desenvolvimento web full stack na TripleTen em julho de 2025, um curso intensivo de 10 meses que foca em HTML, CSS, JavaScript, React.js e Node.js.',
+        'dev.education.p2': 'Junto com o bootcamp, Natan também está tendo aulas particulares com amigos que já estão na área para desenvolver suas habilidades em prompting de IA e melhorar seu fluxo de trabalho.',
+        'dev.ctaPortfolio': 'Ver portfólio',
+        footer: 'NATAN LICHTNOW // DESENVOLVIMENTO'
       },
       en: {
-        pageTitle: 'Web Development | Natan Lichtnow',
+        pageTitle: 'Web Developer | Natan Lichtnow',
         brand: 'Natan Lichtnow',
         languageLabel: 'LANG',
         navSectionHome: 'Dev Home',
         navPortfolio: 'Portfolio',
         navExperience: 'Experience',
-        navPilot: 'Pilot',
-        navMusic: 'Music',
-        eyebrow: 'Build mode',
-        heroTitle: 'Web Development',
-        heroLead: 'The space where design, code, and problem solving come together to build useful digital experiences.',
-        primaryAction: 'View portfolio',
-        secondaryAction: 'Back to selector',
-        modulesTitle: 'Development modules',
-        modulesText: 'This section frames how I approach frontend work, project delivery, and the experience behind the code.',
-        portfolioMeta: 'Build 01',
-        portfolioTitle: 'Portfolio',
-        portfolioText: 'A presentation of selected work, visual thinking, and the kind of problems I want to solve through web experiences.',
-        portfolioCta: 'Open portfolio',
-        experienceMeta: 'Build 02',
-        experienceTitle: 'Experience',
-        experienceText: 'A clearer breakdown of learning, practical experience, and the mindset I bring into product and client work.',
-        experienceCta: 'See experience',
-        processMeta: 'Build 03',
-        processTitle: 'Process',
-        processText: 'Research, visual direction, structure, and implementation aligned around solving the right problem well.',
-        processCta: 'Always in progress',
-        stripLabelOne: 'Strength',
-        stripValueOne: 'Translating personality and business goals into clear digital interfaces.',
-        stripLabelTwo: 'Tools',
-        stripValueTwo: 'Frontend structure, responsive design, and pragmatic implementation.',
-        stripLabelThree: 'Focus',
-        stripValueThree: 'Interfaces that feel intentional, useful, and memorable.',
+       
+        'dev.title': 'Web developer',
+        'dev.subtitle': 'An aspiring developer exploring creative solutions and website builds for supporting personal projects and businesses',
+        'dev.intro.title': 'Introduction',
+        'dev.intro.p1': 'Natan has always been passionate for exploring his creativity, from music to circus acts and paraglider projects. He is now focusing his attention on web development with the intention of creating systems and webpages to make life easier for people with big passion projects or businesses.',
+       
+        'dev.education.title': 'Education',
+        'dev.education.p1': 'Natan started a full stack web development program from TripleTen in July 2025, an intensive 10 months course which focuses on HTML, CSS, JavaScript, React.js and Node.js.',
+        'dev.education.p2': 'Together with the bootcamp, Natan is also having private lessons from friends who are already in the field to develop his AI prompting and usage skills for faster and more efficient workflow.',
+        'dev.ctaPortfolio': 'View portfolio',
         footer: 'NATAN LICHTNOW // WEB DEVELOPMENT'
       }
     };

@@ -1,0 +1,71 @@
+/* Music page theme and mh-* component styles */
+.c-page--music {
+  --page-surface: rgba(12, 28, 18, 0.72);
+  --page-surface-strong: rgba(8, 22, 12, 0.92);
+  --page-surface-soft: rgba(255, 255, 255, 0.04);
+  --page-border: rgba(0, 230, 118, 0.18);
+  --page-text: #d8f0e0;
+  --page-text-muted: #6a9878;
+  --page-shadow: 0 28px 72px rgba(4, 14, 8, 0.36);
+  --page-accent: #00e676;
+  --page-accent-soft: rgba(0, 230, 118, 0.15);
+  --page-accent-strong: rgba(0, 230, 118, 0.34);
+  --page-accent-glow: rgba(0, 230, 118, 0.24);
+  --page-heading-font: 'Orbitron', sans-serif;
+  --page-label-font: 'Rajdhani', sans-serif;
+}
+
+.c-page--music::before { background: radial-gradient(circle at 20% 14%, rgba(0, 230, 118, 0.06), transparent 14%), radial-gradient(circle at 74% 18%, rgba(0, 188, 212, 0.05), transparent 14%), linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 24%, transparent 76%, rgba(255, 255, 255, 0.02)); }
+.c-page--music::after { inset: -30% -22%; background: radial-gradient(ellipse 30rem 23rem at 18% 24%, rgba(0, 230, 118, 0.2), transparent 65%), radial-gradient(ellipse 34rem 24rem at 72% 18%, rgba(0, 188, 212, 0.18), transparent 68%), radial-gradient(ellipse 28rem 20rem at 80% 70%, rgba(0, 0, 255, 0.16), transparent 66%), radial-gradient(ellipse 30rem 22rem at 30% 82%, rgba(74, 0, 224, 0.14), transparent 68%); opacity: 0.75; filter: blur(10px); animation: c-music-blob-drift 24s ease-in-out infinite alternate; }
+
+@keyframes c-music-blob-drift { 0% { transform: translate3d(-4%, -3%, 0) scale(1); } 50% { transform: translate3d(5%, 2%, 0) scale(1.06); } 100% { transform: translate3d(-2%, 6%, 0) scale(1.02); } }
+
+/* Typography tuned for music pages */
+.c-page--music .c-media-frame__copy h2,
+.c-page--music .c-detail-panel__title,
+.c-page--music h1,
+.c-page--music h2,
+.c-page--music h3,
+.c-page--music h4 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: clamp(1.4rem, 2.2vw, 2rem); line-height: 1.05; color: var(--mh-text); margin: 0 0 0.6rem; }
+
+.c-page--music p, .c-page--music .c-card__text, .c-page--music .c-detail-panel__text { font-family: 'Rajdhani', sans-serif; font-weight: 300; font-size: clamp(0.98rem, 1.4vw, 1.05rem); line-height: 1.6; color: var(--mh-text); margin: 0 0 1rem; }
+
+.music-bg-blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(100px); opacity: 0.7; will-change: transform, opacity; }
+.music-bg-blob--a { width: 45vw; height: 45vw; top: -10%; left: -12%; background: radial-gradient(circle, rgba(0,230,118,0.22) 0%, transparent 70%); animation: mh-blob-drift-1 18s ease-in-out infinite alternate; z-index:0; }
+.music-bg-blob--b { width: 38vw; height: 38vw; top: 15%; right: -8%; background: radial-gradient(circle, rgba(0,188,212,0.2) 0%, transparent 70%); animation: mh-blob-drift-2 22s ease-in-out infinite alternate; z-index:0; }
+.music-bg-blob--c { width: 30vw; height: 30vw; bottom: 10%; left: 30%; background: radial-gradient(circle, rgba(74,0,224,0.16) 0%, transparent 70%); animation: mh-blob-drift-3 26s ease-in-out infinite alternate; z-index:0; }
+
+@keyframes mh-blob-drift-1 { 0%{transform:translate(0,0) scale(1);opacity:.6}33%{transform:translate(8vw,5vh) scale(1.12);opacity:.75}66%{transform:translate(-3vw,10vh) scale(.95);opacity:.55}100%{transform:translate(5vw,-3vh) scale(1.08);opacity:.7} }
+@keyframes mh-blob-drift-2 { 0%{transform:translate(0,0) scale(1);opacity:.5}33%{transform:translate(-6vw,8vh) scale(1.1);opacity:.7}66%{transform:translate(4vw,-4vh) scale(.92);opacity:.45}100%{transform:translate(-5vw,6vh) scale(1.06);opacity:.65} }
+@keyframes mh-blob-drift-3 { 0%{transform:translate(0,0) scale(1);opacity:.45}33%{transform:translate(6vw,-6vh) scale(1.14);opacity:.6}66%{transform:translate(-5vw,3vh) scale(.9);opacity:.4}100%{transform:translate(3vw,8vh) scale(1.05);opacity:.55} }
+
+.music-stars { position: absolute; inset: 0; z-index: 1; pointer-events: none; background-image: radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px), radial-gradient(circle, rgba(200,240,220,0.5) 1px, transparent 1px); background-size: 220px 220px, 170px 170px, 310px 310px; background-position: 0 0, 80px 50px, 140px 90px; opacity: 0.25; }
+
+.c-page--music > main, .c-page--music header, .c-page--music footer { position: relative; z-index: 10; }
+
+/* Flow-specific hero details */
+.mh-hero__bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse at 25% 25%, rgba(0, 80, 40, 0.55) 0%, transparent 45%), radial-gradient(ellipse at 75% 15%, rgba(0, 60, 100, 0.55) 0%, transparent 40%), radial-gradient(ellipse at 50% 5%, rgba(0, 100, 80, 0.35) 0%, transparent 38%), linear-gradient(180deg, #040a06 0%, #061012 40%, #040a06 100%); }
+.mh-hero__blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(100px); opacity: 0; will-change: transform, opacity; }
+.mh-hero__blob--1 { width: 45vw; height: 45vw; top: -10%; left: -12%; background: radial-gradient(circle, rgba(0, 230, 118, 0.22) 0%, transparent 70%); animation: mh-blob-drift-1 18s ease-in-out infinite alternate; }
+.mh-hero__blob--2 { width: 38vw; height: 38vw; top: 15%; right: -8%; background: radial-gradient(circle, rgba(0, 188, 212, 0.2) 0%, transparent 70%); animation: mh-blob-drift-2 22s ease-in-out infinite alternate; }
+.mh-hero__blob--3 { width: 30vw; height: 30vw; bottom: 10%; left: 30%; background: radial-gradient(circle, rgba(74, 0, 224, 0.16) 0%, transparent 70%); animation: mh-blob-drift-3 26s ease-in-out infinite alternate; }
+
+.mh-chapters { max-width:1200px; margin:2.5rem auto; padding:0 1.5rem }
+.mh-chapter { padding: 2rem 0; border-bottom: 1px solid rgba(0, 230, 118, 0.03); }
+.mh-chapter__title { font-family: 'Rajdhani', sans-serif; font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight:700; color:#c0e0c8; margin:0 0 1rem }
+.mh-split { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center }
+.mh-split__text { background: rgba(8,40,20,0.45); padding:1.4rem; border-left:3px solid rgba(0,230,118,0.35); border-radius:10px; color:#c8f0d8 }
+.mh-split__media iframe, .mh-split__media img { width:100%; border-radius:10px }
+
+.mh-img-caption { font-family: 'Orbitron', sans-serif; font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: #3a6848; text-align:center; margin-top:0.6rem }
+.mh-cta { display:inline-flex !important; align-items:center; justify-content:center; gap:0.5rem; margin-top:0.8rem; padding:0.75rem 1rem !important; background:var(--mh-accent) !important; color:#05210a !important; border-radius:10px; font-weight:700; text-decoration:none; border: none !important; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.28); transition: transform 140ms ease, box-shadow 140ms ease; min-width:220px; z-index:12 }
+.mh-cta:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(0,0,0,0.34) }
+.mh-cta:focus { outline: 3px solid rgba(0,230,118,0.18); outline-offset: 3px }
+
+@media (max-width:700px) { .mh-split { grid-template-columns:1fr } .mh-hero__img { width: 220px } }
+
+/* Small helper for flow page chapter wrapper used as a legacy class */
+.mh-block {
+  display: block;
+  margin-bottom: 1.5rem;
+}

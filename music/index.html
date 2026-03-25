@@ -7,9 +7,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/internal.css" />
+  <link rel="stylesheet" href="../css/blocks/variables.css" />
+  <link rel="stylesheet" href="../css/blocks/utilities.css" />
+  <link rel="stylesheet" href="../css/blocks/layout.css" />
+  <link rel="stylesheet" href="../css/blocks/topbar.css" />
+  <link rel="stylesheet" href="../css/blocks/hero.css" />
+  <link rel="stylesheet" href="../css/blocks/components.css" />
+  <link rel="stylesheet" href="../css/blocks/music.css" />
   <link rel="stylesheet" href="../css/navbar.css" />
   <link rel="stylesheet" href="../css/music-index.css" />
+  <link rel="stylesheet" href="../css/internal.css" />
 </head>
 <body>
   <div class="c-page c-page--music mh-page">
@@ -45,16 +52,38 @@
     <div class="c-topbar__menu-overlay" aria-hidden="true"></div>
 
     <main class="c-shell" aria-live="polite">
-      <section class="c-section">
+      <section class="mh-hero mh-hero--music" aria-labelledby="music-hero-title">
+        <div class="mh-hero__inner">
+          <div class="mh-hero__content">
+            <h1 id="music-hero-title" class="mh-title" data-i18n="musicHeading">Music</h1>
+            <p class="mh-lead" data-i18n="musicP1">Natan is a deeply connected person with his creative side — from music to intense performances. He travelled the world absorbing as much as he could to add to his creative arsenal.</p>
+            <div class="mh-hero__actions">
+              <a class="c-button" href="history.html" data-i18n="music.ctaReadStory">Read my story</a>
+            </div>
+            
+          </div>
+        </div>
+        <!-- Scroll cue moved to be a direct child of the hero for consistent positioning -->
+        <div class="mh-hero__scroll" aria-hidden="false">
+          <a class="mh-hero__scroll-link" href="#music-start" data-i18n="music.ctaScroll" data-i18n-attr="aria-label" aria-label="Scroll down">
+            <svg class="mh-hero__scroll-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.15"/>
+              <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="mh-hero__scroll-text">Scroll</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="c-section" id="music-start">
         <a class="c-media-link" href="music.html" aria-label="Open Music page">
           <div class="c-media-frame">
             <div class="c-media-frame__visual">
               <img src="../img/music-arts/playin.jpg" alt="Natan playing music" />
             </div>
             <div class="c-media-frame__copy">
-              <h2 data-i18n="musicHeading">Music</h2>
-              <p data-i18n="musicP1">Natan is a deeply connected person with his creative side — from music to intense performances. He travelled the world absorbing as much as he could to add to his creative arsenal.</p>
-              <p data-i18n="musicP2">Music — DJ and Producer since 2017, Natan has produced over 120 songs across styles from psytrance to ambient. He found his place with meditative live looping, creating improvised music as the energy of the room demands.</p>
+                <h2 data-i18n="musicHeading">Music</h2>
+                <p data-i18n="musicP2">DJ and Producer since 2017, Natan has produced over 120 songs across styles from psytrance to ambient. He found his place with meditative live looping, creating improvised music as the energy of the room demands.</p>
             </div>
           </div>
         </a>
@@ -106,7 +135,9 @@
         languageLabel: 'IDIOMA',
         musicHeading: 'Música',
         musicP1: 'Natan é uma pessoa profundamente conectada ao seu lado criativo — da música às performances intensas. Viajou pelo mundo absorvendo tudo que pôde para enriquecer seu arsenal criativo.',
-        musicP2: 'Música — DJ e produtor desde 2017, Natan produziu mais de 120 músicas, de psytrance a ambient. Encontrou seu lugar no live looping meditativo, criando música improvisada conforme a energia do ambiente pede.',
+        musicP2: 'DJ e produtor desde 2017, Natan produziu mais de 120 músicas, de psytrance a ambient. Encontrou seu lugar no live looping meditativo, criando música improvisada conforme a energia do ambiente pede.',
+        'music.ctaReadStory': 'Leia minha história',
+        'music.ctaScroll': 'Role para baixo',
         flowHeading: 'Flow Arts',
         flowP1: 'Natan começou sua jornada no flow em 2021, mergulhando de cabeça nesse universo. Atualmente aposentado das performances regulares, mantém a prática para si até o momento certo de voltar aos palcos.',
         twitchHeading: 'Streamer na Twitch',
@@ -123,7 +154,9 @@
         languageLabel: 'LANG',
         musicHeading: 'Music',
         musicP1: 'Natan is a deeply connected person with his creative side — from music to intense performances. He travelled the world absorbing as much as he could to add to his creative arsenal.',
-        musicP2: 'Music — DJ and Producer since 2017, Natan has produced over 120 songs across styles from psytrance to ambient. He found his place with meditative live looping, creating improvised music as the energy of the room demands.',
+        musicP2: 'DJ and Producer since 2017, Natan has produced over 120 songs across styles from psytrance to ambient. He found his place with meditative live looping, creating improvised music as the energy of the room demands.',
+        'music.ctaReadStory': 'Read my story',
+        'music.ctaScroll': 'Scroll down',
         flowHeading: 'Flow Arts',
         flowP1: 'Natan started his flow journey in 2021, diving headfirst into this amazing universe. Now retired from regular performance, he keeps flow arts as a personal practice until the time is right to shine on stages again.',
         twitchHeading: 'Twitch Streamer',
@@ -131,6 +164,33 @@
         footer: 'NATAN LICHTNOW // MUSIC & FLOW ARTS'
       }
     };
+  </script>
+
+  <script>
+    (function(){
+      var cue = document.querySelector('.mh-hero__scroll');
+      if(!cue) return;
+      var hiddenClass = 'mh-hero__scroll--hidden';
+
+      function hideCue(){
+        cue.classList.add(hiddenClass);
+      }
+
+      // Hide when user scrolls past a small threshold
+      function onScroll(){
+        if(window.scrollY > 20) {
+          hideCue();
+          window.removeEventListener('scroll', onScroll);
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Hide immediately when the cue is clicked (user navigates down)
+      cue.addEventListener('click', function(){ hideCue(); });
+
+      // If the page loads already scrolled, ensure cue is hidden
+      if(window.scrollY > 20) hideCue();
+    })();
   </script>
 
   <script src="../js/internal-pages.js"></script>

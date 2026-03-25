@@ -1,0 +1,705 @@
+/* ================================================================
+       JOURNEY PAGE -- Dark Adventure / Nature Story
+       Green and Blue palette -- Mountain SVG backgrounds
+       ================================================================ */
+
+    /* Dark nature base */
+    body {
+      background: linear-gradient(180deg, #060f0a 0%, #09161e 50%, #060e0a 100%) !important;
+    }
+
+    /* Page-level variable overrides for the journey dark theme */
+    .c-page--journey {
+      --page-text: #d8eedd;
+      --page-text-muted: #6a9878;
+      --page-surface: rgba(12, 30, 18, 0.72);
+      --page-surface-strong: rgba(8, 22, 12, 0.94);
+      --page-border: rgba(70, 180, 110, 0.14);
+      --page-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+      --page-accent: #42c874;
+      --page-accent-soft: rgba(66, 200, 116, 0.12);
+      --page-accent-strong: rgba(66, 200, 116, 0.32);
+      --page-accent-glow: rgba(66, 200, 116, 0.2);
+      --page-hero-overlay: linear-gradient(135deg, rgba(20, 60, 30, 0.15), rgba(10, 30, 50, 0.08));
+      --page-heading-font: 'Rajdhani', sans-serif;
+      --page-label-font: 'Orbitron', monospace;
+    }
+
+    /* Topbar dark adaptation */
+    .c-page--journey .c-topbar {
+      background: rgba(4, 12, 7, 0.92) !important;
+      border-bottom: 1px solid rgba(66, 200, 116, 0.1);
+    }
+    .c-page--journey .c-topbar__menu-toggle {
+      display: none;
+      width: 2.7rem;
+      height: 2.7rem;
+      border-radius: 0.8rem;
+      border: 1px solid rgba(66, 200, 116, 0.24);
+      background: rgba(66, 200, 116, 0.08);
+      color: #c8e8d0;
+      align-items: center;
+      justify-content: center;
+      gap: 0.26rem;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .c-page--journey .c-topbar__menu-toggle:hover,
+    .c-page--journey .c-topbar__menu-toggle:focus-visible {
+      background: rgba(66, 200, 116, 0.16);
+      border-color: rgba(66, 200, 116, 0.4);
+    }
+    .c-page--journey .c-topbar__menu-toggle-line {
+      display: block;
+      width: 1.15rem;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .c-page--journey .c-topbar__menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 25;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      background: rgba(3, 10, 6, 0.26);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+    .c-page--journey .c-topbar__menu-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(2) {
+      opacity: 0;
+    }
+    .c-page--journey .c-topbar__menu-toggle[aria-expanded='true'] .c-topbar__menu-toggle-line:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+    .c-page--journey .c-topbar__brand { color: #c8e8d0; }
+    .c-page--journey .c-topbar__brand-mark {
+      background: rgba(66, 200, 116, 0.1);
+      border-color: rgba(66, 200, 116, 0.3);
+      color: #42c874;
+    }
+    .c-page--journey .c-topbar__link { color: #6a9878; }
+    .c-page--journey .c-topbar__link:hover,
+    .c-page--journey .c-topbar__link:focus-visible,
+    .c-page--journey .c-topbar__link--is-active {
+      color: #c8e8d0;
+      border-color: rgba(66, 200, 116, 0.3);
+      background: rgba(66, 200, 116, 0.08);
+    }
+    .c-page--journey .c-language-switcher { border-color: rgba(66, 200, 116, 0.14); background: rgba(66, 200, 116, 0.05); }
+    .c-page--journey .c-language-switcher__label { color: #4a7858; }
+    .c-page--journey .c-language-switcher__option { color: #c8e8d0; border-color: rgba(66, 200, 116, 0.14); }
+    .c-page--journey .c-language-switcher__option--is-active { background: rgba(66, 200, 116, 0.12); border-color: rgba(66, 200, 116, 0.32); }
+
+    /* Buttons */
+    .c-page--journey .c-button {
+      background: rgba(66, 200, 116, 0.1);
+      border-color: rgba(66, 200, 116, 0.32);
+      color: #a0d8b0;
+    }
+    .c-page--journey .c-button:hover { background: rgba(66, 200, 116, 0.2); }
+    .c-page--journey .c-button--ghost {
+      background: transparent;
+      border-color: rgba(66, 200, 116, 0.16);
+      color: #4a7858;
+    }
+
+    /* ================================================================
+       HERO
+       ================================================================ */
+    .jp-hero {
+      position: relative;
+      min-height: 94vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 6rem 1.5rem 0;
+    }
+
+    .jp-hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse at 25% 25%, rgba(12, 65, 45, 0.55) 0%, transparent 45%),
+        radial-gradient(ellipse at 75% 15%, rgba(8, 45, 90, 0.55) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 5%, rgba(14, 80, 110, 0.35) 0%, transparent 38%),
+        linear-gradient(180deg, #030a06 0%, #050e18 40%, #060c0a 100%);
+    }
+
+    /* Star-field dots via layered radial-gradients */
+    .jp-hero__stars {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px),
+        radial-gradient(circle, rgba(200,240,220,0.5) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px);
+      background-size: 220px 220px, 170px 170px, 310px 310px, 140px 140px;
+      background-position: 0 0, 80px 50px, 140px 90px, 55px 130px;
+      opacity: 0.45;
+    }
+
+    .jp-hero__content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 860px;
+      padding-bottom: 9rem;
+    }
+
+    .jp-hero__eyebrow {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: #42c874;
+      background: rgba(66, 200, 116, 0.1);
+      border: 1px solid rgba(66, 200, 116, 0.22);
+      border-radius: 999px;
+      padding: 0.35rem 1.2rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .jp-hero__title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(3.8rem, 10vw, 8.5rem);
+      font-weight: 700;
+      line-height: 0.95;
+      color: #e8f5ea;
+      margin: 0 0 2rem;
+      text-shadow: 0 0 80px rgba(66, 200, 116, 0.18), 0 4px 50px rgba(0, 0, 0, 0.9);
+    }
+
+    .jp-hero__lead {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.05rem, 2vw, 1.32rem);
+      font-weight: 400;
+      line-height: 1.75;
+      color: #6a9878;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Paraglider silhouette floating in hero */
+    .jp-hero__pilot {
+      position: absolute;
+      z-index: 8;
+      bottom: 28%;
+      right: 6%;
+      width: clamp(90px, 14vw, 200px);
+      filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.7));
+      opacity: 0.8;
+      transform: scaleX(-1);
+    }
+
+    /* Mountain layers - hero footer */
+    .jp-hero__mountains {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 6;
+      line-height: 0;
+    }
+    .jp-hero__mountains svg { display: block; width: 100%; }
+
+    /* nudge the mountain artwork down slightly (approx. 10%) */
+    .jp-hero__mountains {
+      transform: translateY(10%);
+      will-change: transform;
+    }
+
+    /* Page-specific override: raise the shared scroll cue for the journey hero */
+    .jp-hero .mh-hero__scroll--over {
+      bottom: 64px; /* sit higher inside the hero */
+      z-index: 22;
+    }
+    @media (max-width: 800px) {
+      .jp-hero .mh-hero__scroll--over { bottom: 6px; }
+    }
+
+    /* ================================================================
+       STORY BODY
+       ================================================================ */
+    .jp-story {
+      position: relative;
+      background: linear-gradient(180deg, #050e08 0%, #060d14 50%, #050e08 100%);
+    }
+
+    /* Ambient glow overlays */
+    .jp-story::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 0% 15%, rgba(16, 55, 28, 0.28) 0%, transparent 30%),
+        radial-gradient(ellipse at 100% 40%, rgba(10, 35, 65, 0.22) 0%, transparent 28%),
+        radial-gradient(ellipse at 50% 75%, rgba(16, 55, 28, 0.2) 0%, transparent 30%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .jp-story__inner {
+      position: relative;
+      z-index: 1;
+      padding: 5.5rem 0 2rem;
+    }
+
+    /* ================================================================
+       CHAPTER
+       ================================================================ */
+    .jp-chapter {
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(66, 200, 116, 0.06);
+    }
+    .jp-chapter:last-child { border-bottom: none; }
+
+    .jp-chapter__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #42c874;
+      margin-bottom: 0.4rem;
+    }
+    .jp-chapter__tag::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: linear-gradient(90deg, #42c874, transparent);
+    }
+
+    .jp-chapter__bg-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(4.5rem, 10vw, 8rem);
+      font-weight: 900;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(66, 200, 116, 0.13);
+      margin: -0.4rem 0 -1.2rem;
+      user-select: none;
+      pointer-events: none;
+      display: block;
+    }
+
+    .jp-chapter__title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.9rem, 4.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.12;
+      color: #c0e0c8;
+      margin: 0 0 1.8rem;
+    }
+
+    /* Two-column split (text + image) */
+    .jp-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .jp-split--img-left .jp-split__media { order: -1; }
+
+    .jp-split__text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1rem, 1.5vw, 1.14rem);
+      line-height: 1.88;
+      color: #c8f0d8;
+      background: rgba(16, 55, 28, 0.45);
+      padding: 1.8rem;
+      border-radius: 12px;
+      border-left: 3px solid rgba(66, 200, 116, 0.35);
+    }
+    .jp-split__text p { margin: 0 0 1.05em; }
+    .jp-split__text p:last-child { margin: 0; }
+
+    /* Full-width text */
+    .jp-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1rem, 1.5vw, 1.14rem);
+      line-height: 1.88;
+      color: #c8f0d8;
+      background: rgba(16, 55, 28, 0.45);
+      padding: 1.8rem;
+      border-radius: 12px;
+      border-left: 3px solid rgba(66, 200, 116, 0.35);
+      max-width: 720px;
+      margin-top: 1.4rem;
+    }
+    .jp-text p { margin: 0 0 1.05em; }
+    .jp-text p:last-child { margin: 0; }
+
+    /* Narrow text for introspective chapters */
+    .jp-text--narrow { max-width: 580px; }
+
+    /* Image */
+    .jp-img {
+      width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 18px 52px rgba(0,0,0,0.65), 0 0 0 1px rgba(66, 200, 116, 0.1);
+      display: block;
+    }
+    .jp-img-caption {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #3a6848;
+      text-align: center;
+      margin-top: 0.7rem;
+    }
+
+    /* Year badge */
+    .jp-year {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      color: #42c874;
+      background: rgba(66, 200, 116, 0.08);
+      border: 1px solid rgba(66, 200, 116, 0.2);
+      border-radius: 999px;
+      padding: 0.28rem 0.9rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    /* Gallery strip */
+    .jp-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.85rem;
+      margin-top: 2rem;
+    }
+    .jp-gallery img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.55);
+      display: block;
+    }
+
+    /* Video embed */
+    .jp-video { margin: 2.5rem 0; }
+    .jp-video__label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #42c874;
+      margin-bottom: 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .jp-video__label::before { content: '\25B6'; font-size: 0.48rem; }
+    .jp-video__wrapper {
+      position: relative;
+      padding-top: 56.25%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #020806;
+      box-shadow: 0 14px 44px rgba(0,0,0,0.75), 0 0 0 1px rgba(66, 200, 116, 0.12);
+    }
+    .jp-video__wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ================================================================
+       CHAPTER EMOTIONAL STATES
+       ================================================================ */
+
+    /* Dark / falling chapters */
+    .jp-chapter--dark .jp-chapter__tag { color: #8a8888; }
+    .jp-chapter--dark .jp-chapter__tag::before { background: linear-gradient(90deg, #8a8888, transparent); }
+    .jp-chapter--dark .jp-chapter__bg-num { -webkit-text-stroke-color: rgba(140, 120, 120, 0.12); }
+    .jp-chapter--dark .jp-chapter__title { color: #a8a0a0; }
+    .jp-chapter--dark .jp-text,
+    .jp-chapter--dark .jp-split__text { color: #c8c8a8; }
+
+    .jp-dark-box {
+      background: rgba(30, 20, 20, 0.6);
+      border-left: 3px solid rgba(140, 90, 90, 0.4);
+      border-radius: 0 12px 12px 0;
+      padding: 2rem 2rem 2rem 1.8rem;
+      max-width: 700px;
+      margin-top: 1.5rem;
+    }
+    .jp-dark-box p {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1rem, 1.4vw, 1.1rem);
+      line-height: 1.85;
+      color: #c8c8a8;
+      margin: 0 0 0.9em;
+    }
+    .jp-dark-box p:last-child { margin: 0; }
+
+    /* Smaller image variant */
+    .jp-img--small {
+      max-width: 280px;
+    }
+
+    .jp-split__media--compact {
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .jp-split__media--compact .jp-img--small {
+      margin-inline: auto;
+    }
+
+    .jp-split__media--compact .jp-img-caption {
+      width: 100%;
+    }
+
+    /* Rebirth -- warm amber/gold */
+    .jp-chapter--rebirth .jp-chapter__tag { color: #c8a040; }
+    .jp-chapter--rebirth .jp-chapter__tag::before { background: linear-gradient(90deg, #c8a040, transparent); }
+    .jp-chapter--rebirth .jp-chapter__bg-num { -webkit-text-stroke-color: rgba(200, 160, 64, 0.13); }
+    .jp-chapter--rebirth .jp-chapter__title { color: #e8cc70; }
+    .jp-chapter--rebirth .jp-text { color: #d4a860; }
+    .jp-chapter--rebirth .jp-text {
+      background: rgba(50, 40, 20, 0.45);
+      border-left-color: rgba(200, 160, 64, 0.35);
+    }
+
+    /* Horizon -- sky blue */
+    .jp-chapter--horizon .jp-chapter__tag { color: #4890c8; }
+    .jp-chapter--horizon .jp-chapter__tag::before { background: linear-gradient(90deg, #4890c8, transparent); }
+    .jp-chapter--horizon .jp-chapter__bg-num { -webkit-text-stroke-color: rgba(72, 144, 200, 0.13); }
+    .jp-chapter--horizon .jp-chapter__title { color: #80b8e0; }
+    .jp-chapter--horizon .jp-text { color: #8ab8d8; }
+    .jp-chapter--horizon .jp-text {
+      background: rgba(20, 35, 50, 0.45);
+      border-left-color: rgba(72, 144, 200, 0.35);
+    }
+
+    /* ================================================================
+       MINI MOUNTAIN DIVIDER
+       ================================================================ */
+    .jp-mountain-divider {
+      width: 100%;
+      margin: 1rem 0;
+      opacity: 0.14;
+      line-height: 0;
+    }
+    .jp-mountain-divider svg { display: block; width: 100%; }
+
+    /* ================================================================
+       MUSIC BRIDGE CARD
+       ================================================================ */
+    .jp-music-bridge {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      background: rgba(200, 120, 40, 0.06);
+      border: 1px solid rgba(200, 130, 40, 0.18);
+      border-radius: 14px;
+      padding: 1.5rem 1.8rem;
+      margin-top: 2rem;
+      max-width: 580px;
+      text-decoration: none;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .jp-music-bridge:hover { background: rgba(200, 120, 40, 0.1); border-color: rgba(200, 130, 40, 0.3); }
+    .jp-music-bridge__icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .jp-music-bridge__label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #c8a040;
+      margin-bottom: 0.3rem;
+    }
+    .jp-music-bridge__text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      color: #8a7840;
+      line-height: 1.5;
+    }
+
+    /* ================================================================
+       CTA SECTION
+       ================================================================ */
+    .jp-cta {
+      padding: 5.5rem 1.5rem 6.5rem;
+      text-align: center;
+      border-top: 1px solid rgba(66, 200, 116, 0.08);
+      background: linear-gradient(180deg, transparent, rgba(10, 30, 16, 0.5));
+    }
+    .jp-cta__eyebrow {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #42c874;
+      opacity: 0.7;
+      margin-bottom: 1.4rem;
+    }
+    .jp-cta__title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: #c0e0c8;
+      margin: 0 0 1.1rem;
+    }
+    .jp-cta__text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1rem;
+      color: #4a6a52;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .jp-cta__actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+    .c-page--journey .c-page-footer {
+      background: rgba(0,0,0,0.25);
+      border-top: 1px solid rgba(66, 200, 116, 0.07);
+    }
+
+    /* ================================================================
+       RESPONSIVE
+       ================================================================ */
+    @media (max-width: 1060px) {
+      .c-page--journey .c-topbar {
+        position: sticky;
+        z-index: 40;
+      }
+      .c-page--journey .c-topbar__inner {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        justify-items: stretch;
+        text-align: left;
+        gap: 0.45rem;
+      }
+      .c-page--journey .c-topbar__brand {
+        min-width: 0;
+        gap: 0.45rem;
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+      }
+      .c-page--journey .c-topbar__brand > span[data-i18n='brand'] {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .c-page--journey .c-topbar__menu-toggle {
+        display: inline-flex;
+      }
+      .c-page--journey .c-topbar__nav {
+        position: absolute;
+        left: 0.7rem;
+        right: 0.7rem;
+        top: calc(100% + 0.55rem);
+        display: grid;
+        gap: 0.55rem;
+        padding: 0.8rem;
+        border-radius: 0.95rem;
+        border: 1px solid rgba(66, 200, 116, 0.18);
+        background: rgba(4, 12, 7, 0.95);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      }
+      .c-page--journey .c-topbar__nav.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .c-page--journey .c-topbar__link {
+        width: 100%;
+      }
+      .c-page--journey .c-language-switcher {
+        justify-self: end;
+        width: auto;
+        gap: 0.2rem;
+        padding: 0.24rem;
+        max-width: 100%;
+      }
+      .c-page--journey .c-language-switcher__label {
+        padding-inline: 0.35rem;
+        font-size: 0.6rem;
+        letter-spacing: 0.1em;
+      }
+      .c-page--journey .c-language-switcher__option {
+        min-width: 2.2rem;
+        padding: 0.48rem 0.5rem;
+        font-size: 0.62rem;
+      }
+      .jp-split { grid-template-columns: 1fr; gap: 2rem; }
+      .jp-split--img-left .jp-split__media { order: 0; }
+      .jp-gallery { grid-template-columns: 1fr; }
+      .jp-hero__pilot { display: none; }
+      .jp-dark-box { padding: 1.5rem; }
+      .jp-hero__content { padding-bottom: 11rem; }
+    }
+
+ 
+
+    @media (max-width: 420px) {
+      .c-page--journey .c-topbar__brand {
+        font-size: 0.74rem;
+      }
+      .c-page--journey .c-language-switcher__label {
+        display: none;
+      }
+      .c-page--journey .c-language-switcher__option {
+        min-width: 2rem;
+        padding: 0.46rem 0.4rem;
+      }
+    }
+
+    /* Ensure certain chapter text boxes span the full content width
+       so they align with the section dividers (c-shell width). */
+    .jp-chapter#ch-06 .jp-dark-box,
+    .jp-chapter#ch-07 .jp-dark-box,
+    .jp-chapter#ch-10 .jp-text,
+    .jp-chapter#ch-11 .jp-text {
+      max-width: none;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      box-sizing: border-box;
+    }

@@ -1,10 +1,12 @@
-/* Page-specific styles for Flow Arts experience */
 
-/* Small-screen hero adjustments to avoid overflow and allow stacked words
-	 when internal JS injects newlines. Match breakpoint used in JS (<=455px).
-	 Use high specificity and !important to override shared global rules. */
 @media (max-width: 455px) {
+	/* Avoid extremely large titles on very small screens which break layout */
 	.mh-page .mh-title {
-		font-size: 6rem !important;
-  }
+		font-size: clamp(7rem, 8vw, 3.6rem) !important;
+		line-height: 1.05;
+		word-break: break-word;
+		overflow-wrap: anywhere;
+	}
+	.mh-page .mh-lead { font-size: clamp(0.95rem, 2.8vw, 1.1rem); }
+}
 

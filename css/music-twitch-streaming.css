@@ -237,7 +237,7 @@
     /* Small-screen hero adjustments to avoid overflow and allow stacked words
        when internal JS injects newlines. Use stronger specificity and !important
        to override global resets. */
-    @media (max-width: 455px) {
+    @media (max-width: 555px) {
       .mh-page .mh-title {
         font-size: 6.5rem !important;
         line-height: 1.02;

@@ -50,4 +50,98 @@
     /* Add top margin to the first content block */
     .c-page--music .c-section:first-of-type { margin-top: 64px; }
 
+/* Music hero adjustments: center and increase title scale */
+.mh-hero--music {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4.25rem 1rem 3rem;
+}
+.mh-hero--music .mh-hero__content { max-width: 980px; margin: 0 auto; }
+.mh-hero--music .mh-title {
+  font-size: clamp(9rem, 8.5vw, 6.8rem);
+  line-height: 0.98;
+  margin-bottom: 0.6rem;
+}
+.mh-hero--music .mh-lead { max-width: 60ch; margin: 0.6rem auto 1.2rem; font-size: clamp(1.05rem, 2.4vw, 1.4rem); color: var(--page-text-muted); }
+.mh-hero--music .mh-hero__actions { margin-top: 1.6rem; }
+
+@media (max-width: 720px) {
+  .mh-hero--music .mh-title { font-size: clamp(6rem, 9.6vw, 3.6rem); }
+}
+
+@media (max-width: 380px) {
+  .mh-hero--music { padding-top: 2.2rem; padding-bottom: 2rem; }
+  .mh-hero--music .mh-hero__content { max-width: calc(100% - 2rem); padding: 0 1rem; box-sizing: border-box; }
+  .mh-hero--music .mh-title { font-size: clamp(3.8rem, 8.5vw, 2.8rem) !important; line-height: 1.02; word-break: break-word; overflow-wrap: anywhere; }
+  .mh-hero--music .mh-lead { font-size: 0.98rem; margin: 0.5rem auto 0.9rem; }
+}
+
+/* Scroll cue placed at bottom center of hero */
+.mh-hero--music { position: relative; }
+.mh-hero__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 12;
+}
+.mh-hero__scroll-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--page-accent);
+  text-decoration: none;
+  font-family: var(--page-body-font);
+  font-weight: 600;
+  font-size: 0.85rem;
+  opacity: 0.95;
+  transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 200ms ease;
+  transform: translateY(0);
+}
+.mh-hero__scroll-icon { display: block; color: var(--page-accent); filter: drop-shadow(0 6px 18px rgba(100,40,160,0.14)); }
+.mh-hero__scroll-link:hover { transform: translateY(-6px); opacity: 1; }
+
+/* subtle bobbing animation applied only to the link Y axis (container handles X centering) */
+.mh-hero__scroll-link { animation: music-scroll-bob 2.2s ease-in-out infinite; }
+@keyframes music-scroll-bob {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* small-screen adjustments */
+@media (max-width: 480px) {
+  .mh-hero__scroll { bottom: 14px; }
+  .mh-hero__scroll-link { font-size: 0.78rem; gap: 4px; }
+  .mh-hero__scroll-icon { width: 26px; height: 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-hero__scroll-link { animation: none; transition: none; }
+}
+
+/* Hide/visible transition helpers for the scroll cue */
+.mh-hero__scroll {
+  transition: opacity 260ms ease, transform 260ms ease;
+  will-change: opacity, transform;
+}
+.mh-hero__scroll--hidden {
+  opacity: 0 !important;
+  transform: translateY(22px) scale(0.98) !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+/* Stop bobbing when hidden to avoid jumpy transitions */
+.mh-hero__scroll--hidden .mh-hero__scroll-link {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-hero__scroll { transition: none; }
+}
+
     

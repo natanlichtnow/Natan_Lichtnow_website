@@ -15,7 +15,7 @@
       transition: background 0.2s ease, border-color 0.2s ease;
       z-index: 50;
       position: relative;
-      
+     
     }
     .mh-page .c-topbar__menu-toggle:hover,
     .mh-page .c-topbar__menu-toggle:focus-visible {
@@ -114,6 +114,7 @@
   gap: 1rem;
   padding: 1rem 0;
   transition: padding 0.3s ease;
+  
 }
 
 .c-topbar.is-scrolled .c-topbar__inner {

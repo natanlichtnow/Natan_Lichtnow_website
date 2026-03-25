@@ -8,75 +8,167 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/internal.css" />
+  <link rel="stylesheet" href="../css/blocks/dev.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/blocks/topbar.css" />
 </head>
 <body>
-  <div class="c-page c-page--dev">
-    <header class="c-topbar"><div class="c-shell c-topbar__inner"><a class="c-topbar__brand" href="../index.html"><span class="c-topbar__brand-mark">NL</span><span data-i18n="brand">Natan Lichtnow</span></a><nav class="c-topbar__nav"><a class="c-topbar__link" href="index.html" data-i18n="navSectionHome">Dev Home</a><a class="c-topbar__link c-topbar__link--is-active" href="portfolio.html" data-i18n="navPortfolio">Portfolio</a><a class="c-topbar__link" href="experience.html" data-i18n="navExperience">Experience</a><a class="c-topbar__link" href="../index.html" data-i18n="navSelector">Selector</a></nav><div class="c-language-switcher"><span class="c-language-switcher__label" data-i18n="languageLabel">LANG</span><button class="c-language-switcher__option" type="button" data-lang="pt-BR">PT</button><button class="c-language-switcher__option" type="button" data-lang="en">EN</button></div></div></header>
-    <main class="c-shell">
-      <section class="c-hero">
-        <span class="c-hero__eyebrow" data-i18n="eyebrow">Built work</span>
-        <h1 class="c-hero__title" data-i18n="heroTitle">Portfolio</h1>
-        <p class="c-hero__lead" data-i18n="heroLead">This page now shows real work from the current site instead of portfolio placeholders: the selector homepage, the paraglider branch, and the music branch as three distinct product and design problems.</p>
-        <div class="c-hero__actions"><a class="c-button" href="experience.html" data-i18n="primaryAction">Open experience</a><a class="c-button c-button--ghost" href="index.html" data-i18n="secondaryAction">Back to dev home</a></div>
+  <div class="mh-page c-page c-page--dev">
+    <header class="c-topbar">
+      <div class="c-shell c-topbar__inner">
+        <button class="c-topbar__menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav" data-i18n="menuToggleAriaLabel" data-i18n-attr="aria-label">
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+          <span class="c-topbar__menu-toggle-line" aria-hidden="true"></span>
+        </button>
+        <a class="c-topbar__brand" href="../index.html">
+          <span class="c-topbar__brand-mark">NL</span>
+          <span data-i18n="brand">Natan Lichtnow</span>
+        </a>
+        <nav id="primary-nav" class="c-topbar__nav" aria-label="Section navigation">
+          <a class="c-topbar__link" href="index.html" data-i18n="navSectionHome">Dev Home</a>
+          <a class="c-topbar__link c-topbar__link--is-active" href="portfolio.html" data-i18n="navPortfolio">Portfolio</a>
+          <a class="c-topbar__link" href="experience.html" data-i18n="navExperience">Experience</a>
+        </nav>
+        <div class="c-language-switcher" aria-label="Language selector">
+          <span class="c-language-switcher__label" data-i18n="languageLabel">LANG</span>
+          <button class="c-language-switcher__option" type="button" data-lang="pt-BR">PT</button>
+          <button class="c-language-switcher__option" type="button" data-lang="en">EN</button>
+        </div>
+      </div>
+    </header>
+    <div class="c-topbar__menu-overlay" aria-hidden="true"></div>
+    <main class="c-shell" role="main">
+      <section class="c-hero" aria-labelledby="pf-hero-title">
+       
+        <h1 id="pf-hero-title" class="c-hero__title" data-i18n="heroTitle">Portfolio</h1>
+        <p class="c-hero__lead" data-i18n="heroLead">Natan already star                                                                                                                                                                                                                                                                                                                                             ted his programming journey as a freelancer, combining his skills of coding and video editing to enhance the user experience, he developed a website and a small system for a paraglider workshop, together with this website you are looking at</p>
       </section>
 
-      <section class="c-section">
-        <div class="c-project-grid">
-          <article class="c-project-card">
-            <span class="c-project-card__meta" data-i18n="projectOneMeta">Project 01</span>
-            <h2 class="c-project-card__title" data-i18n="projectOneTitle">Selector Homepage</h2>
-            <p class="c-project-card__text" data-i18n="projectOneText">A bilingual landing experience that frames one personal site as three different worlds. The challenge was turning identity into navigation without losing clarity.</p>
-            <ul class="c-list">
-              <li class="c-list__item"><h3 class="c-list__title" data-i18n="projectOnePointOneTitle">Problem</h3><p class="c-list__text" data-i18n="projectOnePointOneText">Create a first impression strong enough to separate musician, pilot, and developer without making the homepage feel fragmented.</p></li>
-              <li class="c-list__item"><h3 class="c-list__title" data-i18n="projectOnePointTwoTitle">Solution</h3><p class="c-list__text" data-i18n="projectOnePointTwoText">A character-selection style landing page with bilingual content, remembered language state, and direct routes into each branch.</p></li>
-            </ul>
-            <div class="c-project-card__links"><a class="c-link-pill" href="../index.html" data-i18n="projectOneCta">Open homepage</a></div>
+      <section class="c-section c-projects">
+        <div class="c-projects__list">
+          <article class="c-project-card" id="proj-moores">
+            <h2 class="c-project-card__title" data-i18n="mooresTitle">Moores roofing project</h2>
+            <p class="c-project-card__text" data-i18n="mooresP1">A website developed for a exterior renovation company, following the request of the client to have a authenticated dashboard where he can upload images and videos (Through youtube) to a gallery so his clients can stay up to date with the work he has been doing</p>
+            <div class="c-project-card__media">
+              <div class="c-embed-card__frame">
+                <iframe title="Moores demo" src="https://www.youtube.com/embed/wBvLb5nG_Yo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <p class="c-project-card__links"><a class="c-button" href="https://github.com/natanlichtnow/Lokkibbas-website" target="_blank" rel="noopener" data-i18n="projectRepo">Project repo</a></p>
+            </div>
           </article>
 
-          <article class="c-project-card">
-            <span class="c-project-card__meta" data-i18n="projectTwoMeta">Project 02</span>
-            <h2 class="c-project-card__title" data-i18n="projectTwoTitle">Paraglider Section System</h2>
-            <p class="c-project-card__text" data-i18n="projectTwoText">A branch redesign that moves away from glitch aesthetics and toward a brighter, landscape-driven system with clearer progression pages and experience structure.</p>
-            <ul class="c-list">
-              <li class="c-list__item"><h3 class="c-list__title" data-i18n="projectTwoPointOneTitle">Problem</h3><p class="c-list__text" data-i18n="projectTwoPointOneText">The original internal pages felt too visually shared with the homepage and did not reflect the nature-led tone of flying.</p></li>
-              <li class="c-list__item"><h3 class="c-list__title" data-i18n="projectTwoPointTwoTitle">Solution</h3><p class="c-list__text" data-i18n="projectTwoPointTwoText">New atmosphere, stronger copy, sales-style experience pages, and a cleaner narrative hierarchy for the whole pilot branch.</p></li>
-            </ul>
-            <div class="c-project-card__links"><a class="c-link-pill" href="../paraglider/index.html" data-i18n="projectTwoCta">Open paraglider branch</a></div>
+          <article class="c-project-card" id="proj-parapente">
+            <h2 class="c-project-card__title" data-i18n="oficinaTitle">Oficina de Parapente project</h2>
+            <p class="c-project-card__text" data-i18n="oficinaP1">A system developed to solve a major issue we have in Brazil: fake maintenance reports for paragliders</p>
+            <p class="c-project-card__text" data-i18n="oficinaP2">As request from the client, he wanted to digitalize his maintenance process, ensuring that there is an authenticated admin page for generation of the reports.</p>
+            <p class="c-project-card__text" data-i18n="oficinaP3">The report generation is dynamic and easy to use, with multiple added functions for quality of life and security of the process, it also allows his clients to check the progress in real time of how their maintenance is going.</p>                                                                                                      
+            <div class="c-project-card__media">
+              <div class="c-embed-card__frame">
+                <iframe title="Oficina demo" src="https://www.youtube.com/embed/5FcY2qiSCsg" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <p class="c-project-card__links"><span data-i18n="oficinaRepoNote">Client asked to keep the GitHub repo private so no one can copy or change the system</span></p>
+            </div>
           </article>
 
-          <article class="c-project-card c-project-card--wide">
-            <span class="c-project-card__meta" data-i18n="projectThreeMeta">Project 03</span>
-            <h2 class="c-project-card__title" data-i18n="projectThreeTitle">Music Branch Atmosphere</h2>
-            <p class="c-project-card__text" data-i18n="projectThreeText">A separate visual direction for the music world focused on warm gradients, softer geometry, and a more performance-led flow across the landing and Twitch pages.</p>
-            <div class="c-project-card__links"><a class="c-link-pill" href="../music/index.html" data-i18n="projectThreeCta">Open music branch</a><a class="c-link-pill c-link-pill--ghost" href="../music/twitch-streaming.html" data-i18n="projectThreeSecondary">Open Twitch page</a></div>
+          <article class="c-project-card" id="proj-personal">
+            <h2 class="c-project-card__title" data-i18n="personalTitle">Personal website project</h2>
+            <p class="c-project-card__text" data-i18n="personalP1">Natan needed a website to display a portfolio and his life history somewhere, so he came up with the idea to develop a "pick your character" type of website, including the three worlds he is a part of: Paragliding, Music & arts and the recently added web development, its the website you are currently at</p>
+          </article>
+
+          <article class="c-project-card" id="proj-bootcamp">
+            <h2 class="c-project-card__title" data-i18n="bootcampTitle">Bootcamp projects</h2>
+            <p class="c-project-card__text" data-i18n="bootcampLead">Natan also developed multiple projects following the guidelines of his TripleTen coding academy bootcamp</p>
+            <ul class="c-list">
+              <li class="c-list__item">
+                <strong data-i18n="bp1Title">Web_Project_Around_pt</strong>
+                <p class="c-list__text" data-i18n="bp1Text">Interactive web application with its architecture based on OOP and complete integration to the API from TripleTen</p>
+                <p class="c-list__meta"><a class="c-button" href="https://github.com/natanlichtnow/web_project_around_pt/" target="_blank" rel="noopener" data-i18n="projectRepo">project repo</a></p>
+              </li>
+              <li class="c-list__item">
+                <strong data-i18n="bp2Title">Web_Project_Expenses_pt</strong>
+                <p class="c-list__text" data-i18n="bp2Text">An expenses tracker, an interactive page where its possible to set a budged, add and remove expenses from different categories and visualize statistics about those expenses</p>
+                <p class="c-list__meta"><a class="c-button" href="https://github.com/natanlichtnow/web_project_expenses_pt" target="_blank" rel="noopener" data-i18n="projectRepo">project repo</a></p>
+              </li>
+              <li class="c-list__item">
+                <strong data-i18n="bp3Title">Web_Project_Homeland_pt</strong>
+                <p class="c-list__text" data-i18n="bp3Text">A website created to showcase the different hometowns of workers at TripleTen, focused on developing html and css skills and also learning about responsive development for multiple resolutions.</p>
+                <p class="c-list__meta"><a class="c-button" href="https://github.com/natanlichtnow/web_project_homeland" target="_blank" rel="noopener" data-i18n="projectRepo">project repo</a></p>
+              </li>
+            </ul>
           </article>
         </div>
       </section>
-
-      <section class="c-section">
-        <article class="c-embed-card">
-          <div class="c-embed-card__frame">
-            <iframe title="Homepage preview" src="../index.html" loading="lazy"></iframe>
-          </div>
-          <div>
-            <span class="c-embed-card__eyebrow" data-i18n="embedEyebrow">Live preview</span>
-            <h2 class="c-embed-card__title" data-i18n="embedTitle">The work is navigable, not hypothetical.</h2>
-            <p class="c-embed-card__text" data-i18n="embedText">Instead of describing imaginary case studies, this page previews the actual work inside the repo. The homepage is the clearest proof: design direction, bilingual behavior, and branch navigation working together.</p>
-          </div>
-        </article>
-      </section>
-
-      <section class="c-section"><div class="c-info-strip"><div class="c-info-strip__item"><span class="c-info-strip__label" data-i18n="stripLabelOne">Type</span><span class="c-info-strip__value" data-i18n="stripValueOne">Frontend direction, content structure, and atmosphere design for a multi-world personal website.</span></div><div class="c-info-strip__item"><span class="c-info-strip__label" data-i18n="stripLabelTwo">Proof</span><span class="c-info-strip__value" data-i18n="stripValueTwo">Real internal links, live previews, bilingual content, and branch-specific visual systems.</span></div><div class="c-info-strip__item"><span class="c-info-strip__label" data-i18n="stripLabelThree">Next layer</span><span class="c-info-strip__value" data-i18n="stripValueThree">Add future external profile links and deployed URLs once the final public endpoints are defined.</span></div></div></section>
     </main>
     <footer class="c-page-footer c-shell"><p class="c-page-footer__text" data-i18n="footer">NATAN LICHTNOW // PORTFOLIO</p></footer>
   </div>
   <script>
     window.NATAN_PAGE_TRANSLATIONS = {
       'pt-BR': {
-        pageTitle: 'Portfolio | Natan Lichtnow', brand: 'Natan Lichtnow', languageLabel: 'IDIOMA', navSectionHome: 'Inicio dev', navPortfolio: 'Portfolio', navExperience: 'Experiencia', navSelector: 'Seletor', eyebrow: 'Trabalho construido', heroTitle: 'Portfolio', heroLead: 'Esta pagina agora mostra trabalho real do site atual em vez de placeholders: a homepage seletora, o ramo de parapente e o ramo de musica como tres problemas distintos de produto e design.', primaryAction: 'Abrir experiencia', secondaryAction: 'Voltar ao inicio dev', projectOneMeta: 'Projeto 01', projectOneTitle: 'Homepage Seletora', projectOneText: 'Uma experiencia inicial bilingue que enquadra um site pessoal como tres mundos diferentes. O desafio era transformar identidade em navegacao sem perder clareza.', projectOnePointOneTitle: 'Problema', projectOnePointOneText: 'Criar uma primeira impressao forte o bastante para separar musico, piloto e desenvolvedor sem fazer a homepage parecer fragmentada.', projectOnePointTwoTitle: 'Solucao', projectOnePointTwoText: 'Uma landing em estilo selecao de personagem com conteudo bilingue, idioma lembrado e rotas diretas para cada ramo.', projectOneCta: 'Abrir homepage', projectTwoMeta: 'Projeto 02', projectTwoTitle: 'Sistema da Secao de Parapente', projectTwoText: 'Um redesign de ramo que se afasta da estetica glitch e caminha para um sistema mais claro, guiado por paisagem, com paginas de experiencia e progressao mais fortes.', projectTwoPointOneTitle: 'Problema', projectTwoPointOneText: 'As paginas internas originais pareciam visualmente proximas demais da homepage e nao refletiam o tom mais natural do voo.', projectTwoPointTwoTitle: 'Solucao', projectTwoPointTwoText: 'Nova atmosfera, copy mais forte, paginas de experiencia em formato de oferta e uma hierarquia narrativa mais limpa para todo o ramo piloto.', projectTwoCta: 'Abrir ramo de parapente', projectThreeMeta: 'Projeto 03', projectThreeTitle: 'Atmosfera do Ramo Musical', projectThreeText: 'Uma direcao visual separada para o mundo da musica, focada em gradientes quentes, geometria mais suave e um fluxo mais orientado a performance nas paginas de entrada e Twitch.', projectThreeCta: 'Abrir ramo musical', projectThreeSecondary: 'Abrir pagina da Twitch', embedEyebrow: 'Preview ao vivo', embedTitle: 'O trabalho e navegavel, nao hipotetico.', embedText: 'Em vez de descrever estudos de caso imaginarios, esta pagina previsualiza o trabalho real dentro do repositorio. A homepage e a prova mais clara: direcao visual, comportamento bilingue e navegacao entre ramos trabalhando juntos.', stripLabelOne: 'Tipo', stripValueOne: 'Direcao frontend, estrutura de conteudo e design de atmosfera para um site pessoal com varios mundos.', stripLabelTwo: 'Prova', stripValueTwo: 'Links internos reais, previews vivos, conteudo bilingue e sistemas visuais diferentes para cada ramo.', stripLabelThree: 'Proxima camada', stripValueThree: 'Adicionar links externos futuros e URLs publicas assim que os endpoints finais forem definidos.', footer: 'NATAN LICHTNOW // PORTFOLIO'
+        pageTitle: 'Portfolio | Natan Lichtnow',
+        brand: 'Natan Lichtnow',
+        languageLabel: 'IDIOMA',
+        navSectionHome: 'Início dev',
+        navPortfolio: 'Portfólio',
+        navExperience: 'Experiência',
+        eyebrow: 'Trabalho construído',
+        heroTitle: 'Portfólio',
+        heroLead: 'Natan iniciou sua jornada em programação como freelancer, combinando suas habilidades com códigos e edição de vídeo para criar uma experiência mais imersiva para o usuário',
+        mooresTitle: 'Projeto Moores roofing',
+        mooresP1: 'Um site desenvolvido para uma empresa de reformas de exterior, atendendo ao pedido do cliente de ter um painel autenticado onde ele pode enviar imagens e vídeos (via YouTube) para uma galeria, assim seus clientes podem acompanhar o trabalho que ele vem realizando.',
+        oficinaTitle: 'Projeto Oficina de Parapente',
+        oficinaP1: 'Um sistema desenvolvido para resolver um problema sério que temos no Brasil: laudos de manutenção falsos para parapentes.',
+        oficinaP2: 'A pedido do cliente, ele queria digitalizar seu processo de manutenção, garantindo uma página de administração autenticada para a geração dos laudos.',
+        oficinaP3: 'A geração de laudos é dinâmica e fácil de usar, com múltiplas funções adicionadas para facilitar e aumentar a segurança do processo; também permite que os clientes verifiquem em tempo real o andamento da manutenção.',
+        oficinaRepoNote: 'O cliente pediu para manter o repositório no GitHub privado para que ninguém possa copiar ou alterar o sistema',
+        personalTitle: 'Projeto de site pessoal',
+        personalP1: 'Natan precisava de um site para exibir um portfólio e a sua história, então teve a ideia de desenvolver um site do tipo "escolha seu personagem", incluindo os três mundos que pertence: Parapente, Música & Artes e o recentemente adicionado desenvolvimento web — é o site que você está visitando agora.',
+        bootcampTitle: 'Projetos do bootcamp',
+        bootcampLead: 'Natan também desenvolveu vários projetos seguindo as diretrizes do bootcamp da TripleTen.',
+        bp1Title: 'Web_Project_Around_pt',
+        bp1Text: 'Aplicação web interativa com arquitetura baseada em POO e integração completa com a API do TripleTen',
+        bp1Repo: 'https://github.com/natanlichtnow/web_project_around_pt/',
+        bp2Title: 'Web_Project_Expenses_pt',
+        bp2Text: 'Um rastreador de despesas, uma página interativa onde é possível definir um orçamento, adicionar e remover despesas de diferentes categorias e visualizar estatísticas sobre essas despesas',
+        bp2Repo: 'https://github.com/natanlichtnow/web_project_expenses_pt',
+        bp3Title: 'Web_Project_Homeland_pt',
+        bp3Text: 'Um site criado para mostrar as diferentes cidades natais dos colaboradores do TripleTen, focado em desenvolver habilidades em HTML e CSS e também em desenvolvimento responsivo para múltiplas resoluções.',
+        bp3Repo: 'https://github.com/natanlichtnow/web_project_homeland',
+        projectRepo: 'Repositório do projeto',
+        footer: 'NATAN LICHTNOW // PORTFÓLIO'
       },
       en: {
-        pageTitle: 'Portfolio | Natan Lichtnow', brand: 'Natan Lichtnow', languageLabel: 'LANG', navSectionHome: 'Dev Home', navPortfolio: 'Portfolio', navExperience: 'Experience', navSelector: 'Selector', eyebrow: 'Built work', heroTitle: 'Portfolio', heroLead: 'This page now shows real work from the current site instead of portfolio placeholders: the selector homepage, the paraglider branch, and the music branch as three distinct product and design problems.', primaryAction: 'Open experience', secondaryAction: 'Back to dev home', projectOneMeta: 'Project 01', projectOneTitle: 'Selector Homepage', projectOneText: 'A bilingual landing experience that frames one personal site as three different worlds. The challenge was turning identity into navigation without losing clarity.', projectOnePointOneTitle: 'Problem', projectOnePointOneText: 'Create a first impression strong enough to separate musician, pilot, and developer without making the homepage feel fragmented.', projectOnePointTwoTitle: 'Solution', projectOnePointTwoText: 'A character-selection style landing page with bilingual content, remembered language state, and direct routes into each branch.', projectOneCta: 'Open homepage', projectTwoMeta: 'Project 02', projectTwoTitle: 'Paraglider Section System', projectTwoText: 'A branch redesign that moves away from glitch aesthetics and toward a brighter, landscape-driven system with clearer progression pages and experience structure.', projectTwoPointOneTitle: 'Problem', projectTwoPointOneText: 'The original internal pages felt too visually shared with the homepage and did not reflect the nature-led tone of flying.', projectTwoPointTwoTitle: 'Solution', projectTwoPointTwoText: 'New atmosphere, stronger copy, sales-style experience pages, and a cleaner narrative hierarchy for the whole pilot branch.', projectTwoCta: 'Open paraglider branch', projectThreeMeta: 'Project 03', projectThreeTitle: 'Music Branch Atmosphere', projectThreeText: 'A separate visual direction for the music world focused on warm gradients, softer geometry, and a more performance-led flow across the landing and Twitch pages.', projectThreeCta: 'Open music branch', projectThreeSecondary: 'Open Twitch page', embedEyebrow: 'Live preview', embedTitle: 'The work is navigable, not hypothetical.', embedText: 'Instead of describing imaginary case studies, this page previews the actual work inside the repo. The homepage is the clearest proof: design direction, bilingual behavior, and branch navigation working together.', stripLabelOne: 'Type', stripValueOne: 'Frontend direction, content structure, and atmosphere design for a multi-world personal website.', stripLabelTwo: 'Proof', stripValueTwo: 'Real internal links, live previews, bilingual content, and branch-specific visual systems.', stripLabelThree: 'Next layer', stripValueThree: 'Add future external profile links and deployed URLs once the final public endpoints are defined.', footer: 'NATAN LICHTNOW // PORTFOLIO'
+        pageTitle: 'Portfolio | Natan Lichtnow',
+        brand: 'Natan Lichtnow',
+        languageLabel: 'LANG',
+        navSectionHome: 'Dev Home',
+        navPortfolio: 'Portfolio',
+        navExperience: 'Experience',
+       
+        heroTitle: 'Portfolio',
+        heroLead: 'Natan already started his programming journey as a freelancer, combining his skills of coding and video editing to enhance the user experience.',
+        mooresTitle: 'Moores roofing project',
+        mooresP1: 'A website developed for a exterior renovation company, following the request of the client to have a authenticated dashboard where he can upload images and videos (Through youtube) to a gallery so his clients can stay up to date with the work he has been doing',
+        oficinaTitle: 'Oficina de Parapente project',
+        oficinaP1: 'A system developed to solve a major issue we have in Brazil: fake maintenance reports for paragliders',
+        oficinaP2: 'As request from the client, he wanted to digitalize his maintenance process, ensuring that there is an authenticated admin page for generation of the reports.',
+        oficinaP3: 'The report generation is dynamic and easy to use, with multiple added functions for quality of life and security of the process, it also allows his clients to check the progress in real time of how their maintenance is going.',
+        oficinaRepoNote: 'Client asked to keep the GitHub repo private so no one can copy or change the system',
+        personalTitle: 'Personal website project',
+        personalP1: 'Natan needed a website to display a portfolio and his life history somewhere, so he came up with the idea to develop a "pick your character" type of website, including the three worlds he is a part of: Paragliding, Music & arts and the recently added web development, its the website you are currently at',
+        bootcampTitle: 'Bootcamp projects',
+        bootcampLead: 'Natan also developed multiple projects following the guidelines of his TripleTen coding academy bootcamp',
+        bp1Title: 'Web_Project_Around_pt',
+        bp1Text: 'Interactive web application with its architecture based on OOP and complete integration to the API from TripleTen',
+        bp1Repo: 'https://github.com/natanlichtnow/web_project_around_pt/',
+        bp2Title: 'Web_Project_Expenses_pt',
+        bp2Text: 'An expenses tracker, an interactive page where its possible to set a budged, add and remove expenses from different categories and visualize statistics about those expenses',
+        bp2Repo: 'https://github.com/natanlichtnow/web_project_expenses_pt',
+        bp3Title: 'Web_Project_Homeland_pt',
+        bp3Text: 'A website created to showcase the different hometowns of workers at TripleTen, focused on developing html and css skills and also learning about responsive development for multiple resolutions.',
+        bp3Repo: 'https://github.com/natanlichtnow/web_project_homeland',
+        projectRepo: 'Project repo',
+        footer: 'NATAN LICHTNOW // PORTFOLIO'
       }
     };
   </script>

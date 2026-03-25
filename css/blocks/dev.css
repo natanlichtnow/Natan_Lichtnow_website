@@ -1,0 +1,124 @@
+/* Dev block — apply site palette and 8-bit/glitch aesthetic */
+:root {
+  /* Palette (derived from attached image) */
+  --palette-1: #8bff2a; /* bright lime */
+  --palette-2: #00d35a; /* green */
+  --palette-3: #13c3aa; /* teal */
+  --palette-4: #00c800; /* vivid green */
+  --palette-5: #14bfc2; /* cyan */
+  --palette-6: #008fb3; /* deep teal */
+  --palette-7: #0f4f84; /* dark blue */
+  --palette-8: #0b3eff; /* vivid blue */
+  --palette-9: #6a00ff; /* purple */
+  --palette-10: #8a7759; /* brown light */
+  --palette-11: #5a492f; /* brown mid */
+  --palette-12: #3b2a04; /* brown dark */
+
+  --dev-accent-1: var(--palette-2);
+  --dev-accent-2: var(--palette-5);
+  --dev-accent-3: var(--palette-8);
+  --dev-accent-4: var(--palette-9);
+}
+
+/* scoped dev page tokens */
+.c-page--dev {
+  --page-accent: var(--dev-accent-1);
+  --page-accent-strong: rgba(11, 211, 90, 0.18);
+  --page-surface: rgba(8, 6, 12, 0.82);
+  --page-pattern: linear-gradient(180deg, #050306 0%, #0a0710 100%);
+}
+
+.c-dev { padding: 2.5rem 0; display: block; }
+.c-dev__hero { display: flex; flex-direction:column; gap: 1.25rem; align-items: center; padding: 2rem 0; }
+.c-dev__hero-inner { text-align: left; max-width: none; }
+.c-dev__title { font-family: var(--page-label-font, 'Press Start 2P'); font-size: clamp(1.8rem, 4.8vw, 2.6rem); line-height: 1.02; margin: 0 0 0.6rem; color: var(--palette-1); position: relative; display: block; max-width: 100%; word-break: normal; overflow-wrap: break-word; hyphens: none; }
+.c-dev__subtitle { color: var(--page-text-muted); margin: 0 0 1rem; font-family: var(--page-body-font); }
+
+/* Glitch text effect using palette colors */
+.c-dev__title {
+  text-shadow: 2px 0 var(--dev-accent-1), -2px 0 var(--dev-accent-3), 0 3px rgba(0,0,0,0.6);
+  filter: contrast(1.1) saturate(1.05);
+  animation: dev-glitch 2.8s infinite steps(2, end);
+}
+
+@keyframes dev-glitch {
+  0% { transform: translateX(0); text-shadow: 2px 0 var(--dev-accent-1), -2px 0 var(--dev-accent-3); }
+  20% { transform: translateX(-1px); text-shadow: 6px 0 var(--dev-accent-1), -1px 0 var(--dev-accent-3); }
+  40% { transform: translateX(1px); text-shadow: 1px 0 var(--dev-accent-1), -6px 0 var(--dev-accent-3); }
+  60% { transform: translateX(0); text-shadow: 2px 0 var(--dev-accent-1), -2px 0 var(--dev-accent-3); }
+  100% { transform: translateX(0); }
+}
+
+.c-dev__hero-figure { justify-self: end; margin: 0; }
+.c-dev__hero-figure { justify-self: end; margin: 0; }
+.c-dev__hero-image { width: 100%; max-width: 320px; height: auto; image-rendering: pixelated; display:block; border: 6px solid rgba(255,255,255,0.04); border-radius: 6px; box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 18px var(--dev-accent-2); background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent); }
+
+.c-dev__section-title { font-family: var(--page-heading-font); font-weight:700; margin: 0 0 0.6rem; color: var(--palette-1); }
+.c-dev__text { color: var(--page-text); line-height:1.6; margin: 0 0 1rem; }
+
+/* framed panels for retro UI look */
+.c-dev__intro, .c-dev__education { background: linear-gradient(180deg, rgba(255,255,255,0.012), transparent); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.04); box-shadow: 0 16px 40px rgba(0,0,0,0.45); }
+
+/* topbar tweaks when on dev page to match palette */
+.c-page--dev .c-topbar { background: var(--page-surface); border-bottom: none !important; }
+.c-page--dev .c-topbar__brand-mark { background: transparent; color: var(--palette-1); border-color: var(--palette-1); }
+.c-page--dev .c-topbar__brand { color: var(--palette-1); }
+.c-page--dev .c-topbar__link--is-active { color: var(--palette-1); border-bottom: 2px solid var(--palette-1); }
+
+/* small screens */
+@media (max-width: 800px) {
+  .c-dev__hero { display: flex; flex-direction: column; gap: 1.25rem;  }
+  .c-dev__hero-inner { text-align: left; }
+  .c-dev__hero-figure { justify-self: center; margin-top: 1rem; }
+  .c-dev__hero-image {max-width: 280px; margin: 0 auto; box-sizing: border-box; }
+  .c-dev__title { font-size: 1.8rem; }
+}
+
+/* Extra small screens: reduce title and disable glitch to avoid layout jumps */
+@media (max-width: 480px) {
+  .c-dev__title {
+    font-size: clamp(1.4rem, 7.6vw, 1.9rem);
+    line-height: 1.05;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    animation: none !important;
+  }
+}
+
+/* Target Portuguese language specifically on very small viewports */
+@media (max-width: 470px) {
+  html[lang="pt-BR"] .c-page--dev .c-dev__title {
+    font-size: 1.15rem !important;
+    line-height: 1.08 !important;
+  }
+}
+
+/* reduce motion preference */
+@media (prefers-reduced-motion: reduce) { .c-dev__title { animation: none; } }
+
+/* Ensure detail panel uses full width when no side panel is present */
+.c-page--dev .c-detail-layout { display: block; }
+.c-page--dev .c-detail-layout .c-detail-panel { width: 100%; max-width: 980px; margin: 0 auto; }
+
+/* Ensure hero lead expands to full width on dev pages (override global limit) */
+.c-page--dev .c-hero__lead {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* Center the hero title on the dev index page only */
+.c-dev__hero--center .c-dev__hero-inner {
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ensure small screens keep the title centered when modifier is present */
+@media (max-width: 800px) {
+  .c-dev__hero--center .c-dev__hero-inner { text-align: center !important; }
+}
+
+/* If a two-column layout is later desired, pages can add a modifier class to opt-in */
+.c-page--dev .c-detail-layout--split { display: grid; grid-template-columns: 1fr 320px; gap: 1.25rem; }
+.c-page--dev .c-detail-layout--split .c-detail-panel { width: auto; margin: 0; }

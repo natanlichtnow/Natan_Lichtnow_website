@@ -1,0 +1,93 @@
+/* Generic hero components and music-specific hero pieces */
+.c-hero { position: relative; padding: 4.75rem 0 2.5rem; }
+.c-hero--split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr); gap: 1.6rem; align-items: stretch; }
+.c-hero__panel, .c-hero__media { background: var(--page-hero-overlay), var(--page-surface); border: 1px solid var(--page-border); border-radius: var(--page-radius); box-shadow: var(--page-shadow); }
+.c-hero__panel { padding: 2rem; background: none !important; box-shadow: none !important; border: none !important; }
+.c-hero__media { position: relative; min-height: 24rem; overflow: hidden; isolation: isolate; }
+.c-hero__media::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.18)); z-index: 1; }
+.c-hero__title { margin: 0; font-family: var(--page-heading-font); font-size: clamp(1.45rem, 3vw, 2.6rem); line-height: 0.98; letter-spacing: 0.05em; text-transform: uppercase; }
+.c-hero__lead { color: var(--page-text-muted); font-size: clamp(1.12rem, 2vw, 1.38rem); }
+.c-hero__actions { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 1.8rem; }
+
+/* Music hero (mh-*) copied from internal.css to maintain visuals */
+.mh-page { --mh-accent: var(--page-accent); --mh-text: var(--page-text); }
+.mh-hero { position: relative; min-height: 52vh; display: flex; align-items: center; padding: 4rem 1.5rem; }
+.mh-hero__inner { display:flex; gap:2rem; align-items:center; width:100%; max-width:1200px; margin:0 auto; position: relative; z-index: 10 }
+.mh-hero__copy { flex:1 }
+.mh-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(2rem, 5vw, 3.6rem); color: #e8f5ea; margin:0 0 0.8rem }
+.mh-lead { color:var(--mh-text-muted); max-width:640px }
+.mh-hero--flow { margin: 0 !important; padding: 0 !important; }
+.mh-hero--flow .mh-hero__inner { flex-direction: column; text-align: center; gap: 1rem }
+.mh-hero--flow .mh-title { font-size: clamp(3rem, 9vw, 8rem); }
+.mh-hero__blob, .mh-story__blob { opacity: 0.6; filter: blur(80px); }
+
+@media (max-width:800px) { .mh-hero { padding-top: 3.6rem; } }
+
+/* Shared scroll cue used by music hero pages */
+.mh-hero { position: relative; }
+.mh-hero__scroll {
+	position: absolute;
+	left: 50%;
+	bottom: 28px; /* sit slightly lower on the hero */
+	transform: translateX(-50%);
+	z-index: 12;
+	transition: opacity 260ms ease, transform 260ms cubic-bezier(.2,.9,.2,1);
+	will-change: opacity, transform;
+}
+.mh-hero__scroll-link {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	color: var(--page-accent);
+	text-decoration: none;
+	font-family: var(--page-body-font);
+	font-weight: 600;
+	font-size: 0.85rem;
+	opacity: 0.95;
+	transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 200ms ease;
+}
+.mh-hero__scroll-icon { display: block; color: var(--page-accent); filter: drop-shadow(0 6px 18px rgba(100,40,160,0.14)); }
+.mh-hero__scroll-link:hover { transform: translateY(-6px); opacity: 1; }
+
+/* Bobbing animation on the Y axis only */
+.mh-hero__scroll-link { animation: music-scroll-bob 2.2s ease-in-out infinite; }
+@keyframes music-scroll-bob { 0% { transform: translateY(0); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0); } }
+
+/* Hidden state when user scrolls or clicks */
+.mh-hero__scroll--hidden {
+	opacity: 0 !important;
+	transform: translateX(-50%) translateY(22px) scale(0.98) !important;
+	pointer-events: none !important;
+	visibility: hidden !important;
+}
+.mh-hero__scroll--hidden .mh-hero__scroll-link { animation: none !important; }
+
+@media (max-width: 480px) {
+	.mh-hero__scroll { bottom: 18px; }
+	.mh-hero__scroll-link { font-size: 0.78rem; gap: 4px; }
+	.mh-hero__scroll-icon { width: 26px; height: 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.mh-hero__scroll-link { animation: none; transition: none; }
+	.mh-hero__scroll { transition: none; }
+}
+
+/* Variant: place the scroll cue overlapping the hero bottom / mountains.
+	 Use the modifier class `mh-hero__scroll--over` on the cue element when
+	 the element remains inside the hero but should visually sit below it. */
+.mh-hero__scroll--over {
+	position: absolute !important;
+	left: 50%;
+	bottom: -36px; /* pull below the hero so it appears over the mountains */
+	transform: translateX(-50%);
+	z-index: 22;
+	visibility: visible !important;
+	pointer-events: auto !important;
+}
+.mh-hero__scroll--over .mh-hero__scroll-link { animation: music-scroll-bob 2.2s ease-in-out infinite; }
+
+@media (max-width: 800px) {
+	.mh-hero__scroll--over { bottom: -24px; }
+}
